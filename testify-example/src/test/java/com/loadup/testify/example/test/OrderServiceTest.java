@@ -61,7 +61,9 @@ public class OrderServiceTest extends AbstractTestNGSpringContextTests {
         reportService.startTest();
     }
 
-    @Test(dataProvider = "testifyProviderWithPath", dataProviderClass = TestifyDataProvider.class)
+    @Test(dataProvider = "testifyProviderWithPath",
+          dataProviderClass = TestifyDataProvider.class,
+          description = "Order Service Tests - Data-driven from YAML")
     @TestConfig("test-configs/OrderServiceTest/testCreateOrder.yaml")
     public void testCreateOrder(TestSuite testSuite, TestCase testCase) {
         executeTestCase(testSuite, testCase);

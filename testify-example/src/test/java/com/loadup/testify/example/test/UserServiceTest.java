@@ -64,7 +64,9 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
         reportService.startTest();
     }
 
-    @Test(dataProvider = "testifyProviderWithPath", dataProviderClass = TestifyDataProvider.class)
+    @Test(dataProvider = "testifyProviderWithPath",
+          dataProviderClass = TestifyDataProvider.class,
+          description = "User Service Tests - Data-driven from YAML")
     @TestConfig("test-configs/UserServiceTest/testCreateUser.yaml")
     public void testCreateUser(TestSuite testSuite, TestCase testCase) {
         executeTestCase(testSuite, testCase);

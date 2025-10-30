@@ -1,6 +1,5 @@
 package com.loadup.testify.core.provider;
 
-import com.loadup.testify.core.context.TestContext;
 import com.loadup.testify.core.model.TestCase;
 import com.loadup.testify.core.model.TestSuite;
 import com.loadup.testify.core.parser.YamlTestConfigParser;
@@ -10,7 +9,6 @@ import org.testng.annotations.DataProvider;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -23,12 +21,11 @@ public class TestifyDataProvider {
     private static final YamlTestConfigParser parser = new YamlTestConfigParser();
 
     /**
-     * Main data provider method
+     * Main data provider method with readable test names
      * Usage: @Test(dataProvider = "testifyProvider", dataProviderClass = TestifyDataProvider.class)
      */
     @DataProvider(name = "testifyProvider", parallel = false)
-    public static Iterator<Object[]> testifyProvider(Method method) {
-        // Get test configuration file path from method annotation or convention
+    public static Object[][] testifyProvider(Method method) {
         String configPath = getConfigPath(method);
 
         log.info("Loading test configuration for method: {} from: {}", method.getName(), configPath);
@@ -48,7 +45,7 @@ public class TestifyDataProvider {
 
         log.info("Loaded {} test cases", testData.size());
 
-        return testData.iterator();
+        return testData.toArray(new Object[0][]);
     }
 
     /**
@@ -62,11 +59,10 @@ public class TestifyDataProvider {
     }
 
     /**
-     * Custom data provider with explicit configuration path
+     * Custom data provider with explicit configuration path and readable test names
      */
-    @DataProvider(name = "testifyProviderWithPath")
-    public static Iterator<Object[]> testifyProviderWithPath(Method method) {
-        // Look for @TestConfig annotation to get custom path
+    @DataProvider(name = "testifyProviderWithPath", indices = {})
+    public static Object[][] testifyProviderWithPath(Method method) {
         TestConfig annotation = method.getAnnotation(TestConfig.class);
         if (annotation == null) {
             throw new IllegalStateException("@TestConfig annotation is required when using testifyProviderWithPath");
@@ -87,7 +83,14 @@ public class TestifyDataProvider {
             }
         }
 
-        return testData.iterator();
+        log.info("Loaded {} test cases from {}", testData.size(), configPath);
+
+        return testData.toArray(new Object[0][]);
+    }
+
+    @DataProvider(name = "testifyProviderWithName")
+    public static Object[][] testifyProviderWithName(Method method) {
+        return testifyProviderWithPath(method);
     }
 }
 

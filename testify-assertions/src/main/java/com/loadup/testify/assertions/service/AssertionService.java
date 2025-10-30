@@ -276,6 +276,30 @@ public class AssertionService {
         if (actual == null) {
             return expected == null;
         }
+        
+        // Special handling for BigDecimal to compare values ignoring scale
+        if (actual instanceof java.math.BigDecimal && expected instanceof java.math.BigDecimal) {
+            return ((java.math.BigDecimal) actual).compareTo((java.math.BigDecimal) expected) == 0;
+        }
+        
+        // Try to convert to BigDecimal if one is BigDecimal and other is a number
+        if (actual instanceof java.math.BigDecimal || expected instanceof java.math.BigDecimal) {
+            try {
+                java.math.BigDecimal actualBD = actual instanceof java.math.BigDecimal ? 
+                    (java.math.BigDecimal) actual : new java.math.BigDecimal(actual.toString());
+                java.math.BigDecimal expectedBD = expected instanceof java.math.BigDecimal ? 
+                    (java.math.BigDecimal) expected : new java.math.BigDecimal(expected.toString());
+                return actualBD.compareTo(expectedBD) == 0;
+            } catch (NumberFormatException e) {
+                // If conversion fails, fall back to regular equals
+            }
+        }
+        
+        // Handle enum comparisons - compare string representations
+        if (actual instanceof Enum || expected instanceof Enum) {
+            return actual.toString().equals(expected.toString());
+        }
+        
         return actual.equals(expected);
     }
 

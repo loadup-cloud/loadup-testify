@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -235,17 +236,17 @@ public class DatabaseVerificationService {
         }
         
         // Special handling for BigDecimal to compare values ignoring scale
-        if (actual instanceof java.math.BigDecimal && expected instanceof java.math.BigDecimal) {
-            return ((java.math.BigDecimal) actual).compareTo((java.math.BigDecimal) expected) == 0;
+        if (actual instanceof BigDecimal && expected instanceof BigDecimal) {
+            return ((BigDecimal) actual).compareTo((BigDecimal) expected) == 0;
         }
         
         // Try to convert to BigDecimal if one is BigDecimal and other is a number
-        if (actual instanceof java.math.BigDecimal || expected instanceof java.math.BigDecimal) {
+        if (actual instanceof BigDecimal || expected instanceof BigDecimal) {
             try {
-                java.math.BigDecimal actualBD = actual instanceof java.math.BigDecimal ? 
-                    (java.math.BigDecimal) actual : new java.math.BigDecimal(actual.toString());
-                java.math.BigDecimal expectedBD = expected instanceof java.math.BigDecimal ? 
-                    (java.math.BigDecimal) expected : new java.math.BigDecimal(expected.toString());
+                BigDecimal actualBD = actual instanceof BigDecimal ? 
+                    (BigDecimal) actual : new BigDecimal(actual.toString());
+                BigDecimal expectedBD = expected instanceof BigDecimal ? 
+                    (BigDecimal) expected : new BigDecimal(expected.toString());
                 return actualBD.compareTo(expectedBD) == 0;
             } catch (NumberFormatException e) {
                 // If conversion fails, fall back to regular equals

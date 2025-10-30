@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Testify Example Test Suite" parallel="false" thread-count="1">
+
+    <listeners>
+        <listener class-name="com.loadup.testify.report.listener.TestifyReportListener"/>
+    </listeners>
+
+    <test name="User Service Tests">
+        <classes>
+            <class name="com.loadup.testify.example.test.UserServiceTest"/>
+        </classes>
+    </test>
+
+    <test name="Order Service Tests">
+        <classes>
+            <class name="com.loadup.testify.example.test.OrderServiceTest"/>
+        </classes>
+    </test>
+
+</suite>
+

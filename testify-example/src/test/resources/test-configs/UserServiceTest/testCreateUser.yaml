@@ -1,0 +1,163 @@
+name: User Service Test Suite
+description: Test cases for user creation functionality
+targetClass: com.loadup.testify.example.service.UserService
+targetMethod: createUser
+
+# Global setup applied to all test cases
+globalMocks:
+  - target: notificationService
+    method: sendWelcomeEmail
+    behavior: DO_NOTHING
+
+testCases:
+  # Test Case 1: Successfully create a new user
+  - id: TC001
+    name: Create user with valid data
+    description: Should successfully create a new user with all required fields
+    enabled: true
+
+    databaseSetup:
+      cleanBefore: true
+      cleanAfter: true
+      truncateTables:
+        - users
+        - orders
+
+    inputs:
+      username: "john_doe"
+      email: "john@example.com"
+      password: "SecurePass123"
+      fullName: "John Doe"
+
+    expected:
+      assertions:
+        - field: username
+          type: EQUALS
+          value: "john_doe"
+        - field: email
+          type: EQUALS
+          value: "john@example.com"
+        - field: fullName
+          type: EQUALS
+          value: "John Doe"
+        - field: isActive
+          type: EQUALS
+          value: true
+        - field: id
+          type: NOT_NULL
+
+    databaseVerification:
+      tables:
+        - table: users
+          expectedCount: 1
+          where:
+            username: "john_doe"
+          columns:
+            - name: email
+              rule: EQUALS
+              value: "john@example.com"
+            - name: full_name
+              rule: EQUALS
+              value: "John Doe"
+            - name: is_active
+              rule: EQUALS
+              value: true
+            - name: created_at
+              rule: NOT_NULL
+            - name: created_at
+              rule: TIME_CLOSE_TO
+              value: "now"
+              toleranceSeconds: 5
+
+  # Test Case 2: Create user and use reference in verification
+  - id: TC002
+    name: Create user with database reference
+    description: Create user and verify using database reference ID
+    enabled: true
+
+    databaseSetup:
+      cleanBefore: true
+      cleanAfter: true
+      truncateTables:
+        - users
+
+    inputs:
+      username: "jane_smith"
+      email: "jane@example.com"
+      password: "SecurePass456"
+      fullName: "Jane Smith"
+
+    expected:
+      assertions:
+        - field: username
+          type: EQUALS
+          value: "jane_smith"
+        - field: id
+          type: NOT_NULL
+
+  # Test Case 3: Attempt to create duplicate user (should fail)
+  - id: TC003
+    name: Create duplicate user should fail
+    description: Should throw exception when creating user with existing username
+    enabled: true
+
+    databaseSetup:
+      cleanBefore: true
+      cleanAfter: true
+      truncateTables:
+        - users
+      data:
+        users:
+          - refId: existingUser
+            columns:
+              username: "existing_user"
+              email: "existing@example.com"
+              password: "password123"
+              full_name: "Existing User"
+              is_active: true
+
+    inputs:
+      username: "existing_user"
+      email: "new@example.com"
+      password: "NewPassword123"
+      fullName: "New User"
+
+    expected:
+      exception: IllegalArgumentException
+
+    databaseVerification:
+      tables:
+        - table: users
+          expectedCount: 1
+          where:
+            username: "existing_user"
+
+  # Test Case 4: Create user with minimum required fields
+  - id: TC004
+    name: Create user with minimum data
+    description: Create user with only required fields
+    enabled: true
+
+    databaseSetup:
+      cleanBefore: true
+      cleanAfter: true
+      truncateTables:
+        - users
+
+    inputs:
+      username: "minimal_user"
+      email: "minimal@example.com"
+      password: "Pass123"
+      fullName: null
+
+    expected:
+      assertions:
+        - field: username
+          type: EQUALS
+          value: "minimal_user"
+        - field: fullName
+          type: NULL
+        - field: isActive
+          type: EQUALS
+          value: true
+

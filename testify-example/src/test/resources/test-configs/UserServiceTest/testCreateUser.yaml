@@ -156,7 +156,7 @@ testCases:
           type: EQUALS
           value: "minimal_user"
         - field: fullName
-          type: NULL
+          type: "NULL"
         - field: isActive
           type: EQUALS
           value: true

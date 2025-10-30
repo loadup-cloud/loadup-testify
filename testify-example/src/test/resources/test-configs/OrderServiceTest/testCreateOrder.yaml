@@ -1,0 +1,91 @@
+name: Order Service Test Suite
+description: Test cases for order creation functionality
+targetClass: com.loadup.testify.example.service.OrderService
+targetMethod: createOrder
+
+# Global setup applied to all test cases
+globalMocks:
+  - target: notificationService
+    method: sendOrderConfirmation
+    behavior: DO_NOTHING
+
+testCases:
+  # Test Case 1: Successfully create an order for an existing user
+  - id: TC001
+    name: Create order with valid user
+    description: Should successfully create an order for an existing user
+    enabled: true
+
+    databaseSetup:
+      cleanBefore: true
+      cleanAfter: true
+      truncateTables:
+        - orders
+        - users
+      data:
+        users:
+          - refId: testUser
+            columns:
+              username: "john_doe"
+              email: "john@example.com"
+              password: "password123"
+              full_name: "John Doe"
+              is_active: true
+
+    inputs:
+      userId: "${testUser}"
+      amount: 99.99
+
+    expected:
+      assertions:
+        - field: userId
+          type: EQUALS
+          value: "${testUser}"
+        - field: amount
+          type: EQUALS
+          value: 99.99
+        - field: orderNumber
+          type: NOT_NULL
+        - field: status
+          type: EQUALS
+          value: "PENDING"
+        - field: id
+          type: NOT_NULL
+
+    databaseVerification:
+      tables:
+        - table: orders
+          expectedCount: 1
+          where:
+            user_id: "${testUser}"
+          columns:
+            - name: amount
+              rule: EQUALS
+              value: 99.99
+            - name: status
+              rule: EQUALS
+              value: "PENDING"
+            - name: order_number
+              rule: NOT_NULL
+            - name: created_at
+              rule: NOT_NULL
+
+  # Test Case 2: Attempt to create order for non-existent user (should fail)
+  - id: TC002
+    name: Create order for non-existent user should fail
+    description: Should throw exception when creating order for user that doesn't exist
+    enabled: true
+
+    databaseSetup:
+      cleanBefore: true
+      cleanAfter: true
+      truncateTables:
+        - orders
+        - users
+
+    inputs:
+      userId: 999999
+      amount: 50.00
+
+    expected:
+      exception: IllegalArgumentException

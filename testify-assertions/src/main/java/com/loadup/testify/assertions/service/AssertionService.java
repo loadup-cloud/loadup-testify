@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -276,6 +277,30 @@ public class AssertionService {
         if (actual == null) {
             return expected == null;
         }
+        
+        // Special handling for BigDecimal to compare values ignoring scale
+        if (actual instanceof BigDecimal && expected instanceof BigDecimal) {
+            return ((BigDecimal) actual).compareTo((BigDecimal) expected) == 0;
+        }
+        
+        // Try to convert to BigDecimal if one is BigDecimal and other is a number
+        if (actual instanceof BigDecimal || expected instanceof BigDecimal) {
+            try {
+                BigDecimal actualBD = actual instanceof BigDecimal ? 
+                    (BigDecimal) actual : new BigDecimal(actual.toString());
+                BigDecimal expectedBD = expected instanceof BigDecimal ? 
+                    (BigDecimal) expected : new BigDecimal(expected.toString());
+                return actualBD.compareTo(expectedBD) == 0;
+            } catch (NumberFormatException e) {
+                // If conversion fails, fall back to regular equals
+            }
+        }
+        
+        // Handle enum comparisons - compare string representations
+        if (actual instanceof Enum || expected instanceof Enum) {
+            return actual.toString().equals(expected.toString());
+        }
+        
         return actual.equals(expected);
     }
 

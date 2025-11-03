@@ -9,7 +9,7 @@ package com.github.vincentrussell.json.datagenerator.parser;
 public
 class SimpleCharStream extends AbstractCharStream
 {
-  private java.io.Reader m_aIS;
+  private java.io.Reader inputReader;
 
   /** Constructor. */
   public SimpleCharStream(final java.io.Reader dstream,
@@ -18,7 +18,7 @@ class SimpleCharStream extends AbstractCharStream
                           final int buffersize)
   {
     super (startline, startcolumn, buffersize);
-    m_aIS = dstream;
+    inputReader = dstream;
   }
 
   /** Constructor. */
@@ -41,7 +41,7 @@ class SimpleCharStream extends AbstractCharStream
                      final int startcolumn, 
                      final int buffersize)
   {
-    m_aIS = dstream;
+    inputReader = dstream;
     super.reInit (startline, startcolumn, buffersize);
   }
 
@@ -114,14 +114,14 @@ class SimpleCharStream extends AbstractCharStream
   @Override
   protected int streamRead (final char[] aBuf, final int nOfs, final int nLen) throws java.io.IOException
   {
-    return m_aIS.read (aBuf, nOfs, nLen); 
+    return inputReader.read (aBuf, nOfs, nLen);
   }
   
   @Override
   protected void streamClose () throws java.io.IOException
   {
-    if (m_aIS != null)
-      m_aIS.close (); 
+    if (inputReader != null)
+      inputReader.close ();
   }
 }
 /* ParserGeneratorCC - OriginalChecksum=c2b084bae2d7f5ddc0916165fea599ef (do not edit this line) */

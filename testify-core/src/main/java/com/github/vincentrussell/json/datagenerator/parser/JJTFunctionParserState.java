@@ -2,8 +2,8 @@
 package com.github.vincentrussell.json.datagenerator.parser;
 
 public class JJTFunctionParserState implements java.io.Serializable {
-  private java.util.List<Node> nodes;
-  private java.util.List<Integer> marks;
+  private final java.util.List<Node> nodes;
+  private final java.util.List<Integer> marks;
 
   /* number of nodes on stack */
   private int sp;
@@ -51,7 +51,7 @@ public class JJTFunctionParserState implements java.io.Serializable {
   public Node popNode() {
    --sp;
     if (sp < mk) {
-      mk = marks.remove(marks.size()-1).intValue();
+      mk = marks.remove(marks.size()-1);
     }
     return nodes.remove(nodes.size()-1);
   }
@@ -72,11 +72,11 @@ public class JJTFunctionParserState implements java.io.Serializable {
     while (sp > mk) {
       popNode();
     }
-    mk = marks.remove(marks.size()-1).intValue();
+    mk = marks.remove(marks.size()-1);
   }
 
   public void openNodeScope(final Node n) {
-    marks.add(Integer.valueOf(mk));
+    marks.add(mk);
     mk = sp;
     n.jjtOpen();
   }
@@ -86,7 +86,7 @@ public class JJTFunctionParserState implements java.io.Serializable {
      made the children of the definite node.  Then the definite node
      is pushed on to the stack. */
   public void closeNodeScope(final Node n, final int numIn) {
-    mk = marks.remove(marks.size()-1).intValue();
+    mk = marks.remove(marks.size()-1);
     int num = numIn;
     while (num-- > 0) {
       Node c = popNode();
@@ -107,7 +107,7 @@ public class JJTFunctionParserState implements java.io.Serializable {
   public void closeNodeScope(final Node n, final boolean condition) {
     if (condition) {
       int a = nodeArity();
-      mk = marks.remove(marks.size()-1).intValue();
+      mk = marks.remove(marks.size()-1);
       while (a-- > 0) {
         final Node c = popNode();
         c.jjtSetParent(n);
@@ -117,7 +117,7 @@ public class JJTFunctionParserState implements java.io.Serializable {
       pushNode(n);
       node_created = true;
     } else {
-      mk = marks.remove(marks.size()-1).intValue();
+      mk = marks.remove(marks.size()-1);
       node_created = false;
     }
   }

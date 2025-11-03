@@ -186,8 +186,7 @@ if (jjtc000) {
       parameters = FormalParameters();
 jjtree.closeNodeScope(jjtn000, true);
                                                                     jjtc000 = false;
-{if ("" != null) return functionRegistry.executeFunction(functionName,parameters.length == 0 ? null : parameters);}
-    } catch (Throwable jjte000) {
+{if ("" != null) return executeRegisteredFunction(functionName, parameters);}    } catch (Throwable jjte000) {
 if (jjtc000) {
         jjtree.clearNodeScope(jjtn000);
         jjtc000 = false;
@@ -214,6 +213,17 @@ if (jjtc000) {
     }
     throw new IllegalStateException ("Missing return statement in function");
 }
+
+  /**
+   * Execute a registered function in a clear, non-magic way.
+   * Always pass the parameters array (may be empty). This avoids using null as a
+   * sentinel "no-parameters" value.
+   */
+  private String executeRegisteredFunction(final String functionName, final String[] parameters)
+      throws InvocationTargetException, IllegalAccessException {
+    // FunctionRegistry.executeFunction accepts varargs. Passing an empty array is clearer than null.
+    return functionRegistry.executeFunction(functionName, parameters);
+  }
 
   final public String[] FormalParameters() throws ParseException, InvocationTargetException, IllegalAccessException {/*@bgen(jjtree) FormalParameters */
         SimpleNode jjtn000 = new SimpleNode(JJTFORMALPARAMETERS);

@@ -62,42 +62,42 @@ implements CharStream
   }
 
   /** Tab size for formatting. Usually in the range 1 to 8. */
-  private int m_nTabSize = 1;
+  private int tabSize = 1;
 
   /** Internal circular buffer */
   protected char[] buffer;
 
   /** Overall buffer size - same as buffer.length */
-  protected int bufsize;
+  protected int bufferSize;
 
   /** Current read position in buffer. */
-  protected int bufpos;
-  
+  protected int position;
+
   /** The number of unoccupied buffer array positions */
   protected int available;
   
   /** The first array index (of `buffer`) that the current token starts */
-  protected int tokenBegin;
+  protected int tokenStart;
 
   /** Characters in the backup/pushBack buffer */
-  protected int inBuf;
-  protected int maxNextCharInd;
+  protected int pushBackCount;
+  protected int maxNextCharIndex;
 
-  private int[] m_aBufLine;
-  private int[] m_aBufColumn;
+  private int[] bufLine;
+  private int[] bufColumn;
 
   // Current line number
-  private int m_nLineNo;
+  private int lineNumber;
   // Current column number
-  private int m_nColumnNo;
+  private int columnNumber;
 
   // Was the previous character a "\r" char?
-  private boolean m_bPrevCharIsCR;
+  private boolean prevCharWasCR;
   // Was the previous character a "\n" char?
-  private boolean m_bPrevCharIsLF;
-  
+  private boolean prevCharWasLF;
+
   // Is line/column tracking enabled?
-  private boolean m_bTrackLineColumn = true;
+  private boolean trackLineColumn = true;
 
 
   /** Constructor. */
@@ -113,22 +113,22 @@ implements CharStream
                            final int nStartColumn, 
                            final int nBufferSize)
   {
-    m_nLineNo = nStartLine;
-    m_nColumnNo = nStartColumn - 1;
-    m_bPrevCharIsCR = false;
-    m_bPrevCharIsLF = false;
+    lineNumber = nStartLine;
+    columnNumber = nStartColumn - 1;
+    prevCharWasCR = false;
+    prevCharWasLF = false;
     if (buffer == null || nBufferSize != buffer.length)
     {
-      bufsize = nBufferSize;
+      bufferSize = nBufferSize;
       available = nBufferSize;
       buffer = new char[nBufferSize];
-      m_aBufLine = new int[nBufferSize];
-      m_aBufColumn = new int[nBufferSize];
+      bufLine = new int[nBufferSize];
+      bufColumn = new int[nBufferSize];
     }
-    maxNextCharInd = 0;
-    inBuf = 0;
-    tokenBegin = 0;
-    bufpos = -1;
+    maxNextCharIndex = 0;
+    pushBackCount = 0;
+    tokenStart = 0;
+    position = -1;
   }
 
   /**
@@ -150,90 +150,90 @@ implements CharStream
   protected int getBufSizeAfterExpansion ()
   {
     // Double the size by default
-    return bufsize * 2;
+    return bufferSize * 2;
   }
 
-  protected void expandBuff (final boolean bWrapAround)
+  protected void expandBuff (final boolean wrapAround)
   {
     // Get the new buffer size
-    final int nNewBufSize = getBufSizeAfterExpansion ();
-    
-    final char[] newbuffer = new char[nNewBufSize];
-    final int[] newbufline = new int[nNewBufSize];
-    final int[] newbufcolumn = new int[nNewBufSize];
+    final int newBufSize = getBufSizeAfterExpansion ();
+
+    final char[] newbuffer = new char[newBufSize];
+    final int[] newbufline = new int[newBufSize];
+    final int[] newbufcolumn = new int[newBufSize];
 
     // Number of chars to be preserved
-    final int nPreservedChars = bufsize - tokenBegin;
-    
-    if (bWrapAround)
+    final int preservedChars = bufferSize - tokenStart;
+
+    if (wrapAround)
     {
-      // Move from offset "tokenBegin" to offset 0
+      // Move from offset "tokenStart" to offset 0
       // arraycopy(src, srcPos, dest, destPos, length)
 
       // copy the "tail end" to the "start" (index 0) of the new buffer array 
-      System.arraycopy(buffer, tokenBegin, newbuffer, 0, nPreservedChars);
-      
+      System.arraycopy(buffer, tokenStart, newbuffer, 0, preservedChars);
+
       // copy the remaining "wrap around" content of the buffer from the start of the original buffer (starting at srcPos index 0) 
-      System.arraycopy(buffer, 0, newbuffer, nPreservedChars, bufpos);
-      
+      System.arraycopy(buffer, 0, newbuffer, preservedChars, position);
+
       // swap the new buffer in place of the old buffer
       buffer = newbuffer;
       
-      System.arraycopy(m_aBufLine, tokenBegin, newbufline, 0, nPreservedChars);
-      System.arraycopy(m_aBufLine, 0, newbufline, nPreservedChars, bufpos);
-      m_aBufLine = newbufline;
+      System.arraycopy(bufLine, tokenStart, newbufline, 0, preservedChars);
+      System.arraycopy(bufLine, 0, newbufline, preservedChars, position);
+      bufLine = newbufline;
 
-      System.arraycopy(m_aBufColumn, tokenBegin, newbufcolumn, 0, nPreservedChars);
-      System.arraycopy(m_aBufColumn, 0, newbufcolumn, nPreservedChars, bufpos);
-      m_aBufColumn = newbufcolumn;
+      System.arraycopy(bufColumn, tokenStart, newbufcolumn, 0, preservedChars);
+      System.arraycopy(bufColumn, 0, newbufcolumn, preservedChars, position);
+      bufColumn = newbufcolumn;
 
-      bufpos += nPreservedChars;
-      maxNextCharInd = bufpos;
+      position += preservedChars;
+      maxNextCharIndex = position;
     }
     else
     {
-      // Move from offset "tokenBegin" to offset 0
-      
-      System.arraycopy(buffer, tokenBegin, newbuffer, 0, nPreservedChars);
+      // Move from offset "tokenStart" to offset 0
+
+      System.arraycopy(buffer, tokenStart, newbuffer, 0, preservedChars);
       buffer = newbuffer;
 
-      System.arraycopy(m_aBufLine, tokenBegin, newbufline, 0, nPreservedChars);
-      m_aBufLine = newbufline;
+      System.arraycopy(bufLine, tokenStart, newbufline, 0, preservedChars);
+      bufLine = newbufline;
 
-      System.arraycopy(m_aBufColumn, tokenBegin, newbufcolumn, 0, nPreservedChars);
-      m_aBufColumn = newbufcolumn;
+      System.arraycopy(bufColumn, tokenStart, newbufcolumn, 0, preservedChars);
+      bufColumn = newbufcolumn;
 
-      bufpos -= tokenBegin;
-      maxNextCharInd = bufpos;
+      position -= tokenStart;
+      maxNextCharIndex = position;
     }
 
     // Increase buffer size
-    bufsize = nNewBufSize;
-    available = nNewBufSize;
-    tokenBegin = 0;
+    bufferSize = newBufSize;
+    available = newBufSize;
+    tokenStart = 0;
   }
 
   protected final void internalAdjustBuffSize()
   {
-    final int nHalfBufferSize = bufsize / 2; 
-    if (available == bufsize)
+    final int halfBufferSize = bufferSize / 2;
+    if (available == bufferSize)
     {
-      if (tokenBegin < 0)
+      if (tokenStart < 0)
       {
         // If this method is called from "beginToken()"
         // Just refill the buffer from the start
-        bufpos = 0;
-        maxNextCharInd = 0;
+        position = 0;
+        maxNextCharIndex = 0;
       }
       else
-        if (tokenBegin > nHalfBufferSize)
+        if (tokenStart > halfBufferSize)
         {
           // The token started in the second half - fill the front part 
-          bufpos = 0;
-          maxNextCharInd = 0;
+          position = 0;
+          maxNextCharIndex = 0;
 
           // Available bytes are > 50%
-          available = tokenBegin;
+          available = tokenStart;
         }
         else
         {
@@ -245,32 +245,32 @@ implements CharStream
     else
     {
       // A token was read across array boundaries 
-      if (available > tokenBegin)
+      if (available > tokenStart)
       {
-        available = bufsize;
+        available = bufferSize;
       }
       else
-        if ((tokenBegin - available) < nHalfBufferSize)
+        if ((tokenStart - available) < halfBufferSize)
         {
           expandBuff (true);
         }
         else
         {
-          available = tokenBegin;
+          available = tokenStart;
         }
     }
   }
 
   protected void fillBuff() throws java.io.IOException
   {
-    if (maxNextCharInd == available)
+    if (maxNextCharIndex == available)
       internalAdjustBuffSize();
 
     try
     {
       // Read from underlying stream
-      final int nCharsRead = streamRead (buffer, maxNextCharInd, available - maxNextCharInd);
-      if (nCharsRead == -1) 
+      final int nCharsRead = streamRead (buffer, maxNextCharIndex, available - maxNextCharIndex);
+      if (nCharsRead == -1)
       {
         // We reached the end of the file
         streamClose ();
@@ -278,17 +278,17 @@ implements CharStream
         // Caught down below and re-thrown
         throw new java.io.IOException("PGCC end of stream");
       }
-      maxNextCharInd += nCharsRead;
+      maxNextCharIndex += nCharsRead;
     }
     catch (final java.io.IOException ex)
     {
-      --bufpos;
-      // ?What is the reason of this? Backup of 0 does nothing
+      --position;
+      // Backup of 0 intentionally retained for compatibility with generated callers
       backup (0);
-      if (tokenBegin == -1)
+      if (tokenStart == -1)
       {
         // Error occurred in "beginToken()"
-        tokenBegin = bufpos;
+        tokenStart = position;
       }
       throw ex;
     }
@@ -296,153 +296,153 @@ implements CharStream
 
   protected final void internalSetBufLineColumn (final int nLine, final int nColumn)
   {
-    m_aBufLine[bufpos] = nLine;
-    m_aBufColumn[bufpos] = nColumn;
+    bufLine[position] = nLine;
+    bufColumn[position] = nColumn;
   }
 
   protected final void internalUpdateLineColumn(final char c)
   {
-    m_nColumnNo++;
+    columnNumber++;
 
-    if (m_bPrevCharIsLF)
+    if (prevCharWasLF)
     {
       // It's a "\r\n" or "\n"
       // Start of a new line
-      m_bPrevCharIsLF = false;
-      m_nColumnNo = 1;
-      m_nLineNo++;
+      prevCharWasLF = false;
+      columnNumber = 1;
+      lineNumber++;
     }
     else
-      if (m_bPrevCharIsCR)
+      if (prevCharWasCR)
       {
-        m_bPrevCharIsCR = false;
+        prevCharWasCR = false;
         if (c == '\n')
         {
           // It's a "\r\n"
-          m_bPrevCharIsLF = true;
+          prevCharWasLF = true;
         }
         else
         {
           // It's only a "\r"
-          m_nColumnNo = 1;
-          m_nLineNo++;
+          columnNumber = 1;
+          lineNumber++;
         }
       }
 
     switch (c)
     {
       case '\r':
-        m_bPrevCharIsCR = true;
+        prevCharWasCR = true;
         break;
       case '\n':
-        m_bPrevCharIsLF = true;
+        prevCharWasLF = true;
         break;
       case '\t':
-        m_nColumnNo--;
-        m_nColumnNo += (m_nTabSize - (m_nColumnNo % m_nTabSize));
+        columnNumber--;
+        columnNumber += (tabSize - (columnNumber % tabSize));
         break;
     }
 
-    internalSetBufLineColumn (m_nLineNo, m_nColumnNo);
+    internalSetBufLineColumn (lineNumber, columnNumber);
   }
 
   public char readChar() throws java.io.IOException
   {
-    if (inBuf > 0)
+    if (pushBackCount > 0)
     {
       // Something is left from last backup
-      --inBuf;
+      --pushBackCount;
 
-      ++bufpos;
-      if (bufpos == bufsize)
+      ++position;
+      if (position == bufferSize)
       {
         // Buffer overflow
-        bufpos = 0;
+        position = 0;
       }
 
-      return buffer[bufpos];
+      return buffer[position];
     }
 
-    ++bufpos;
-    if (bufpos >= maxNextCharInd)
+    ++position;
+    if (position >= maxNextCharIndex)
       fillBuff();
 
-    final char c = buffer[bufpos];
+    final char c = buffer[position];
 
-    if (m_bTrackLineColumn)
+    if (trackLineColumn)
       internalUpdateLineColumn(c);
     return c;
   }
 
   public char beginToken() throws java.io.IOException
   {
-    tokenBegin = -1;
+    tokenStart = -1;
     final char c = readChar();
-    tokenBegin = bufpos;
+    tokenStart = position;
     return c;
   }
 
   public int getBeginColumn ()
   {
-    return m_aBufColumn[tokenBegin];
+    return bufColumn[tokenStart];
   }
 
   public int getBeginLine ()
   {
-    return m_aBufLine[tokenBegin];
+    return bufLine[tokenStart];
   }
 
   public int getEndColumn ()
   {
-    return m_aBufColumn[bufpos];
+    return bufColumn[position];
   }
 
   public int getEndLine ()
   {
-     return m_aBufLine[bufpos];
+     return bufLine[position];
   }
 
   public void backup (final int nAmount)
   {
-    if (nAmount > bufsize)
-      throw new IllegalStateException ("Cannot back " + nAmount + " chars which is larger than the internal buffer size (" + bufsize + ")");
-  
-    inBuf += nAmount;
-    bufpos -= nAmount;
-    if (bufpos < 0)
+    if (nAmount > bufferSize)
+      throw new IllegalStateException ("Cannot back " + nAmount + " chars which is larger than the internal buffer size (" + bufferSize + ")");
+
+    pushBackCount += nAmount;
+    position -= nAmount;
+    if (position < 0)
     {
       // Buffer underflow (modulo)
-      bufpos += bufsize;
+      position += bufferSize;
     }
   }
 
   public String getImage()
   {
-    if (bufpos >= tokenBegin)
+    if (position >= tokenStart)
     {
-      // from tokenBegin to bufpos
-      return new String (buffer, tokenBegin, bufpos - tokenBegin + 1);
+      // from tokenStart to position
+      return new String (buffer, tokenStart, position - tokenStart + 1);
     }
 
-    // from tokenBegin to bufsize, and from 0 to bufpos
-    return new String (buffer, tokenBegin, bufsize - tokenBegin) +
-           new String (buffer, 0, bufpos + 1);
+    // from tokenStart to bufferSize, and from 0 to position
+    return new String (buffer, tokenStart, bufferSize - tokenStart) +
+           new String (buffer, 0, position + 1);
   }
 
   public char[] getSuffix (final int len)
   {
     char[] ret = new char[len];
-    if ((bufpos + 1) >= len)
+    if ((position + 1) >= len)
     {
       // one piece
-      System.arraycopy(buffer, bufpos - len + 1, ret, 0, len);
+      System.arraycopy(buffer, position - len + 1, ret, 0, len);
     }
     else
     {
       // Wrap around
-      final int nPart1 = len - bufpos - 1;
-      System.arraycopy(buffer, bufsize - nPart1, ret, 0, nPart1);
-      System.arraycopy(buffer, 0, ret, nPart1, bufpos + 1);
+      final int part1 = len - position - 1;
+      System.arraycopy(buffer, bufferSize - part1, ret, 0, part1);
+      System.arraycopy(buffer, 0, ret, part1, position + 1);
     }
     return ret;
   }
@@ -450,18 +450,18 @@ implements CharStream
   public void done()
   {
     buffer = null;
-    m_aBufLine = null;
-    m_aBufColumn = null;
+    bufLine = null;
+    bufColumn = null;
   }
- 
+
   public final int getTabSize()
   { 
-    return m_nTabSize;
+    return tabSize;
   }
 
   public final void setTabSize (final int nTabSize)
   { 
-    m_nTabSize = nTabSize;
+    tabSize = nTabSize;
   }
 
   /**
@@ -470,17 +470,17 @@ implements CharStream
    */
   public final void adjustBeginLineColumn(final int nNewLine, final int newCol)
   {
-    int start = tokenBegin;
+    int start = tokenStart;
     int newLine = nNewLine;
     
     int len;
-    if (bufpos >= tokenBegin)
+    if (position >= tokenStart)
     {
-      len = bufpos - tokenBegin + inBuf + 1;
+      len = position - tokenStart + pushBackCount + 1;
     }
     else
     {
-      len = bufsize - tokenBegin + bufpos + 1 + inBuf;
+      len = bufferSize - tokenStart + position + 1 + pushBackCount;
     }
 
     int i = 0;
@@ -490,32 +490,32 @@ implements CharStream
     int columnDiff = 0;
 
     // TODO disassemble meaning and split up
-    while (i < len && m_aBufLine[j = start % bufsize] == m_aBufLine[k = ++start % bufsize])
+    while (i < len && bufLine[j = start % bufferSize] == bufLine[k = ++start % bufferSize])
     {
-      m_aBufLine[j] = newLine;
-      nextColDiff = columnDiff + m_aBufColumn[k] - m_aBufColumn[j];
-      m_aBufColumn[j] = newCol + columnDiff;
+      bufLine[j] = newLine;
+      nextColDiff = columnDiff + bufColumn[k] - bufColumn[j];
+      bufColumn[j] = newCol + columnDiff;
       columnDiff = nextColDiff;
       i++;
     }
 
     if (i < len)
     {
-      m_aBufLine[j] = newLine++;
-      m_aBufColumn[j] = newCol + columnDiff;
+      bufLine[j] = newLine++;
+      bufColumn[j] = newCol + columnDiff;
 
       while (i++ < len)
       {
         // TODO disassemble meaning and split up
-        if (m_aBufLine[j = start % bufsize] != m_aBufLine[++start % bufsize])
-          m_aBufLine[j] = newLine++;
+        if (bufLine[j = start % bufferSize] != bufLine[++start % bufferSize])
+          bufLine[j] = newLine++;
         else
-          m_aBufLine[j] = newLine;
+          bufLine[j] = newLine;
       }
     }
 
-    m_nLineNo = m_aBufLine[j];
-    m_nColumnNo = m_aBufColumn[j];
+    lineNumber = bufLine[j];
+    columnNumber = bufColumn[j];
   }
   
   /**
@@ -523,7 +523,7 @@ implements CharStream
    */
   protected final int getLine ()
   { 
-    return m_nLineNo;
+    return lineNumber;
   }
   
   /**
@@ -531,17 +531,17 @@ implements CharStream
    */
   protected final int getColumn ()
   { 
-    return m_nColumnNo;
+    return columnNumber;
   }
   
   public final boolean isTrackLineColumn ()
   { 
-    return m_bTrackLineColumn;
+    return trackLineColumn;
   }
 
   public final void setTrackLineColumn (final boolean bTrackLineColumn)
   { 
-    m_bTrackLineColumn = bTrackLineColumn;
+    trackLineColumn = bTrackLineColumn;
   }
 }
 /* ParserGeneratorCC - OriginalChecksum=70d77628d3e5c8e91e65a991fb353427 (do not edit this line) */

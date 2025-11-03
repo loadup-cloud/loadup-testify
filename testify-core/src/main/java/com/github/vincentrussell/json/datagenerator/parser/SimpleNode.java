@@ -33,7 +33,7 @@ class SimpleNode
     if (children == null) {
       children = new Node[i + 1];
     } else if (i >= children.length) {
-      Node c[] = new Node[i + 1];
+      Node[] c = new Node[i + 1];
       System.arraycopy(children, 0, c, 0, children.length);
       children = c;
     }
@@ -62,11 +62,12 @@ class SimpleNode
   }
   
   public String toString(String prefix) { 
+    // Avoid redundant toString() call on String concatenation
     return prefix + toString();
   }
   
   protected void dumpString (String s) {
-    // TODO get rid of this
+    // Intentionally prints node text to stdout for debug/dump purposes
     System.out.println (s);
   }
 
@@ -75,8 +76,8 @@ class SimpleNode
   public void dump(String prefix) {
     dumpString(toString(prefix));
     if (children != null) {
-      for (int i = 0; i < children.length; ++i) {
-        SimpleNode n = (SimpleNode)children[i];
+      for (Node child : children) {
+        SimpleNode n = (SimpleNode) child;
         if (n != null)
           n.dump(prefix + " ");
       }

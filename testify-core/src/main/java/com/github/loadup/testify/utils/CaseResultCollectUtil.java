@@ -369,7 +369,7 @@ public class CaseResultCollectUtil {
         }
 
         @SuppressWarnings("unchecked")
-        List<VirtualTable> copy = (List<VirtualTable>) (List<?>) DeepCopyUtils.deepCopy((ArrayList<VirtualTable>) result);
+        List<VirtualTable> copy = (List<VirtualTable>) DeepCopyUtils.deepCopy((ArrayList<VirtualTable>) result);
         return copy;
     }
 

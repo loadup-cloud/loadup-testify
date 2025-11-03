@@ -40,9 +40,24 @@ import java.io.Serializable;
 public class DeepCopyUtils {
 
     // 深拷贝工具
+    @SuppressWarnings("unchecked")
     public static <T extends Serializable> T deepCopy(T obj) {
         try {
             return SerializationUtils.clone(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // 深拷贝工具 - 处理Object类型
+    @SuppressWarnings("unchecked")
+    public static <T> T deepCopyObject(T obj) {
+        try {
+            if (obj instanceof Serializable) {
+                return (T) SerializationUtils.clone((Serializable) obj);
+            }
+            return obj;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

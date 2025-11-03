@@ -331,13 +331,7 @@ public class ObjectProcessor {
 
             Object actualField = null;
             // 1. 获取到传进来的对象中所对应列属性值
-            try {
-                actualField = TestifyObjectUtil.getProperty(actual, columnName);
-            } catch (OgnlException e) {
-                TestifyLogUtil.error(
-                        log, String.format("使用ongl获取:%s对象的属性:%s时报错,csv文件路径为:%s", actual, columnName, csvPath), e);
-                continue;
-            }
+            actualField = TestifyObjectUtil.getProperty(actual, columnName);
 
             if (actualField == null) {
                 if (!StringUtils.isBlank(String.valueOf(expectValue))) {

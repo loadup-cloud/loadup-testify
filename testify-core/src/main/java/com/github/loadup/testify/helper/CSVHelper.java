@@ -568,14 +568,7 @@ public class CSVHelper {
             if (0 == i) {
                 value.add("value" + String.valueOf(index));
             } else {
-                Object actualField = null;
-                try {
-                    actualField = TestifyObjectUtil.getProperty(actual, value.get(1));
-                } catch (OgnlException e) {
-
-                    TestifyLogUtil.warn(log, "获取对象" + actual + "属性" + value.get(1) + "失败:" + e);
-                    throw new RuntimeException(e);
-                }
+                Object actualField = TestifyObjectUtil.getProperty(actual, value.get(1));
                 if (actualField == null) {
                     value.add("null");
                 } else {

@@ -68,6 +68,25 @@ import org.yaml.snakeyaml.representer.Representer;
 @Slf4j
 public class BaseDataUtil {
     private static String projectPath = "";
+    private static String groupId = "com.github.loadup";
+
+    /**
+     * Get the group ID for the project
+     *
+     * @return the group ID
+     */
+    public static String getGroupId() {
+        return groupId;
+    }
+
+    /**
+     * Set the group ID for the project
+     *
+     * @param newGroupId the new group ID
+     */
+    public static void setGroupId(String newGroupId) {
+        groupId = newGroupId;
+    }
 
     /**
      * 将原一个yaml文件按case拆分成多个yaml文件并保存

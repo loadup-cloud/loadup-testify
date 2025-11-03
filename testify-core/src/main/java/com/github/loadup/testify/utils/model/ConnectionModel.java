@@ -85,7 +85,7 @@ public class ConnectionModel {
         if (url.startsWith(MYSQL_URL_PREFIX)) {
 
             try {
-                this.driver = new com.mysql.jdbc.Driver();
+                this.driver = new com.mysql.cj.jdbc.Driver();
             } catch (Exception e) {
                 // logger.error("",e);
                 this.driver = null;

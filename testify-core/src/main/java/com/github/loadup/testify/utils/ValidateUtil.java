@@ -27,15 +27,16 @@ package com.github.loadup.testify.utils;
  * #L%
  */
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 通用的格式校验工具类
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * $
  */
 public class ValidateUtil {

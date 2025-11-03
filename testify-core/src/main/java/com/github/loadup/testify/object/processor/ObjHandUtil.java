@@ -33,15 +33,10 @@ import com.github.loadup.testify.model.VirtualList;
 import com.github.loadup.testify.model.VirtualMap;
 import com.github.loadup.testify.util.CSVApisUtil;
 import com.github.loadup.testify.util.ReflectUtil;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 /**
  * @author 马洪良

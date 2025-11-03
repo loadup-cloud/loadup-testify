@@ -28,22 +28,13 @@ package com.github.loadup.testify.util;
  */
 
 import com.github.loadup.testify.exception.TestifyException;
-import javassist.CannotCompileException;
-import javassist.ClassClassPath;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtConstructor;
-import javassist.CtField;
-import javassist.CtMethod;
-import javassist.Modifier;
-import javassist.NotFoundException;
+import javassist.*;
 import javassist.bytecode.CodeAttribute;
 import javassist.bytecode.LocalVariableAttribute;
 import javassist.bytecode.MethodInfo;
 
 /**
  * assist 工具类。
- *
  *
  * @author ming.cm
  *

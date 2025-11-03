@@ -29,6 +29,9 @@ package com.github.loadup.testify.db.offlineService;
 
 import com.github.loadup.testify.db.enums.DataBaseTypeEnum;
 import com.github.loadup.testify.log.TestifyLogUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.testng.Assert;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -37,8 +40,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
-import org.testng.Assert;
 
 /**
  * 线下DB抽象基类，不需要启动框架

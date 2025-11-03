@@ -16,6 +16,7 @@ public class Timestamp {
 
     /**
      * timestamp based on "now"
+     *
      * @return the result
      */
     @FunctionInvocation
@@ -25,8 +26,9 @@ public class Timestamp {
 
     /**
      * random timestamp between two dates
+     *
      * @param beginDate beginning date in format "dd-MM-yyyy HH:mm:ss"
-     * @param endDate ending date in format "dd-MM-yyyy HH:mm:ss"
+     * @param endDate   ending date in format "dd-MM-yyyy HH:mm:ss"
      * @return the result
      */
     @FunctionInvocation

@@ -13,7 +13,7 @@ public class NonCloseableBufferedOutputStream extends BufferedOutputStream {
      * Creates a new buffered output stream to write data to the
      * specified underlying output stream.
      *
-     * @param   out   the underlying output stream.
+     * @param out the underlying output stream.
      */
     public NonCloseableBufferedOutputStream(final OutputStream out) {
         super(out);
@@ -24,9 +24,9 @@ public class NonCloseableBufferedOutputStream extends BufferedOutputStream {
      * specified underlying output stream with the specified buffer
      * size.
      *
-     * @param   out    the underlying output stream.
-     * @param   size   the buffer size.
-     * @exception IllegalArgumentException if size &lt;= 0.
+     * @param out  the underlying output stream.
+     * @param size the buffer size.
+     * @throws IllegalArgumentException if size &lt;= 0.
      */
     public NonCloseableBufferedOutputStream(final OutputStream out, final int size) {
         super(out, size);

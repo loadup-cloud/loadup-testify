@@ -28,6 +28,7 @@ package com.github.loadup.testify.manage.log;
  */
 
 import com.github.loadup.testify.manage.enums.LoggerType;
+
 import java.io.File;
 import java.net.URL;
 import java.util.HashMap;

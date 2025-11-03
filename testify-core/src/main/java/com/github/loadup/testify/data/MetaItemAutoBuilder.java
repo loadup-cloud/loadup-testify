@@ -32,10 +32,11 @@ import com.github.loadup.testify.data.biz.BizMetaInitItemFillBuilder;
 import com.github.loadup.testify.data.db.DbMetaInitItemFillBuilder;
 import com.github.loadup.testify.data.enums.MatchDegree;
 import com.github.loadup.testify.data.impl.DefaultMetaItemStore;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 原子项自动构造。

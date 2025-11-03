@@ -20,6 +20,7 @@ public class Get {
 
     /**
      * get a value from the cache
+     *
      * @param key the key used to put the value in the cache
      * @return the value that was found in the cache with the key
      */

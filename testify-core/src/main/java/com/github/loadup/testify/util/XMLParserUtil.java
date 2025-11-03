@@ -27,10 +27,11 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
-import java.io.File;
+import org.xml.sax.helpers.DefaultHandler;
+
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.helpers.DefaultHandler;
+import java.io.File;
 
 /**
  * xml解析器

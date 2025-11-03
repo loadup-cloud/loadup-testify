@@ -14,6 +14,7 @@ public class FirstName {
 
     /**
      * random firstname for a particular gender
+     *
      * @param gender "male" or "female"
      * @return the result
      */
@@ -24,6 +25,7 @@ public class FirstName {
 
     /**
      * random firstname with 50/50 possibility of being male name
+     *
      * @return the result
      */
     @FunctionInvocation

@@ -20,8 +20,9 @@ public class LoremIpsum {
 
     /**
      * lorem ipsum words or paragraphs
+     *
      * @param amountOfLoremIpsum count of either words or paragraphs
-     * @param type "words" or "paragraphs"
+     * @param type               "words" or "paragraphs"
      * @return the result
      */
     @FunctionInvocation

@@ -13,6 +13,7 @@ public class Company {
 
     /**
      * function call
+     *
      * @return result
      */
     @FunctionInvocation

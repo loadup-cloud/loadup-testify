@@ -36,17 +36,16 @@ import com.github.loadup.testify.data.model.GenerateCondition;
 import com.github.loadup.testify.object.manager.ObjectTypeManager;
 import com.github.loadup.testify.util.DeepCopyUtils;
 import com.github.loadup.testify.util.ReflectUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.CollectionUtils;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.CollectionUtils;
 
 /**
  * 用例规则关联类
- *
- *
  *
  * @add by chao.gao
  */

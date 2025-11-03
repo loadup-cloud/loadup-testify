@@ -15,6 +15,7 @@ public class Hex {
 
     /**
      * random hex string for random 16 bytes
+     *
      * @return the result
      */
     @FunctionInvocation
@@ -25,6 +26,7 @@ public class Hex {
 
     /**
      * random hexstring with specified byte size
+     *
      * @param byteSize size in bytes of hex string
      * @return the result
      */
@@ -34,7 +36,7 @@ public class Hex {
     }
 
     private String getHexString(final int byteSize) {
-        byte[]  resBuf = new byte[byteSize];
+        byte[] resBuf = new byte[byteSize];
         random.nextBytes(resBuf);
         StringBuilder sb = new StringBuilder();
         for (byte b : resBuf) {

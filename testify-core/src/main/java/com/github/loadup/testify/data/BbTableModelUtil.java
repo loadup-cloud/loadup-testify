@@ -30,12 +30,13 @@ package com.github.loadup.testify.data;
 import com.github.loadup.testify.helper.CSVHelper;
 import com.github.loadup.testify.util.FileOperateUtils;
 import com.github.loadup.testify.util.FullTableAnalysis;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 数据模版生成工具

@@ -34,6 +34,13 @@ import com.github.loadup.testify.enums.TestifyActionEnum;
 import com.github.loadup.testify.enums.YamlFieldEnum;
 import com.github.loadup.testify.exception.TestifyException;
 import com.github.loadup.testify.util.comparison.TextRenderUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.core.io.Resource;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.util.ResourceUtils;
+import org.yaml.snakeyaml.Yaml;
+
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -43,12 +50,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.io.Resource;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.util.ResourceUtils;
-import org.yaml.snakeyaml.Yaml;
 
 /**
  *
@@ -115,7 +116,7 @@ public class TestifyCommonUtil {
 
         String testScript;
         try (InputStream inputStream =
-                ResourceUtils.getURL("classpath:" + "templates/AppTestBase.vm").openStream()) {
+                     ResourceUtils.getURL("classpath:" + "templates/AppTestBase.vm").openStream()) {
             byte[] bytes = FileCopyUtils.copyToByteArray(inputStream);
             testScript = new String(bytes, StandardCharsets.UTF_8);
         }
@@ -185,7 +186,8 @@ public class TestifyCommonUtil {
         is.close();
     }
 
-    private static void checkVersion() {}
+    private static void checkVersion() {
+    }
 
     public static void genTestScript(Class interfaceClass, String appName, String moduleName) throws Exception {
         genTestScript(interfaceClass, null, appName, moduleName);
@@ -657,13 +659,13 @@ public class TestifyCommonUtil {
         if (Boolean.valueOf(String.valueOf(res.get("success")))) {
             // dbmodel headers
             String[] headers = {
-                CSVColEnum.COLUMN.getCode(),
-                CSVColEnum.TYPE.getCode(),
-                CSVColEnum.COMMENT.getCode(),
-                CSVColEnum.PRIMARY.getCode(),
-                CSVColEnum.NULLABLE.getCode(),
-                CSVColEnum.FLAG.getCode(),
-                CSVColEnum.VALUE.getCode()
+                    CSVColEnum.COLUMN.getCode(),
+                    CSVColEnum.TYPE.getCode(),
+                    CSVColEnum.COMMENT.getCode(),
+                    CSVColEnum.PRIMARY.getCode(),
+                    CSVColEnum.NULLABLE.getCode(),
+                    CSVColEnum.FLAG.getCode(),
+                    CSVColEnum.VALUE.getCode()
             };
             dbmodel.add(headers);
             JSONArray cols = (JSONArray) res.get("data");
@@ -715,13 +717,13 @@ public class TestifyCommonUtil {
         if (Boolean.valueOf(String.valueOf(res.get("success")))) {
             // dbmodel headers
             String[] headers = {
-                CSVColEnum.COLUMN.getCode(),
-                CSVColEnum.TYPE.getCode(),
-                CSVColEnum.COMMENT.getCode(),
-                CSVColEnum.PRIMARY.getCode(),
-                CSVColEnum.NULLABLE.getCode(),
-                CSVColEnum.FLAG.getCode(),
-                CSVColEnum.VALUE.getCode()
+                    CSVColEnum.COLUMN.getCode(),
+                    CSVColEnum.TYPE.getCode(),
+                    CSVColEnum.COMMENT.getCode(),
+                    CSVColEnum.PRIMARY.getCode(),
+                    CSVColEnum.NULLABLE.getCode(),
+                    CSVColEnum.FLAG.getCode(),
+                    CSVColEnum.VALUE.getCode()
             };
             dbmodel.add(headers);
             JSONArray cols = (JSONArray) res.get("root");

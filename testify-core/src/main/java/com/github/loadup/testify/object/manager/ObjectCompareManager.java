@@ -28,16 +28,9 @@ package com.github.loadup.testify.object.manager;
  */
 
 import com.github.loadup.testify.object.comparer.UnitComparer;
-import com.github.loadup.testify.object.comparer.impl.AvailableComparer;
-import com.github.loadup.testify.object.comparer.impl.ConditionComparer;
-import com.github.loadup.testify.object.comparer.impl.CustomComparer;
-import com.github.loadup.testify.object.comparer.impl.DateComparer;
-import com.github.loadup.testify.object.comparer.impl.FileComparer;
-import com.github.loadup.testify.object.comparer.impl.MapComparer;
-import com.github.loadup.testify.object.comparer.impl.NoCheckComparer;
-import com.github.loadup.testify.object.comparer.impl.RegexComparer;
-import com.github.loadup.testify.object.comparer.impl.SimpleComparer;
+import com.github.loadup.testify.object.comparer.impl.*;
 import com.github.loadup.testify.object.enums.UnitFlagEnum;
+
 import java.util.HashMap;
 import java.util.Map;
 

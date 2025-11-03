@@ -5,16 +5,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.io.StringWriter;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
@@ -44,14 +35,15 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * constructor
-     * @param initialBufferSize initial buffer size in bytes
+     *
+     * @param initialBufferSize  initial buffer size in bytes
      * @param sizeBeforeOverFlow size in bytes before overflow to file
      */
     public ByteArrayBackupToFileOutputStream(final int initialBufferSize,
-        final int sizeBeforeOverFlow) {
+                                             final int sizeBeforeOverFlow) {
         if (sizeBeforeOverFlow < 0) {
             throw new IllegalArgumentException(
-                "Negative initial sizeBeforeOverFlow: " + sizeBeforeOverFlow);
+                    "Negative initial sizeBeforeOverFlow: " + sizeBeforeOverFlow);
         }
         buf = new byte[initialBufferSize];
         this.sizeBeforeOverFlow = sizeBeforeOverFlow;
@@ -109,6 +101,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * remove one byte from the written outputstream
+     *
      * @throws IOException if there is no more buffer to unwrite from
      */
     public void unwrite() throws IOException {
@@ -117,7 +110,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
         }
         if (buf == null) {
             @SuppressWarnings("resource") RandomAccessFile randomAccessFile =
-                new RandomAccessFile(file, "rw");
+                    new RandomAccessFile(file, "rw");
             randomAccessFile.setLength(file.length() - 1);
             return;
         }
@@ -132,7 +125,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
      */
     @Override
     public synchronized void write(final byte[] b, final int off, final int len)
-        throws IOException {
+            throws IOException {
         if ((off < 0) || (off > b.length) || (len < 0) || ((off + len) - b.length > 0)) {
             throw new IndexOutOfBoundsException();
         }
@@ -148,6 +141,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * get the number or bytes written to the {@link OutputStream}
+     *
      * @return the size
      */
     public synchronized long size() {
@@ -176,6 +170,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * convert the current buffer for text... can be used for testing.
+     *
      * @return the hex representation of the bytes in UTF-8
      */
     public String toHex() {
@@ -201,6 +196,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * create an {@link InputStream} based on the data written to the {@link OutputStream}
+     *
      * @return the new {@link InputStream}
      * @throws IOException if the {@link OutputStream} can not be flushed or closed
      */
@@ -215,6 +211,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * Copy the contents of this {@link OutputStream} to a new {@link OutputStream}.
+     *
      * @param outputStream
      * @throws IOException
      */
@@ -228,6 +225,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * Marks the current position in this input stream.
+     *
      * @throws IOException if the length of {@link OutputStream} cannot be retrieved
      */
     public void mark() throws IOException {
@@ -237,6 +235,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
     /**
      * Repositions this stream to the position at the time the mark method was
      * last called on this input stream.
+     *
      * @throws IOException if the length of {@link OutputStream} cannot be set
      */
     public void reset() throws IOException {
@@ -255,6 +254,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * set the length of the {@link OutputStream}
+     *
      * @param length the length in bytes
      * @throws IOException if the length is greater than the {@link OutputStream} size
      */
@@ -262,16 +262,16 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
         if (buf != null) {
             if (length > buf.length) {
                 throw new IllegalStateException(
-                    "length: " + length + " is greater than buffer length");
+                        "length: " + length + " is greater than buffer length");
             }
             shrink((int) length);
         } else {
             if (length > file.length()) {
                 throw new IllegalStateException(
-                    "length: " + length + " is greater than file length");
+                        "length: " + length + " is greater than file length");
             }
             @SuppressWarnings("resource") RandomAccessFile randomAccessFile =
-                new RandomAccessFile(file, "rw");
+                    new RandomAccessFile(file, "rw");
             randomAccessFile.setLength(length);
             fileOutputStream = new FileOutputStream(file, true);
         }
@@ -280,6 +280,7 @@ public class ByteArrayBackupToFileOutputStream extends OutputStream {
 
     /**
      * get the byte length of the {@link OutputStream}
+     *
      * @return the length in bytes
      */
     public long getLength() {

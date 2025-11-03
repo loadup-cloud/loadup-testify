@@ -32,10 +32,11 @@ import com.github.loadup.testify.dal.daointerface.OrgDbDAO;
 import com.github.loadup.testify.dal.dataobject.ObjectRelateDO;
 import com.github.loadup.testify.dal.dataobject.OrgDbDO;
 import com.github.loadup.testify.enums.ObjRelationFlagEnum;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 对象关联关系管理

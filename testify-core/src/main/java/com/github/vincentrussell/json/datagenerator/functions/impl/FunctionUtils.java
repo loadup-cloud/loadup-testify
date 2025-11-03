@@ -18,6 +18,7 @@ public final class FunctionUtils {
 
     /**
      * return a random element in array
+     *
      * @param array the array with elements to choose from
      * @return random element
      */
@@ -28,6 +29,7 @@ public final class FunctionUtils {
 
     /**
      * get random integer between min and max
+     *
      * @param min minimum integer
      * @param max maximum integer
      * @return random integer

@@ -30,13 +30,14 @@ package com.github.loadup.testify.template;
 import com.github.loadup.testify.model.VirtualArgs;
 import com.github.loadup.testify.model.VirtualDataSet;
 import com.github.loadup.testify.model.VirtualEventSet;
+
 import java.util.List;
 
 /**
  * 带消息检查的CallBack
  *
  * @author fenglei.fl
- *
+ * <p>
  * fenglei.fl Exp $
  */
 public class PrepareCallBackWithEvent implements PrepareCallBack {

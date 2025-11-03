@@ -6,10 +6,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import net.datafaker.Faker;
-import net.datafaker.service.FakeValuesService;
-import net.datafaker.service.RandomService;
 
-import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 

@@ -11,6 +11,7 @@ public class Gender {
 
     /**
      * random gender with 50/50 possibility of being male
+     *
      * @return the result
      */
     @SuppressWarnings("checkstyle:magicnumber")
@@ -25,6 +26,7 @@ public class Gender {
 
     /**
      * random gender with probability of being male
+     *
      * @param probability float probability of being male
      * @return the result
      */

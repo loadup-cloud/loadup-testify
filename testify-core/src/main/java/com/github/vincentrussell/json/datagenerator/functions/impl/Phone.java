@@ -14,6 +14,7 @@ public class Phone {
 
     /**
      * get random phone number
+     *
      * @return the result
      */
     @FunctionInvocation

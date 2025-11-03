@@ -14,6 +14,7 @@ public class State {
 
     /**
      * get random state
+     *
      * @return the result
      */
     @FunctionInvocation

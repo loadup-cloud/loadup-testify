@@ -29,9 +29,10 @@ package com.github.loadup.testify.manage.log.impl;
 
 import com.github.loadup.testify.manage.enums.LoggerType;
 import com.github.loadup.testify.manage.log.RemoteLogService;
-import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 /**
  * 基于HttpClient写入远程日志

@@ -29,12 +29,9 @@ package com.github.loadup.testify.yaml.cpUnit;
 
 import com.github.loadup.testify.constant.TestifyPathConstants;
 import com.github.loadup.testify.yaml.enums.CPUnitTypeEnum;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 /**
  * 组数据CheckPoint单位

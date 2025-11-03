@@ -29,10 +29,11 @@ package com.github.loadup.testify.object.generator.impl;
 
 import com.github.loadup.testify.helper.CSVHelper;
 import com.github.loadup.testify.object.generator.ObjectGenerator;
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 
 /**
  * 数组处理器

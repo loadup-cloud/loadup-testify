@@ -29,11 +29,6 @@ package com.github.loadup.testify.util;
 
 import com.github.loadup.testify.constant.VelocityExtendProperties;
 import com.github.loadup.testify.exception.TestifyException;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.velocity.VelocityContext;
@@ -41,6 +36,12 @@ import org.apache.velocity.app.Velocity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * velocity统一工具类。

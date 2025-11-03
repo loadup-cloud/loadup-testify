@@ -32,14 +32,15 @@ import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.generator.ObjectGenerator;
 import com.github.loadup.testify.object.manager.ObjectTypeManager;
 import com.google.common.reflect.TypeToken;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.lang.reflect.WildcardType;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 列表类型处理器

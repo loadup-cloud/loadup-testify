@@ -30,13 +30,14 @@ package com.github.loadup.testify.driver.listener;
 import com.github.loadup.testify.driver.annotation.TCList;
 import com.github.loadup.testify.driver.enums.SuiteFlag;
 import com.github.loadup.testify.log.TestifyLogUtil;
-import java.lang.reflect.Method;
-import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 import org.testng.SkipException;
+
+import java.lang.reflect.Method;
+import java.util.*;
 
 /**
  * Sofa TesgNG 测试执行器TestNGTestActivator代理

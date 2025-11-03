@@ -30,15 +30,12 @@ package com.github.loadup.testify.object.processor;
 import com.github.loadup.testify.exception.TestifyException;
 import com.github.loadup.testify.helper.CSVHelper;
 import com.github.loadup.testify.log.TestifyLogUtil;
-import java.io.File;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
+import java.util.*;
 
 /***
  * flag 读取器
@@ -53,7 +50,8 @@ public class FlagProcessor {
     private final int PROPERTYNAMECOL = 1;
     private final int FLAGVALUECOL = 4;
 
-    public FlagProcessor() {}
+    public FlagProcessor() {
+    }
 
     /***
      * 对外组装的方法
@@ -75,7 +73,7 @@ public class FlagProcessor {
 
         File folder = csvFile.getParentFile();
 
-        Collection allFiles = FileUtils.listFiles(folder, new String[] {"csv"}, true);
+        Collection allFiles = FileUtils.listFiles(folder, new String[]{"csv"}, true);
         Iterator iterator = allFiles.iterator();
 
         while (iterator.hasNext()) {

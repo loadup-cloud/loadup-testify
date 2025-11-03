@@ -28,11 +28,12 @@ package com.github.loadup.testify.component.event.ssh;
  */
 
 import com.github.loadup.testify.utils.config.ConfigrationFactory;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author jie.peng

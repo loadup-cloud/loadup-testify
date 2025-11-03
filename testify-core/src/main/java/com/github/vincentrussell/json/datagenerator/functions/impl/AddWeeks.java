@@ -11,25 +11,27 @@ public class AddWeeks extends AbstractAddDates {
 
     /**
      * add weeks to date
+     *
      * @param format the date format
-     * @param date the date
-     * @param weeks the number of weeks to add
+     * @param date   the date
+     * @param weeks  the number of weeks to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addWeeks(final String format, final String date, final String weeks) {
-       return super.addInterval(format, date, weeks);
+        return super.addInterval(format, date, weeks);
     }
 
     /**
      * add weeks to the date
-     * @param date the date
+     *
+     * @param date  the date
      * @param weeks the number of weeks to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addWeeks(final String date, final String weeks) {
-       return super.addInterval(date, weeks);
+        return super.addInterval(date, weeks);
     }
 
     @Override

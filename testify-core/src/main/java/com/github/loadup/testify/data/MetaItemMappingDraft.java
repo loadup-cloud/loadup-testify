@@ -28,6 +28,7 @@ package com.github.loadup.testify.data;
  */
 
 import com.github.loadup.testify.data.enums.MatchDegree;
+
 import java.util.ArrayList;
 import java.util.List;
 

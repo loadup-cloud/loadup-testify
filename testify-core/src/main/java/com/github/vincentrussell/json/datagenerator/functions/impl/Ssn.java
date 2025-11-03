@@ -16,6 +16,7 @@ public class Ssn {
 
     /**
      * get random social security number
+     *
      * @return the result
      */
     @FunctionInvocation

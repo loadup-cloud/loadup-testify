@@ -30,15 +30,16 @@ package com.github.loadup.testify.util;
 import com.github.loadup.testify.api.LogApis;
 import com.github.loadup.testify.context.TestifySuiteContextHolder;
 import com.github.loadup.testify.log.TestifyLogUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.yaml.snakeyaml.Yaml;
+
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.yaml.snakeyaml.Yaml;
 
 /**
  * 用于处理文件相关内容

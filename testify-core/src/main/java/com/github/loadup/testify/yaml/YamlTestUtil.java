@@ -37,21 +37,18 @@ import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.comparer.UnitComparer;
 import com.github.loadup.testify.object.enums.UnitFlagEnum;
 import com.github.loadup.testify.object.manager.ObjectCompareManager;
-import com.github.loadup.testify.yaml.cpUnit.BaseCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.DataBaseCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.GroupDataBaseCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.ListObjectCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.ObjectCPUnit;
+import com.github.loadup.testify.yaml.cpUnit.*;
 import com.github.loadup.testify.yaml.cpUnit.property.BaseUnitProperty;
 import com.github.loadup.testify.yaml.cpUnit.property.ListObjectUnitProperty;
 import com.github.loadup.testify.yaml.cpUnit.property.ObjectUnitProperty;
 import com.github.loadup.testify.yaml.enums.CheckPointActionEnum;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Yaml对象处理工具类

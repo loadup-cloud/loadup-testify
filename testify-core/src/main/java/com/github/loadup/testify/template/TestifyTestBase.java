@@ -28,7 +28,9 @@ package com.github.loadup.testify.template;
  */
 
 import com.beust.jcommander.internal.Maps;
-import com.github.loadup.testify.annotation.*;
+import com.github.loadup.testify.annotation.TestBase;
+import com.github.loadup.testify.annotation.TestBean;
+import com.github.loadup.testify.annotation.TestifyMethod;
 import com.github.loadup.testify.annotation.testify.*;
 import com.github.loadup.testify.collector.CaseResultCollector;
 import com.github.loadup.testify.component.components.TestifyComponentUtil;
@@ -39,7 +41,9 @@ import com.github.loadup.testify.db.enums.DBFlagEnum;
 import com.github.loadup.testify.driver.TestifyConfiguration;
 import com.github.loadup.testify.enums.TestifyActionEnum;
 import com.github.loadup.testify.exception.TestifyException;
-import com.github.loadup.testify.model.*;
+import com.github.loadup.testify.model.PrepareData;
+import com.github.loadup.testify.model.VirtualComponent;
+import com.github.loadup.testify.model.VirtualTable;
 import com.github.loadup.testify.runtime.TestifyRuntimeContext;
 import com.github.loadup.testify.runtime.TestifyRuntimeContextThreadHold;
 import com.github.loadup.testify.support.TestTemplate;
@@ -49,15 +53,6 @@ import com.github.loadup.testify.utils.check.ObjectCompareUtil;
 import com.github.loadup.testify.utils.config.ConfigrationFactory;
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
-import java.io.*;
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.net.URL;
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.management.RuntimeErrorException;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
@@ -67,7 +62,23 @@ import org.springframework.aop.framework.AopProxyUtils;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.util.CollectionUtils;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import javax.management.RuntimeErrorException;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.net.URL;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Acts test base
@@ -82,7 +93,7 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
     /**
      * 收集日志用的
      */
-    protected static final String[] SUFFIX = new String[] {"NormalTest", "FuncExceptionTest"};
+    protected static final String[] SUFFIX = new String[]{"NormalTest", "FuncExceptionTest"};
 
     /* sql日志 **/
     private static final Logger sqlLogger = LoggerFactory.getLogger("acts-sql-logger");
@@ -239,19 +250,19 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
             if (null != prepareDatas.get(key).getVirtualComponentSet()
                     && null != prepareDatas.get(key).getVirtualComponentSet().getComponents()
                     && !prepareDatas
-                            .get(key)
-                            .getVirtualComponentSet()
-                            .getComponents()
-                            .isEmpty()) {
+                    .get(key)
+                    .getVirtualComponentSet()
+                    .getComponents()
+                    .isEmpty()) {
 
                 for (int i = 0;
-                        i
-                                < prepareDatas
-                                        .get(key)
-                                        .getVirtualComponentSet()
-                                        .getComponents()
-                                        .size();
-                        i++) {
+                     i
+                             < prepareDatas
+                             .get(key)
+                             .getVirtualComponentSet()
+                             .getComponents()
+                             .size();
+                     i++) {
 
                     VirtualComponent comp = prepareDatas
                             .get(key)
@@ -308,7 +319,7 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
             // 读取TestCase方法，包含一些差异化准备数据
             List<Method> methods = MethodUtils.filterMethod(
                     AnnotationUtils.findMethods(prepareClass, com.github.loadup.testify.annotation.TestCase.class),
-                    new Class<?>[] {PrepareData.class},
+                    new Class<?>[]{PrepareData.class},
                     void.class);
 
             for (Method m : methods) {
@@ -483,7 +494,7 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
 
                 String desc = prepareDatas.get(caseId).getDescription();
                 desc = (desc == null) ? "" : desc;
-                Object[] args = new Object[] {caseId, desc, prepareDatas.get(caseId)};
+                Object[] args = new Object[]{caseId, desc, prepareDatas.get(caseId)};
                 prepareDataList.add(args);
             }
 
@@ -686,7 +697,8 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
      *
      * @param paramMap
      */
-    public void beforeTestifyTest(Map<String, Object> paramMap) {}
+    public void beforeTestifyTest(Map<String, Object> paramMap) {
+    }
 
     /**
      * 通用的afterActsTest，可以在子类重写
@@ -1098,7 +1110,7 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
         try {
             clazzes = AopProxyUtils.proxiedUserInterfaces(testedObj);
         } catch (Exception e) {
-            clazzes = new Class<?>[] {testedObj.getClass()};
+            clazzes = new Class<?>[]{testedObj.getClass()};
         }
         if (clazzes != null) {
             for (Class<?> clazz : clazzes) {
@@ -1369,7 +1381,7 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
      */
     public String[] getReplaceXmls() {
 
-        String[] replaceStrs = new String[] {};
+        String[] replaceStrs = new String[]{};
 
         TestifyConfiguration.loadProperties();
 

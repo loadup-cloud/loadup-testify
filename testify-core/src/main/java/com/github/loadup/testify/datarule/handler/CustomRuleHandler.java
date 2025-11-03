@@ -37,12 +37,13 @@ import com.github.loadup.testify.exception.RuleExecuteException;
 import com.github.loadup.testify.util.CustomUtils;
 import com.github.loadup.testify.util.DateUtil;
 import com.github.loadup.testify.util.SystemAssist;
+import org.springframework.util.ReflectionUtils;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.springframework.util.ReflectionUtils;
 
 /**
  * 自定义规则处理。

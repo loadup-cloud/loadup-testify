@@ -33,4 +33,5 @@ package com.github.loadup.testify.support;
  *
  *
  */
-public interface TestAction {}
+public interface TestAction {
+}

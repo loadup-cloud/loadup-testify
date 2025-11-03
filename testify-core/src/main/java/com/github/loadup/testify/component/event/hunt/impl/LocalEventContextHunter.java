@@ -29,9 +29,10 @@ package com.github.loadup.testify.component.event.hunt.impl;
 
 import com.github.loadup.testify.component.event.hunt.EventContextHunter;
 import com.github.loadup.testify.component.event.hunt.HuntResult;
-import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Set;
 
 /**
  * @author jie.peng

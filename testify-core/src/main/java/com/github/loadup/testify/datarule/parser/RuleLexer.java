@@ -27,28 +27,13 @@ package com.github.loadup.testify.datarule.parser;
  * #L%
  */
 
-import static com.github.loadup.testify.datarule.parser.RuleCharTypes.isFirstIdentifierChar;
-import static com.github.loadup.testify.datarule.parser.RuleCharTypes.isIdentifierChar;
-import static com.github.loadup.testify.datarule.parser.RuleCharTypes.isWhitespace;
-import static com.github.loadup.testify.datarule.parser.RuleLayoutCharacters.EOI;
-import static com.github.loadup.testify.datarule.parser.RuleToken.COLON;
-import static com.github.loadup.testify.datarule.parser.RuleToken.COLONCOLON;
-import static com.github.loadup.testify.datarule.parser.RuleToken.COLONEQ;
-import static com.github.loadup.testify.datarule.parser.RuleToken.COMMA;
-import static com.github.loadup.testify.datarule.parser.RuleToken.EOF;
-import static com.github.loadup.testify.datarule.parser.RuleToken.ERROR;
-import static com.github.loadup.testify.datarule.parser.RuleToken.LBRACE;
-import static com.github.loadup.testify.datarule.parser.RuleToken.LBRACKET;
-import static com.github.loadup.testify.datarule.parser.RuleToken.LITERAL_ALIAS;
-import static com.github.loadup.testify.datarule.parser.RuleToken.LITERAL_CHARS;
-import static com.github.loadup.testify.datarule.parser.RuleToken.LPAREN;
-import static com.github.loadup.testify.datarule.parser.RuleToken.RBRACE;
-import static com.github.loadup.testify.datarule.parser.RuleToken.RBRACKET;
-import static com.github.loadup.testify.datarule.parser.RuleToken.RPAREN;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
+
+import static com.github.loadup.testify.datarule.parser.RuleCharTypes.*;
+import static com.github.loadup.testify.datarule.parser.RuleLayoutCharacters.EOI;
+import static com.github.loadup.testify.datarule.parser.RuleToken.*;
 
 /**
  * 词法分析器。

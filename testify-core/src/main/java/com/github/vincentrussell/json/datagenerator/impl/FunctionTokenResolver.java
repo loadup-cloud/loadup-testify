@@ -30,13 +30,13 @@ public class FunctionTokenResolver implements TokenResolver {
     public String resolveToken(final CharSequence s) {
         try {
             FunctionParser functionParser = new FunctionParser(
-                new ByteArrayInputStream(s.toString().getBytes(Charsets.UTF_8)), Charsets.UTF_8);
+                    new ByteArrayInputStream(s.toString().getBytes(Charsets.UTF_8)), Charsets.UTF_8);
             functionParser.setFunctionRegistry(functionRegistry);
             return functionParser.Parse();
         } catch (Throwable e) {
             LOGGER.warn(e.getMessage(), e);
             throw new IllegalArgumentException(new StringBuilder("cannot parse function: ")
-                .append(s).toString(), e);
+                    .append(s).toString(), e);
         }
 
     }

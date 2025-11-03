@@ -2,13 +2,7 @@ package com.github.vincentrussell.json.datagenerator.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 
 /**
  * {@link InputStream} wrapper that will timeout if read doesn't happen within specified time
@@ -25,12 +19,13 @@ public final class TimeoutInputStream extends InputStream {
 
     /**
      * default constuctor
+     *
      * @param inputStream wrapped {@link InputStream}
-     * @param timeout timeout value
-     * @param timeUnit time unit value like millis or seconds
+     * @param timeout     timeout value
+     * @param timeUnit    time unit value like millis or seconds
      */
     public TimeoutInputStream(final InputStream inputStream, final long timeout,
-        final TimeUnit timeUnit) {
+                              final TimeUnit timeUnit) {
         this.inputStream = inputStream;
         this.timeout = timeout;
         this.timeUnit = timeUnit;
@@ -52,7 +47,7 @@ public final class TimeoutInputStream extends InputStream {
     }
 
     private Integer getInteger(final Future<Integer> future) throws InterruptedException,
-        ExecutionException, TimeoutException {
+            ExecutionException, TimeoutException {
         if (!receivedData) {
             return future.get(1, TimeUnit.MINUTES);
         } else {

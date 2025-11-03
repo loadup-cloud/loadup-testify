@@ -13,6 +13,7 @@ public class City {
 
     /**
      * function call
+     *
      * @return the result
      */
     @FunctionInvocation

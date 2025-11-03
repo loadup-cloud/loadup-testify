@@ -41,14 +41,17 @@ import com.google.common.reflect.TypeToken;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import lombok.extern.slf4j.Slf4j;
-import ognl.OgnlException;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 import java.nio.charset.Charset;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * CSV辅助工具
@@ -330,8 +333,8 @@ public class CSVHelper {
             if (objectTypeManager.isSimpleType(argumentClass)) {
                 if (StringUtils.equals(Map.class.getName(), variableType.getName())
                         || StringUtils.equals(
-                                java.util.HashMap.class.getName(),
-                                field.getType().getName())) {
+                        java.util.HashMap.class.getName(),
+                        field.getType().getName())) {
                     value.add("M");
                     value.add(MAP_CONTENT_TEMPLATE);
                 } else {
@@ -403,7 +406,7 @@ public class CSVHelper {
         if (objectTypeManager.isSimpleType(argumentClass)) {
             if (StringUtils.equals(Map.class.getName(), field.getType().getName())
                     || StringUtils.equals(
-                            java.util.HashMap.class.getName(), field.getType().getName())) {
+                    java.util.HashMap.class.getName(), field.getType().getName())) {
                 value.add("M");
                 value.add(MAP_CONTENT_TEMPLATE);
             } else {
@@ -424,8 +427,8 @@ public class CSVHelper {
                 // 判断是List<Object>还是<String,Object>
                 if (StringUtils.equals(Map.class.getName(), field.getType().getName())
                         || StringUtils.equals(
-                                java.util.HashMap.class.getName(),
-                                field.getType().getName())) {
+                        java.util.HashMap.class.getName(),
+                        field.getType().getName())) {
                     value.add("M");
                     value.add(COMPLEX_MAP_CONTENT_TEMPLATE.replace(FILE_WORDS, argumentClass.getSimpleName() + ".csv"));
                 } else if (StringUtils.equals(Map.class.getName(), argumentClass.getName())
@@ -705,7 +708,7 @@ public class CSVHelper {
      * @return
      * @throws Exception
      */
-    public static List readFromCsv(File file, String encode){
+    public static List readFromCsv(File file, String encode) {
         if (null == file) {
             throw new TestifyException("文件不能为空");
         }
@@ -735,7 +738,7 @@ public class CSVHelper {
      * @throws Exception
      */
     @SuppressWarnings("rawtypes")
-    public static List readFromCsv(File file)  {
+    public static List readFromCsv(File file) {
         return readFromCsv(file, "UTF-8");
     }
 }

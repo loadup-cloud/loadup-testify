@@ -14,6 +14,7 @@ public class LastName {
 
     /**
      * get random last name
+     *
      * @return the result
      */
     @FunctionInvocation

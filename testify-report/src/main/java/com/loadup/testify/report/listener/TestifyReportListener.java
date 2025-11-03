@@ -2,7 +2,10 @@ package com.loadup.testify.report.listener;
 
 import com.loadup.testify.report.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
-import org.testng.*;
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
 /**
  * TestNG listener for capturing test execution events

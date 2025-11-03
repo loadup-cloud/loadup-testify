@@ -23,6 +23,7 @@ public class Index {
 
     /**
      * function call with default index name
+     *
      * @return the result
      */
     @FunctionInvocation
@@ -32,6 +33,7 @@ public class Index {
 
     /**
      * index for given index name
+     *
      * @param indexName name of index
      * @return the result
      */
@@ -46,7 +48,8 @@ public class Index {
 
     /**
      * index for index name
-     * @param indexName name of index
+     *
+     * @param indexName     name of index
      * @param startingPoint starting point integer for index
      * @return the result
      */

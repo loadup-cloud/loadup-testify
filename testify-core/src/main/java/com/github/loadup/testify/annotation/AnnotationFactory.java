@@ -30,16 +30,18 @@ package com.github.loadup.testify.annotation;
 import com.github.loadup.testify.annotation.testify.*;
 import com.github.loadup.testify.component.db.DBDatasProcessor;
 import com.github.loadup.testify.template.TestifyTestBase;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
+ *
  */
 @Getter
 @Setter
@@ -56,7 +58,7 @@ public class AnnotationFactory {
     protected Map<String, List<TestifyMethod>> annotationMethods;
 
     /**
-     *  builder工厂
+     * builder工厂
      */
     protected TestifyMethodBuilder testifyMethodBuilder = new TestifyMethodBuilder();
 

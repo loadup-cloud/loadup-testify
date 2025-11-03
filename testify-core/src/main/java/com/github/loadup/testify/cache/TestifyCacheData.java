@@ -34,10 +34,11 @@ import com.github.loadup.testify.object.comparer.UnitComparer;
 import com.github.loadup.testify.object.generator.CustomGenerator;
 import com.github.loadup.testify.util.FileUtil;
 import com.github.loadup.testify.yaml.enums.CPUnitTypeEnum;
+import org.springframework.util.CollectionUtils;
+
 import java.io.File;
 import java.util.*;
 import java.util.Map.Entry;
-import org.springframework.util.CollectionUtils;
 
 /**
  * 缓存字段

@@ -61,7 +61,7 @@ public class TestifyPathConstants {
     public static final String LOG_FOLDER_PATH = "TestLog";
 
     /**
-     *  dbConfigKey 分表配置规则路径
+     * dbConfigKey 分表配置规则路径
      */
     public static final String DBCONFIG_PATH = "config/DBConfigKey.properties";
 

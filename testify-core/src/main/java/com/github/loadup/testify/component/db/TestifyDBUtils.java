@@ -29,12 +29,13 @@ package com.github.loadup.testify.component.db;
 
 import com.github.loadup.testify.model.VirtualTable;
 import com.github.loadup.testify.utils.config.ConfigrationFactory;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import javax.sql.DataSource;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *

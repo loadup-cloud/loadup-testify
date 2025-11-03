@@ -15,6 +15,7 @@ public final class Repeat {
     /**
      * gets the string of a random integer between
      * lower range (inclusive) and upper range (inclusive)
+     *
      * @param lowerRange lower range
      * @param upperRange upper range
      * @return the string of a random integer between
@@ -22,28 +23,29 @@ public final class Repeat {
      */
     @FunctionInvocation
     public String repeat(final String lowerRange, final String upperRange) {
-            Integer integer = Integer.parseInt(lowerRange);
-            Integer integer2 = Integer.parseInt(upperRange);
-            if (integer >= integer2 && !integer.equals(integer2)) {
-                throw new IllegalArgumentException(
-                        "the second number, " + upperRange
-                                + ", must be greater than the first number, " + upperRange);
-            } else if (integer.equals(integer2)) {
-                return integer.toString();
-            } else {
-                return Integer.valueOf((
-                        new Random().nextInt((integer2 - integer) + 1) + integer)).toString();
-            }
+        Integer integer = Integer.parseInt(lowerRange);
+        Integer integer2 = Integer.parseInt(upperRange);
+        if (integer >= integer2 && !integer.equals(integer2)) {
+            throw new IllegalArgumentException(
+                    "the second number, " + upperRange
+                            + ", must be greater than the first number, " + upperRange);
+        } else if (integer.equals(integer2)) {
+            return integer.toString();
+        } else {
+            return Integer.valueOf((
+                    new Random().nextInt((integer2 - integer) + 1) + integer)).toString();
+        }
     }
 
     /**
      * gets the string form of the passed in integer
+     *
      * @param integer integer as string
      * @return the string form of the passed in integer
      */
     @FunctionInvocation
     public String repeat(final String integer) {
-       return Integer.valueOf(integer).toString();
+        return Integer.valueOf(integer).toString();
     }
 
 }

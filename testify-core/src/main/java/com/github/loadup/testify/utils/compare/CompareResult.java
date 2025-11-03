@@ -27,9 +27,10 @@ package com.github.loadup.testify.utils.compare;
  * #L%
  */
 
+import org.springframework.util.CollectionUtils;
+
 import java.util.HashSet;
 import java.util.Set;
-import org.springframework.util.CollectionUtils;
 
 /**
  * 比较结果

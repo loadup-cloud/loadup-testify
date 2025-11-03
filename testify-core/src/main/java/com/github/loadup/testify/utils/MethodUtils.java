@@ -27,12 +27,13 @@ package com.github.loadup.testify.utils;
  * #L%
  */
 
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 import org.testng.collections.Lists;
+
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Method Utils

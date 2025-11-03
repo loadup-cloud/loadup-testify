@@ -10,6 +10,7 @@ public class IndexHolder {
 
     /**
      * index holder with index starting with another number.
+     *
      * @param startingIndex index to start from
      */
     public IndexHolder(final int startingIndex) {
@@ -40,6 +41,7 @@ public class IndexHolder {
 
         /**
          * constructor
+         *
          * @param startingPoint starting integer
          */
         ResettingMutableInt(final int startingPoint) {
@@ -56,6 +58,7 @@ public class IndexHolder {
 
         /**
          * get the next number for this index; then increment
+         *
          * @return
          */
         public int getNextNumber() {

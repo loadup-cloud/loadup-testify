@@ -27,9 +27,10 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
+import org.apache.commons.beanutils.ContextClassLoaderLocal;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import org.apache.commons.beanutils.ContextClassLoaderLocal;
 
 /**
  * bean工具类

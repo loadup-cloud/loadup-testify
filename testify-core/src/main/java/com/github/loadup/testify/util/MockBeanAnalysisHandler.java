@@ -27,12 +27,13 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 从spring的配置文件解析ref的外部系统bean
@@ -65,10 +66,12 @@ class MockBeanAnalysisHandler extends DefaultHandler {
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {}
+    public void characters(char[] ch, int start, int length) throws SAXException {
+    }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {}
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+    }
 
     /**
      *

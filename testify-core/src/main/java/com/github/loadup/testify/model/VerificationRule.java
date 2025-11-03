@@ -1,4 +1,5 @@
 package com.github.loadup.testify.model;
+
 public enum VerificationRule {
     EQUALS, NOT_EQUALS, NOT_NULL, NULL,
     GREATER_THAN, LESS_THAN, GREATER_THAN_OR_EQUALS, LESS_THAN_OR_EQUALS,

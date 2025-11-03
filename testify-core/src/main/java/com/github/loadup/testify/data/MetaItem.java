@@ -27,9 +27,10 @@ package com.github.loadup.testify.data;
  * #L%
  */
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 原子项，定义数据生成规则。

@@ -28,24 +28,25 @@ package com.github.loadup.testify.collector.sqlLog;
  */
 
 import com.github.loadup.testify.model.VirtualTable;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.*;
-import java.util.regex.Pattern;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+import java.util.regex.Pattern;
+
 /**
  * SQL log collector
  *
  * @author chao.gao
- *
- *
+ * <p>
+ * <p>
  * hongling.xiang Exp $
  */
 public class SqlLogCollector {

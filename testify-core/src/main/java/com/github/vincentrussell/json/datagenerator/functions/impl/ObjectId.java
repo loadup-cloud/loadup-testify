@@ -13,6 +13,7 @@ public class ObjectId {
 
     /**
      * random objectId (12 byte hex string):
+     *
      * @return the result
      */
     @FunctionInvocation

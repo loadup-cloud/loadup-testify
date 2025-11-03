@@ -28,15 +28,16 @@ package com.github.loadup.testify.collector.sqlLog;
  */
 
 import com.github.loadup.testify.util.ReflectUtil;
-import java.util.*;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 /**
  * insert sql log resolver
  *
  * @author chao.gao
- *
- *
+ * <p>
+ * <p>
  * hongling.xiang Exp $
  */
 public class InsertSqlLogParser implements SqlLogParser {

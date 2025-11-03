@@ -30,10 +30,11 @@ package com.github.loadup.testify.template;
 import com.github.loadup.testify.config.DataAccessConfig;
 import com.github.loadup.testify.config.DataAccessConfigManager;
 import com.github.loadup.testify.model.*;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 
 public class PrepareTemplateImpl implements PrepareTemplate {
 

@@ -31,12 +31,9 @@ package com.github.loadup.testify.transfer;
  *
  *
  */
+
 import com.github.loadup.testify.model.PrepareData;
 import com.github.loadup.testify.util.BaseDataUtil;
-import java.io.*;
-import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.StringUtils;
@@ -44,6 +41,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
+
+import java.io.*;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AppServiceInterceptor implements MethodInterceptor {
     private static final Logger Logger = LoggerFactory.getLogger(AppServiceInterceptor.class);
@@ -160,6 +162,7 @@ public class AppServiceInterceptor implements MethodInterceptor {
 
     /**
      * 生成case前缀,生成结果:类名_方法名_CaseId_
+     *
      * @param method
      * @return
      */

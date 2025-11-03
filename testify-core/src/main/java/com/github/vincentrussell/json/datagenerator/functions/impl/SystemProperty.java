@@ -14,6 +14,7 @@ public class SystemProperty {
 
     /**
      * get a value from the system properties
+     *
      * @param key key from the system property
      * @return the value from the system property
      */

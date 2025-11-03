@@ -30,11 +30,15 @@ package com.github.loadup.testify.util;
 import com.github.loadup.testify.constant.TestifyConstants;
 import com.github.loadup.testify.driver.TestifyConfiguration;
 import com.github.loadup.testify.driver.constants.AtsConstants;
-import java.io.File;
-import java.util.*;
-import java.util.Map.Entry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Properties;
 
 /**
  *
@@ -86,7 +90,7 @@ public class MiniUtils {
      */
     public static String[] loadMiniBundles() {
 
-        String[] excludedBundles = new String[] {};
+        String[] excludedBundles = new String[]{};
 
         if (StringUtils.isNotBlank(miniBundleConfig)) {
 
@@ -139,7 +143,7 @@ public class MiniUtils {
      */
     public static String[] loadReplaceXmls() {
 
-        String[] replaceStrs = new String[] {};
+        String[] replaceStrs = new String[]{};
 
         if (StringUtils.isNotBlank(miniReplaceXmlConfig)) {
 

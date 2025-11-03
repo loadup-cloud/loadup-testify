@@ -29,11 +29,12 @@ package com.github.loadup.testify.util;
 
 import com.github.loadup.testify.constant.AnsiColorConstants;
 import com.github.loadup.testify.driver.TestifyConfiguration;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 /**
  * 存放Log相关公用方法

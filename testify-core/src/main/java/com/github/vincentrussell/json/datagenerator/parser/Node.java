@@ -8,45 +8,52 @@ package com.github.vincentrussell.json.datagenerator.parser;
 
 public
 interface Node extends java.io.Serializable {
-  /** This method is called after the node has been made the current
-    node.  It indicates that child nodes can now be added to it. */
-  void jjtOpen();
+    /**
+     * This method is called after the node has been made the current
+     * node.  It indicates that child nodes can now be added to it.
+     */
+    void jjtOpen();
 
-  /** This method is called after all the child nodes have been
-    added. */
-  void jjtClose();
+    /**
+     * This method is called after all the child nodes have been
+     * added.
+     */
+    void jjtClose();
 
-  /** 
-   * Set the parent node of this node
-   * @param n parent node to set
-   */
-  void jjtSetParent(Node n);
-  
-  /**
-   * @return parent node
-   */
-  Node jjtGetParent();
+    /**
+     * Set the parent node of this node
+     *
+     * @param n parent node to set
+     */
+    void jjtSetParent(Node n);
 
-  /** 
-   * This method tells the node to add its argument to the node's
-   * list of children.
-   * @param n node to add as a child
-   * @param i zero-based index where to add the child  
-   */
-  void jjtAddChild(Node n, int i);
+    /**
+     * @return parent node
+     */
+    Node jjtGetParent();
 
-  /** 
-   * This method returns a child node. The children are numbered
-   * from zero, left to right.
-   * @param i zero-baeed child index
-   */
-  Node jjtGetChild(int i);
+    /**
+     * This method tells the node to add its argument to the node's
+     * list of children.
+     *
+     * @param n node to add as a child
+     * @param i zero-based index where to add the child
+     */
+    void jjtAddChild(Node n, int i);
 
-  /** 
-   * @return the number of children the node has. Always &ge; 0. 
-   */
-  int jjtGetNumChildren();
+    /**
+     * This method returns a child node. The children are numbered
+     * from zero, left to right.
+     *
+     * @param i zero-baeed child index
+     */
+    Node jjtGetChild(int i);
 
-  int getId();
+    /**
+     * @return the number of children the node has. Always &ge; 0.
+     */
+    int jjtGetNumChildren();
+
+    int getId();
 }
 /* ParserGeneratorCC - OriginalChecksum=b50890f32a4c689ff4936647c2ef48f0 (do not edit this line) */

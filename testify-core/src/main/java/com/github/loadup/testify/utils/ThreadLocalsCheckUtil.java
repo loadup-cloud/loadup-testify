@@ -29,15 +29,16 @@ package com.github.loadup.testify.utils;
 
 import com.github.loadup.testify.constant.TestifyConstants;
 import com.github.loadup.testify.driver.TestifyConfiguration;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 线程上下文校验工具类
@@ -84,11 +85,11 @@ public class ThreadLocalsCheckUtil {
             Field f2 = t.getClass().getDeclaredField("threadLocals");
             f2.setAccessible(true);
             Object threadLocals = f2.get(t);
-            Method method = threadLocals.getClass().getDeclaredMethod("getEntry", new Class[] {ThreadLocal.class});
+            Method method = threadLocals.getClass().getDeclaredMethod("getEntry", new Class[]{ThreadLocal.class});
 
             method.setAccessible(true);
 
-            Object threadLocalEntry = method.invoke(threadLocals, new Object[] {tl});
+            Object threadLocalEntry = method.invoke(threadLocals, new Object[]{tl});
 
             if (null == threadLocalEntry) {
                 return;

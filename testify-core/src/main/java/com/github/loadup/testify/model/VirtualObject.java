@@ -28,6 +28,7 @@ package com.github.loadup.testify.model;
  */
 
 import com.github.loadup.testify.setter.FlagSetter;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -69,7 +70,8 @@ public class VirtualObject extends TestNode {
      */
     public Map<String, Map<String, String>> flags = new LinkedHashMap<String, Map<String, String>>();
 
-    public VirtualObject() {}
+    public VirtualObject() {
+    }
 
     public VirtualObject(Object obj) {
         if (obj != null) {

@@ -28,9 +28,10 @@ package com.github.loadup.testify.data.impl;
  */
 
 import com.github.loadup.testify.data.RuleDataStore;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 统一规则存储。

@@ -42,12 +42,12 @@ public abstract class SystemAssist {
     /**
      * 系统域
      */
-    public static final String[] SYS_DOMAINS = new String[] {"xxx", "xx"};
+    public static final String[] SYS_DOMAINS = new String[]{"xxx", "xx"};
 
     /**
      * 系统前缀
      */
-    public static final String[] SYS_PREFIXES = new String[] {"fc"};
+    public static final String[] SYS_PREFIXES = new String[]{"fc"};
 
     /**
      * 获取所有可能的包目录。

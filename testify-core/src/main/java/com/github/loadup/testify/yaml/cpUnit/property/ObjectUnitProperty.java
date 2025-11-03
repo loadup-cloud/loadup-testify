@@ -46,19 +46,15 @@ import com.github.loadup.testify.object.processor.ObjHandUtil;
 import com.github.loadup.testify.object.processor.ObjectProcessor;
 import com.github.loadup.testify.util.FileUtil;
 import com.github.loadup.testify.yaml.cpUnit.ObjectCPUnit;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ClassUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * 对象基础属性
@@ -567,7 +563,8 @@ public class ObjectUnitProperty extends BaseUnitProperty {
         } else if (StringUtils.equals("@element_empty@", value)) {
             return objectTypeManager.getCollectionObject(fieldClass);
         } else if (value.startsWith("{") || value.startsWith("[")) {
-            return JSON.parseObject(value, new TypeReference<Map<String, String>>() {});
+            return JSON.parseObject(value, new TypeReference<Map<String, String>>() {
+            });
         } else {
             String[] valueParts = value.split(";");
             if (fieldClass.isArray()) {
@@ -651,7 +648,8 @@ public class ObjectUnitProperty extends BaseUnitProperty {
 
             // 1. 加载CSV数据
             List tableList = CSVHelper.readFromCsv(this.targetCSVPath);
-            if (tableList == null || tableList.size() == 0) TestifyLogUtil.fail(log, this.targetCSVPath + "文件内容为空");
+            if (tableList == null || tableList.size() == 0)
+                TestifyLogUtil.fail(log, this.targetCSVPath + "文件内容为空");
             if (tableList.size() < 2) {
                 throw new TestifyException("当前的CSV文件内容不全,文件名为" + targetCSVPath);
             }

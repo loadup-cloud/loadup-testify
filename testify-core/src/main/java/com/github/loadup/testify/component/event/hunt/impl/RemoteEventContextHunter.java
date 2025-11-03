@@ -31,8 +31,9 @@ import com.github.loadup.testify.component.event.hunt.EventContextHunter;
 import com.github.loadup.testify.component.event.hunt.HuntResult;
 import com.github.loadup.testify.component.event.ssh.AppServerLogFetcher;
 import com.github.loadup.testify.utils.config.ConfigrationFactory;
-import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.Set;
 
 /**
  * @author jie.peng
@@ -61,7 +62,7 @@ public class RemoteEventContextHunter implements EventContextHunter {
             return result;
         }
         // 设置获取的事件的实际属性值
-        result.setActual(fecther.getInfoFromLog(command, targets.toArray(new String[] {})));
+        result.setActual(fecther.getInfoFromLog(command, targets.toArray(new String[]{})));
         return result;
     }
 

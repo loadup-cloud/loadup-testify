@@ -13,6 +13,7 @@ public class Street {
 
     /**
      * get random street
+     *
      * @return the result
      */
     @FunctionInvocation

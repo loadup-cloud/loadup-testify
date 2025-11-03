@@ -29,10 +29,11 @@ package com.github.loadup.testify.object.generator.impl;
 
 import com.github.loadup.testify.constant.TestifyYamlConstants;
 import com.github.loadup.testify.object.generator.ObjectGenerator;
-import java.io.File;
-import java.lang.reflect.Type;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
+
+import java.io.File;
+import java.lang.reflect.Type;
 
 /**
  * 字符串类型处理器

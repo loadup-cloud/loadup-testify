@@ -27,11 +27,12 @@ package com.github.loadup.testify.config;
  * #L%
  */
 
-import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+
+import java.util.*;
 
 public abstract class DataAccessConfigManager implements InitializingBean {
     protected static final Logger LOGGER = LoggerFactory.getLogger(DataAccessConfigManager.class);

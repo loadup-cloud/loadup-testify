@@ -30,13 +30,14 @@ package com.github.loadup.testify.object;
 import com.github.loadup.testify.context.TestifyCaseContextHolder;
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.processor.ObjectProcessor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.testng.Assert;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
 
 /**
  * 存储旧CTS支持对象相关方法，不再维护，不建议使用

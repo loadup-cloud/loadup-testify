@@ -32,9 +32,10 @@ import com.github.loadup.testify.object.TestifyObjectUtil;
 import com.github.loadup.testify.object.comparer.UnitComparer;
 import com.github.loadup.testify.object.enums.UnitFlagEnum;
 import com.github.loadup.testify.object.manager.ObjectCompareManager;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 数据库字段基础属性

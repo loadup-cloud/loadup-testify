@@ -25,6 +25,7 @@ public class RandomDouble {
 
     /**
      * get random double in range
+     *
      * @param min min number
      * @param max max number
      * @return the result
@@ -36,8 +37,9 @@ public class RandomDouble {
 
     /**
      * get random number with format (eg. "%.2f")
-     * @param min min number
-     * @param max max number
+     *
+     * @param min    min number
+     * @param max    max number
      * @param format format in {@link Formatter} format
      * @return the result
      */

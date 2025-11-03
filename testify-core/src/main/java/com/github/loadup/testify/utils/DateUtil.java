@@ -27,12 +27,13 @@ package com.github.loadup.testify.utils;
  * #L%
  */
 
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 常用的日期处理工具，集中处理日期字符串，特点就是返回值基本上都为<code>String</code></br>

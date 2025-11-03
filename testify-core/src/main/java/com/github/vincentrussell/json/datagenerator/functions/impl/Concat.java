@@ -11,6 +11,7 @@ public class Concat {
 
     /**
      * function call
+     *
      * @param objects the strings to concat
      * @return the result
      */

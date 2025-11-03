@@ -16,8 +16,9 @@ public abstract class AbstractAddDates {
 
     /**
      * call this method from the subclasses to add an interval to a date
-     * @param format the date format
-     * @param date the date
+     *
+     * @param format   the date format
+     * @param date     the date
      * @param interval the interval to add (or subtract)
      * @return
      */
@@ -33,7 +34,8 @@ public abstract class AbstractAddDates {
 
     /**
      * call this method from the subclasses to add an interval to a date
-     * @param date the date
+     *
+     * @param date     the date
      * @param interval the interval to add (or subtract)
      * @return
      */
@@ -54,13 +56,14 @@ public abstract class AbstractAddDates {
             }
             return (java.util.Date) method.invoke(null, oldDate, amount);
         } catch (IllegalAccessException | NoSuchMethodException
-            | SecurityException | InvocationTargetException e) {
+                 | SecurityException | InvocationTargetException e) {
             throw new IllegalArgumentException(e);
         }
     }
 
     /**
      * override this method to indicate with method on {@link DateUtils} could be called
+     *
      * @return the method name on {@link DateUtils}
      */
     protected abstract String getMethodName();

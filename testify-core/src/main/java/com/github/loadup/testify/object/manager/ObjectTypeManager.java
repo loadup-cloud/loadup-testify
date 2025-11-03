@@ -29,27 +29,14 @@ package com.github.loadup.testify.object.manager;
 
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.generator.ObjectGenerator;
-import com.github.loadup.testify.object.generator.impl.ArrayListTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.ArrayTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.BigDecimalTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.CurrencyTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.DateTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.EnumTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.ListTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.MapTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.SetTypeGenerator;
-import com.github.loadup.testify.object.generator.impl.StringTypeGenerator;
+import com.github.loadup.testify.object.generator.impl.*;
 import com.github.loadup.testify.util.CSVApisUtil;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Type;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * 对象类型总控器类

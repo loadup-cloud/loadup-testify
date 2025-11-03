@@ -28,9 +28,10 @@ package com.github.loadup.testify.object.generator.impl;
  */
 
 import com.github.loadup.testify.object.generator.ObjectGenerator;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Type;
 import java.util.Currency;
-import org.apache.commons.lang3.StringUtils;
 
 public class CurrencyTypeGenerator implements ObjectGenerator {
 

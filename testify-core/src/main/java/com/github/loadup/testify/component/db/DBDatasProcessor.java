@@ -46,6 +46,15 @@ import com.github.loadup.testify.utils.DetailCollectUtils;
 import com.github.loadup.testify.utils.check.ObjectCompareUtil;
 import com.github.loadup.testify.utils.config.ConfigrationFactory;
 import com.github.loadup.testify.utils.config.ConfigurationKey;
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
@@ -54,14 +63,6 @@ import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.sql.DataSource;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 public class DBDatasProcessor {
 
@@ -100,8 +101,8 @@ public class DBDatasProcessor {
         Map<String, String> map = new HashMap<String, String>();
         StringTokenizer items;
         for (StringTokenizer entrys = new StringTokenizer(mapString, ";");
-                entrys.hasMoreTokens();
-                map.put(items.nextToken(), items.hasMoreTokens() ? ((String) (items.nextToken())) : null))
+             entrys.hasMoreTokens();
+             map.put(items.nextToken(), items.hasMoreTokens() ? ((String) (items.nextToken())) : null))
             items = new StringTokenizer(entrys.nextToken(), "=");
         return map;
     }
@@ -1181,7 +1182,7 @@ public class DBDatasProcessor {
                         // 数据库字符串字段“”与null不做区分
                         if (!isNullBlankDiff()
                                 && (expectedFieldValue == null
-                                        || StringUtils.equals(String.valueOf(expectedFieldValue), ""))) {
+                                || StringUtils.equals(String.valueOf(expectedFieldValue), ""))) {
 
                             if (actualFieldValue != null) {
 

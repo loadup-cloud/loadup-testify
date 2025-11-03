@@ -28,19 +28,14 @@ package com.github.loadup.testify.yaml;
  */
 
 import com.github.loadup.testify.cache.TestifyCacheData;
-import com.github.loadup.testify.yaml.cpUnit.BaseCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.DataBaseCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.GroupDataBaseCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.ListDataBaseCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.ListObjectCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.MessageCPUnit;
-import com.github.loadup.testify.yaml.cpUnit.ObjectCPUnit;
+import com.github.loadup.testify.yaml.cpUnit.*;
 import com.github.loadup.testify.yaml.enums.CPUnitTypeEnum;
+import org.testng.Assert;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.testng.Assert;
 
 /**
  * CP点模型

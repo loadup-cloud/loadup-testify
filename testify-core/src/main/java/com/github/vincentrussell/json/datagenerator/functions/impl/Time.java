@@ -19,6 +19,7 @@ public class Time {
 
     /**
      * generate a time representing "now"
+     *
      * @return the result
      */
     @FunctionInvocation
@@ -28,6 +29,7 @@ public class Time {
 
     /**
      * generate a time representing now with a particular time format
+     *
      * @param outputTimeFormat the output time format
      * @return the formatted time
      */
@@ -35,6 +37,7 @@ public class Time {
     public String time(final String outputTimeFormat) {
         return format(LocalTime.now(), outputTimeFormat);
     }
+
     private String format(final LocalTime localTime, final String defaultInputFormat) {
         return localTime.format(DateTimeFormatter.ofPattern(defaultInputFormat));
     }
@@ -42,8 +45,9 @@ public class Time {
 
     /**
      * random time in between two ranges
-     * @param startTime in the following format "h[:mm][ ]a"
-     * @param endTime in the following format "h[:mm][ ]a"
+     *
+     * @param startTime    in the following format "h[:mm][ ]a"
+     * @param endTime      in the following format "h[:mm][ ]a"
      * @param outputFormat the output time format
      * @return the formatted time
      */

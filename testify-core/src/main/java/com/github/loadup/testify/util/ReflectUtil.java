@@ -30,14 +30,15 @@ package com.github.loadup.testify.util;
 import com.github.loadup.testify.api.CSVApis;
 import com.github.loadup.testify.exception.TestifyException;
 import com.github.loadup.testify.object.manager.ObjectTypeManager;
+import org.apache.commons.lang3.ClassUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import org.apache.commons.lang3.ClassUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author ming.cm

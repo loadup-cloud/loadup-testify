@@ -31,8 +31,9 @@ import com.alibaba.fastjson2.JSON;
 import com.github.loadup.testify.datarule.*;
 import com.github.loadup.testify.datarule.RULE.ReferenceHandler;
 import com.github.loadup.testify.exception.RuleExecuteException;
-import java.util.*;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 /**
  * 组装规则处理器。
@@ -121,8 +122,8 @@ public class AssembleRuleHandler implements RuleHandler<AssembleRule> {
 
                     Boolean bool = null;
                     for (Object element = operateStack.pop();
-                            element != AssembleConditionOperator.LEFT_PAREN;
-                            element = operateStack.pop()) {
+                         element != AssembleConditionOperator.LEFT_PAREN;
+                         element = operateStack.pop()) {
                         if (element instanceof Boolean) {
                             bool = (Boolean) element;
                         } else if (element == AssembleConditionOperator.OR) {

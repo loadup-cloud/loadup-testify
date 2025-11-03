@@ -27,13 +27,14 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * pom.xml  依赖关系解析

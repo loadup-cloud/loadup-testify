@@ -30,10 +30,11 @@ package com.github.loadup.testify.utils.compare;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 比较两个对象的工具类

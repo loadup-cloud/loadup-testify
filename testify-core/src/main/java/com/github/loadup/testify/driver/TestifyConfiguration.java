@@ -29,12 +29,13 @@ package com.github.loadup.testify.driver;
 
 import com.github.loadup.testify.constant.TestifyConstants;
 import com.github.loadup.testify.log.TestifyLogUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -58,7 +59,8 @@ public class TestifyConfiguration {
      */
     private boolean isTRMode = false;
 
-    private TestifyConfiguration() {}
+    private TestifyConfiguration() {
+    }
 
     public static TestifyConfiguration getInstance() {
         if (instance == null) {
@@ -158,7 +160,7 @@ public class TestifyConfiguration {
         }
         TestifyLogUtil.info(
                 log, "ACTS配置初始化：sofaTestConfigFile =  " + TestifyConstants.SOFA_TEST_CONFIG_DIR + configPattern);
-        return new String[] {TestifyConstants.SOFA_TEST_CONFIG_DIR, configPattern};
+        return new String[]{TestifyConstants.SOFA_TEST_CONFIG_DIR, configPattern};
     }
 
     private String getDbMode(String dbconfFile) {

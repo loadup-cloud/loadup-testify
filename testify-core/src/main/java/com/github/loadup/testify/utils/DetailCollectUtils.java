@@ -28,13 +28,14 @@ package com.github.loadup.testify.utils;
  */
 
 import com.github.loadup.testify.util.LogUtil;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.slf4j.Logger;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 @Slf4j
 public class DetailCollectUtils {

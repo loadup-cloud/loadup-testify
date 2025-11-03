@@ -31,10 +31,11 @@ import com.github.loadup.testify.datarule.RULE.ReferenceHandler;
 import com.github.loadup.testify.datarule.RangeRule;
 import com.github.loadup.testify.datarule.RuleObject;
 import com.github.loadup.testify.exception.RuleExecuteException;
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 范围规则处理器。

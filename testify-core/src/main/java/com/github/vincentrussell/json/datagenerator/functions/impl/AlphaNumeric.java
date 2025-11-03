@@ -12,6 +12,7 @@ public class AlphaNumeric {
 
     /**
      * Function call with min and max arguments
+     *
      * @param min minium length
      * @param max maximum length
      * @return the result
@@ -19,12 +20,13 @@ public class AlphaNumeric {
     @FunctionInvocation
     public String getAlphaNumeric(final String min, final String max) {
         int randomInt = FunctionUtils.getRandomInteger(Integer.parseInt(min),
-            Integer.parseInt(max));
+                Integer.parseInt(max));
         return getRandomAlphabetic(randomInt);
     }
 
     /**
      * Default function call
+     *
      * @return the result
      */
     @FunctionInvocation
@@ -36,6 +38,7 @@ public class AlphaNumeric {
 
     /**
      * Function call with length
+     *
      * @param length length of string
      * @return the result
      */

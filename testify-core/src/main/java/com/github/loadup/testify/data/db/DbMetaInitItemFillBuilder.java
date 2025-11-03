@@ -30,10 +30,11 @@ package com.github.loadup.testify.data.db;
 import com.github.loadup.testify.dal.table.CsvFillObject;
 import com.github.loadup.testify.util.FileUtil;
 import com.opencsv.CSVReader;
+import org.apache.commons.io.FileUtils;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.io.FileUtils;
 
 /**
  * 业务模型元数据项构造器。
@@ -60,7 +61,7 @@ public class DbMetaInitItemFillBuilder {
         List<CsvFillObject> initItems = new ArrayList<CsvFillObject>();
 
         @SuppressWarnings("unchecked")
-        List<File> allCSV = (List<File>) FileUtils.listFiles(dir, new String[] {"csv"}, true);
+        List<File> allCSV = (List<File>) FileUtils.listFiles(dir, new String[]{"csv"}, true);
         for (File f : allCSV) {
             InputStream in = null;
             try {

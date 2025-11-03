@@ -33,4 +33,5 @@ package com.github.loadup.testify.datarule;
  *
  *
  */
-public interface RuleObject {}
+public interface RuleObject {
+}

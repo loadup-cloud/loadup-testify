@@ -29,9 +29,10 @@ package com.github.loadup.testify.annotation;
 
 import com.github.loadup.testify.model.PrepareData;
 import com.github.loadup.testify.utils.CaseResultCollectUtil;
+import org.testng.annotations.Test;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.testng.annotations.Test;
 
 public class TestSqlparse {
 

@@ -36,14 +36,15 @@ import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.enums.UnitFlagEnum;
 import com.github.loadup.testify.yaml.cpUnit.property.BaseUnitProperty;
 import com.github.loadup.testify.yaml.enums.CPUnitTypeEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.testng.Assert;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
 
 /**
  * 数据库CheckPoint单位

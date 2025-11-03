@@ -19,8 +19,9 @@ public class Substring {
      * "Harbison".substring(3) returns "bison"
      * "emptiness".substring(9) returns "" (an empty string)
      * </pre></blockquote>
-     * @param value string
-     * @param beginIndex  the beginning index, inclusive.
+     *
+     * @param value      string
+     * @param beginIndex the beginning index, inclusive.
      * @return the result
      */
     @FunctionInvocation
@@ -39,9 +40,10 @@ public class Substring {
      * "hamburger".substring(4, 8) returns "urge"
      * "smiles".substring(1, 5) returns "mile"
      * </pre></blockquote>
-     * @param value the string
+     *
+     * @param value      the string
      * @param beginIndex the beginning index, inclusive.
-     * @param endIndex the ending index, exclusive
+     * @param endIndex   the ending index, exclusive
      * @return the result
      */
     @FunctionInvocation

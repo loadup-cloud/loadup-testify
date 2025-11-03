@@ -38,21 +38,17 @@ import com.github.loadup.testify.relation.ObjectRelationManager;
 import com.github.loadup.testify.util.DeepCopyUtils;
 import com.github.loadup.testify.util.LocalCacheUtil;
 import com.github.loadup.testify.util.ReflectUtil;
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.util.*;
 
 /**
  * 对象组装类
  *
  * @author batuo.zxm
- *
  * @add by chao.gao
  */
 public class AssembleManager {

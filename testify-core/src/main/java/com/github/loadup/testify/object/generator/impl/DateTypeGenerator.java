@@ -30,11 +30,12 @@ package com.github.loadup.testify.object.generator.impl;
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.generator.ObjectGenerator;
 import com.github.loadup.testify.util.DateUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
 public class DateTypeGenerator implements ObjectGenerator {

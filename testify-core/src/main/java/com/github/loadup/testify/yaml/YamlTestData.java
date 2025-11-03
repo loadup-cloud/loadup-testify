@@ -28,20 +28,12 @@ package com.github.loadup.testify.yaml;
  */
 
 import com.github.loadup.testify.api.LogApis;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
+
+import java.io.*;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  *

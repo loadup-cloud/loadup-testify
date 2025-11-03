@@ -39,13 +39,14 @@ import com.github.loadup.testify.util.JsonUtil;
 import com.github.loadup.testify.util.LogUtil;
 import com.github.loadup.testify.yaml.YamlTestData;
 import com.github.loadup.testify.yaml.YamlTestUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.testng.Assert;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.testng.Assert;
 
 /**
  * ActsLogUtil 测试日志文件操作类

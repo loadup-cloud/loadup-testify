@@ -35,7 +35,8 @@ public class tree<T> {
 
     public treeNode<T> root;
 
-    public tree() {}
+    public tree() {
+    }
 
     public static void main(String[] args) {
 

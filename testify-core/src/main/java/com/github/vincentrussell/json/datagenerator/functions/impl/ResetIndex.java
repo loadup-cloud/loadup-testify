@@ -22,6 +22,7 @@ public class ResetIndex {
 
     /**
      * reset the default index
+     *
      * @return empty string
      */
     @FunctionInvocation
@@ -31,6 +32,7 @@ public class ResetIndex {
 
     /**
      * reset index for given index name
+     *
      * @param indexName name of index
      * @return empty string
      */

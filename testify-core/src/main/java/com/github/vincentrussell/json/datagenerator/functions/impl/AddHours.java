@@ -11,25 +11,27 @@ public class AddHours extends AbstractAddDates {
 
     /**
      * add hours to date
+     *
      * @param format the date format
-     * @param date the date
-     * @param hours the number of hours to add
+     * @param date   the date
+     * @param hours  the number of hours to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addHours(final String format, final String date, final String hours) {
-       return super.addInterval(format, date, hours);
+        return super.addInterval(format, date, hours);
     }
 
     /**
      * add hours to the date
-     * @param date the date
+     *
+     * @param date  the date
      * @param hours the number of hours to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addHours(final String date, final String hours) {
-       return super.addInterval(date, hours);
+        return super.addInterval(date, hours);
     }
 
     @Override

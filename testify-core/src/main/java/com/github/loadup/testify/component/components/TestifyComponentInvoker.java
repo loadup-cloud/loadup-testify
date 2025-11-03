@@ -27,10 +27,11 @@ package com.github.loadup.testify.component.components;
  * #L%
  */
 
-import java.lang.reflect.Method;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Method;
 
 @Getter
 @Setter

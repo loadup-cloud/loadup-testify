@@ -31,9 +31,10 @@ import com.github.loadup.testify.component.enums.RepositoryType;
 import com.github.loadup.testify.manage.enums.LoggerType;
 import com.github.loadup.testify.manage.log.LoggerFactory;
 import com.github.loadup.testify.support.TestCaseHolder;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 测试内容记录器，以摘要日志形式输出。

@@ -11,6 +11,7 @@ public class Random {
 
     /**
      * random item from list:
+     *
      * @param strings options to choose from
      * @return the result
      */

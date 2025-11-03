@@ -29,12 +29,13 @@ package com.github.loadup.testify.manage;
 
 import com.github.loadup.testify.manage.enums.LoggerType;
 import com.github.loadup.testify.manage.log.LoggerFactory;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import org.apache.commons.lang3.ObjectUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 测试执行统计分析器。
@@ -503,13 +504,13 @@ public class TestProfiler {
             double percent = getPecentage();
             double percentOfAll = getPecentageOfAll();
 
-            Object[] params = new Object[] {
-                message, // {0} - entry信息
-                (startTime), // {1} - 起始时间
-                (duration), // {2} - 持续总时间
-                (durationOfSelf), // {3} - 自身消耗的时间
-                (percent), // {4} - 在父entry中所占的时间比例
-                (percentOfAll) // {5} - 在总时间中所旧的时间比例
+            Object[] params = new Object[]{
+                    message, // {0} - entry信息
+                    (startTime), // {1} - 起始时间
+                    (duration), // {2} - 持续总时间
+                    (durationOfSelf), // {3} - 自身消耗的时间
+                    (percent), // {4} - 在父entry中所占的时间比例
+                    (percentOfAll) // {5} - 在总时间中所旧的时间比例
             };
 
             StringBuffer pattern = new StringBuffer();

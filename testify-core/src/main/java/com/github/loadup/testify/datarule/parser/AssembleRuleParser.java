@@ -27,13 +27,7 @@ package com.github.loadup.testify.datarule.parser;
  * #L%
  */
 
-import com.github.loadup.testify.datarule.AssembleCondition;
-import com.github.loadup.testify.datarule.AssembleConditionItem;
-import com.github.loadup.testify.datarule.AssembleConditionOperator;
-import com.github.loadup.testify.datarule.AssembleItem;
-import com.github.loadup.testify.datarule.AssembleRule;
-import com.github.loadup.testify.datarule.AssembleValue;
-import com.github.loadup.testify.datarule.RuleObject;
+import com.github.loadup.testify.datarule.*;
 import com.github.loadup.testify.exception.RuleParseException;
 
 /**

@@ -36,10 +36,11 @@ import com.github.loadup.testify.data.enums.MetaInitType;
 import com.github.loadup.testify.db.offlineService.AbstractDBService;
 import com.github.loadup.testify.exception.RuleExecuteException;
 import com.github.loadup.testify.manage.TestLogger;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 原子项db仓储。

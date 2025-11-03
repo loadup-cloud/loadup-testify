@@ -34,6 +34,7 @@ import com.github.loadup.testify.dal.dataobject.CaseRuleDO;
 import com.github.loadup.testify.dal.table.CaseRule;
 import com.github.loadup.testify.db.offlineService.AbstractDBService;
 import com.github.loadup.testify.util.JsonUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -27,9 +27,10 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.util.HashSet;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 获取系统的表结构

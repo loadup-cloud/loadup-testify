@@ -31,12 +31,14 @@ package com.github.loadup.testify.object.comparer.impl;
  *
  * Copyright (c) 2004-2014 All Rights Reserved.
  */
+
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.comparer.UnitComparer;
 import com.github.loadup.testify.util.DateUtil;
-import java.util.Date;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.Date;
 
 /**
  * "D" flag 校验器（日期）

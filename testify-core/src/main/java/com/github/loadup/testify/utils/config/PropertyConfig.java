@@ -35,9 +35,9 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 读取系统配置参数缓存
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * Exp $
  */
 public class PropertyConfig {
@@ -98,7 +98,7 @@ public class PropertyConfig {
             configPattern = sofaTestMode + "-sofa-test-config.properties";
         }
         logger.info("ACTS config init :sofaTestConfigFile = " + TestifyConstants.SOFA_TEST_CONFIG_DIR + configPattern);
-        return new String[] {TestifyConstants.SOFA_TEST_CONFIG_DIR, configPattern};
+        return new String[]{TestifyConstants.SOFA_TEST_CONFIG_DIR, configPattern};
     }
 
     /**
@@ -147,9 +147,9 @@ public class PropertyConfig {
         if (null != testConfigs
                 && testConfigs.getPropertyValue(TestifyConstants.TR_MODE) != null
                 && "true"
-                        .equals(testConfigs
-                                .getPropertyValue(TestifyConstants.TR_MODE)
-                                .trim())) {
+                .equals(testConfigs
+                        .getPropertyValue(TestifyConstants.TR_MODE)
+                        .trim())) {
             return true;
         } else return false;
     }
@@ -166,9 +166,9 @@ public class PropertyConfig {
         if (null != testConfigs
                 && testConfigs.getPropertyValue(TestifyConstants.SWITCH_ENV) != null
                 && "false"
-                        .equals(testConfigs
-                                .getPropertyValue(TestifyConstants.SWITCH_ENV)
-                                .trim())) {
+                .equals(testConfigs
+                        .getPropertyValue(TestifyConstants.SWITCH_ENV)
+                        .trim())) {
             return false;
         }
         return true;

@@ -15,23 +15,25 @@ public class Email {
 
     /**
      * random email address
+     *
      * @return the result
      */
     @FunctionInvocation
     public String email() {
         return FIRST_NAME.firstName().toLowerCase() + "."
-            + LAST_NAME.lastName().toLowerCase() + "@" + COMPANY.company().toLowerCase() + ".com";
+                + LAST_NAME.lastName().toLowerCase() + "@" + COMPANY.company().toLowerCase() + ".com";
     }
 
     /**
      * random email address
+     *
      * @param domain ending domain for email address
      * @return the result
      */
     @FunctionInvocation
     public String email(final String domain) {
         return FIRST_NAME.firstName().toLowerCase()
-            + "." + LAST_NAME.lastName().toLowerCase() + "@" + domain.toLowerCase();
+                + "." + LAST_NAME.lastName().toLowerCase() + "@" + domain.toLowerCase();
     }
 
 }

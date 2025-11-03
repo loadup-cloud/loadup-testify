@@ -32,11 +32,12 @@ import com.github.loadup.testify.model.VirtualList;
 import com.github.loadup.testify.model.VirtualMap;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.*;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author 马洪良

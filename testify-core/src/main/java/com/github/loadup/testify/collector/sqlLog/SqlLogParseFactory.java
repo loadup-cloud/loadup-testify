@@ -32,18 +32,19 @@ import com.github.loadup.testify.data.BbTableModelUtil;
 import com.github.loadup.testify.model.VirtualTable;
 import com.github.loadup.testify.util.BaseDataUtil;
 import com.github.loadup.testify.util.FileUtil;
-import java.io.File;
-import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
+import java.io.File;
+import java.util.*;
+
 /**
  * sql日志解析工厂
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * hongling.xiang Exp $
  */
 public class SqlLogParseFactory {

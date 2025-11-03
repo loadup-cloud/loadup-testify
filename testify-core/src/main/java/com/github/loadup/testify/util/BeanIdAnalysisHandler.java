@@ -27,12 +27,13 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <bean id="lcDailyCutNoticeService"
@@ -67,10 +68,12 @@ public class BeanIdAnalysisHandler extends DefaultHandler {
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {}
+    public void characters(char[] ch, int start, int length) throws SAXException {
+    }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {}
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+    }
 
     /**
      * @return the beanList

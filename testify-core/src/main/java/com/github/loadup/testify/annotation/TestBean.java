@@ -40,4 +40,5 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface TestBean {}
+public @interface TestBean {
+}

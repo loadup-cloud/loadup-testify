@@ -31,6 +31,9 @@ import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.processor.ObjectProcessor;
 import com.github.loadup.testify.util.FileUtil;
 import com.github.loadup.testify.util.JsonUtil;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -38,8 +41,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 对象操作工具类
@@ -115,7 +116,7 @@ public class TestifyObjectUtil {
      * @return
      * @throws OgnlException
      */
-    public static Object getProperty(Object object, String ognlExpression)   {
+    public static Object getProperty(Object object, String ognlExpression) {
         //        OgnlContext ognlContext = new OgnlContext();
         //        ognlContext.setMemberAccess(new DefaultMemberAccess(true));
         //        Object ognlExprObj = Ognl.parseExpression(ognlExpression);

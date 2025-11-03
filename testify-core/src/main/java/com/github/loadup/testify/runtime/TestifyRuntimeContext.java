@@ -32,12 +32,13 @@ import com.github.loadup.testify.exception.TestifyException;
 import com.github.loadup.testify.model.*;
 import com.github.loadup.testify.template.TestifyTestBase;
 import com.github.loadup.testify.util.VelocityUtil;
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * Acts框架运行时上下文，可以设置数据，获取返回值
@@ -121,7 +122,8 @@ public class TestifyRuntimeContext {
     // 存放预跑反填的sqlList
     public List<String> backFillSqlList = new ArrayList<String>();
 
-    public TestifyRuntimeContext() {}
+    public TestifyRuntimeContext() {
+    }
 
     public TestifyRuntimeContext(
             String caseId,

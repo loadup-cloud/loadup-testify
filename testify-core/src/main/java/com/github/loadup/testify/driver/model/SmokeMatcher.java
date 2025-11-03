@@ -37,7 +37,8 @@ import org.apache.commons.lang3.StringUtils;
 public class SmokeMatcher {
     private String smokePrefixRegex = null;
 
-    public SmokeMatcher() {}
+    public SmokeMatcher() {
+    }
 
     public SmokeMatcher(String smokePrefix) {
         this.smokePrefixRegex = smokePrefix;

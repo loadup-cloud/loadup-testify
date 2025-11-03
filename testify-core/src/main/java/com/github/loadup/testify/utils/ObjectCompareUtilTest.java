@@ -28,9 +28,10 @@ package com.github.loadup.testify.utils;
  */
 
 import com.github.loadup.testify.utils.check.ObjectCompareUtil;
+import org.testng.annotations.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.testng.annotations.Test;
 
 /**
  *

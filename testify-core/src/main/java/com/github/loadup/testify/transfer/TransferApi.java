@@ -34,6 +34,13 @@ import com.github.loadup.testify.model.VirtualDataSet;
 import com.github.loadup.testify.model.VirtualTable;
 import com.github.loadup.testify.util.BaseDataUtil;
 import com.github.loadup.testify.util.DeepCopyUtils;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.yaml.snakeyaml.DumperOptions;
+import org.yaml.snakeyaml.Yaml;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,12 +51,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.yaml.snakeyaml.DumperOptions;
-import org.yaml.snakeyaml.Yaml;
 
 /**
  *
@@ -248,7 +249,7 @@ public class TransferApi {
 
         Method m = null;
         try {
-            m = SqlLogParseFactory.class.getDeclaredMethod("fetchFieldFlagsFromDbModel", new Class<?>[] {String.class});
+            m = SqlLogParseFactory.class.getDeclaredMethod("fetchFieldFlagsFromDbModel", new Class<?>[]{String.class});
         } catch (Exception e) {
             //            Logger.error(e);
         }

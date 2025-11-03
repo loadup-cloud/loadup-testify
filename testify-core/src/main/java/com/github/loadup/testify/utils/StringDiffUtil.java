@@ -716,7 +716,7 @@ public class StringDiffUtil {
             return hm;
             // return new String[]{hm[0], hm[1], hm[2], hm[3], hm[4]};
         } else {
-            return new String[] {hm[2], hm[3], hm[0], hm[1], hm[4]};
+            return new String[]{hm[2], hm[3], hm[0], hm[1], hm[4]};
         }
     }
 
@@ -750,7 +750,7 @@ public class StringDiffUtil {
             }
         }
         if (best_common.length() * 2 >= longtext.length()) {
-            return new String[] {best_longtext_a, best_longtext_b, best_shorttext_a, best_shorttext_b, best_common};
+            return new String[]{best_longtext_a, best_longtext_b, best_shorttext_a, best_shorttext_b, best_common};
         } else {
             return null;
         }
@@ -1084,12 +1084,12 @@ public class StringDiffUtil {
                  */
                 if (lastEquality != null
                         && ((pre_ins && pre_del && post_ins && post_del)
-                                || ((lastEquality.length() < Diff_EditCost / 2)
-                                        && ((pre_ins ? 1 : 0)
-                                                        + (pre_del ? 1 : 0)
-                                                        + (post_ins ? 1 : 0)
-                                                        + (post_del ? 1 : 0))
-                                                == 3))) {
+                        || ((lastEquality.length() < Diff_EditCost / 2)
+                        && ((pre_ins ? 1 : 0)
+                        + (pre_del ? 1 : 0)
+                        + (post_ins ? 1 : 0)
+                        + (post_del ? 1 : 0))
+                        == 3))) {
                     // System.out.println("Splitting: '" + lastEquality + "'");
                     // Walk back to offending equality.
                     while (thisDiff != equalities.peek()) {
@@ -1497,7 +1497,7 @@ public class StringDiffUtil {
                     diffs.add(new Diff(Operation.INSERT, param));
                     break;
                 case '-':
-                // Fall through.
+                    // Fall through.
                 case '=':
                     int n;
                     try {
@@ -1934,7 +1934,7 @@ public class StringDiffUtil {
      */
     public Object[] patch_apply(LinkedList<Patch> patches, String text) {
         if (patches.isEmpty()) {
-            return new Object[] {text, new boolean[0]};
+            return new Object[]{text, new boolean[0]};
         }
 
         // Deep copy the patches so that no changes are made to originals.
@@ -2016,7 +2016,7 @@ public class StringDiffUtil {
                                     // Deletion
                                     text = text.substring(0, start_loc + index2)
                                             + text.substring(
-                                                    start_loc + diff_xIndex(diffs, index1 + aDiff.text.length()));
+                                            start_loc + diff_xIndex(diffs, index1 + aDiff.text.length()));
                                 }
                             }
                             if (aDiff.operation != Operation.DELETE) {
@@ -2030,7 +2030,7 @@ public class StringDiffUtil {
         }
         // Strip the padding off.
         text = text.substring(nullPadding.length(), text.length() - nullPadding.length());
-        return new Object[] {text, results};
+        return new Object[]{text, results};
     }
 
     /**

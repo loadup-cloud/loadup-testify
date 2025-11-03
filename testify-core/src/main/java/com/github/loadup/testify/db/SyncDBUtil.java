@@ -33,10 +33,11 @@ import com.github.loadup.testify.db.model.DBSyncModel;
 import com.github.loadup.testify.helper.CSVHelper;
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.util.FileUtil;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.File;
 import java.util.*;
 import java.util.Map.Entry;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * 缓存配置表同步工具类，因sql不同，故仅支持mysql获取形式的数据库（OB，mysql）

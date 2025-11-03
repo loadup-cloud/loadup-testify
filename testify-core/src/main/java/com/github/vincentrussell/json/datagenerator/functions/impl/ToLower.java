@@ -13,6 +13,7 @@ public class ToLower {
 
     /**
      * lower case a string
+     *
      * @param string input string
      * @return the result
      */

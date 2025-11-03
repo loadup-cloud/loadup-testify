@@ -33,10 +33,11 @@ import com.github.loadup.testify.exception.TestifyException;
 import com.github.loadup.testify.helper.CSVHelper;
 import com.github.loadup.testify.manage.TestLogger;
 import com.github.loadup.testify.util.FileUtil;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.*;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 规则数据编辑器。

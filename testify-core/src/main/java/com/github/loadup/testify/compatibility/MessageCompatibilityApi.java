@@ -30,11 +30,12 @@ package com.github.loadup.testify.compatibility;
 import com.github.loadup.testify.model.PrepareData;
 import com.github.loadup.testify.model.VirtualEventObject;
 import com.github.loadup.testify.util.BaseDataUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 消息兼容性对外api

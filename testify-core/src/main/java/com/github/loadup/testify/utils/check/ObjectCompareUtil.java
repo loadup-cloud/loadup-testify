@@ -38,7 +38,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
@@ -50,25 +52,25 @@ import java.util.regex.Pattern;
 public class ObjectCompareUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ObjectCompareUtil.class);
     private static final String[] comparableTypes = {
-        "int",
-        "float",
-        "double",
-        "long",
-        "short",
-        "byte",
-        "boolean",
-        "char",
-        "java.lang.Integer",
-        "java.lang.Float",
-        "java.lang.Double",
-        "java.lang.Long",
-        "java.lang.Short",
-        "java.lang.Byte",
-        "java.lang.Boolean",
-        "java.lang.Character",
-        "java.lang.String",
-        "java.math.BigDecimal",
-        "java.util.Date"
+            "int",
+            "float",
+            "double",
+            "long",
+            "short",
+            "byte",
+            "boolean",
+            "char",
+            "java.lang.Integer",
+            "java.lang.Float",
+            "java.lang.Double",
+            "java.lang.Long",
+            "java.lang.Short",
+            "java.lang.Byte",
+            "java.lang.Boolean",
+            "java.lang.Character",
+            "java.lang.String",
+            "java.math.BigDecimal",
+            "java.util.Date"
     };
     // 预期结果变量替换
     public static ThreadLocal<Map<String, Object>> varParaMapHolder = new ThreadLocal<Map<String, Object>>();

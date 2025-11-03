@@ -31,12 +31,13 @@ import com.github.loadup.testify.exception.GenericsException;
 import com.github.loadup.testify.helper.CSVHelper;
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.generator.ObjectGenerator;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Map类型处理器

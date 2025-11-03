@@ -4,89 +4,99 @@ package com.github.vincentrussell.json.datagenerator.parser;
 
 public
 class SimpleNode
-   implements Node {
-  protected Node parent;
-  protected Node[] children;
-  protected int id;
-  protected Object value;
-  protected FunctionParser parser;
+        implements Node {
+    protected Node parent;
+    protected Node[] children;
+    protected int id;
+    protected Object value;
+    protected FunctionParser parser;
 
-  public SimpleNode(final int i) {
-    id = i;
-  }
-
-  public SimpleNode(final FunctionParser p, final int i) {
-    this(i);
-    parser = p;
-  }
-
-  public void jjtOpen() {
-  }
-
-  public void jjtClose() {
-  }
-
-  public void jjtSetParent(final Node n) { parent = n; }
-  public Node jjtGetParent() { return parent; }
-
-  public void jjtAddChild(final Node n, final int i) {
-    if (children == null) {
-      children = new Node[i + 1];
-    } else if (i >= children.length) {
-      Node[] c = new Node[i + 1];
-      System.arraycopy(children, 0, c, 0, children.length);
-      children = c;
+    public SimpleNode(final int i) {
+        id = i;
     }
-    children[i] = n;
-  }
 
-  public Node jjtGetChild(final int i) {
-    return children[i];
-  }
-
-  public int jjtGetNumChildren() {
-    return children == null ? 0 : children.length;
-  }
-
-  public void jjtSetValue(final Object aValue) { value = aValue; }
-  public Object jjtGetValue() { return value; }
-
-  /* You can override these two methods in subclasses of SimpleNode to
-     customize the way the node appears when the tree is dumped.  If
-     your output uses more than one line you should override
-     toString(String), otherwise overriding toString() is probably all
-     you need to do. */
-  @Override
-  public String toString() {
-    return FunctionParserTreeConstants.jjtNodeName[id];
-  }
-  
-  public String toString(String prefix) { 
-    // Avoid redundant toString() call on String concatenation
-    return prefix + toString();
-  }
-  
-  protected void dumpString (String s) {
-    // Intentionally prints node text to stdout for debug/dump purposes
-    System.out.println (s);
-  }
-
-  /* Override this method if you want to customize how the node dumps
-     out its children. */
-  public void dump(String prefix) {
-    dumpString(toString(prefix));
-    if (children != null) {
-      for (Node child : children) {
-        SimpleNode n = (SimpleNode) child;
-        if (n != null)
-          n.dump(prefix + " ");
-      }
+    public SimpleNode(final FunctionParser p, final int i) {
+        this(i);
+        parser = p;
     }
-  }
 
-  public int getId() {
-    return id;
-  }
+    public void jjtOpen() {
+    }
+
+    public void jjtClose() {
+    }
+
+    public void jjtSetParent(final Node n) {
+        parent = n;
+    }
+
+    public Node jjtGetParent() {
+        return parent;
+    }
+
+    public void jjtAddChild(final Node n, final int i) {
+        if (children == null) {
+            children = new Node[i + 1];
+        } else if (i >= children.length) {
+            Node[] c = new Node[i + 1];
+            System.arraycopy(children, 0, c, 0, children.length);
+            children = c;
+        }
+        children[i] = n;
+    }
+
+    public Node jjtGetChild(final int i) {
+        return children[i];
+    }
+
+    public int jjtGetNumChildren() {
+        return children == null ? 0 : children.length;
+    }
+
+    public void jjtSetValue(final Object aValue) {
+        value = aValue;
+    }
+
+    public Object jjtGetValue() {
+        return value;
+    }
+
+    /* You can override these two methods in subclasses of SimpleNode to
+       customize the way the node appears when the tree is dumped.  If
+       your output uses more than one line you should override
+       toString(String), otherwise overriding toString() is probably all
+       you need to do. */
+    @Override
+    public String toString() {
+        return FunctionParserTreeConstants.jjtNodeName[id];
+    }
+
+    public String toString(String prefix) {
+        // Avoid redundant toString() call on String concatenation
+        return prefix + toString();
+    }
+
+    protected void dumpString(String s) {
+        // Intentionally prints node text to stdout for debug/dump purposes
+        System.out.println(s);
+    }
+
+    /* Override this method if you want to customize how the node dumps
+       out its children. */
+    public void dump(String prefix) {
+        dumpString(toString(prefix));
+        if (children != null) {
+            for (Node child : children) {
+                SimpleNode n = (SimpleNode) child;
+                if (n != null)
+                    n.dump(prefix + " ");
+            }
+        }
+    }
+
+    public int getId() {
+        return id;
+    }
 }
 
 /* ParserGeneratorCC - OriginalChecksum=f24bf92b4b7d1ebfe3029d83c3235922 (do not edit this line) */

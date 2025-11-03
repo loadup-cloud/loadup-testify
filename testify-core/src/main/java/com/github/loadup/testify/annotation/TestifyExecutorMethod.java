@@ -31,8 +31,9 @@ import com.github.loadup.testify.annotation.testify.*;
 import com.github.loadup.testify.component.handler.TestUnitHandler;
 import com.github.loadup.testify.runtime.TestifyRuntimeContext;
 import com.github.loadup.testify.template.TestifyTestBase;
-import java.lang.reflect.Method;
 import lombok.extern.slf4j.Slf4j;
+
+import java.lang.reflect.Method;
 
 /**
  * executor method, do execute with prepare、execute、check and clean

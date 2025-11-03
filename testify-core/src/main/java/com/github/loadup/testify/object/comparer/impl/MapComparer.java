@@ -30,12 +30,13 @@ package com.github.loadup.testify.object.comparer.impl;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.TypeReference;
 import com.github.loadup.testify.object.comparer.UnitComparer;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringTokenizer;
-import org.apache.commons.lang3.StringUtils;
 
 public class MapComparer implements UnitComparer {
 
@@ -94,14 +95,15 @@ public class MapComparer implements UnitComparer {
         }
         if (str.startsWith("{") && str.endsWith("}")) {
             str = str.replace("\"\"", "\"");
-            map = JSON.parseObject(str, new TypeReference<HashMap<String, String>>() {});
+            map = JSON.parseObject(str, new TypeReference<HashMap<String, String>>() {
+            });
             return map;
         }
 
         StringTokenizer items;
         for (StringTokenizer entrys = new StringTokenizer(str, ";");
-                entrys.hasMoreTokens();
-                map.put(items.nextToken(), (items.hasMoreTokens() ? ((items.nextToken())) : null)))
+             entrys.hasMoreTokens();
+             map.put(items.nextToken(), (items.hasMoreTokens() ? ((items.nextToken())) : null)))
             items = new StringTokenizer(entrys.nextToken(), ":");
         return map;
     }

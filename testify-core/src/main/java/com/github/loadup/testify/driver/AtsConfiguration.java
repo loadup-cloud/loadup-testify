@@ -29,14 +29,15 @@ package com.github.loadup.testify.driver;
 
 import com.github.loadup.testify.driver.constants.AtsConstants;
 import com.github.loadup.testify.log.TestifyLogUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 用于存储ATS静态信息
@@ -182,7 +183,7 @@ public class AtsConfiguration {
             configPattern = sofaTestMode + "-sofa-test-config.properties";
         }
         TestifyLogUtil.info(log, "ACTS配置初始化：sofaTestConfigFile = " + AtsConstants.SOFA_TEST_CONFIG_DIR + configPattern);
-        return new String[] {AtsConstants.SOFA_TEST_CONFIG_DIR, configPattern};
+        return new String[]{AtsConstants.SOFA_TEST_CONFIG_DIR, configPattern};
     }
 
     /**

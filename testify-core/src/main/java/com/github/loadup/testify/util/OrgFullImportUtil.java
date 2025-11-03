@@ -34,18 +34,14 @@ import com.github.loadup.testify.dal.daointerface.OrgDbDAO;
 import com.github.loadup.testify.dal.table.ObjectRelate;
 import com.github.loadup.testify.dal.table.OrgDb;
 import com.opencsv.CSVReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 导入工具
@@ -162,7 +158,7 @@ public class OrgFullImportUtil {
 
         File dir = new File(csvPathFolder);
         @SuppressWarnings("unchecked")
-        List<File> allCSV = (List<File>) FileUtils.listFiles(dir, new String[] {"csv"}, true);
+        List<File> allCSV = (List<File>) FileUtils.listFiles(dir, new String[]{"csv"}, true);
         for (File f : allCSV) {
             InputStream in = null;
             try {

@@ -19,6 +19,7 @@ public class Date {
 
     /**
      * generate a date with "now"
+     *
      * @return the result
      */
     @FunctionInvocation
@@ -28,6 +29,7 @@ public class Date {
 
     /**
      * function call for now date with {@link SimpleDateFormat}
+     *
      * @param outputFormat simple date outputFormat
      * @return the result
      */
@@ -38,8 +40,9 @@ public class Date {
 
     /**
      * random date between begin date and end date
-     * @param beginDate date with the dd-MM-yyyy HH:mm:ss format
-     * @param endDate date with the dd-MM-yyyy HH:mm:ss format
+     *
+     * @param beginDate    date with the dd-MM-yyyy HH:mm:ss format
+     * @param endDate      date with the dd-MM-yyyy HH:mm:ss format
      * @param outputFormat output format in {@link SimpleDateFormat} format
      * @return formatted date
      */
@@ -50,9 +53,10 @@ public class Date {
 
     /**
      * random date between begin date and end date
-     * @param beginDate date with the dd-MM-yyyy HH:mm:ss format
-     * @param endDate date with the dd-MM-yyyy HH:mm:ss format
-     * @param inputFormat input format in {@link SimpleDateFormat} format
+     *
+     * @param beginDate    date with the dd-MM-yyyy HH:mm:ss format
+     * @param endDate      date with the dd-MM-yyyy HH:mm:ss format
+     * @param inputFormat  input format in {@link SimpleDateFormat} format
      * @param outputFormat output format in {@link SimpleDateFormat} format
      * @return formatted date
      */
@@ -78,7 +82,7 @@ public class Date {
     /**
      *
      * @param beginDate date with the dd-MM-yyyy HH:mm:ss format
-     * @param endDate date with the dd-MM-yyyy HH:mm:ss format
+     * @param endDate   date with the dd-MM-yyyy HH:mm:ss format
      * @return formated date in EEE, d MMM yyyy HH:mm:ss z format
      */
     @FunctionInvocation
@@ -89,7 +93,6 @@ public class Date {
     private SimpleDateFormat getSimpleDateFormat() {
         return new SimpleDateFormat(DEFAULT_DATE_STRING);
     }
-
 
 
 }

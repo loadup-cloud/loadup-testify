@@ -27,10 +27,11 @@ package com.github.loadup.testify.utils.aop;
  * #L%
  */
 
-import java.lang.reflect.Field;
 import org.springframework.aop.framework.AdvisedSupport;
 import org.springframework.aop.framework.AopProxy;
 import org.springframework.aop.support.AopUtils;
+
+import java.lang.reflect.Field;
 
 /**
  * 去除Spring动态代理

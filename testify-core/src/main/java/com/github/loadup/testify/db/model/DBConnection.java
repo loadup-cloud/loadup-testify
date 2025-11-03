@@ -36,11 +36,6 @@ import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.util.BeanUtil;
 import com.github.loadup.testify.util.FileUtil;
 import com.github.loadup.testify.util.XMLUtil;
-import java.io.File;
-import java.sql.*;
-import java.util.*;
-import java.util.Date;
-import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -48,6 +43,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.Assert;
 import org.w3c.dom.NodeList;
+
+import javax.sql.DataSource;
+import java.io.File;
+import java.sql.*;
+import java.util.*;
+import java.util.Date;
 
 /**
  * 数据库链接对象

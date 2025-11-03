@@ -32,15 +32,16 @@ import com.github.loadup.testify.driver.AtsConfiguration;
 import com.github.loadup.testify.driver.constants.AtsConstants;
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.opencsv.CSVReader;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.beanutils.ConvertUtils;
+import org.apache.commons.beanutils.Converter;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Iterator;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.beanutils.ConvertUtils;
-import org.apache.commons.beanutils.Converter;
 
 /**
  * 测试数据驱动
@@ -183,7 +184,8 @@ public class DriverDataProvider implements Iterator<Object[]> {
     }
 
     @Override
-    public void remove() {}
+    public void remove() {
+    }
 
     /**
      * 获取reader的句柄，直接对之进行操作

@@ -5,10 +5,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication(scanBasePackages = {
-    "com.loadup.testify.example",
-    "com.loadup.testify.data",
-    "com.loadup.testify.mock",
-    "com.loadup.testify.assertions"
+        "com.loadup.testify.example",
+        "com.loadup.testify.data",
+        "com.loadup.testify.mock",
+        "com.loadup.testify.assertions"
 })
 public class ExampleApplication {
 

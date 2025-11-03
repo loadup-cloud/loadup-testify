@@ -11,6 +11,7 @@ public class UUID {
 
     /**
      * random uuid
+     *
      * @return the uuid
      */
     @FunctionInvocation
@@ -21,6 +22,7 @@ public class UUID {
 
     /**
      * random hex string for random 16 bytes
+     *
      * @param keepDashes false to remove dashes from uuid
      * @return the uuid with out with dashes
      */

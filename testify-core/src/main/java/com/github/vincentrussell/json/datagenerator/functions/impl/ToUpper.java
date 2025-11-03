@@ -13,6 +13,7 @@ public class ToUpper {
 
     /**
      * upper case a string
+     *
      * @param string input string
      * @return the result
      */

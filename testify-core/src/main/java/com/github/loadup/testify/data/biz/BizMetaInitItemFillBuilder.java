@@ -30,11 +30,12 @@ package com.github.loadup.testify.data.biz;
 import com.github.loadup.testify.dal.table.CsvFillObject;
 import com.github.loadup.testify.util.FileUtil;
 import com.opencsv.CSVReader;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 业务模型元数据项构造器。
@@ -136,7 +137,7 @@ public class BizMetaInitItemFillBuilder {
         List<CsvFillObject> initItems = new ArrayList<CsvFillObject>();
 
         @SuppressWarnings("unchecked")
-        List<File> allCSV = (List<File>) FileUtils.listFiles(dir, new String[] {"csv"}, true);
+        List<File> allCSV = (List<File>) FileUtils.listFiles(dir, new String[]{"csv"}, true);
         for (File f : allCSV) {
             InputStream in = null;
             try {

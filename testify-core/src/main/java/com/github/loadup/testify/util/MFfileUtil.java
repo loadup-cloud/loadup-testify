@@ -27,13 +27,14 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 获取选中bundle的bundleName

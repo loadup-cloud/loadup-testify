@@ -32,17 +32,19 @@ import com.github.loadup.testify.component.event.EventContextHolder;
 import com.github.loadup.testify.enums.RunningContextEnum;
 import com.github.loadup.testify.exception.TestifyException;
 import com.github.loadup.testify.model.*;
-import com.github.loadup.testify.runtime.*;
+import com.github.loadup.testify.runtime.ComponentsTestifyRuntimeContextThreadHold;
+import com.github.loadup.testify.runtime.TestifyRuntimeContext;
+import com.github.loadup.testify.runtime.TestifyRuntimeContextThreadHold;
 import com.github.loadup.testify.support.TestTemplate;
 import com.github.loadup.testify.template.TestifyTestBase;
 import com.github.loadup.testify.util.JsonUtil;
 import com.github.loadup.testify.util.LogUtil;
 import com.github.loadup.testify.util.VelocityUtil;
-import com.github.loadup.testify.utils.*;
+import com.github.loadup.testify.utils.CaseResultCollectUtil;
+import com.github.loadup.testify.utils.ComponentsProcessor;
+import com.github.loadup.testify.utils.DetailCollectUtils;
+import com.github.loadup.testify.utils.ObjectUtil;
 import com.github.loadup.testify.utils.check.ObjectCompareUtil;
-import java.lang.reflect.*;
-import java.util.*;
-import java.util.Map.Entry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -50,11 +52,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.ClassUtils;
 import org.testng.Assert;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.*;
+import java.util.Map.Entry;
+
 /**
  * 处理各个测试数据
  *
  * @author tantian.wc
- *
+ * <p>
  * Exp $
  */
 public class TestUnitHandler {
@@ -199,9 +207,9 @@ public class TestUnitHandler {
                     "=============================开始执行组件caseId="
                             + testifyComponents.getTestifyRuntimeContext().getCaseId() + ":"
                             + testifyComponents
-                                    .getTestifyRuntimeContext()
-                                    .prepareData
-                                    .getDescription()
+                            .getTestifyRuntimeContext()
+                            .prepareData
+                            .getDescription()
                             + "=================",
                     logger);
             // 先将父类上下文放一次，因为可能上一个组件在最后做了put，该组件要使用就必须放进去
@@ -318,11 +326,11 @@ public class TestUnitHandler {
         if (testifyRuntimeContext.getPrepareData().getExpectException() != null
                 && testifyRuntimeContext.getPrepareData().getExpectException().getExpectException() != null
                 && testifyRuntimeContext
-                                .getPrepareData()
-                                .getExpectException()
-                                .getExpectException()
-                                .getObject()
-                        != null) {
+                .getPrepareData()
+                .getExpectException()
+                .getExpectException()
+                .getObject()
+                != null) {
             if (testifyRuntimeContext.getExceptionObj() != null) {
                 logger.info("Checking Exception");
                 Object expectedExp = testifyRuntimeContext.getExceptionObj();
@@ -395,11 +403,11 @@ public class TestUnitHandler {
             // 做结果期望值比对
             if (testifyRuntimeContext.getPrepareData().getExpectResult() != null
                     && testifyRuntimeContext
-                                    .getPrepareData()
-                                    .getExpectResult()
-                                    .getResult()
-                                    .getObject()
-                            != null) {
+                    .getPrepareData()
+                    .getExpectResult()
+                    .getResult()
+                    .getObject()
+                    != null) {
                 DetailCollectUtils.appendAndLog("Checking invocation result:", logger);
                 VirtualObject expect =
                         testifyRuntimeContext.getPrepareData().getExpectResult().getVirtualObject();
@@ -502,7 +510,7 @@ public class TestUnitHandler {
                                                     + "\n期望消息为 :" + ObjectUtil.toJson(storeExpEventObj)
                                                     + "\n" + "错误信息为："
                                                     + ObjectCompareUtil.getReportStr()
-                                                            .toString()
+                                                    .toString()
                                                     + "\n");
 
                                     // 打进日志统计中，方便直接排查
@@ -514,7 +522,7 @@ public class TestUnitHandler {
                                                     + ObjectUtil.toJson(storeExpEventObj) + "\n"
                                                     + "错误信息为："
                                                     + ObjectCompareUtil.getReportStr()
-                                                            .toString()
+                                                    .toString()
                                                     + "\n",
                                             logger);
                                 }

@@ -27,9 +27,10 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  *

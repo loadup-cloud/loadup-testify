@@ -29,9 +29,10 @@ package com.github.loadup.testify.object.generator.impl;
 
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.object.generator.ObjectGenerator;
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Type;
 import java.math.BigDecimal;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * BigDecimal类型处理器

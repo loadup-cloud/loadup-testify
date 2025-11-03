@@ -1,8 +1,8 @@
-
 package com.loadup.testify.example.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Data

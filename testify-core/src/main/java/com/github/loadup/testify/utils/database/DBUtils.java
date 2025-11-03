@@ -29,9 +29,10 @@ package com.github.loadup.testify.utils.database;
 
 import com.github.loadup.testify.component.db.DBDatasProcessor;
 import com.github.loadup.testify.template.TestifyTestBase;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *

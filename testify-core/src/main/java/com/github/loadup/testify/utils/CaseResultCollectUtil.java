@@ -36,19 +36,20 @@ import com.github.loadup.testify.util.BaseDataUtil;
 import com.github.loadup.testify.util.DeepCopyUtils;
 import com.github.loadup.testify.util.FileUtil;
 import com.github.loadup.testify.utils.config.ConfigrationFactory;
-import java.io.File;
-import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 
+import java.io.File;
+import java.util.*;
+
 /**
  * 用例结果收集工具类
  *
  * @author chao.gao
- *
- *
+ * <p>
+ * <p>
  * hongling.xiang Exp $
  */
 public class CaseResultCollectUtil {

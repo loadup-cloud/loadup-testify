@@ -30,13 +30,9 @@ package com.github.loadup.testify.utils.file;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 /**
  * JSON工具类
@@ -84,7 +80,8 @@ public class JsonUtils {
         if (StringUtils.isBlank(jsonStr)) {
             return null;
         }
-        return JSONObject.parseObject(jsonStr, new TypeReference<List<Map<String, Object>>>() {});
+        return JSONObject.parseObject(jsonStr, new TypeReference<List<Map<String, Object>>>() {
+        });
     }
 
     /**
@@ -97,7 +94,8 @@ public class JsonUtils {
         if (StringUtils.isBlank(jsonStr)) {
             return null;
         }
-        return JSONObject.parseObject(jsonStr, new TypeReference<List<Map<String, String>>>() {});
+        return JSONObject.parseObject(jsonStr, new TypeReference<List<Map<String, String>>>() {
+        });
     }
 
     /**

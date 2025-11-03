@@ -13,6 +13,7 @@ public class Country {
 
     /**
      * function call
+     *
      * @return the result
      */
     @FunctionInvocation

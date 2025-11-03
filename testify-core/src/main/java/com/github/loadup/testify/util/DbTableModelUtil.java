@@ -32,6 +32,9 @@ import com.github.loadup.testify.db.enums.CSVColEnum;
 import com.github.loadup.testify.exception.TestifyException;
 import com.github.loadup.testify.log.TestifyLogUtil;
 import com.opencsv.CSVWriter;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -43,8 +46,6 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.*;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 数据模版生成工具

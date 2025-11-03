@@ -15,6 +15,7 @@ public class RandomInteger {
 
     /**
      * get random integer within range
+     *
      * @param min minimum number
      * @param max maximum number
      * @return the result

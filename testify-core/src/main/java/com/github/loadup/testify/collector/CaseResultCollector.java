@@ -33,14 +33,15 @@ import com.github.loadup.testify.model.*;
 import com.github.loadup.testify.util.BaseDataUtil;
 import com.github.loadup.testify.util.FileUtils;
 import com.github.loadup.testify.utils.file.CsvUtils;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用例执行结果收集器
@@ -53,9 +54,9 @@ import org.springframework.util.CollectionUtils;
  * <li>存放tair数据对象</li>
  * 结果收集完成后，组装一个新的PrepareData集合，用于结果反向结果
  * </p>
- *
- *
- *
+ * <p>
+ * <p>
+ * <p>
  * hongling.xiang Exp $
  */
 public class CaseResultCollector {
@@ -254,7 +255,7 @@ public class CaseResultCollector {
 
         if (overwrite
                 || (null == caseObjectSet.getEvents()
-                        && 0 != events.getVirtualEventObjects().size())) {
+                && 0 != events.getVirtualEventObjects().size())) {
             caseObjectSet.setEvents(BaseDataUtil.convertEventSetToList(events));
             isUpdated = true;
         }

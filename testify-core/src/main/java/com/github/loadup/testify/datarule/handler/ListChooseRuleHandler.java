@@ -31,11 +31,12 @@ import com.alibaba.fastjson2.JSON;
 import com.github.loadup.testify.datarule.ListChooseRule;
 import com.github.loadup.testify.datarule.RULE.ReferenceHandler;
 import com.github.loadup.testify.datarule.RuleObject;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 选择规则处理器。

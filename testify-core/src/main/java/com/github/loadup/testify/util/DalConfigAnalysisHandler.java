@@ -27,14 +27,15 @@ package com.github.loadup.testify.util;
  * #L%
  */
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Stack;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Stack;
 
 /**
  * dal-config.xml解析处理器
@@ -69,10 +70,12 @@ class DalConfigAnalysisHandler extends DefaultHandler {
     }
 
     @Override
-    public void characters(char[] ch, int start, int length) throws SAXException {}
+    public void characters(char[] ch, int start, int length) throws SAXException {
+    }
 
     @Override
-    public void endElement(String uri, String localName, String qName) throws SAXException {}
+    public void endElement(String uri, String localName, String qName) throws SAXException {
+    }
 
     /**
      * 根据解析结果获取表名set

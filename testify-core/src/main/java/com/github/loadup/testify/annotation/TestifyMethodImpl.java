@@ -28,9 +28,10 @@ package com.github.loadup.testify.annotation;
  */
 
 import com.github.loadup.testify.runtime.TestifyRuntimeContext;
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  *
@@ -44,7 +45,8 @@ public class TestifyMethodImpl implements TestifyMethod {
     /* the invoke order */
     private int order = 0;
 
-    public TestifyMethodImpl() {}
+    public TestifyMethodImpl() {
+    }
 
     public TestifyMethodImpl(Method method, Object instance) {
         this.invoker = method;
@@ -57,13 +59,13 @@ public class TestifyMethodImpl implements TestifyMethod {
         try {
             if (this.invoker.getParameterTypes().length == 0) {
                 this.invoker.setAccessible(true);
-                this.invoker.invoke(instance, new Object[] {});
+                this.invoker.invoke(instance, new Object[]{});
                 return;
             }
 
             if (this.invoker.getParameterTypes()[0].equals(TestifyRuntimeContext.class)) {
                 this.invoker.setAccessible(true);
-                this.invoker.invoke(instance, new Object[] {testifyRuntimeContext});
+                this.invoker.invoke(instance, new Object[]{testifyRuntimeContext});
                 return;
             }
 

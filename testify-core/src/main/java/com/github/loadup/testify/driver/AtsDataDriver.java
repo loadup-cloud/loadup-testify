@@ -35,14 +35,15 @@ import com.github.loadup.testify.log.TestifyLogUtil;
 import com.github.loadup.testify.util.FileUtil;
 import com.github.loadup.testify.yaml.YamlTestData;
 import com.github.loadup.testify.yaml.YamlTestUtil;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.Iterator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.Iterator;
 
 /**
  * 测试驱动基类（简化版）

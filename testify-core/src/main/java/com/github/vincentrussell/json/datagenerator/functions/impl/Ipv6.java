@@ -14,6 +14,7 @@ public class Ipv6 {
 
     /**
      * random ipv6 address
+     *
      * @return the result
      */
     @FunctionInvocation
@@ -23,6 +24,7 @@ public class Ipv6 {
 
     /**
      * get random ipv6 address
+     *
      * @param hexCase "upper" or "lower"
      * @return the result
      */
@@ -43,7 +45,7 @@ public class Ipv6 {
             for (int i = 0; i < 4; i++) { //we display in total 4 parts for every long
                 String hexString = Long.toHexString(crtLong & 0xFFFF);
                 ipString.append(UPPER.equals(hexCase)
-                    ? hexString.toUpperCase() : hexString).append(":");
+                        ? hexString.toUpperCase() : hexString).append(":");
                 crtLong = crtLong >> 16;
             }
         }

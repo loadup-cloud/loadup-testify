@@ -29,10 +29,11 @@ package com.github.loadup.testify.object.comparer.impl;
 
 import com.github.loadup.testify.constant.TestifyYamlConstants;
 import com.github.loadup.testify.object.comparer.UnitComparer;
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * "Y" flag 校验器

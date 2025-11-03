@@ -18,6 +18,7 @@ public class ToTimestamp {
 
     /**
      * convert date string to timestamp
+     *
      * @param string
      * @return the timestamp of that string
      */
@@ -29,6 +30,7 @@ public class ToTimestamp {
 
     /**
      * convert date string to timestamp
+     *
      * @param string
      * @param format
      * @return the timestamp of that string

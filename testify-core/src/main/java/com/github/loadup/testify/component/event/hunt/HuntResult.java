@@ -27,10 +27,11 @@ package com.github.loadup.testify.component.event.hunt;
  * #L%
  */
 
-import java.util.HashMap;
-import java.util.Map;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author jie.peng

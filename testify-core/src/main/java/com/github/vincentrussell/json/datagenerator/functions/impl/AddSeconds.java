@@ -11,25 +11,27 @@ public class AddSeconds extends AbstractAddDates {
 
     /**
      * add seconds to date
-     * @param format the date format
-     * @param date the date
+     *
+     * @param format  the date format
+     * @param date    the date
      * @param seconds the number of seconds to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addSeconds(final String format, final String date, final String seconds) {
-       return super.addInterval(format, date, seconds);
+        return super.addInterval(format, date, seconds);
     }
 
     /**
      * add seconds to the date
-     * @param date the date
+     *
+     * @param date    the date
      * @param seconds the number of seconds to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addSeconds(final String date, final String seconds) {
-       return super.addInterval(date, seconds);
+        return super.addInterval(date, seconds);
     }
 
     @Override

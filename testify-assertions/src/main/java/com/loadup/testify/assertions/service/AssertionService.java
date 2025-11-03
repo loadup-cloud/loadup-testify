@@ -63,7 +63,7 @@ public class AssertionService {
         String expectedExceptionClass = expected.getException();
 
         if (!actualException.getClass().getName().equals(expectedExceptionClass) &&
-            !actualException.getClass().getSimpleName().equals(expectedExceptionClass)) {
+                !actualException.getClass().getSimpleName().equals(expectedExceptionClass)) {
             throw new AssertionError(String.format("Expected exception: %s, but got: %s",
                     expectedExceptionClass, actualException.getClass().getName()));
         }
@@ -277,30 +277,30 @@ public class AssertionService {
         if (actual == null) {
             return expected == null;
         }
-        
+
         // Special handling for BigDecimal to compare values ignoring scale
         if (actual instanceof BigDecimal && expected instanceof BigDecimal) {
             return ((BigDecimal) actual).compareTo((BigDecimal) expected) == 0;
         }
-        
+
         // Try to convert to BigDecimal if one is BigDecimal and other is a number
         if (actual instanceof BigDecimal || expected instanceof BigDecimal) {
             try {
-                BigDecimal actualBD = actual instanceof BigDecimal ? 
-                    (BigDecimal) actual : new BigDecimal(actual.toString());
-                BigDecimal expectedBD = expected instanceof BigDecimal ? 
-                    (BigDecimal) expected : new BigDecimal(expected.toString());
+                BigDecimal actualBD = actual instanceof BigDecimal ?
+                        (BigDecimal) actual : new BigDecimal(actual.toString());
+                BigDecimal expectedBD = expected instanceof BigDecimal ?
+                        (BigDecimal) expected : new BigDecimal(expected.toString());
                 return actualBD.compareTo(expectedBD) == 0;
             } catch (NumberFormatException e) {
                 // If conversion fails, fall back to regular equals
             }
         }
-        
+
         // Handle enum comparisons - compare string representations
         if (actual instanceof Enum || expected instanceof Enum) {
             return actual.toString().equals(expected.toString());
         }
-        
+
         return actual.equals(expected);
     }
 

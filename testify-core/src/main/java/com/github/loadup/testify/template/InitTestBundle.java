@@ -158,7 +158,8 @@ public class InitTestBundle {
             logger.info("exec cmd:" + paramString);
             Process localProcess = Runtime.getRuntime().exec(paramString);
             InputStream localInputStream = localProcess.getInputStream();
-            while (localInputStream.read() != -1) {}
+            while (localInputStream.read() != -1) {
+            }
             localInputStream.close();
             localProcess.waitFor();
         } catch (Exception localException) {

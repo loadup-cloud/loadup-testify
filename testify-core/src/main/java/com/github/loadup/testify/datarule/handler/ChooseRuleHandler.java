@@ -35,8 +35,9 @@ import com.github.loadup.testify.datarule.RULE.ReferenceHandler;
 import com.github.loadup.testify.datarule.RuleObject;
 import com.github.loadup.testify.datarule.parser.RuleObjectParser;
 import com.github.loadup.testify.exception.RuleExecuteException;
-import java.util.*;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.*;
 
 /**
  * 选择规则处理器。

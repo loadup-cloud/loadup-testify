@@ -30,9 +30,10 @@ package com.github.loadup.testify.utils.check;
 import com.github.loadup.testify.component.db.DBDatasProcessor;
 import com.github.loadup.testify.model.VirtualTable;
 import com.github.loadup.testify.template.TestifyTestBase;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 /**
  * db比对工具

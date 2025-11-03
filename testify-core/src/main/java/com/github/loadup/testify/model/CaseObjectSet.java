@@ -29,16 +29,17 @@ package com.github.loadup.testify.model;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.loadup.testify.util.JsonUtil;
 import com.github.loadup.testify.enums.YamlFieldEnum;
 import com.github.loadup.testify.exception.TestifyException;
-import java.util.*;
+import com.github.loadup.testify.util.JsonUtil;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ClassUtils;
+
+import java.util.*;
 
 /**
  *

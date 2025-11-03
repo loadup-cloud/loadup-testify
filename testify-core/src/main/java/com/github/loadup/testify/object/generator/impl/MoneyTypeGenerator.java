@@ -28,9 +28,10 @@ package com.github.loadup.testify.object.generator.impl;
  */
 
 import com.github.loadup.testify.object.generator.ObjectGenerator;
-import java.lang.reflect.Type;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.lang.reflect.Type;
 
 /**
  * Money类型处理器

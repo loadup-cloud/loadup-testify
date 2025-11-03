@@ -64,7 +64,8 @@ public class VirtualTable extends TestNode {
      */
     private Map<String /* fieldName*/, String /* Flag */> flags;
 
-    public VirtualTable() {}
+    public VirtualTable() {
+    }
 
     public VirtualTable(String dataObjClazz) {
         this.dataObjClazz = dataObjClazz;
@@ -145,8 +146,8 @@ public class VirtualTable extends TestNode {
         Map<String, Object> rowData = new LinkedHashMap<String, Object>();
         List<Field> tmpFields = new ArrayList<Field>();
         for (@SuppressWarnings("rawtypes") Class clazz = dataObject.getClass();
-                clazz != Object.class;
-                clazz = clazz.getSuperclass()) {
+             clazz != Object.class;
+             clazz = clazz.getSuperclass()) {
             for (Field f : clazz.getDeclaredFields()) {
                 tmpFields.add(f);
             }

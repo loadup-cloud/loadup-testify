@@ -1,10 +1,10 @@
 package com.github.vincentrussell.json.datagenerator.functions.impl;
 
-import java.util.Formatter;
-import java.util.Random;
-
 import com.github.vincentrussell.json.datagenerator.functions.Function;
 import com.github.vincentrussell.json.datagenerator.functions.FunctionInvocation;
+
+import java.util.Formatter;
+import java.util.Random;
 
 /**
  * get random float between min and max
@@ -25,6 +25,7 @@ public class RandomFloat {
 
     /**
      * get random float
+     *
      * @param min min number
      * @param max max number
      * @return the result
@@ -36,8 +37,9 @@ public class RandomFloat {
 
     /**
      * get random number with format (eg. "%.2f")
-     * @param min min number
-     * @param max max number
+     *
+     * @param min    min number
+     * @param max    max number
      * @param format format in {@link Formatter} format
      * @return the result
      */

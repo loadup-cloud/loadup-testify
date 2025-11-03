@@ -28,6 +28,7 @@ package com.github.loadup.testify.utils.config.impl;
  */
 
 import com.github.loadup.testify.utils.config.Configration;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,7 +43,8 @@ public class ConfigrationImpl implements Configration {
      */
     private Map<String, String> atsConfigMap = new HashMap<String, String>();
 
-    public ConfigrationImpl() {}
+    public ConfigrationImpl() {
+    }
 
     public Map<String, String> getConfig() {
         // 对map进行clone，保证map的安全性

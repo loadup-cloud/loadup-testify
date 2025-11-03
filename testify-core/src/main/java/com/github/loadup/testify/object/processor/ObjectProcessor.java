@@ -46,20 +46,20 @@ import com.github.loadup.testify.yaml.cpUnit.property.BaseUnitProperty;
 import com.github.loadup.testify.yaml.cpUnit.property.ListObjectUnitProperty;
 import com.github.loadup.testify.yaml.cpUnit.property.MapObjectUnitProperty;
 import com.github.loadup.testify.yaml.cpUnit.property.ObjectUnitProperty;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
-import java.util.*;
-import java.util.Map.Entry;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import ognl.OgnlException;
 import org.apache.commons.lang3.StringUtils;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.FilterBuilder;
 import org.testng.Assert;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * 对象处理器
@@ -477,7 +477,8 @@ public class ObjectProcessor {
         } else if (StringUtils.equals("@element_empty@", value)) {
             return objectTypeManager.getCollectionObject(fieldClass);
         } else if (value.startsWith("{") || value.startsWith("[")) {
-            return JSON.parseObject(value, new TypeReference<Map<String, String>>() {});
+            return JSON.parseObject(value, new TypeReference<Map<String, String>>() {
+            });
         } else {
             String[] valueParts = value.split(";");
             if (fieldClass.isArray()) {

@@ -29,8 +29,9 @@ package com.github.loadup.testify.manage.log;
 
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import com.github.loadup.testify.exception.TestifyException;
-import java.io.File;
 import org.slf4j.Logger;
+
+import java.io.File;
 
 /**
  * 自定义log，基于log4j。

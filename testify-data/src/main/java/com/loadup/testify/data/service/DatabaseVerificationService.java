@@ -110,7 +110,7 @@ public class DatabaseVerificationService {
      * Verify single row
      */
     private void verifyRow(String tableName, Map<String, Object> row,
-                          List<ColumnVerification> columnVerifications, List<String> errors) {
+                           List<ColumnVerification> columnVerifications, List<String> errors) {
         for (ColumnVerification verification : columnVerifications) {
             String columnName = verification.getName();
             Object actualValue = row.get(columnName);
@@ -127,7 +127,7 @@ public class DatabaseVerificationService {
      * Verify single column value
      */
     private void verifyColumn(String tableName, String columnName, Object actualValue,
-                             ColumnVerification verification) {
+                              ColumnVerification verification) {
         VerificationRule rule = verification.getRule();
         Object expectedValue = resolveValue(verification.getValue());
 
@@ -233,30 +233,30 @@ public class DatabaseVerificationService {
         if (actual == null) {
             return expected == null;
         }
-        
+
         // Special handling for BigDecimal to compare values ignoring scale
         if (actual instanceof BigDecimal && expected instanceof BigDecimal) {
             return ((BigDecimal) actual).compareTo((BigDecimal) expected) == 0;
         }
-        
+
         // Try to convert to BigDecimal if one is BigDecimal and other is a number
         if (actual instanceof BigDecimal || expected instanceof BigDecimal) {
             try {
-                BigDecimal actualBD = actual instanceof BigDecimal ? 
-                    (BigDecimal) actual : new BigDecimal(actual.toString());
-                BigDecimal expectedBD = expected instanceof BigDecimal ? 
-                    (BigDecimal) expected : new BigDecimal(expected.toString());
+                BigDecimal actualBD = actual instanceof BigDecimal ?
+                        (BigDecimal) actual : new BigDecimal(actual.toString());
+                BigDecimal expectedBD = expected instanceof BigDecimal ?
+                        (BigDecimal) expected : new BigDecimal(expected.toString());
                 return actualBD.compareTo(expectedBD) == 0;
             } catch (NumberFormatException e) {
                 // If conversion fails, fall back to regular equals
             }
         }
-        
+
         // Handle enum comparisons - compare string representations
         if (actual instanceof Enum || expected instanceof Enum) {
             return actual.toString().equals(expected.toString());
         }
-        
+
         return actual.equals(expected);
     }
 

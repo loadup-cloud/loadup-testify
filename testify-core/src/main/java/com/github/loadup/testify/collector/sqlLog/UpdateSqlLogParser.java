@@ -28,9 +28,10 @@ package com.github.loadup.testify.collector.sqlLog;
  */
 
 import com.github.loadup.testify.runtime.TestifyRuntimeContextThreadHold;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.*;
 import java.util.regex.Pattern;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 更新sql日志解析器

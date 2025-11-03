@@ -1,4 +1,3 @@
-
 package com.loadup.testify.report.service;
 
 import com.github.loadup.testify.model.TestCase;

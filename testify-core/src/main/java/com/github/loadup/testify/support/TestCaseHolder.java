@@ -43,7 +43,8 @@ public final class TestCaseHolder {
     /**
      * 对外界不可见。
      */
-    private TestCaseHolder() {}
+    private TestCaseHolder() {
+    }
 
     /**
      * 获取测试用例。

@@ -35,12 +35,13 @@ import com.github.loadup.testify.object.enums.UnitFlagEnum;
 import com.github.loadup.testify.yaml.cpUnit.DataBaseCPUnit;
 import com.github.loadup.testify.yaml.cpUnit.property.BaseUnitProperty;
 import com.github.loadup.testify.yaml.enums.CheckPointActionEnum;
+import org.apache.commons.lang3.StringUtils;
+import org.testng.Assert;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
 
 /**
  * 数据转换sql接口

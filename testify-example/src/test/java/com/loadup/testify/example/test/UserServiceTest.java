@@ -1,11 +1,11 @@
 package com.loadup.testify.example.test;
 
-import com.loadup.testify.assertions.service.AssertionService;
 import com.github.loadup.testify.context.TestContext;
 import com.github.loadup.testify.model.TestCase;
 import com.github.loadup.testify.model.TestSuite;
 import com.github.loadup.testify.provider.TestConfig;
 import com.github.loadup.testify.provider.TestifyDataProvider;
+import com.loadup.testify.assertions.service.AssertionService;
 import com.loadup.testify.data.service.DatabaseInitService;
 import com.loadup.testify.data.service.DatabaseVerificationService;
 import com.loadup.testify.example.ExampleApplication;
@@ -64,8 +64,8 @@ public class UserServiceTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test(dataProvider = "testifyProviderWithPath",
-          dataProviderClass = TestifyDataProvider.class,
-          description = "User Service Tests - Data-driven from YAML")
+            dataProviderClass = TestifyDataProvider.class,
+            description = "User Service Tests - Data-driven from YAML")
     @TestConfig("test-configs/UserServiceTest/testCreateUser.yaml")
     public void testCreateUser(TestSuite testSuite, TestCase testCase) {
         executeTestCase(testSuite, testCase);

@@ -14,6 +14,7 @@ public class Username {
 
     /**
      * random username based on first initial from rnadom first name and lastname lowercased
+     *
      * @return the result
      */
     @FunctionInvocation

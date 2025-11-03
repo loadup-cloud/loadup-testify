@@ -27,10 +27,11 @@ package com.github.loadup.testify.component.event;
  * #L%
  */
 
-import java.lang.reflect.Field;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.apache.commons.lang3.StringUtils;
+
+import java.lang.reflect.Field;
 
 /**
  * @author jie.peng

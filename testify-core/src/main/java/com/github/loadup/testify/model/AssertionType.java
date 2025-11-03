@@ -1,4 +1,5 @@
 package com.github.loadup.testify.model;
+
 public enum AssertionType {
     EQUALS, NOT_EQUALS, NOT_NULL, NULL, CONTAINS, NOT_CONTAINS,
     STARTS_WITH, ENDS_WITH, GREATER_THAN, LESS_THAN,

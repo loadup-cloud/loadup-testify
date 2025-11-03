@@ -29,13 +29,14 @@ package com.github.loadup.testify.utils.config;
 
 import com.github.loadup.testify.constant.TestifyConstants;
 import com.github.loadup.testify.utils.config.impl.ConfigrationImpl;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.net.URL;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

@@ -11,25 +11,27 @@ public class AddMinutes extends AbstractAddDates {
 
     /**
      * add minutes to date
-     * @param format the date format
-     * @param date the date
+     *
+     * @param format  the date format
+     * @param date    the date
      * @param minutes the number of minutes to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addMinutes(final String format, final String date, final String minutes) {
-       return super.addInterval(format, date, minutes);
+        return super.addInterval(format, date, minutes);
     }
 
     /**
      * add minutes to the date
-     * @param date the date
+     *
+     * @param date    the date
      * @param minutes the number of minutes to add
      * @return the new date
      */
     @FunctionInvocation
     public final String addMinutes(final String date, final String minutes) {
-       return super.addInterval(date, minutes);
+        return super.addInterval(date, minutes);
     }
 
     @Override

@@ -27,10 +27,11 @@ package com.github.loadup.testify.yaml.cpUnit.property;
  * #L%
  */
 
-import java.util.LinkedHashMap;
-import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 列表对象基础属性

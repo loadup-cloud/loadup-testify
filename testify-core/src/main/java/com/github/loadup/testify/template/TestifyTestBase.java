@@ -307,7 +307,7 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
             List<Method> baseMethods = AnnotationUtils.findMethods(prepareClass, TestBase.class);
             // 读取TestCase方法，包含一些差异化准备数据
             List<Method> methods = MethodUtils.filterMethod(
-                    AnnotationUtils.findMethods(prepareClass, TestCase.class),
+                    AnnotationUtils.findMethods(prepareClass, com.github.loadup.testify.annotation.TestCase.class),
                     new Class<?>[] {PrepareData.class},
                     void.class);
 
@@ -328,11 +328,11 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
                 PrepareData prepareData = basePrepareData;
                 String caseId = null;
                 // 这还用判断吗？这个m不就是从TestCase注解找出来的吗
-                if (m.isAnnotationPresent(TestCase.class)) {
+                if (m.isAnnotationPresent(com.github.loadup.testify.annotation.TestCase.class)) {
                     for (String key : prepareDatas.keySet()) {
                         if (StringUtils.equals(
                                 prepareDatas.get(key).getDescription(),
-                                m.getAnnotation(TestCase.class).desc())) {
+                                m.getAnnotation(com.github.loadup.testify.annotation.TestCase.class).desc())) {
                             prepareData = prepareDatas.get(key);
                             caseId = key;
                             break;
@@ -368,7 +368,7 @@ public class TestifyTestBase extends AbstractTestNGSpringContextTests {
                 if (caseId == null) {
                     caseId = m.getName();
                 }
-                prepareData.setDescription(m.getAnnotation(TestCase.class).desc());
+                prepareData.setDescription(m.getAnnotation(com.github.loadup.testify.annotation.TestCase.class).desc());
                 prepareDatas.put(caseId, prepareData);
             }
 

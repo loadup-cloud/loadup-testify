@@ -27,13 +27,17 @@ package com.github.loadup.testify.model;
  * #L%
  */
 
+import java.io.Serializable;
+
 /**
  * 测试数据，每个case对应一个
  *
  * @author tantian.wc
  *
  */
-public class PrepareData {
+public class PrepareData implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     // description
     private String description;

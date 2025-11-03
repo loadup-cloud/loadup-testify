@@ -152,7 +152,7 @@ public class CaseRuleManager {
         for (int i = 0; i < fieldValues.size(); i++) {
 
             // 需要深拷贝
-            Object newObject = DeepCopyUtils.deepCopy(object);
+            Object newObject = DeepCopyUtils.deepCopyObject(object);
             Map<String, String> fieldValusMap = fieldValues.get(i);
 
             String objectKey = caseRule;
@@ -237,7 +237,7 @@ public class CaseRuleManager {
                         field.setAccessible(true);
                         ReflectUtil.setFieldValue(oneObject, fieldPathArray[1], arrs[i]);
                     } else {
-                        Object cloned = DeepCopyUtils.deepCopy(oneObject);
+                        Object cloned = DeepCopyUtils.deepCopyObject(oneObject);
                         Field field = ReflectUtil.getField(cloned, fieldPathArray[1]);
                         field.setAccessible(true);
                         ReflectUtil.setFieldValue(cloned, fieldPathArray[1], arrs[i]);

@@ -27,10 +27,15 @@ package com.github.loadup.testify.model;
  * #L%
  */
 
+import java.io.Serializable;
+
 /**
  * The minimum part of test such as VirtualObject VirtualTable...
  */
-public class TestNode {
+public class TestNode implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
     /**
      * for test framework to decide if this part should be counted
      */

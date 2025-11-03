@@ -28,6 +28,8 @@ package com.github.loadup.testify.util;
  */
 
 import org.apache.commons.lang3.SerializationUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 
@@ -39,12 +41,29 @@ import java.io.Serializable;
  */
 public class DeepCopyUtils {
 
+    private static final Logger log = LoggerFactory.getLogger(DeepCopyUtils.class);
+
     // 深拷贝工具
+    @SuppressWarnings("unchecked")
     public static <T extends Serializable> T deepCopy(T obj) {
         try {
             return SerializationUtils.clone(obj);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Deep copy failed for object: {}", obj, e);
+            return null;
+        }
+    }
+
+    // 深拷贝工具 - 处理Object类型
+    @SuppressWarnings("unchecked")
+    public static <T> T deepCopyObject(T obj) {
+        try {
+            if (obj instanceof Serializable) {
+                return (T) SerializationUtils.clone((Serializable) obj);
+            }
+            return obj;
+        } catch (Exception e) {
+            log.error("Deep copy failed for object: {}", obj, e);
             return null;
         }
     }

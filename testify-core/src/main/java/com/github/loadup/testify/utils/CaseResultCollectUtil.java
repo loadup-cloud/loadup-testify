@@ -368,7 +368,9 @@ public class CaseResultCollectUtil {
             }
         }
 
-        return DeepCopyUtils.deepCopy(result);
+        @SuppressWarnings("unchecked")
+        List<VirtualTable> copy = (List<VirtualTable>) DeepCopyUtils.deepCopy((ArrayList<VirtualTable>) result);
+        return copy;
     }
 
     /**

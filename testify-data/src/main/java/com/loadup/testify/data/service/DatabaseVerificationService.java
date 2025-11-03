@@ -1,10 +1,10 @@
 package com.loadup.testify.data.service;
 
-import com.loadup.testify.core.context.TestContext;
-import com.loadup.testify.core.model.ColumnVerification;
-import com.loadup.testify.core.model.DatabaseVerification;
-import com.loadup.testify.core.model.TableVerification;
-import com.loadup.testify.core.model.VerificationRule;
+import com.github.loadup.testify.context.TestContext;
+import com.github.loadup.testify.model.ColumnVerification;
+import com.github.loadup.testify.model.DatabaseVerification;
+import com.github.loadup.testify.model.TableVerification;
+import com.github.loadup.testify.model.VerificationRule;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 /**
  * Service for database verification after test execution

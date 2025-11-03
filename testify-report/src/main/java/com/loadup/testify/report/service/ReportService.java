@@ -1,8 +1,8 @@
 
 package com.loadup.testify.report.service;
 
-import com.loadup.testify.core.model.TestCase;
-import com.loadup.testify.core.model.TestSuite;
+import com.github.loadup.testify.model.TestCase;
+import com.github.loadup.testify.model.TestSuite;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

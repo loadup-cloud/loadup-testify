@@ -1,8 +1,8 @@
 package com.loadup.testify.mock.service;
 
-import com.loadup.testify.core.context.TestContext;
-import com.loadup.testify.core.model.MockBehavior;
-import com.loadup.testify.core.model.MockConfig;
+import com.github.loadup.testify.context.TestContext;
+import com.github.loadup.testify.model.MockBehavior;
+import com.github.loadup.testify.model.MockConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.mockito.Mockito;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 /**

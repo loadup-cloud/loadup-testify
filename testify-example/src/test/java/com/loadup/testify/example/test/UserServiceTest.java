@@ -1,16 +1,15 @@
 package com.loadup.testify.example.test;
 
 import com.loadup.testify.assertions.service.AssertionService;
-import com.loadup.testify.core.context.TestContext;
-import com.loadup.testify.core.model.TestCase;
-import com.loadup.testify.core.model.TestSuite;
-import com.loadup.testify.core.provider.TestConfig;
-import com.loadup.testify.core.provider.TestifyDataProvider;
+import com.github.loadup.testify.context.TestContext;
+import com.github.loadup.testify.model.TestCase;
+import com.github.loadup.testify.model.TestSuite;
+import com.github.loadup.testify.provider.TestConfig;
+import com.github.loadup.testify.provider.TestifyDataProvider;
 import com.loadup.testify.data.service.DatabaseInitService;
 import com.loadup.testify.data.service.DatabaseVerificationService;
 import com.loadup.testify.example.ExampleApplication;
 import com.loadup.testify.example.dto.CreateUserRequest;
-import com.loadup.testify.example.dto.UserResponse;
 import com.loadup.testify.example.service.NotificationService;
 import com.loadup.testify.example.service.UserService;
 import com.loadup.testify.mock.service.MockConfigService;

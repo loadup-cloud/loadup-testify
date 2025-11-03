@@ -55,7 +55,7 @@ public class TestifyNameListener implements IInvokedMethodListener {
 
 ```xml
 <listeners>
-    <listener class-name="com.loadup.testify.core.listener.TestifyNameListener"/>
+    <listener class-name="listener.com.github.loadup.testify.TestifyNameListener"/>
     <listener class-name="com.loadup.testify.report.listener.TestifyReportListener"/>
 </listeners>
 ```

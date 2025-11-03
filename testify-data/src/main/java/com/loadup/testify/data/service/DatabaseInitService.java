@@ -1,9 +1,9 @@
 
 package com.loadup.testify.data.service;
 
-import com.loadup.testify.core.context.TestContext;
-import com.loadup.testify.core.model.DatabaseSetup;
-import com.loadup.testify.core.model.TableData;
+import com.github.loadup.testify.context.TestContext;
+import com.github.loadup.testify.model.DatabaseSetup;
+import com.github.loadup.testify.model.TableData;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

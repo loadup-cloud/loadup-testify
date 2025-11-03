@@ -242,7 +242,7 @@ String readableName = String.format("[%s] %s - %s",
 查看 `testng.xml`：
 ```xml
 <listeners>
-    <listener class-name="com.loadup.testify.core.listener.TestifyNameListener"/>
+    <listener class-name="listener.com.github.loadup.testify.TestifyNameListener"/>
 </listeners>
 ```
 

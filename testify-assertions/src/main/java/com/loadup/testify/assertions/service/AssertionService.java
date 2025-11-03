@@ -1,9 +1,9 @@
 package com.loadup.testify.assertions.service;
 
-import com.loadup.testify.core.context.TestContext;
-import com.loadup.testify.core.model.AssertionType;
-import com.loadup.testify.core.model.ExpectedResult;
-import com.loadup.testify.core.model.FieldAssertion;
+import com.github.loadup.testify.context.TestContext;
+import com.github.loadup.testify.model.AssertionType;
+import com.github.loadup.testify.model.ExpectedResult;
+import com.github.loadup.testify.model.FieldAssertion;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

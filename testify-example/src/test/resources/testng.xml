@@ -2,7 +2,7 @@
 <suite name="Testify Example Test Suite" parallel="false" thread-count="1" verbose="2">
 
     <listeners>
-        <listener class-name="com.loadup.testify.core.listener.TestifyNameListener"/>
+        <listener class-name="com.github.loadup.testify.listener.TestifyNameListener"/>
         <listener class-name="com.loadup.testify.report.listener.TestifyReportListener"/>
     </listeners>
 

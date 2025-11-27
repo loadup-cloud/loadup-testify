@@ -65,8 +65,9 @@ public class TestExecutionEngine {
             // 2. Prepare database data
             prepareDataService.prepareData(testInstance.getClass(), caseId);
 
-            // 3. Find and invoke the test method
-            Method method = findMethod(testInstance.getClass(), methodName);
+            // 3. Find and invoke the test method with matching parameter count
+            int expectedArgCount = config.getArgs() != null ? config.getArgs().size() : 0;
+            Method method = findMethod(testInstance.getClass(), methodName, expectedArgCount);
             Object[] args = testCaseLoader.convertArgs(config, method);
             Object result = invokeMethod(testInstance, method, args);
 
@@ -97,15 +98,37 @@ public class TestExecutionEngine {
     }
 
     /**
-     * Find a method by name in the test class.
+     * Find a method by name in the test class with matching parameter count.
+     * If multiple methods have the same name, prefer the one with matching parameter count.
      */
-    private Method findMethod(Class<?> testClass, String methodName) {
+    private Method findMethod(Class<?> testClass, String methodName, int expectedArgCount) {
+        List<Method> matchingMethods = new ArrayList<>();
+        
         for (Method method : testClass.getMethods()) {
             if (method.getName().equals(methodName)) {
+                matchingMethods.add(method);
+            }
+        }
+        
+        if (matchingMethods.isEmpty()) {
+            throw new TestifyException("Method not found: " + methodName);
+        }
+        
+        // If only one method, return it
+        if (matchingMethods.size() == 1) {
+            return matchingMethods.get(0);
+        }
+        
+        // Try to find method with exact parameter count match
+        for (Method method : matchingMethods) {
+            if (method.getParameterCount() == expectedArgCount) {
                 return method;
             }
         }
-        throw new TestifyException("Method not found: " + methodName);
+        
+        // Fall back to first method and log a warning
+        log.warn("Multiple methods found with name '{}', using first match. Consider providing unique method names.", methodName);
+        return matchingMethods.get(0);
     }
 
     /**

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +27,9 @@ public class VariableResolver {
     private static final Pattern FAKER_PATTERN = Pattern.compile("\\$\\{faker\\.([^}]+)}");
     private static final Pattern VARIABLE_REF_PATTERN = Pattern.compile("\\$\\{=([^}]+)}");
     private static final Pattern SIMPLE_VAR_PATTERN = Pattern.compile("\\$\\{([^=][^}]*)}");
+
+    // Cache for Datafaker method lookups to avoid repeated reflection
+    private static final Map<String, Method> METHOD_CACHE = new ConcurrentHashMap<>();
 
     private final Faker faker;
 
@@ -171,7 +175,11 @@ public class VariableResolver {
             Object current = faker;
 
             for (String part : parts) {
-                Method method = findMethod(current.getClass(), part);
+                final Class<?> currentClass = current.getClass();
+                String cacheKey = currentClass.getName() + "#" + part.toLowerCase();
+                Method method = METHOD_CACHE.computeIfAbsent(cacheKey, 
+                        key -> findMethod(currentClass, part));
+                
                 if (method == null) {
                     throw new VariableResolutionException("Unknown Datafaker method: " + part + " in expression: " + expression);
                 }

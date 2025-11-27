@@ -1,0 +1,2 @@
+username,email,first_name,last_name,age,active
+${=faker.name.username},${=faker.internet.emailAddress},${=faker.name.firstName},${=faker.name.lastName},25,true

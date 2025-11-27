@@ -1,0 +1,6 @@
+com/loadup/testify/example/model/Order.class
+com/loadup/testify/example/model/User.class
+com/loadup/testify/example/config/ExampleApplication.class
+com/loadup/testify/example/service/UserService.class
+com/loadup/testify/example/model/User$UserBuilder.class
+com/loadup/testify/example/model/Order$OrderBuilder.class

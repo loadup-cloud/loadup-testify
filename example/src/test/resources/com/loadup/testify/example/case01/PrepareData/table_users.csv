@@ -1,0 +1,2 @@
+id,username,email,first_name,last_name,age,active
+1,existing_user,existing@example.com,Existing,User,30,true

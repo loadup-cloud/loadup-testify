@@ -1,0 +1,41 @@
+# Test configuration for case01 - Create User
+# This demonstrates the basic usage of Testify for testing user creation
+
+description: "Test creating a new user with Datafaker-generated data"
+
+# Arguments passed to the test method (createUser)
+args:
+  - username: "${faker.name.username}"
+    email: "${faker.internet.emailAddress}"
+    firstName: "${faker.name.firstName}"
+    lastName: "${faker.name.lastName}"
+    age: 25
+    active: true
+
+# Expected result from the method
+result:
+  username: "${=faker.name.username}"
+  email: "${=faker.internet.emailAddress}"
+  firstName: "${=faker.name.firstName}"
+  lastName: "${=faker.name.lastName}"
+  age: 25
+  active: true
+
+# Assertion rules
+expected:
+  - field: "response.username"
+    operator: "NOT_NULL"
+  - field: "response.email"
+    operator: "CONTAINS"
+    expectedValue: "@"
+  - field: "database.users.username"
+    operator: "EQUALS"
+    expectedValue: "${=faker.name.username}"
+
+# Fields to ignore during comparison
+ignoreFields:
+  - id
+  - createdAt
+  - updatedAt
+
+enabled: true

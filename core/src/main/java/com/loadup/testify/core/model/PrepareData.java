@@ -10,6 +10,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Model class representing prepared test data for a test case.
+ * 
+ * <p>Directory structure convention:</p>
+ * <pre>
+ * {ServiceName}.{methodName}/{caseId}/
+ * </pre>
  */
 @Data
 @Builder
@@ -18,9 +23,19 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PrepareData {
 
     /**
-     * The case ID.
+     * The case ID (e.g., "case01").
      */
     private String caseId;
+
+    /**
+     * The service name (e.g., "UserService").
+     */
+    private String serviceName;
+
+    /**
+     * The method name (e.g., "createUser").
+     */
+    private String methodName;
 
     /**
      * The test case configuration.

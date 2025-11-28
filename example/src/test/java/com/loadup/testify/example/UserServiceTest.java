@@ -8,7 +8,6 @@ import com.loadup.testify.example.model.Role;
 import com.loadup.testify.example.model.User;
 import com.loadup.testify.example.service.RoleService;
 import com.loadup.testify.example.service.UserService;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -25,17 +24,33 @@ import static org.mockito.Mockito.when;
 /**
  * Example test class demonstrating Testify data-driven testing.
  * 
- * This test class shows how to:
- * 1. Use the @TestBean annotation to mark the service under test
- * 2. Use the TestifyProvider for data-driven tests
- * 3. Prepare database data from CSV files
- * 4. Execute test methods with complex parameters
- * 5. Assert database state after test execution
- * 6. Use Datafaker for random data generation
- * 7. Reference captured variables across test phases
- * 8. Mock external dependencies using Mockito
- * 9. Test methods with multiple parameters
- * 10. Test nested complex objects (User with Role)
+ * <p>Directory structure convention:</p>
+ * <pre>
+ * |- UserServiceTest.java                           (this test class)
+ * ├── UserService.createUser/                       (method directory)
+ * │   └── case01/                                   (case directory)
+ * │       ├── test_config.yaml                      (test configuration)
+ * │       ├── PrepareData/                          (CSV files for multiple tables)
+ * │       │   └── table_users.csv
+ * │       └── ExpectedData/                         (CSV files for multiple tables)
+ * │           └── table_users.csv
+ * └── UserService.createUserWithRole/               (another method directory)
+ *     └── case01/
+ * </pre>
+ * 
+ * <p>This test class shows how to:</p>
+ * <ol>
+ *   <li>Use the @TestBean annotation to mark the service under test</li>
+ *   <li>Use the TestifyProvider for data-driven tests</li>
+ *   <li>Prepare database data from multiple CSV files</li>
+ *   <li>Execute test methods with complex parameters</li>
+ *   <li>Assert database state after test execution</li>
+ *   <li>Use Datafaker for random data generation</li>
+ *   <li>Reference captured variables across test phases</li>
+ *   <li>Mock external dependencies using Mockito</li>
+ *   <li>Test methods with multiple parameters</li>
+ *   <li>Test nested complex objects (User with Role)</li>
+ * </ol>
  */
 @SpringBootTest(classes = ExampleApplication.class)
 @ActiveProfiles("test")
@@ -43,7 +58,7 @@ public class UserServiceTest extends TestifyTestBase {
 
     /**
      * The service under test, marked with @TestBean annotation.
-     * No need to override getTestBean() anymore!
+     * The service name "UserService" is derived from this field's type.
      */
     @TestBean
     @Autowired
@@ -76,13 +91,9 @@ public class UserServiceTest extends TestifyTestBase {
 
     /**
      * Test creating a user with data-driven test cases.
-     * Method name "testCreateUser" will be normalized to "createUser"
-     * so no need to specify method in yaml config.
      * 
-     * Test data is loaded from (alongside this test class):
-     * - src/test/java/com/loadup/testify/example/case01/test_config.yaml
-     * - src/test/java/com/loadup/testify/example/case01/PrepareData/*.csv
-     * - src/test/java/com/loadup/testify/example/case01/ExpectedData/*.csv
+     * <p>Method name "testCreateUser" → "createUser"</p>
+     * <p>Test data is loaded from: UserService.createUser/case01/</p>
      */
     @Test(dataProvider = "TestifyProvider")
     public void testCreateUser(String caseId, PrepareData prepareData) {
@@ -91,10 +102,10 @@ public class UserServiceTest extends TestifyTestBase {
 
     /**
      * Test creating a user with role - demonstrates multiple parameters and mocking.
-     * Method name "testCreateUserWithRole" will be normalized to "createUserWithRole".
      * 
-     * Test data is loaded from case02 (alongside this test class).
-     * The RoleService is mocked in beforeTestMethod().
+     * <p>Method name "testCreateUserWithRole" → "createUserWithRole"</p>
+     * <p>Test data is loaded from: UserService.createUserWithRole/case01/</p>
+     * <p>The RoleService is mocked in beforeTestMethod().</p>
      */
     @Test(dataProvider = "TestifyProvider")
     public void testCreateUserWithRole(String caseId, PrepareData prepareData) {
@@ -110,7 +121,6 @@ public class UserServiceTest extends TestifyTestBase {
 
     /**
      * Create a new user with role - demonstrates multiple parameters.
-     * This method will be called when testing createUserWithRole.
      * 
      * @param user the user to create
      * @param roleName the role name to assign

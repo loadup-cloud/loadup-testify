@@ -25,6 +25,23 @@ import java.util.Map;
 
 /**
  * Loader for test case configurations and data.
+ * 
+ * <p>Supports the following directory structure:</p>
+ * <pre>
+ * |- UserServiceTest.java
+ * ├── UserService.createUser/
+ * │   ├── case01/
+ * │   │   ├── test_config.yaml
+ * │   │   ├── PrepareData/
+ * │   │   │   ├── table_users.csv
+ * │   │   │   └── table_roles.csv
+ * │   │   └── ExpectedData/
+ * │   │       ├── table_users.csv
+ * │   │       └── table_roles.csv
+ * │   └── case02/
+ * ├── UserService.createUserWithRole/
+ * │   └── case01/
+ * </pre>
  */
 @Slf4j
 @Component
@@ -42,50 +59,80 @@ public class TestCaseLoader {
 
     /**
      * Load all test case configurations for a test class.
+     * Scans all method directories (format: ServiceName.methodName) and their case subdirectories.
      *
      * @param testClass the test class
      * @return a list of PrepareData objects, one for each test case
      */
     public List<PrepareData> loadTestCases(Class<?> testClass) {
-        Path dataDir = PathUtils.getTestDataDirectory(testClass);
         List<PrepareData> testCases = new ArrayList<>();
-
-        if (!Files.exists(dataDir)) {
-            log.warn("Test data directory not found: {}", dataDir);
-            return testCases;
-        }
-
-        try {
-            Files.list(dataDir)
-                    .filter(Files::isDirectory)
-                    .forEach(caseDir -> {
-                        String caseId = caseDir.getFileName().toString();
-                        PrepareData prepareData = loadTestCase(testClass, caseId);
-                        if (prepareData != null) {
-                            testCases.add(prepareData);
-                        }
-                    });
-        } catch (IOException e) {
-            throw new DataLoadingException("Failed to list test case directories", e);
+        
+        // Get all method directories
+        List<String> methodDirs = PathUtils.listMethodDirectories(testClass);
+        
+        for (String methodDirName : methodDirs) {
+            // Parse service name and method name from directory name
+            int dotIndex = methodDirName.lastIndexOf('.');
+            if (dotIndex <= 0) {
+                continue;
+            }
+            String serviceName = methodDirName.substring(0, dotIndex);
+            String methodName = methodDirName.substring(dotIndex + 1);
+            
+            // Get all case directories for this method
+            List<String> caseIds = PathUtils.listCaseDirectories(testClass, serviceName, methodName);
+            
+            for (String caseId : caseIds) {
+                PrepareData prepareData = loadTestCase(testClass, serviceName, methodName, caseId);
+                if (prepareData != null) {
+                    testCases.add(prepareData);
+                }
+            }
         }
 
         return testCases;
     }
 
     /**
+     * Load test cases for a specific method.
+     *
+     * @param testClass   the test class
+     * @param serviceName the service name (e.g., "UserService")
+     * @param methodName  the method name (e.g., "createUser")
+     * @return a list of PrepareData objects for the method
+     */
+    public List<PrepareData> loadTestCasesForMethod(Class<?> testClass, String serviceName, String methodName) {
+        List<PrepareData> testCases = new ArrayList<>();
+        List<String> caseIds = PathUtils.listCaseDirectories(testClass, serviceName, methodName);
+        
+        for (String caseId : caseIds) {
+            PrepareData prepareData = loadTestCase(testClass, serviceName, methodName, caseId);
+            if (prepareData != null) {
+                testCases.add(prepareData);
+            }
+        }
+        
+        return testCases;
+    }
+
+    /**
      * Load a single test case configuration.
      *
-     * @param testClass the test class
-     * @param caseId    the case ID
+     * @param testClass   the test class
+     * @param serviceName the service name
+     * @param methodName  the method name
+     * @param caseId      the case ID
      * @return the PrepareData object
      */
-    public PrepareData loadTestCase(Class<?> testClass, String caseId) {
-        Path configPath = PathUtils.getTestConfigPath(testClass, caseId);
+    public PrepareData loadTestCase(Class<?> testClass, String serviceName, String methodName, String caseId) {
+        Path configPath = PathUtils.getTestConfigPath(testClass, serviceName, methodName, caseId);
 
         if (!Files.exists(configPath)) {
-            log.debug("No test_config.yaml found for case: {}", caseId);
+            log.debug("No test_config.yaml found for {}.{}/{}", serviceName, methodName, caseId);
             return PrepareData.builder()
                     .caseId(caseId)
+                    .serviceName(serviceName)
+                    .methodName(methodName)
                     .loaded(false)
                     .errorMessage("Configuration file not found")
                     .build();
@@ -94,12 +141,11 @@ public class TestCaseLoader {
         try (InputStream is = Files.newInputStream(configPath)) {
             TestCaseConfig config = yamlMapper.readValue(is, TestCaseConfig.class);
             config.setCaseId(caseId);
+            
+            // Set method name from directory structure (overrides any config value)
+            config.setMethod(methodName);
 
             // Clear the global pool and capture fresh variables for this test case.
-            // Variables are captured to SharedVariablePool during resolution, then
-            // copied to PrepareData.capturedVariables for per-test-case scoping.
-            // At test execution time, variables are restored from PrepareData back to
-            // SharedVariablePool for ExpectedData resolution.
             SharedVariablePool.clear();
             
             // Resolve variables in the configuration (this captures to SharedVariablePool)
@@ -110,14 +156,18 @@ public class TestCaseLoader {
 
             return PrepareData.builder()
                     .caseId(caseId)
+                    .serviceName(serviceName)
+                    .methodName(methodName)
                     .config(config)
                     .loaded(true)
                     .capturedVariables(capturedVariables)
                     .build();
         } catch (IOException e) {
-            log.error("Failed to load test case config for: {}", caseId, e);
+            log.error("Failed to load test case config for {}.{}/{}", serviceName, methodName, caseId, e);
             return PrepareData.builder()
                     .caseId(caseId)
+                    .serviceName(serviceName)
+                    .methodName(methodName)
                     .loaded(false)
                     .errorMessage(e.getMessage())
                     .build();

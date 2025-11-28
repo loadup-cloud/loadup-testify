@@ -1,4 +1,4 @@
-# Test configuration for case02 - Create User with Role
+# Test configuration for UserService.createUserWithRole/case01
 # This demonstrates:
 # 1. Multiple parameter handling
 # 2. Complex nested object mapping (User with Role)
@@ -6,9 +6,8 @@
 
 description: "Test creating a new user with role - demonstrates multiple parameters and nested objects"
 
-# Method name is required for case02 since it differs from testCreateUser
-# (testCreateUser normalizes to createUser, but we need createUserWithRole)
-method: "createUserWithRole"
+# Note: Method name is now derived from directory structure (UserService.createUserWithRole/)
+# No need to specify method: "createUserWithRole"
 
 # Arguments passed to the test method (createUserWithRole)
 # First argument: User object

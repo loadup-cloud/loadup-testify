@@ -1,7 +1,9 @@
-# Test configuration for case01 - Create User
+# Test configuration for UserService.createUser/case01
 # This demonstrates the basic usage of Testify for testing user creation
 
 description: "Test creating a new user with Datafaker-generated data"
+
+# Note: Method name is now derived from directory structure (UserService.createUser/)
 
 # Arguments passed to the test method (createUser)
 args:

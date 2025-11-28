@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.Path;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * Service for querying and comparing expected data from the database.
+ * 
+ * <p>Supports multiple CSV files per ExpectedData directory, each corresponding to a different table.</p>
  */
 @Slf4j
 @Service
@@ -29,25 +30,37 @@ public class ExpectedDataService {
     /**
      * Load expected data from CSV files in the ExpectedData directory.
      *
-     * @param testClass the test class
-     * @param caseId    the case ID
+     * @param testClass   the test class
+     * @param serviceName the service name (e.g., "UserService")
+     * @param methodName  the method name (e.g., "createUser")
+     * @param caseId      the case ID (e.g., "case01")
      * @return a map of table name to expected rows
      */
-    public Map<String, List<Map<String, String>>> loadExpectedData(Class<?> testClass, String caseId) {
-        Path expectedDataDir = PathUtils.getExpectedDataDirectory(testClass, caseId);
+    public Map<String, List<Map<String, String>>> loadExpectedData(Class<?> testClass, String serviceName, 
+                                                                    String methodName, String caseId) {
+        Path expectedDataDir = PathUtils.getExpectedDataDirectory(testClass, serviceName, methodName, caseId);
         Map<String, List<Map<String, String>>> expectedData = new LinkedHashMap<>();
 
         if (!PathUtils.exists(expectedDataDir)) {
-            log.debug("No ExpectedData directory found for case: {}", caseId);
+            log.debug("No ExpectedData directory found for case: {}.{}/{}", serviceName, methodName, caseId);
             return expectedData;
         }
 
         Path[] csvFiles = PathUtils.getCsvFiles(expectedDataDir);
+        
+        if (csvFiles.length == 0) {
+            log.debug("No CSV files found in ExpectedData directory for case: {}.{}/{}", serviceName, methodName, caseId);
+            return expectedData;
+        }
+        
+        log.info("Found {} CSV files in ExpectedData for {}.{}/{}", csvFiles.length, serviceName, methodName, caseId);
+        
         for (Path csvFile : csvFiles) {
             String tableName = PathUtils.extractTableName(csvFile);
             // Read CSV with variable resolution (reference mode, not capture mode)
             List<Map<String, String>> data = CsvUtils.readCsv(csvFile, variableResolver, false);
             expectedData.put(tableName, data);
+            log.debug("Loaded {} expected rows for table: {}", data.size(), tableName);
         }
 
         return expectedData;

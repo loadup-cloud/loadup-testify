@@ -19,6 +19,19 @@ import java.util.List;
  * Base class for data-driven tests using Testify.
  * Extends AbstractTestNGSpringContextTests for Spring Boot integration with TestNG.
  * 
+ * <p>Directory structure convention:</p>
+ * <pre>
+ * |- UserServiceTest.java                 (test class)
+ * ├── UserService.createUser/             (method directory: ServiceName.methodName)
+ * │   ├── case01/                         (case directory)
+ * │   │   ├── test_config.yaml            (test configuration)
+ * │   │   ├── PrepareData/                (CSV files for database setup)
+ * │   │   └── ExpectedData/               (CSV files for database assertions)
+ * │   └── case02/
+ * ├── UserService.createUserWithRole/
+ * │   └── case01/
+ * </pre>
+ * 
  * <p>Use the {@link TestBean} annotation to mark the service/bean under test:</p>
  * <pre>
  * &#64;TestBean
@@ -35,48 +48,33 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
     protected TestCaseLoader testCaseLoader;
 
     private Object cachedTestBean;
+    private String cachedServiceName;
 
     /**
      * DataProvider that automatically loads test cases from the test data directory.
-     * Test cases are organized in folders named by caseId, each containing:
-     * - test_config.yaml: Test configuration and expected results
-     * - PrepareData/: CSV files for database setup
-     * - ExpectedData/: CSV files for database assertions
+     * Test cases are organized by method: {ServiceName}.{methodName}/{caseId}/
      * 
-     * Test cases are filtered based on the test method name:
-     * - If the config specifies a method, only cases matching that method are returned
-     * - If no method is specified, cases matching the normalized test method name are returned
+     * <p>The test method name is used to locate the corresponding method directory:</p>
+     * <ul>
+     *   <li>testCreateUser → looks for {ServiceName}.createUser/</li>
+     *   <li>createUser → looks for {ServiceName}.createUser/</li>
+     * </ul>
      *
      * @param method the test method
      * @return an Iterator of Object arrays containing [caseId, PrepareData]
      */
     @DataProvider(name = "TestifyProvider")
     public Iterator<Object[]> testifyProvider(Method method) {
-        List<PrepareData> testCases = testCaseLoader.loadTestCases(getClass());
         String normalizedMethodName = stripTestPrefix(method.getName());
+        String serviceName = getServiceName();
+        
+        List<PrepareData> testCases = testCaseLoader.loadTestCasesForMethod(getClass(), serviceName, normalizedMethodName);
         
         return testCases.stream()
                 .filter(PrepareData::isLoaded)
                 .filter(pd -> pd.getConfig() == null || pd.getConfig().isEnabled())
-                .filter(pd -> matchesTestMethod(pd, normalizedMethodName))
                 .map(pd -> new Object[]{pd.getCaseId(), pd})
                 .iterator();
-    }
-
-    /**
-     * Check if a PrepareData matches the test method.
-     */
-    private boolean matchesTestMethod(PrepareData pd, String normalizedMethodName) {
-        if (pd.getConfig() == null) {
-            return true;
-        }
-        String configMethod = pd.getConfig().getMethod();
-        if (configMethod != null) {
-            // If config specifies a method, it must match
-            return configMethod.equals(normalizedMethodName);
-        }
-        // If no method specified, treat as matching any test
-        return true;
     }
 
     /**
@@ -87,17 +85,11 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
      * @param prepareData the prepared test data
      */
     protected void runTest(String caseId, PrepareData prepareData) {
-        // Get the calling method name
-        String methodName = getCallingMethodName();
-        // Use config method if specified, otherwise normalize the test method name
-        String targetMethodName;
-        if (prepareData.getConfig() != null && prepareData.getConfig().getMethod() != null) {
-            targetMethodName = prepareData.getConfig().getMethod();
-        } else {
-            targetMethodName = stripTestPrefix(methodName);
-        }
-        // Pass the test class (for data path resolution) and the test bean (for method invocation)
-        testExecutionEngine.runTest(getClass(), getTestBean(), caseId, prepareData, targetMethodName);
+        String methodName = prepareData.getMethodName();
+        String serviceName = prepareData.getServiceName();
+        
+        // Pass all information needed for path resolution and method invocation
+        testExecutionEngine.runTest(getClass(), getTestBean(), serviceName, methodName, caseId, prepareData);
     }
 
     /**
@@ -108,7 +100,49 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
      * @param methodName  the target method name to invoke
      */
     protected void runTest(String caseId, PrepareData prepareData, String methodName) {
-        testExecutionEngine.runTest(getClass(), getTestBean(), caseId, prepareData, methodName);
+        String serviceName = prepareData.getServiceName();
+        testExecutionEngine.runTest(getClass(), getTestBean(), serviceName, methodName, caseId, prepareData);
+    }
+
+    /**
+     * Get the service name from the @TestBean annotated field.
+     * The service name is derived from the field type's simple name.
+     *
+     * @return the service name (e.g., "UserService")
+     */
+    protected String getServiceName() {
+        if (cachedServiceName != null) {
+            return cachedServiceName;
+        }
+        
+        // Look for field annotated with @TestBean
+        for (Field field : getClass().getDeclaredFields()) {
+            if (field.isAnnotationPresent(TestBean.class)) {
+                cachedServiceName = field.getType().getSimpleName();
+                return cachedServiceName;
+            }
+        }
+        
+        // Also check parent classes
+        Class<?> superClass = getClass().getSuperclass();
+        while (superClass != null && superClass != TestifyTestBase.class) {
+            for (Field field : superClass.getDeclaredFields()) {
+                if (field.isAnnotationPresent(TestBean.class)) {
+                    cachedServiceName = field.getType().getSimpleName();
+                    return cachedServiceName;
+                }
+            }
+            superClass = superClass.getSuperclass();
+        }
+        
+        // Fall back to test class name without "Test" suffix
+        String className = getClass().getSimpleName();
+        if (className.endsWith("Test")) {
+            cachedServiceName = className.substring(0, className.length() - 4);
+        } else {
+            cachedServiceName = className;
+        }
+        return cachedServiceName;
     }
 
     /**
@@ -191,21 +225,5 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
             }
         }
         return methodName;
-    }
-
-    /**
-     * Get the name of the calling method (the test method).
-     */
-    private String getCallingMethodName() {
-        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
-        for (int i = 2; i < stackTrace.length; i++) {
-            String className = stackTrace[i].getClassName();
-            if (!className.equals(TestifyTestBase.class.getName()) &&
-                !className.startsWith("java.") &&
-                !className.startsWith("org.testng.")) {
-                return stackTrace[i].getMethodName();
-            }
-        }
-        return "unknown";
     }
 }

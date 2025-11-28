@@ -17,6 +17,18 @@ import java.util.*;
 
 /**
  * Core test execution engine that orchestrates the data-driven test lifecycle.
+ * 
+ * <p>Directory structure convention:</p>
+ * <pre>
+ * {ServiceName}.{methodName}/{caseId}/
+ * ├── test_config.yaml
+ * ├── PrepareData/
+ * │   ├── table_users.csv
+ * │   └── table_roles.csv
+ * └── ExpectedData/
+ *     ├── table_users.csv
+ *     └── table_roles.csv
+ * </pre>
  */
 @Slf4j
 @Component
@@ -42,19 +54,19 @@ public class TestExecutionEngine {
      *
      * @param testClass    the test class (for test data path resolution)
      * @param testBean     the test bean instance (containing the method under test)
-     * @param caseId       the case ID
+     * @param serviceName  the service name (e.g., "UserService")
+     * @param methodName   the method name (e.g., "createUser")
+     * @param caseId       the case ID (e.g., "case01")
      * @param prepareData  the prepared test data
-     * @param methodName   the name of the method to invoke (fallback if not specified in config)
      */
-    public void runTest(Class<?> testClass, Object testBean, String caseId, PrepareData prepareData, String methodName) {
+    public void runTest(Class<?> testClass, Object testBean, String serviceName, String methodName, 
+                        String caseId, PrepareData prepareData) {
         TestCaseConfig config = prepareData.getConfig();
         if (config == null) {
             throw new TestifyException("Test case configuration not found for case: " + caseId);
         }
 
-        // Use method from config if specified, otherwise use provided methodName
-        String targetMethod = config.getMethod() != null ? config.getMethod() : methodName;
-        log.info("Running test case: {} for method: {}", caseId, targetMethod);
+        log.info("Running test case: {}.{}/{} ", serviceName, methodName, caseId);
 
         if (!config.isEnabled()) {
             log.info("Test case {} is disabled, skipping", caseId);
@@ -63,41 +75,35 @@ public class TestExecutionEngine {
 
         try {
             // Restore captured variables from PrepareData to SharedVariablePool.
-            // This ensures the same variables captured during DataProvider execution are available
-            // when resolving ExpectedData references via VariableResolver.
-            // Note: This approach works for single-threaded TestNG execution. For parallel test
-            // execution, consider using a test-scoped variable context or passing variables
-            // directly to the services that need them.
             SharedVariablePool.clear();
             if (prepareData.getCapturedVariables() != null) {
                 prepareData.getCapturedVariables().forEach(SharedVariablePool::put);
             }
 
-            // 1. Prepare database data (use testClass for path resolution)
-            prepareDataService.prepareData(testClass, caseId);
+            // 1. Prepare database data (using new path structure)
+            prepareDataService.prepareData(testClass, serviceName, methodName, caseId);
 
-            // 2. Find and invoke the test method with matching parameter count (use testBean for invocation)
+            // 2. Find and invoke the test method with matching parameter count
             int expectedArgCount = config.getArgs() != null ? config.getArgs().size() : 0;
-            Method method = findMethod(testBean.getClass(), targetMethod, expectedArgCount);
+            Method method = findMethod(testBean.getClass(), methodName, expectedArgCount);
             Object[] args = testCaseLoader.convertArgs(config, method);
             Object result = invokeMethod(testBean, method, args);
 
             // 3. Assert response
             assertResponse(result, config);
 
-            // 4. Assert database state (use testClass for path resolution)
-            assertDatabaseState(testClass, caseId, config);
+            // 4. Assert database state (using new path structure)
+            assertDatabaseState(testClass, serviceName, methodName, caseId, config);
 
-            log.info("Test case {} passed", caseId);
+            log.info("Test case {}.{}/{} passed", serviceName, methodName, caseId);
 
         } catch (Exception e) {
-            log.error("Test case {} failed", caseId, e);
-            throw new TestifyException("Test case failed: " + caseId, e);
+            log.error("Test case {}.{}/{} failed", serviceName, methodName, caseId, e);
+            throw new TestifyException("Test case failed: " + serviceName + "." + methodName + "/" + caseId, e);
         } finally {
             // Cleanup
             try {
                 if (config.getCleanup() != null && !config.getCleanup().isEmpty()) {
-                    // Execute cleanup actions
                     for (String action : config.getCleanup()) {
                         log.debug("Executing cleanup action: {}", action);
                     }
@@ -171,12 +177,13 @@ public class TestExecutionEngine {
     /**
      * Assert the database state matches the expected data.
      */
-    private void assertDatabaseState(Class<?> testClass, String caseId, TestCaseConfig config) {
+    private void assertDatabaseState(Class<?> testClass, String serviceName, String methodName, 
+                                     String caseId, TestCaseConfig config) {
         Map<String, List<Map<String, String>>> expectedData =
-                expectedDataService.loadExpectedData(testClass, caseId);
+                expectedDataService.loadExpectedData(testClass, serviceName, methodName, caseId);
 
         if (expectedData.isEmpty()) {
-            log.debug("No expected database data found for case: {}", caseId);
+            log.debug("No expected database data found for case: {}.{}/{}", serviceName, methodName, caseId);
             return;
         }
 

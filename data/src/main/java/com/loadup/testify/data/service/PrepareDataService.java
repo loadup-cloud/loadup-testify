@@ -15,6 +15,8 @@ import java.util.stream.Collectors;
 
 /**
  * Service for preparing test data by inserting data into the database from CSV files.
+ * 
+ * <p>Supports multiple CSV files per PrepareData directory, each corresponding to a different table.</p>
  */
 @Slf4j
 @Service
@@ -32,31 +34,37 @@ public class PrepareDataService {
      * Prepare test data by loading CSV files from the PrepareData directory and inserting into the database.
      * This method first clears the target tables, then inserts the data.
      *
-     * @param testClass the test class
-     * @param caseId    the case ID
+     * @param testClass   the test class
+     * @param serviceName the service name (e.g., "UserService")
+     * @param methodName  the method name (e.g., "createUser")
+     * @param caseId      the case ID (e.g., "case01")
      */
     @Transactional
-    public void prepareData(Class<?> testClass, String caseId) {
-        Path prepareDataDir = PathUtils.getPrepareDataDirectory(testClass, caseId);
+    public void prepareData(Class<?> testClass, String serviceName, String methodName, String caseId) {
+        Path prepareDataDir = PathUtils.getPrepareDataDirectory(testClass, serviceName, methodName, caseId);
         
         if (!PathUtils.exists(prepareDataDir)) {
-            log.debug("No PrepareData directory found for case: {}", caseId);
+            log.debug("No PrepareData directory found for case: {}.{}/{}", serviceName, methodName, caseId);
             return;
         }
 
         Path[] csvFiles = PathUtils.getCsvFiles(prepareDataDir);
         
+        if (csvFiles.length == 0) {
+            log.debug("No CSV files found in PrepareData directory for case: {}.{}/{}", serviceName, methodName, caseId);
+            return;
+        }
+        
+        log.info("Found {} CSV files in PrepareData for {}.{}/{}", csvFiles.length, serviceName, methodName, caseId);
+        
         // Clear tables before inserting new data.
         // Note: Tables are cleared in reverse alphabetical order (based on filename).
-        // For proper foreign key handling, name your CSV files with prefixes 
-        // that ensure parent tables come before child tables (e.g., 01_users.csv, 02_orders.csv).
-        // For complex relationships, consider using SET FOREIGN_KEY_CHECKS=0 in test setup.
         for (int i = csvFiles.length - 1; i >= 0; i--) {
             String tableName = PathUtils.extractTableName(csvFiles[i]);
             clearTables(tableName);
         }
         
-        // Then, insert the data
+        // Then, insert the data for each table
         for (Path csvFile : csvFiles) {
             String tableName = PathUtils.extractTableName(csvFile);
             insertData(tableName, csvFile);
@@ -126,27 +134,6 @@ public class PrepareDataService {
             String sql = "DELETE FROM " + sanitizeIdentifier(tableName);
             jdbcTemplate.update(sql);
             log.info("Cleared table: {}", tableName);
-        }
-    }
-
-    /**
-     * Clear data from tables based on PrepareData CSV files.
-     *
-     * @param testClass the test class
-     * @param caseId    the case ID
-     */
-    @Transactional
-    public void clearPreparedData(Class<?> testClass, String caseId) {
-        Path prepareDataDir = PathUtils.getPrepareDataDirectory(testClass, caseId);
-        
-        if (!PathUtils.exists(prepareDataDir)) {
-            return;
-        }
-
-        Path[] csvFiles = PathUtils.getCsvFiles(prepareDataDir);
-        for (Path csvFile : csvFiles) {
-            String tableName = PathUtils.extractTableName(csvFile);
-            clearTables(tableName);
         }
     }
 

@@ -15,18 +15,10 @@
     <description>Example module demonstrating Testify integration and usage</description>
 
     <dependencies>
-        <!-- Internal -->
+        <!-- LoadUp Testify Spring Boot Starter - includes all testify modules -->
         <dependency>
             <groupId>com.loadup</groupId>
-            <artifactId>loadup-testify-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.loadup</groupId>
-            <artifactId>loadup-testify-data</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.loadup</groupId>
-            <artifactId>loadup-testify-assertions</artifactId>
+            <artifactId>loadup-testify-spring-boot-starter</artifactId>
         </dependency>
 
         <!-- Spring Boot -->
@@ -37,28 +29,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.junit.jupiter</groupId>
-                    <artifactId>junit-jupiter</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>org.mockito</groupId>
-                    <artifactId>mockito-junit-jupiter</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- TestNG -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <!-- Lombok -->

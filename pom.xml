@@ -23,6 +23,7 @@
         <module>data</module>
         <module>core</module>
         <module>assertions</module>
+        <module>starter</module>
         <module>example</module>
     </modules>
 
@@ -60,6 +61,11 @@
             <dependency>
                 <groupId>com.loadup</groupId>
                 <artifactId>loadup-testify-assertions</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.loadup</groupId>
+                <artifactId>loadup-testify-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

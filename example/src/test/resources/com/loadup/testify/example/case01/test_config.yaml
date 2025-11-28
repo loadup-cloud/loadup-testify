@@ -3,6 +3,9 @@
 
 description: "Test creating a new user with Datafaker-generated data"
 
+# The method to call on the test bean
+method: "createUser"
+
 # Arguments passed to the test method (createUser)
 args:
   - username: "${faker.name.username}"

@@ -43,15 +43,17 @@ public class TestExecutionEngine {
      * @param testInstance the test instance (containing the method under test)
      * @param caseId       the case ID
      * @param prepareData  the prepared test data
-     * @param methodName   the name of the method to invoke
+     * @param methodName   the name of the method to invoke (fallback if not specified in config)
      */
     public void runTest(Object testInstance, String caseId, PrepareData prepareData, String methodName) {
-        log.info("Running test case: {} for method: {}", caseId, methodName);
-
         TestCaseConfig config = prepareData.getConfig();
         if (config == null) {
             throw new TestifyException("Test case configuration not found for case: " + caseId);
         }
+
+        // Use method from config if specified, otherwise use provided methodName
+        String targetMethod = config.getMethod() != null ? config.getMethod() : methodName;
+        log.info("Running test case: {} for method: {}", caseId, targetMethod);
 
         if (!config.isEnabled()) {
             log.info("Test case {} is disabled, skipping", caseId);
@@ -59,22 +61,21 @@ public class TestExecutionEngine {
         }
 
         try {
-            // 1. Clear shared variable pool for this test
-            SharedVariablePool.clear();
+            // Note: Do NOT clear SharedVariablePool here as variables were captured during test case loading
 
-            // 2. Prepare database data
+            // 1. Prepare database data
             prepareDataService.prepareData(testInstance.getClass(), caseId);
 
-            // 3. Find and invoke the test method with matching parameter count
+            // 2. Find and invoke the test method with matching parameter count
             int expectedArgCount = config.getArgs() != null ? config.getArgs().size() : 0;
-            Method method = findMethod(testInstance.getClass(), methodName, expectedArgCount);
+            Method method = findMethod(testInstance.getClass(), targetMethod, expectedArgCount);
             Object[] args = testCaseLoader.convertArgs(config, method);
             Object result = invokeMethod(testInstance, method, args);
 
-            // 4. Assert response
+            // 3. Assert response
             assertResponse(result, config);
 
-            // 5. Assert database state
+            // 4. Assert database state
             assertDatabaseState(testInstance.getClass(), caseId, config);
 
             log.info("Test case {} passed", caseId);

@@ -31,7 +31,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng.version>7.9.0</testng.version>
         <lombok.version>1.18.32</lombok.version>
-        <jackson.version>2.17.0</jackson.version>
         <opencsv.version>5.9</opencsv.version>
         <datafaker.version>2.2.2</datafaker.version>
         <mockito.version>5.11.0</mockito.version>
@@ -75,23 +74,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-            </dependency>
-
-            <!-- Jackson -->
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.dataformat</groupId>
-                <artifactId>jackson-dataformat-yaml</artifactId>
-                <version>${jackson.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.datatype</groupId>
-                <artifactId>jackson-datatype-jsr310</artifactId>
-                <version>${jackson.version}</version>
             </dependency>
 
             <!-- OpenCSV -->
@@ -154,11 +136,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.2.5</version>
-                    <configuration>
-                        <suiteXmlFiles>
-                            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                        </suiteXmlFiles>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>

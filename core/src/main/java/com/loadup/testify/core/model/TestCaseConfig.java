@@ -29,6 +29,11 @@ public class TestCaseConfig {
     private String description;
 
     /**
+     * The method name to invoke on the test bean.
+     */
+    private String method;
+
+    /**
      * Arguments to pass to the test method.
      * Can be a list of objects that will be mapped to method parameters.
      */

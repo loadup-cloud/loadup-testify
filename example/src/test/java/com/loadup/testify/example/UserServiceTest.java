@@ -30,7 +30,7 @@ public class UserServiceTest extends TestifyTestBase {
 
     @Override
     protected Object getTestBean() {
-        return userService;
+        return this;
     }
 
     /**
@@ -47,22 +47,14 @@ public class UserServiceTest extends TestifyTestBase {
     }
 
     /**
-     * Test finding a user by username.
-     */
-    @Test(dataProvider = "TestifyProvider")
-    public void testFindByUsername(String caseId, PrepareData prepareData) {
-        runTest(caseId, prepareData);
-    }
-
-    /**
-     * Direct test method that can be called by the test execution engine.
+     * Create a new user - method invoked by the test execution engine.
      */
     public User createUser(User user) {
         return userService.createUser(user);
     }
 
     /**
-     * Direct test method for finding users.
+     * Find a user by username.
      */
     public User findByUsername(String username) {
         return userService.findByUsername(username).orElse(null);

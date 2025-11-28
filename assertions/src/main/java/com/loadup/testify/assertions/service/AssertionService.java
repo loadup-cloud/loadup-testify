@@ -165,14 +165,51 @@ public class AssertionService {
      * @param expected the expected response
      * @throws AssertionException if the assertion fails
      */
+    @SuppressWarnings("unchecked")
     public void assertResponse(Object actual, Object expected) {
         if (expected instanceof Map && actual instanceof Map) {
             assertMap((Map<String, Object>) actual, (Map<String, Object>) expected);
+        } else if (expected instanceof Map && actual != null) {
+            // Convert actual object to Map for comparison
+            Map<String, Object> actualMap = convertObjectToMap(actual);
+            assertMap(actualMap, (Map<String, Object>) expected);
         } else if (expected instanceof List && actual instanceof List) {
             assertList((List<?>) actual, (List<?>) expected, false);
         } else {
             assertEqualsInternal(actual, expected, "Response");
         }
+    }
+
+    /**
+     * Convert an object to a Map using reflection.
+     */
+    private Map<String, Object> convertObjectToMap(Object obj) {
+        Map<String, Object> result = new java.util.HashMap<>();
+        
+        if (obj == null) {
+            return result;
+        }
+        
+        for (java.lang.reflect.Method method : obj.getClass().getMethods()) {
+            String name = method.getName();
+            if (method.getParameterCount() == 0 && !name.equals("getClass") && 
+                (name.startsWith("get") || name.startsWith("is"))) {
+                try {
+                    String fieldName;
+                    if (name.startsWith("get")) {
+                        fieldName = name.substring(3, 4).toLowerCase() + name.substring(4);
+                    } else {
+                        fieldName = name.substring(2, 3).toLowerCase() + name.substring(3);
+                    }
+                    Object value = method.invoke(obj);
+                    result.put(fieldName, value);
+                } catch (Exception e) {
+                    // Skip inaccessible properties
+                }
+            }
+        }
+        
+        return result;
     }
 
     /**

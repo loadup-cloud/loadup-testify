@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.loadup</groupId>
+        <groupId>com.github.loadup</groupId>
         <artifactId>loadup-testify</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
@@ -28,19 +28,19 @@
 
         <!-- Include all testify modules -->
         <dependency>
-            <groupId>com.loadup</groupId>
+            <groupId>com.github.loadup</groupId>
             <artifactId>loadup-testify-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.loadup</groupId>
+            <groupId>com.github.loadup</groupId>
             <artifactId>loadup-testify-data</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.loadup</groupId>
+            <groupId>com.github.loadup</groupId>
             <artifactId>loadup-testify-core</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.loadup</groupId>
+            <groupId>com.github.loadup</groupId>
             <artifactId>loadup-testify-assertions</artifactId>
         </dependency>
 

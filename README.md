@@ -31,7 +31,7 @@ LoadUp Testify is a Maven multi-module project designed to be integrated into ot
 
 ```xml
 <dependency>
-    <groupId>com.loadup</groupId>
+    <groupId>com.github.loadup</groupId>
     <artifactId>loadup-testify-spring-boot-starter</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <scope>test</scope>

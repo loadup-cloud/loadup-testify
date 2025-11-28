@@ -77,5 +77,11 @@ public enum CompareOperator {
     /**
      * Skip this field entirely.
      */
-    SKIP
+    SKIP,
+
+    /**
+     * Date/time comparison with tolerance (uses dateTolerance in milliseconds).
+     * Example: Allow 5 seconds difference means dateTolerance = 5000.
+     */
+    DATETIME_TOLERANCE
 }

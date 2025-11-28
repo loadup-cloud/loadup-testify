@@ -70,6 +70,7 @@ public class DataComparator {
             case ENDS_WITH -> String.valueOf(actual).endsWith(String.valueOf(expected));
             case REGEX -> Pattern.matches(String.valueOf(expected), String.valueOf(actual));
             case IGNORE_ORDER -> compareCollectionsIgnoringOrder(actual, expected);
+            case DATETIME_TOLERANCE -> compareDates(actual, expected, rule);
             case SKIP, IGNORE_FIELDS -> true; // Always pass
         };
 

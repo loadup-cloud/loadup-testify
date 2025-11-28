@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 /**
  * Example User model for demonstrating Testify functionality.
  */
@@ -26,4 +28,9 @@ public class User {
      * The user's role - demonstrates complex nested object mapping.
      */
     private Role role;
+    
+    /**
+     * The timestamp when the user was created - demonstrates date/time tolerance comparison.
+     */
+    private LocalDateTime createdAt;
 }

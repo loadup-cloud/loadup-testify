@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,6 +47,9 @@ public class UserService {
     public User createUser(User user) {
         log.info("Creating user: {}", user.getUsername());
         
+        // Set createdAt timestamp
+        user.setCreatedAt(LocalDateTime.now());
+        
         String sql = "INSERT INTO users (username, email, first_name, last_name, age, active) " +
                      "VALUES (?, ?, ?, ?, ?, ?)";
         
@@ -75,6 +79,9 @@ public class UserService {
     @Transactional
     public User createUserWithRole(User user, String roleName) {
         log.info("Creating user: {} with role: {}", user.getUsername(), roleName);
+        
+        // Set createdAt timestamp
+        user.setCreatedAt(LocalDateTime.now());
         
         // Find or create the role using RoleService (can be mocked in tests)
         Role role = roleService.findByName(roleName)

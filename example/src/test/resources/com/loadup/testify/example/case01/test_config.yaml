@@ -3,9 +3,6 @@
 
 description: "Test creating a new user with Datafaker-generated data"
 
-# Specify the target method explicitly for clarity
-method: "createUser"
-
 # Arguments passed to the test method (createUser)
 args:
   - username: "${faker.name.username}"
@@ -25,22 +22,22 @@ result:
   age: 25
   active: true
 
-# Assertion rules
+# Assertion rules - only response assertions
+# Database assertions are handled via ExpectedData/*.csv files
 expected:
   - field: "response.username"
     operator: "NOT_NULL"
   - field: "response.email"
     operator: "CONTAINS"
     expectedValue: "@"
-  - field: "database.users.username"
-    operator: "EQUALS"
-    expectedValue: "${=faker.name.username}"
+  # Datetime tolerance example: allow 5 seconds difference (5000 milliseconds)
+  - field: "response.createdAt"
+    operator: "DATETIME_TOLERANCE"
+    dateTolerance: 5000
 
 # Fields to ignore during comparison (actual has 'id' and 'role', expected doesn't)
 ignoreFields:
   - id
   - role
-  - createdAt
-  - updatedAt
 
 enabled: true

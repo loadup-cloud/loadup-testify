@@ -6,7 +6,8 @@
 
 description: "Test creating a new user with role - demonstrates multiple parameters and nested objects"
 
-# Specify the target method explicitly since this case is for createUserWithRole
+# Method name is required for case02 since it differs from testCreateUser
+# (testCreateUser normalizes to createUser, but we need createUserWithRole)
 method: "createUserWithRole"
 
 # Arguments passed to the test method (createUserWithRole)
@@ -35,7 +36,8 @@ result:
     name: "USER"
     active: true
 
-# Assertion rules
+# Assertion rules - only response assertions
+# Database assertions are handled via ExpectedData/*.csv files
 expected:
   - field: "response.username"
     operator: "NOT_NULL"
@@ -47,16 +49,15 @@ expected:
   - field: "response.role.name"
     operator: "EQUALS"
     expectedValue: "USER"
-  - field: "database.users.username"
-    operator: "EQUALS"
-    expectedValue: "${=faker.name.username}"
+  # Datetime tolerance example: allow 5 seconds difference (5000 milliseconds)
+  - field: "response.createdAt"
+    operator: "DATETIME_TOLERANCE"
+    dateTolerance: 5000
 
 # Fields to ignore during comparison
 ignoreFields:
   - id
   - role.id
   - role.description
-  - createdAt
-  - updatedAt
 
 enabled: true

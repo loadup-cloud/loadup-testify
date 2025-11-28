@@ -1,0 +1,62 @@
+# Test configuration for case02 - Create User with Role
+# This demonstrates:
+# 1. Multiple parameter handling
+# 2. Complex nested object mapping (User with Role)
+# 3. Mocking external dependencies (RoleService is mocked)
+
+description: "Test creating a new user with role - demonstrates multiple parameters and nested objects"
+
+# Specify the target method explicitly since this case is for createUserWithRole
+method: "createUserWithRole"
+
+# Arguments passed to the test method (createUserWithRole)
+# First argument: User object
+# Second argument: String roleName
+args:
+  - username: "${faker.name.username}"
+    email: "${faker.internet.emailAddress}"
+    firstName: "${faker.name.firstName}"
+    lastName: "${faker.name.lastName}"
+    age: 30
+    active: true
+  - "USER"  # The role name - RoleService.findByName is mocked
+
+# Expected result from the method
+# User object with nested Role object
+result:
+  username: "${=faker.name.username}"
+  email: "${=faker.internet.emailAddress}"
+  firstName: "${=faker.name.firstName}"
+  lastName: "${=faker.name.lastName}"
+  age: 30
+  active: true
+  # Role is a nested object - RoleService returns mocked Role
+  role:
+    name: "USER"
+    active: true
+
+# Assertion rules
+expected:
+  - field: "response.username"
+    operator: "NOT_NULL"
+  - field: "response.email"
+    operator: "CONTAINS"
+    expectedValue: "@"
+  - field: "response.role"
+    operator: "NOT_NULL"
+  - field: "response.role.name"
+    operator: "EQUALS"
+    expectedValue: "USER"
+  - field: "database.users.username"
+    operator: "EQUALS"
+    expectedValue: "${=faker.name.username}"
+
+# Fields to ignore during comparison
+ignoreFields:
+  - id
+  - role.id
+  - role.description
+  - createdAt
+  - updatedAt
+
+enabled: true

@@ -168,16 +168,89 @@ public class AssertionService {
      */
     @SuppressWarnings("unchecked")
     public void assertResponse(Object actual, Object expected) {
+        assertResponse(actual, expected, Collections.emptySet());
+    }
+
+    /**
+     * Assert that the actual response matches the expected response with ignore fields.
+     *
+     * @param actual       the actual response
+     * @param expected     the expected response
+     * @param ignoreFields fields to ignore during comparison
+     * @throws AssertionException if the assertion fails
+     */
+    @SuppressWarnings("unchecked")
+    public void assertResponse(Object actual, Object expected, Set<String> ignoreFields) {
         if (expected instanceof Map && actual instanceof Map) {
-            assertMap((Map<String, Object>) actual, (Map<String, Object>) expected);
+            assertMap((Map<String, Object>) actual, (Map<String, Object>) expected, ignoreFields);
         } else if (expected instanceof Map && actual != null) {
             // Convert actual object to Map for comparison
             Map<String, Object> actualMap = convertObjectToMap(actual);
-            assertMap(actualMap, (Map<String, Object>) expected);
+            // Only compare fields that exist in expected, respecting ignoreFields
+            assertMapWithExpectedFields(actualMap, (Map<String, Object>) expected, ignoreFields);
         } else if (expected instanceof List && actual instanceof List) {
             assertList((List<?>) actual, (List<?>) expected, false);
         } else {
             assertEqualsInternal(actual, expected, "Response");
+        }
+    }
+
+    /**
+     * Assert that actual map contains expected values, only checking fields in expected.
+     * Extra fields in actual are allowed (useful when actual has more fields than expected).
+     */
+    @SuppressWarnings("unchecked")
+    private void assertMapWithExpectedFields(Map<String, Object> actual, Map<String, Object> expected, Set<String> ignoreFields) {
+        for (Map.Entry<String, Object> entry : expected.entrySet()) {
+            String key = entry.getKey();
+            if (ignoreFields != null && ignoreFields.contains(key)) {
+                continue;
+            }
+
+            Object expectedValue = entry.getValue();
+            Object actualValue = actual.get(key);
+
+            // Resolve variable references
+            if (expectedValue instanceof String) {
+                expectedValue = variableResolver.resolve((String) expectedValue, false);
+            }
+
+            // Handle nested objects - if expected is a Map and actual is an object, recurse
+            if (expectedValue instanceof Map && actualValue != null && !(actualValue instanceof Map)) {
+                // Convert actual object to map and compare recursively
+                Map<String, Object> actualNestedMap = convertObjectToMap(actualValue);
+                // Create nested ignoreFields for this key (e.g., "role.id" -> "id" for nested comparison)
+                Set<String> nestedIgnoreFields = new HashSet<>();
+                if (ignoreFields != null) {
+                    String prefix = key + ".";
+                    for (String ignoredField : ignoreFields) {
+                        if (ignoredField.startsWith(prefix)) {
+                            nestedIgnoreFields.add(ignoredField.substring(prefix.length()));
+                        }
+                    }
+                }
+                assertMapWithExpectedFields(actualNestedMap, (Map<String, Object>) expectedValue, nestedIgnoreFields);
+            } else if (expectedValue instanceof Map && actualValue instanceof Map) {
+                // Both are maps, compare recursively
+                Set<String> nestedIgnoreFields = new HashSet<>();
+                if (ignoreFields != null) {
+                    String prefix = key + ".";
+                    for (String ignoredField : ignoreFields) {
+                        if (ignoredField.startsWith(prefix)) {
+                            nestedIgnoreFields.add(ignoredField.substring(prefix.length()));
+                        }
+                    }
+                }
+                assertMapWithExpectedFields((Map<String, Object>) actualValue, (Map<String, Object>) expectedValue, nestedIgnoreFields);
+            } else {
+                AssertionRule rule = AssertionRule.builder()
+                        .field(key)
+                        .operator(CompareOperator.EQUALS)
+                        .expectedValue(expectedValue)
+                        .build();
+
+                assertValue(actualValue, rule);
+            }
         }
     }
 

@@ -151,7 +151,10 @@ public class TestExecutionEngine {
         Object expected = config.getResult();
         if (expected != null) {
             log.debug("Asserting response: expected={}, actual={}", expected, actual);
-            assertionService.assertResponse(actual, expected);
+            Set<String> ignoreFields = config.getIgnoreFields() != null
+                    ? new HashSet<>(config.getIgnoreFields())
+                    : Collections.emptySet();
+            assertionService.assertResponse(actual, expected, ignoreFields);
         }
     }
 

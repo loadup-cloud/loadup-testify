@@ -21,4 +21,9 @@ public class User {
     private String lastName;
     private Integer age;
     private Boolean active;
+    
+    /**
+     * The user's role - demonstrates complex nested object mapping.
+     */
+    private Role role;
 }

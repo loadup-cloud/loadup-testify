@@ -1,5 +1,6 @@
 package com.loadup.testify.example.service;
 
+import com.loadup.testify.example.model.Role;
 import com.loadup.testify.example.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class UserService {
 
     private final JdbcTemplate jdbcTemplate;
+    private final RoleService roleService;
 
     private static final RowMapper<User> USER_ROW_MAPPER = (rs, rowNum) -> User.builder()
             .id(rs.getLong("id"))
@@ -29,8 +31,9 @@ public class UserService {
             .active(rs.getBoolean("active"))
             .build();
 
-    public UserService(JdbcTemplate jdbcTemplate) {
+    public UserService(JdbcTemplate jdbcTemplate, RoleService roleService) {
         this.jdbcTemplate = jdbcTemplate;
+        this.roleService = roleService;
     }
 
     /**
@@ -57,6 +60,46 @@ public class UserService {
         // Get the generated ID
         Long id = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Long.class);
         user.setId(id);
+
+        return user;
+    }
+
+    /**
+     * Create a new user with a role.
+     * Demonstrates multiple parameter handling and nested object mapping.
+     *
+     * @param user the user to create
+     * @param roleName the name of the role to assign
+     * @return the created user with role
+     */
+    @Transactional
+    public User createUserWithRole(User user, String roleName) {
+        log.info("Creating user: {} with role: {}", user.getUsername(), roleName);
+        
+        // Find or create the role using RoleService (can be mocked in tests)
+        Role role = roleService.findByName(roleName)
+                .orElseGet(() -> roleService.createRole(Role.builder()
+                        .name(roleName)
+                        .description("Auto-created role: " + roleName)
+                        .active(true)
+                        .build()));
+        
+        // Create the user
+        String sql = "INSERT INTO users (username, email, first_name, last_name, age, active) " +
+                     "VALUES (?, ?, ?, ?, ?, ?)";
+        
+        jdbcTemplate.update(sql,
+                user.getUsername(),
+                user.getEmail(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getAge(),
+                user.getActive() != null ? user.getActive() : true);
+
+        // Get the generated ID
+        Long id = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Long.class);
+        user.setId(id);
+        user.setRole(role);
 
         return user;
     }

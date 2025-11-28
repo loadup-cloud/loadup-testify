@@ -3,7 +3,7 @@
 
 description: "Test creating a new user with Datafaker-generated data"
 
-# The method to call on the test bean
+# Specify the target method explicitly for clarity
 method: "createUser"
 
 # Arguments passed to the test method (createUser)
@@ -16,6 +16,7 @@ args:
     active: true
 
 # Expected result from the method
+# Note: Only fields we care about - id and role will be ignored
 result:
   username: "${=faker.name.username}"
   email: "${=faker.internet.emailAddress}"
@@ -35,9 +36,10 @@ expected:
     operator: "EQUALS"
     expectedValue: "${=faker.name.username}"
 
-# Fields to ignore during comparison
+# Fields to ignore during comparison (actual has 'id' and 'role', expected doesn't)
 ignoreFields:
   - id
+  - role
   - createdAt
   - updatedAt
 

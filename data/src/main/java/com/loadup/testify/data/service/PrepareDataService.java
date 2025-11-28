@@ -46,7 +46,11 @@ public class PrepareDataService {
 
         Path[] csvFiles = PathUtils.getCsvFiles(prepareDataDir);
         
-        // First, clear the tables to be populated (in reverse order to handle foreign keys)
+        // Clear tables before inserting new data.
+        // Note: Tables are cleared in reverse alphabetical order (based on filename).
+        // For proper foreign key handling, name your CSV files with prefixes 
+        // that ensure parent tables come before child tables (e.g., 01_users.csv, 02_orders.csv).
+        // For complex relationships, consider using SET FOREIGN_KEY_CHECKS=0 in test setup.
         for (int i = csvFiles.length - 1; i >= 0; i--) {
             String tableName = PathUtils.extractTableName(csvFiles[i]);
             clearTables(tableName);

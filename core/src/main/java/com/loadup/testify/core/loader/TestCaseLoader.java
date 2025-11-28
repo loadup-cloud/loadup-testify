@@ -95,7 +95,11 @@ public class TestCaseLoader {
             TestCaseConfig config = yamlMapper.readValue(is, TestCaseConfig.class);
             config.setCaseId(caseId);
 
-            // Clear the global pool and capture fresh variables for this test case
+            // Clear the global pool and capture fresh variables for this test case.
+            // Variables are captured to SharedVariablePool during resolution, then
+            // copied to PrepareData.capturedVariables for per-test-case scoping.
+            // At test execution time, variables are restored from PrepareData back to
+            // SharedVariablePool for ExpectedData resolution.
             SharedVariablePool.clear();
             
             // Resolve variables in the configuration (this captures to SharedVariablePool)

@@ -62,9 +62,12 @@ public class TestExecutionEngine {
         }
 
         try {
-            // Restore captured variables from PrepareData to SharedVariablePool
-            // This ensures the same variables captured during DataProvider are available
-            // when resolving ExpectedData references
+            // Restore captured variables from PrepareData to SharedVariablePool.
+            // This ensures the same variables captured during DataProvider execution are available
+            // when resolving ExpectedData references via VariableResolver.
+            // Note: This approach works for single-threaded TestNG execution. For parallel test
+            // execution, consider using a test-scoped variable context or passing variables
+            // directly to the services that need them.
             SharedVariablePool.clear();
             if (prepareData.getCapturedVariables() != null) {
                 prepareData.getCapturedVariables().forEach(SharedVariablePool::put);

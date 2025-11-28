@@ -53,7 +53,7 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
     @DataProvider(name = "TestifyProvider")
     public Iterator<Object[]> testifyProvider(Method method) {
         List<PrepareData> testCases = testCaseLoader.loadTestCases(getClass());
-        String normalizedMethodName = normalizeTestMethodName(method.getName());
+        String normalizedMethodName = stripTestPrefix(method.getName());
         
         return testCases.stream()
                 .filter(PrepareData::isLoaded)
@@ -80,17 +80,6 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
     }
 
     /**
-     * Normalize a test method name by removing "test" prefix.
-     */
-    private String normalizeTestMethodName(String methodName) {
-        if (methodName.toLowerCase().startsWith("test") && methodName.length() > 4) {
-            String withoutPrefix = methodName.substring(4);
-            return Character.toLowerCase(withoutPrefix.charAt(0)) + withoutPrefix.substring(1);
-        }
-        return methodName;
-    }
-
-    /**
      * Run a test case.
      * This method should be called from within the test method.
      *
@@ -100,8 +89,13 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
     protected void runTest(String caseId, PrepareData prepareData) {
         // Get the calling method name
         String methodName = getCallingMethodName();
-        // Normalize method name - remove "test" prefix if present
-        String targetMethodName = normalizeMethodName(methodName, prepareData);
+        // Use config method if specified, otherwise normalize the test method name
+        String targetMethodName;
+        if (prepareData.getConfig() != null && prepareData.getConfig().getMethod() != null) {
+            targetMethodName = prepareData.getConfig().getMethod();
+        } else {
+            targetMethodName = stripTestPrefix(methodName);
+        }
         testExecutionEngine.runTest(getTestBean(), caseId, prepareData, targetMethodName);
     }
 
@@ -180,26 +174,21 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
     }
 
     /**
-     * Normalize the method name by removing "test" prefix if present.
-     * Also checks if method is specified in config.
+     * Strip "test" prefix from method name if present.
      * 
      * @param methodName the original method name
-     * @param prepareData the prepare data containing config
-     * @return the normalized method name
+     * @return the method name with "test" prefix removed
      */
-    private String normalizeMethodName(String methodName, PrepareData prepareData) {
-        // If config specifies a method, use that
-        if (prepareData.getConfig() != null && prepareData.getConfig().getMethod() != null) {
-            return prepareData.getConfig().getMethod();
-        }
-        
-        // Remove "test" prefix if present (case-insensitive)
-        if (methodName.toLowerCase().startsWith("test") && methodName.length() > 4) {
-            // Convert first char after "test" to lowercase
+    private String stripTestPrefix(String methodName) {
+        if (methodName != null && 
+            methodName.length() > 4 && 
+            methodName.toLowerCase().startsWith("test")) {
             String withoutPrefix = methodName.substring(4);
-            return Character.toLowerCase(withoutPrefix.charAt(0)) + withoutPrefix.substring(1);
+            if (!withoutPrefix.isEmpty()) {
+                return Character.toLowerCase(withoutPrefix.charAt(0)) + 
+                       (withoutPrefix.length() > 1 ? withoutPrefix.substring(1) : "");
+            }
         }
-        
         return methodName;
     }
 

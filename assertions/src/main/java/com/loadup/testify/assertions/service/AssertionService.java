@@ -215,33 +215,18 @@ public class AssertionService {
                 expectedValue = variableResolver.resolve((String) expectedValue, false);
             }
 
-            // Handle nested objects - if expected is a Map and actual is an object, recurse
-            if (expectedValue instanceof Map && actualValue != null && !(actualValue instanceof Map)) {
-                // Convert actual object to map and compare recursively
-                Map<String, Object> actualNestedMap = convertObjectToMap(actualValue);
-                // Create nested ignoreFields for this key (e.g., "role.id" -> "id" for nested comparison)
-                Set<String> nestedIgnoreFields = new HashSet<>();
-                if (ignoreFields != null) {
-                    String prefix = key + ".";
-                    for (String ignoredField : ignoreFields) {
-                        if (ignoredField.startsWith(prefix)) {
-                            nestedIgnoreFields.add(ignoredField.substring(prefix.length()));
-                        }
-                    }
+            // Handle nested objects - if expected is a Map, recurse
+            if (expectedValue instanceof Map) {
+                Map<String, Object> actualNestedMap;
+                if (actualValue instanceof Map) {
+                    actualNestedMap = (Map<String, Object>) actualValue;
+                } else if (actualValue != null) {
+                    actualNestedMap = convertObjectToMap(actualValue);
+                } else {
+                    actualNestedMap = Collections.emptyMap();
                 }
+                Set<String> nestedIgnoreFields = extractNestedIgnoreFields(key, ignoreFields);
                 assertMapWithExpectedFields(actualNestedMap, (Map<String, Object>) expectedValue, nestedIgnoreFields);
-            } else if (expectedValue instanceof Map && actualValue instanceof Map) {
-                // Both are maps, compare recursively
-                Set<String> nestedIgnoreFields = new HashSet<>();
-                if (ignoreFields != null) {
-                    String prefix = key + ".";
-                    for (String ignoredField : ignoreFields) {
-                        if (ignoredField.startsWith(prefix)) {
-                            nestedIgnoreFields.add(ignoredField.substring(prefix.length()));
-                        }
-                    }
-                }
-                assertMapWithExpectedFields((Map<String, Object>) actualValue, (Map<String, Object>) expectedValue, nestedIgnoreFields);
             } else {
                 AssertionRule rule = AssertionRule.builder()
                         .field(key)
@@ -252,6 +237,24 @@ public class AssertionService {
                 assertValue(actualValue, rule);
             }
         }
+    }
+
+    /**
+     * Extract nested ignore fields for a given key prefix.
+     * E.g., for key "role" and ignoreFields ["role.id", "role.description", "id"],
+     * returns ["id", "description"].
+     */
+    private Set<String> extractNestedIgnoreFields(String key, Set<String> ignoreFields) {
+        Set<String> nestedIgnoreFields = new HashSet<>();
+        if (ignoreFields != null) {
+            String prefix = key + ".";
+            for (String ignoredField : ignoreFields) {
+                if (ignoredField.startsWith(prefix)) {
+                    nestedIgnoreFields.add(ignoredField.substring(prefix.length()));
+                }
+            }
+        }
+        return nestedIgnoreFields;
     }
 
     /**

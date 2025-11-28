@@ -8,6 +8,7 @@ import com.loadup.testify.common.variable.VariableResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -184,25 +185,26 @@ public class AssertionService {
      * Convert an object to a Map using reflection.
      */
     private Map<String, Object> convertObjectToMap(Object obj) {
-        Map<String, Object> result = new java.util.HashMap<>();
+        Map<String, Object> result = new HashMap<>();
         
         if (obj == null) {
             return result;
         }
         
-        for (java.lang.reflect.Method method : obj.getClass().getMethods()) {
+        for (Method method : obj.getClass().getMethods()) {
             String name = method.getName();
-            if (method.getParameterCount() == 0 && !name.equals("getClass") && 
-                (name.startsWith("get") || name.startsWith("is"))) {
+            if (method.getParameterCount() == 0 && !name.equals("getClass")) {
                 try {
-                    String fieldName;
-                    if (name.startsWith("get")) {
+                    String fieldName = null;
+                    if (name.startsWith("get") && name.length() > 3) {
                         fieldName = name.substring(3, 4).toLowerCase() + name.substring(4);
-                    } else {
+                    } else if (name.startsWith("is") && name.length() > 2) {
                         fieldName = name.substring(2, 3).toLowerCase() + name.substring(3);
                     }
-                    Object value = method.invoke(obj);
-                    result.put(fieldName, value);
+                    if (fieldName != null) {
+                        Object value = method.invoke(obj);
+                        result.put(fieldName, value);
+                    }
                 } catch (Exception e) {
                     // Skip inaccessible properties
                 }

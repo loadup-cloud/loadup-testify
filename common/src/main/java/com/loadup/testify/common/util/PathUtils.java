@@ -9,7 +9,6 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Optional;
 
 /**
  * Utility class for file path operations.
@@ -23,30 +22,58 @@ public final class PathUtils {
 
     /**
      * Get the test data directory path for a test class.
-     * The data directory is located in the same package as the test class.
+     * The data directory is located in the same package as the test class,
+     * in src/test/java (alongside the test class file itself).
      *
      * @param testClass the test class
      * @return the path to the test data directory
      */
     public static Path getTestDataDirectory(Class<?> testClass) {
-        String packagePath = testClass.getPackage().getName().replace('.', '/');
-        URL resource = testClass.getClassLoader().getResource(packagePath);
+        String packagePathStr = testClass.getPackage().getName().replace('.', '/');
         
-        if (resource != null) {
+        // First, try to find the source file location by using the class location
+        URL classResource = testClass.getResource(testClass.getSimpleName() + ".class");
+        if (classResource != null) {
             try {
-                // Convert URL to URI first to properly handle URL-encoded characters
-                URI uri = resource.toURI();
-                Path path = Paths.get(uri);
-                log.debug("Test data directory resolved from classpath: {}", path);
-                return path;
+                URI uri = classResource.toURI();
+                Path classPath = Paths.get(uri);
+                
+                // Navigate from target/test-classes/... back to src/test/java/...
+                // Use Path-based manipulation for cross-platform compatibility
+                Path current = classPath.getParent(); // Remove the .class file
+                Path projectRoot = null;
+                
+                // Walk up to find target/test-classes and get the parent
+                while (current != null) {
+                    if (current.getFileName() != null && 
+                        "test-classes".equals(current.getFileName().toString())) {
+                        Path targetDir = current.getParent();
+                        if (targetDir != null && targetDir.getFileName() != null &&
+                            "target".equals(targetDir.getFileName().toString())) {
+                            projectRoot = targetDir.getParent();
+                            break;
+                        }
+                    }
+                    current = current.getParent();
+                }
+                
+                if (projectRoot != null) {
+                    // Reconstruct the path under src/test/java
+                    Path srcTestJava = projectRoot.resolve("src").resolve("test").resolve("java");
+                    Path packageDir = srcTestJava.resolve(
+                            testClass.getPackage().getName().replace('.', File.separatorChar));
+                    if (Files.exists(packageDir)) {
+                        log.debug("Test data directory resolved from source: {}", packageDir);
+                        return packageDir;
+                    }
+                }
             } catch (URISyntaxException e) {
-                log.warn("Failed to convert URL to URI: {}, falling back to getPath()", resource, e);
-                return Paths.get(resource.getPath());
+                log.warn("Failed to convert URL to URI: {}", classResource, e);
             }
         }
         
-        // Fall back to src/test/resources
-        Path fallbackPath = Paths.get("src/test/resources", packagePath);
+        // Fall back to src/test/java
+        Path fallbackPath = Paths.get("src/test/java", packagePathStr);
         log.debug("Test data directory fallback: {}", fallbackPath);
         return fallbackPath;
     }

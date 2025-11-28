@@ -191,10 +191,15 @@ public class TestExecutionEngine {
             List<Map<String, Object>> actualRows =
                     expectedDataService.queryActualData(tableName, expectedRows);
 
-            log.debug("Asserting database table {}: expected {} rows, actual {} rows",
-                    tableName, expectedRows.size(), actualRows.size());
+            int fieldsPerRow = 0;
+            if (!expectedRows.isEmpty() && expectedRows.get(0) != null) {
+                fieldsPerRow = expectedRows.get(0).size() - ignoreFields.size();
+            }
+            log.info("Asserting database table '{}': expected {} rows, actual {} rows, comparing {} fields per row",
+                    tableName, expectedRows.size(), actualRows.size(), fieldsPerRow);
 
             assertionService.assertDatabaseRows(actualRows, expectedRows, ignoreFields);
+            log.info("Database assertion passed for table '{}'", tableName);
         }
     }
 }

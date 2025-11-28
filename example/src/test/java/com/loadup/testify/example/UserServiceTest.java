@@ -11,8 +11,8 @@ import com.loadup.testify.example.service.UserService;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -52,7 +52,7 @@ public class UserServiceTest extends TestifyTestBase {
     /**
      * Mock the RoleService to demonstrate external dependency mocking.
      */
-    @MockBean
+    @MockitoBean
     private RoleService roleService;
 
     @BeforeMethod
@@ -79,10 +79,10 @@ public class UserServiceTest extends TestifyTestBase {
      * Method name "testCreateUser" will be normalized to "createUser"
      * so no need to specify method in yaml config.
      * 
-     * Test data is loaded from:
-     * - src/test/resources/com/loadup/testify/example/case01/test_config.yaml
-     * - src/test/resources/com/loadup/testify/example/case01/PrepareData/*.csv
-     * - src/test/resources/com/loadup/testify/example/case01/ExpectedData/*.csv
+     * Test data is loaded from (alongside this test class):
+     * - src/test/java/com/loadup/testify/example/case01/test_config.yaml
+     * - src/test/java/com/loadup/testify/example/case01/PrepareData/*.csv
+     * - src/test/java/com/loadup/testify/example/case01/ExpectedData/*.csv
      */
     @Test(dataProvider = "TestifyProvider")
     public void testCreateUser(String caseId, PrepareData prepareData) {
@@ -93,7 +93,7 @@ public class UserServiceTest extends TestifyTestBase {
      * Test creating a user with role - demonstrates multiple parameters and mocking.
      * Method name "testCreateUserWithRole" will be normalized to "createUserWithRole".
      * 
-     * Test data is loaded from case02 which specifies method: "createUserWithRole".
+     * Test data is loaded from case02 (alongside this test class).
      * The RoleService is mocked in beforeTestMethod().
      */
     @Test(dataProvider = "TestifyProvider")

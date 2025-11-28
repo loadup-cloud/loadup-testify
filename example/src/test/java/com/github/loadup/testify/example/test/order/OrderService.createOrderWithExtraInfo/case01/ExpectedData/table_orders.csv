@@ -1,0 +1,2 @@
+order_number,user_id,total_amount,status,extra_info
+${=faker.commerce.promotionCode},1,199.99,PENDING,"{""shippingAddress"": ""123 Main St"", ""notes"": ""Leave at door"", ""priority"": ""high""}"

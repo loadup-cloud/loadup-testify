@@ -1,0 +1,62 @@
+# Test configuration for UserService.createUserWithRole/case01
+# This demonstrates:
+# 1. Multiple parameter handling
+# 2. Complex nested object mapping (User with Role)
+# 3. Mocking external dependencies (RoleService is mocked)
+
+description: "Test creating a new user with role - demonstrates multiple parameters and nested objects"
+
+# Note: Method name is now derived from directory structure (UserService.createUserWithRole/)
+# No need to specify method: "createUserWithRole"
+
+# Arguments passed to the test method (createUserWithRole)
+# First argument: User object
+# Second argument: String roleName
+args:
+  - username: "${faker.name.username}"
+    email: "${faker.internet.emailAddress}"
+    firstName: "${faker.name.firstName}"
+    lastName: "${faker.name.lastName}"
+    age: 30
+    active: true
+  - "USER"  # The role name - RoleService.findByName is mocked
+
+# Expected result from the method
+# User object with nested Role object
+result:
+  username: "${=faker.name.username}"
+  email: "${=faker.internet.emailAddress}"
+  firstName: "${=faker.name.firstName}"
+  lastName: "${=faker.name.lastName}"
+  age: 30
+  active: true
+  # Role is a nested object - RoleService returns mocked Role
+  role:
+    name: "USER"
+    active: true
+
+# Assertion rules - only response assertions
+# Database assertions are handled via ExpectedData/*.csv files
+expected:
+  - field: "response.username"
+    operator: "NOT_NULL"
+  - field: "response.email"
+    operator: "CONTAINS"
+    expectedValue: "@"
+  - field: "response.role"
+    operator: "NOT_NULL"
+  - field: "response.role.name"
+    operator: "EQUALS"
+    expectedValue: "USER"
+  # Datetime tolerance example: allow 5 seconds difference (5000 milliseconds)
+  - field: "response.createdAt"
+    operator: "DATETIME_TOLERANCE"
+    dateTolerance: 5000
+
+# Fields to ignore during comparison
+ignoreFields:
+  - id
+  - role.id
+  - role.description
+
+enabled: true

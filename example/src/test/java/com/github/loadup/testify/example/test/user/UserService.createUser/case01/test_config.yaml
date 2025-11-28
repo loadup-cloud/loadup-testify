@@ -1,0 +1,45 @@
+# Test configuration for UserService.createUser/case01
+# This demonstrates the basic usage of Testify for testing user creation
+
+description: "Test creating a new user with Datafaker-generated data"
+
+# Note: Method name is now derived from directory structure (UserService.createUser/)
+
+# Arguments passed to the test method (createUser)
+args:
+  - username: "${faker.name.username}"
+    email: "${faker.internet.emailAddress}"
+    firstName: "${faker.name.firstName}"
+    lastName: "${faker.name.lastName}"
+    age: 25
+    active: true
+
+# Expected result from the method
+# Note: Only fields we care about - id and role will be ignored
+result:
+  username: "${=faker.name.username}"
+  email: "${=faker.internet.emailAddress}"
+  firstName: "${=faker.name.firstName}"
+  lastName: "${=faker.name.lastName}"
+  age: 25
+  active: true
+
+# Assertion rules - only response assertions
+# Database assertions are handled via ExpectedData/*.csv files
+expected:
+  - field: "response.username"
+    operator: "NOT_NULL"
+  - field: "response.email"
+    operator: "CONTAINS"
+    expectedValue: "@"
+  # Datetime tolerance example: allow 5 seconds difference (5000 milliseconds)
+  - field: "response.createdAt"
+    operator: "DATETIME_TOLERANCE"
+    dateTolerance: 5000
+
+# Fields to ignore during comparison (actual has 'id' and 'role', expected doesn't)
+ignoreFields:
+  - id
+  - role
+
+enabled: true

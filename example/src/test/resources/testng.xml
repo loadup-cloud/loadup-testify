@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="LoadUp Testify Example Test Suite">
+    <test name="User Service Tests">
+        <classes>
+            <class name="com.github.loadup.testify.example.test.user.UserServiceTest"/>
+        </classes>
+    </test>
+    <test name="Order Service Tests">
+        <classes>
+            <class name="com.github.loadup.testify.example.test.order.OrderServiceTest"/>
+        </classes>
+    </test>
+</suite>

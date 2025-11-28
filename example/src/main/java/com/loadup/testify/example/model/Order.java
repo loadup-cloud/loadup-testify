@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 
 /**
  * Example Order model for demonstrating complex object handling.
+ * 
+ * <p>The extraInfo field demonstrates JSON String large field comparison.</p>
  */
 @Data
 @Builder
@@ -22,6 +24,14 @@ public class Order {
     private String orderNumber;
     private BigDecimal totalAmount;
     private String status;
+    
+    /**
+     * JSON String field for storing extra order information.
+     * Demonstrates how to compare JSON String fields in assertions.
+     * Example: {"shippingAddress": "123 Main St", "notes": "Leave at door"}
+     */
+    private String extraInfo;
+    
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

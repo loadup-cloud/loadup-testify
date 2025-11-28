@@ -1,0 +1,45 @@
+# Test configuration for OrderService.createOrderWithExtraInfo/case01
+# This demonstrates JSON String field handling for extraInfo
+
+description: "Test creating an order with extra info JSON field"
+
+# Arguments passed to the test method (createOrderWithExtraInfo)
+# Note: extraInfo is a JSON string that will be compared semantically
+args:
+  - 1                                              # userId
+  - "${faker.commerce.promotionCode}"              # orderNumber
+  - 199.99                                         # totalAmount
+  - '{"shippingAddress": "123 Main St", "notes": "Leave at door", "priority": "high"}'  # extraInfo (JSON)
+
+# Expected result from the method
+result:
+  userId: 1
+  orderNumber: "${=faker.commerce.promotionCode}"
+  totalAmount: 199.99
+  status: "PENDING"
+  extraInfo: '{"shippingAddress": "123 Main St", "notes": "Leave at door", "priority": "high"}'
+
+# Assertion rules
+expected:
+  - field: "response.orderNumber"
+    operator: "NOT_NULL"
+  - field: "response.status"
+    operator: "EQUALS"
+    expectedValue: "PENDING"
+  # JSON comparison example: compares JSON content semantically
+  # Key ordering and whitespace differences are ignored
+  - field: "response.extraInfo"
+    operator: "JSON_EQUALS"
+    expectedValue: '{"priority": "high", "shippingAddress": "123 Main St", "notes": "Leave at door"}'
+  # Datetime tolerance example
+  - field: "response.createdAt"
+    operator: "DATETIME_TOLERANCE"
+    dateTolerance: 5000
+
+# Fields to ignore during comparison
+ignoreFields:
+  - id
+  - createdAt
+  - updatedAt
+
+enabled: true

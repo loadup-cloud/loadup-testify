@@ -1,5 +1,8 @@
 package com.loadup.testify.assertions.comparator;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.loadup.testify.assertions.rule.AssertionRule;
 import com.loadup.testify.assertions.rule.CompareOperator;
 import com.loadup.testify.common.exception.AssertionException;
@@ -20,6 +23,8 @@ import java.util.regex.Pattern;
 @Slf4j
 @Component
 public class DataComparator {
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final List<DateTimeFormatter> DATE_FORMATTERS = Arrays.asList(
             DateTimeFormatter.ISO_DATE_TIME,
@@ -71,6 +76,7 @@ public class DataComparator {
             case REGEX -> Pattern.matches(String.valueOf(expected), String.valueOf(actual));
             case IGNORE_ORDER -> compareCollectionsIgnoringOrder(actual, expected);
             case DATETIME_TOLERANCE -> compareDates(actual, expected, rule);
+            case JSON_EQUALS -> compareJson(actual, expected);
             case SKIP, IGNORE_FIELDS -> true; // Always pass
         };
 
@@ -292,5 +298,118 @@ public class DataComparator {
         }
 
         return true;
+    }
+
+    /**
+     * Compare two JSON strings semantically.
+     * Handles key ordering differences and whitespace variations.
+     *
+     * @param actual   the actual JSON value
+     * @param expected the expected JSON value
+     * @return true if the JSON content is semantically equal
+     */
+    private boolean compareJson(Object actual, Object expected) {
+        if (actual == null && expected == null) {
+            return true;
+        }
+        if (actual == null || expected == null) {
+            return false;
+        }
+
+        String actualStr = String.valueOf(actual);
+        String expectedStr = String.valueOf(expected);
+
+        // Handle empty strings
+        if (actualStr.isEmpty() && expectedStr.isEmpty()) {
+            return true;
+        }
+
+        try {
+            JsonNode actualNode = OBJECT_MAPPER.readTree(actualStr);
+            JsonNode expectedNode = OBJECT_MAPPER.readTree(expectedStr);
+            return actualNode.equals(expectedNode);
+        } catch (JsonProcessingException e) {
+            log.warn("Failed to parse JSON for comparison: {}", e.getMessage());
+            // Fall back to string comparison
+            return actualStr.equals(expectedStr);
+        }
+    }
+
+    /**
+     * Check if a string looks like valid JSON (object or array).
+     *
+     * @param value the string to check
+     * @return true if the string appears to be valid JSON
+     */
+    private boolean looksLikeJson(String value) {
+        if (value == null || value.isEmpty()) {
+            return false;
+        }
+        String trimmed = value.trim();
+        return (trimmed.startsWith("{") && trimmed.endsWith("}")) ||
+               (trimmed.startsWith("[") && trimmed.endsWith("]"));
+    }
+
+    /**
+     * Compare a database field value with datetime tolerance support.
+     * This is used for detailed database row comparison.
+     *
+     * @param actual         the actual value from database
+     * @param expected       the expected value from CSV
+     * @param fieldName      the field name for logging
+     * @param dateTolerance  the datetime tolerance in milliseconds (null for exact match)
+     * @return comparison result with details
+     */
+    public FieldComparisonResult compareField(Object actual, String expected, String fieldName, Long dateTolerance) {
+        // Resolve variable references
+        String resolvedExpected = variableResolver.resolve(expected, false);
+        
+        // Check for JSON comparison (if value looks like valid JSON object or array)
+        if (resolvedExpected != null && looksLikeJson(resolvedExpected) && actual != null) {
+            String actualStr = String.valueOf(actual);
+            if (looksLikeJson(actualStr)) {
+                boolean match = compareJson(actual, resolvedExpected);
+                return new FieldComparisonResult(fieldName, resolvedExpected, actualStr, match, "JSON");
+            }
+        }
+        
+        // Check for datetime tolerance
+        if (dateTolerance != null) {
+            LocalDateTime actualDate = parseDate(actual, null);
+            LocalDateTime expectedDate = parseDate(resolvedExpected, null);
+            
+            if (actualDate != null && expectedDate != null) {
+                long diffMillis = Math.abs(Duration.between(actualDate, expectedDate).toMillis());
+                boolean match = diffMillis <= dateTolerance;
+                return new FieldComparisonResult(fieldName, resolvedExpected, String.valueOf(actual), match, 
+                        "DATETIME (tolerance: " + dateTolerance + "ms, diff: " + diffMillis + "ms)");
+            }
+        }
+        
+        // Standard string comparison
+        String actualStr = actual != null ? String.valueOf(actual) : null;
+        boolean match = Objects.equals(actualStr, resolvedExpected);
+        return new FieldComparisonResult(fieldName, resolvedExpected, actualStr, match, "EQUALS");
+    }
+
+    /**
+     * Result of a field comparison with details for logging.
+     */
+    public record FieldComparisonResult(
+            String fieldName,
+            String expectedValue,
+            String actualValue,
+            boolean match,
+            String comparisonType
+    ) {
+        @Override
+        public String toString() {
+            if (match) {
+                return String.format("  [PASS] %s: '%s' (%s)", fieldName, actualValue, comparisonType);
+            } else {
+                return String.format("  [FAIL] %s: expected '%s' but was '%s' (%s)", 
+                        fieldName, expectedValue, actualValue, comparisonType);
+            }
+        }
     }
 }

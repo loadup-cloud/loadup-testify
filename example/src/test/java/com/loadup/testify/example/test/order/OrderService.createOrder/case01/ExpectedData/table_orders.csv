@@ -1,0 +1,2 @@
+order_number,user_id,total_amount,status
+${=faker.commerce.promotionCode},1,99.99,PENDING

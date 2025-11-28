@@ -19,6 +19,7 @@ CREATE TABLE IF NOT EXISTS orders (
     order_number VARCHAR(50) NOT NULL UNIQUE,
     total_amount DECIMAL(10,2) NOT NULL,
     status VARCHAR(50) DEFAULT 'PENDING',
+    extra_info TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)

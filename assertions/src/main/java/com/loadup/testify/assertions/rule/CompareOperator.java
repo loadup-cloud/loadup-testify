@@ -83,5 +83,11 @@ public enum CompareOperator {
      * Date/time comparison with tolerance (uses dateTolerance in milliseconds).
      * Example: Allow 5 seconds difference means dateTolerance = 5000.
      */
-    DATETIME_TOLERANCE
+    DATETIME_TOLERANCE,
+
+    /**
+     * JSON content comparison - parses both values as JSON and compares semantically.
+     * Handles key ordering differences and whitespace variations.
+     */
+    JSON_EQUALS
 }

@@ -1,4 +1,4 @@
-package com.loadup.testify.example;
+package com.loadup.testify.example.test.user;
 
 import com.loadup.testify.core.annotation.TestBean;
 import com.loadup.testify.core.base.TestifyTestBase;
@@ -22,19 +22,20 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 /**
- * Example test class demonstrating Testify data-driven testing.
+ * Example test class demonstrating Testify data-driven testing for UserService.
  * 
  * <p>Directory structure convention:</p>
  * <pre>
- * |- UserServiceTest.java                           (this test class)
- * ├── UserService.createUser/                       (method directory)
- * │   └── case01/                                   (case directory)
- * │       ├── test_config.yaml                      (test configuration)
- * │       ├── PrepareData/                          (CSV files for multiple tables)
+ * com/loadup/testify/example/test/user/
+ * ├── UserServiceTest.java                        (this test class)
+ * ├── UserService.createUser/                     (method directory)
+ * │   └── case01/                                 (case directory)
+ * │       ├── test_config.yaml                    (test configuration)
+ * │       ├── PrepareData/                        (CSV files for multiple tables)
  * │       │   └── table_users.csv
- * │       └── ExpectedData/                         (CSV files for multiple tables)
+ * │       └── ExpectedData/                       (CSV files for multiple tables)
  * │           └── table_users.csv
- * └── UserService.createUserWithRole/               (another method directory)
+ * └── UserService.createUserWithRole/             (another method directory)
  *     └── case01/
  * </pre>
  * 

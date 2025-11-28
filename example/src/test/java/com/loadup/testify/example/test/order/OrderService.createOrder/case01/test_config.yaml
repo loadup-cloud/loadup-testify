@@ -1,0 +1,41 @@
+# Test configuration for OrderService.createOrder/case01
+# This demonstrates basic order creation testing
+
+description: "Test creating a new order"
+
+# Arguments passed to the test method (createOrder)
+args:
+  - userId: 1
+    orderNumber: "${faker.commerce.promotionCode}"
+    totalAmount: 99.99
+    status: "PENDING"
+
+# Expected result from the method
+# Note: Only fields we care about - id and timestamps will be ignored
+result:
+  userId: 1
+  orderNumber: "${=faker.commerce.promotionCode}"
+  totalAmount: 99.99
+  status: "PENDING"
+
+# Assertion rules - only response assertions
+# Database assertions are handled via ExpectedData/*.csv files
+expected:
+  - field: "response.orderNumber"
+    operator: "NOT_NULL"
+  - field: "response.status"
+    operator: "EQUALS"
+    expectedValue: "PENDING"
+  # Datetime tolerance example: allow 5 seconds difference (5000 milliseconds)
+  - field: "response.createdAt"
+    operator: "DATETIME_TOLERANCE"
+    dateTolerance: 5000
+
+# Fields to ignore during comparison (actual has 'id', 'extraInfo', and timestamps)
+ignoreFields:
+  - id
+  - extraInfo
+  - createdAt
+  - updatedAt
+
+enabled: true

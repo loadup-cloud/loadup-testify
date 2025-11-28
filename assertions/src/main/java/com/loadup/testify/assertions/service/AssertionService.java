@@ -123,6 +123,10 @@ public class AssertionService {
 
     /**
      * Assert that database rows match expected data.
+     * Uses DataComparator for detailed field comparison with support for:
+     * - JSON field comparison
+     * - DateTime tolerance
+     * - Variable resolution
      *
      * @param actualRows   the actual rows from the database
      * @param expectedRows the expected rows
@@ -132,29 +136,68 @@ public class AssertionService {
     public void assertDatabaseRows(List<Map<String, Object>> actualRows,
                                    List<Map<String, String>> expectedRows,
                                    Set<String> ignoreFields) {
+        assertDatabaseRows(actualRows, expectedRows, ignoreFields, null);
+    }
+
+    /**
+     * Assert that database rows match expected data with datetime tolerance support.
+     *
+     * @param actualRows     the actual rows from the database
+     * @param expectedRows   the expected rows
+     * @param ignoreFields   fields to ignore during comparison
+     * @param dateTolerance  datetime tolerance in milliseconds (null for exact match)
+     * @throws AssertionException if any assertion fails
+     */
+    public void assertDatabaseRows(List<Map<String, Object>> actualRows,
+                                   List<Map<String, String>> expectedRows,
+                                   Set<String> ignoreFields,
+                                   Long dateTolerance) {
         if (actualRows.size() != expectedRows.size()) {
             throw new AssertionException(String.format("Row count mismatch: expected %d but was %d",
                     expectedRows.size(), actualRows.size()));
         }
 
+        log.info("Comparing {} database rows with detailed field comparison:", expectedRows.size());
+
         for (int i = 0; i < expectedRows.size(); i++) {
             Map<String, String> expectedRow = expectedRows.get(i);
             Map<String, Object> actualRow = actualRows.get(i);
+            
+            log.info("Row {}:", i + 1);
+
+            List<DataComparator.FieldComparisonResult> failedResults = null;
 
             for (Map.Entry<String, String> entry : expectedRow.entrySet()) {
                 String key = entry.getKey();
                 if (ignoreFields != null && ignoreFields.contains(key)) {
+                    log.debug("  [SKIP] {} (ignored)", key);
                     continue;
                 }
 
-                String expectedValue = variableResolver.resolve(entry.getValue(), false);
                 Object actualValue = actualRow.get(key);
+                String expectedValue = entry.getValue();
 
-                if (!Objects.equals(String.valueOf(actualValue), expectedValue)) {
-                    throw new AssertionException(String.format(
-                            "Row %d, field '%s' mismatch: expected '%s' but was '%s'",
-                            i, key, expectedValue, actualValue));
+                DataComparator.FieldComparisonResult result = 
+                        dataComparator.compareField(actualValue, expectedValue, key, dateTolerance);
+                
+                log.info("{}", result);
+                
+                if (!result.match()) {
+                    if (failedResults == null) {
+                        failedResults = new ArrayList<>();
+                    }
+                    failedResults.add(result);
                 }
+            }
+
+            if (failedResults != null) {
+                StringBuilder errorMsg = new StringBuilder();
+                errorMsg.append(String.format("Row %d assertion failed:\n", i));
+                for (DataComparator.FieldComparisonResult result : failedResults) {
+                    errorMsg.append(String.format("  Field '%s': expected '%s' but was '%s'\n",
+                            result.fieldName(), result.expectedValue(), result.actualValue()));
+                }
+                throw new AssertionException(errorMsg.toString());
             }
         }
     }

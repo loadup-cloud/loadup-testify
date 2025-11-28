@@ -96,7 +96,8 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
         } else {
             targetMethodName = stripTestPrefix(methodName);
         }
-        testExecutionEngine.runTest(getTestBean(), caseId, prepareData, targetMethodName);
+        // Pass the test class (for data path resolution) and the test bean (for method invocation)
+        testExecutionEngine.runTest(getClass(), getTestBean(), caseId, prepareData, targetMethodName);
     }
 
     /**
@@ -107,7 +108,7 @@ public abstract class TestifyTestBase extends AbstractTestNGSpringContextTests {
      * @param methodName  the target method name to invoke
      */
     protected void runTest(String caseId, PrepareData prepareData, String methodName) {
-        testExecutionEngine.runTest(getTestBean(), caseId, prepareData, methodName);
+        testExecutionEngine.runTest(getClass(), getTestBean(), caseId, prepareData, methodName);
     }
 
     /**

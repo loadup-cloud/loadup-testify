@@ -3,6 +3,8 @@ package com.loadup.testify.common.util;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -31,11 +33,22 @@ public final class PathUtils {
         URL resource = testClass.getClassLoader().getResource(packagePath);
         
         if (resource != null) {
-            return Paths.get(resource.getPath());
+            try {
+                // Convert URL to URI first to properly handle URL-encoded characters
+                URI uri = resource.toURI();
+                Path path = Paths.get(uri);
+                log.debug("Test data directory resolved from classpath: {}", path);
+                return path;
+            } catch (URISyntaxException e) {
+                log.warn("Failed to convert URL to URI: {}, falling back to getPath()", resource, e);
+                return Paths.get(resource.getPath());
+            }
         }
         
         // Fall back to src/test/resources
-        return Paths.get("src/test/resources", packagePath);
+        Path fallbackPath = Paths.get("src/test/resources", packagePath);
+        log.debug("Test data directory fallback: {}", fallbackPath);
+        return fallbackPath;
     }
 
     /**

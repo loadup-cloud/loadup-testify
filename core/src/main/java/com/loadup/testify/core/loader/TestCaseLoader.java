@@ -95,13 +95,20 @@ public class TestCaseLoader {
             TestCaseConfig config = yamlMapper.readValue(is, TestCaseConfig.class);
             config.setCaseId(caseId);
 
-            // Resolve variables in the configuration
+            // Clear the global pool and capture fresh variables for this test case
+            SharedVariablePool.clear();
+            
+            // Resolve variables in the configuration (this captures to SharedVariablePool)
             resolveVariablesInConfig(config);
+            
+            // Copy captured variables to PrepareData for per-test-case scoping
+            Map<String, Object> capturedVariables = SharedVariablePool.getAll();
 
             return PrepareData.builder()
                     .caseId(caseId)
                     .config(config)
                     .loaded(true)
+                    .capturedVariables(capturedVariables)
                     .build();
         } catch (IOException e) {
             log.error("Failed to load test case config for: {}", caseId, e);

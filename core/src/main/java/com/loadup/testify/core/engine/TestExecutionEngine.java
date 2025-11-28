@@ -40,12 +40,13 @@ public class TestExecutionEngine {
     /**
      * Execute a test case.
      *
-     * @param testInstance the test instance (containing the method under test)
+     * @param testClass    the test class (for test data path resolution)
+     * @param testBean     the test bean instance (containing the method under test)
      * @param caseId       the case ID
      * @param prepareData  the prepared test data
      * @param methodName   the name of the method to invoke (fallback if not specified in config)
      */
-    public void runTest(Object testInstance, String caseId, PrepareData prepareData, String methodName) {
+    public void runTest(Class<?> testClass, Object testBean, String caseId, PrepareData prepareData, String methodName) {
         TestCaseConfig config = prepareData.getConfig();
         if (config == null) {
             throw new TestifyException("Test case configuration not found for case: " + caseId);
@@ -61,22 +62,28 @@ public class TestExecutionEngine {
         }
 
         try {
-            // Note: Do NOT clear SharedVariablePool here as variables were captured during test case loading
+            // Restore captured variables from PrepareData to SharedVariablePool
+            // This ensures the same variables captured during DataProvider are available
+            // when resolving ExpectedData references
+            SharedVariablePool.clear();
+            if (prepareData.getCapturedVariables() != null) {
+                prepareData.getCapturedVariables().forEach(SharedVariablePool::put);
+            }
 
-            // 1. Prepare database data
-            prepareDataService.prepareData(testInstance.getClass(), caseId);
+            // 1. Prepare database data (use testClass for path resolution)
+            prepareDataService.prepareData(testClass, caseId);
 
-            // 2. Find and invoke the test method with matching parameter count
+            // 2. Find and invoke the test method with matching parameter count (use testBean for invocation)
             int expectedArgCount = config.getArgs() != null ? config.getArgs().size() : 0;
-            Method method = findMethod(testInstance.getClass(), targetMethod, expectedArgCount);
+            Method method = findMethod(testBean.getClass(), targetMethod, expectedArgCount);
             Object[] args = testCaseLoader.convertArgs(config, method);
-            Object result = invokeMethod(testInstance, method, args);
+            Object result = invokeMethod(testBean, method, args);
 
             // 3. Assert response
             assertResponse(result, config);
 
-            // 4. Assert database state
-            assertDatabaseState(testInstance.getClass(), caseId, config);
+            // 4. Assert database state (use testClass for path resolution)
+            assertDatabaseState(testClass, caseId, config);
 
             log.info("Test case {} passed", caseId);
 

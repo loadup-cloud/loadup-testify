@@ -30,6 +30,7 @@ public class PrepareDataService {
 
     /**
      * Prepare test data by loading CSV files from the PrepareData directory and inserting into the database.
+     * This method first clears the target tables, then inserts the data.
      *
      * @param testClass the test class
      * @param caseId    the case ID
@@ -44,6 +45,14 @@ public class PrepareDataService {
         }
 
         Path[] csvFiles = PathUtils.getCsvFiles(prepareDataDir);
+        
+        // First, clear the tables to be populated (in reverse order to handle foreign keys)
+        for (int i = csvFiles.length - 1; i >= 0; i--) {
+            String tableName = PathUtils.extractTableName(csvFiles[i]);
+            clearTables(tableName);
+        }
+        
+        // Then, insert the data
         for (Path csvFile : csvFiles) {
             String tableName = PathUtils.extractTableName(csvFile);
             insertData(tableName, csvFile);

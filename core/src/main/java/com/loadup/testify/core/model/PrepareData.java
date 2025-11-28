@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * Model class representing prepared test data for a test case.
  */
@@ -34,4 +37,11 @@ public class PrepareData {
      * Error message if loading failed.
      */
     private String errorMessage;
+
+    /**
+     * Captured variables for this test case.
+     * Used to reference Datafaker-generated values across PrepareData and ExpectedData.
+     */
+    @Builder.Default
+    private Map<String, Object> capturedVariables = new ConcurrentHashMap<>();
 }

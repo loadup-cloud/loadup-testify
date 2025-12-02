@@ -16453,30 +16453,3 @@
 暂无
 
 
-
-
-**响应状态码-401**:
-
-
-**响应参数**:
-
-
-| 参数名称 | 参数说明 | 类型 | schema |
-| -------- | -------- | ----- |----- | 
-|success|成功标志|boolean||
-|message|返回处理消息|string||
-|code|返回代码|integer(int32)|integer(int32)|
-|result|返回数据对象|object||
-|timestamp|时间戳|integer(int64)|integer(int64)|
-
-
-**响应示例**:
-```javascript
-{
-	"success": true,
-	"message": "",
-	"code": 0,
-	"result": {},
-	"timestamp": 0
-}
-```

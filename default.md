@@ -54,10 +54,6 @@
 |&emsp;&emsp;tableName|允许的表名||false|string||
 |&emsp;&emsp;fieldName|允许的字段名||false|string||
 |&emsp;&emsp;status|状态||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
 
 
 
@@ -91,10 +87,6 @@
 |&emsp;&emsp;tableName|允许的表名||false|string||
 |&emsp;&emsp;fieldName|允许的字段名||false|string||
 |&emsp;&emsp;status|状态||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
 
 
 
@@ -128,10 +120,6 @@
 |&emsp;&emsp;tableName|允许的表名||false|string||
 |&emsp;&emsp;fieldName|允许的字段名||false|string||
 |&emsp;&emsp;status|状态||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
 
 
 
@@ -258,11 +246,6 @@
 |&emsp;&emsp;route|是否路由菜单||false|boolean||
 |&emsp;&emsp;priority|优先级||false|integer(int32)||
 |&emsp;&emsp;status|状态||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人登录名称||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 
 
 
@@ -299,11 +282,6 @@
 |&emsp;&emsp;route|是否路由菜单||false|boolean||
 |&emsp;&emsp;priority|优先级||false|integer(int32)||
 |&emsp;&emsp;status|状态||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人登录名称||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 
 
 
@@ -340,11 +318,6 @@
 |&emsp;&emsp;route|是否路由菜单||false|boolean||
 |&emsp;&emsp;priority|优先级||false|integer(int32)||
 |&emsp;&emsp;status|状态||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人登录名称||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 
 
 
@@ -439,11 +412,6 @@
 |&emsp;&emsp;route|是否路由菜单||false|boolean||
 |&emsp;&emsp;priority|优先级||false|integer(int32)||
 |&emsp;&emsp;status|状态||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人登录名称||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
 
@@ -541,10 +509,6 @@
 |&emsp;&emsp;roleName|部门角色名称||false|string||
 |&emsp;&emsp;roleCode|部门角色编码||false|string||
 |&emsp;&emsp;description|描述||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
 
 
 
@@ -579,10 +543,6 @@
 |&emsp;&emsp;roleName|部门角色名称||false|string||
 |&emsp;&emsp;roleCode|部门角色编码||false|string||
 |&emsp;&emsp;description|描述||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
 
 
 
@@ -617,10 +577,6 @@
 |&emsp;&emsp;roleName|部门角色名称||false|string||
 |&emsp;&emsp;roleCode|部门角色编码||false|string||
 |&emsp;&emsp;description|描述||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
 
 
 
@@ -684,10 +640,6 @@
 |&emsp;&emsp;roleName|部门角色名称||false|string||
 |&emsp;&emsp;roleCode|部门角色编码||false|string||
 |&emsp;&emsp;description|描述||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
 |deptId||query|false|string||
@@ -1010,11 +962,6 @@
 |&emsp;&emsp;name|职务名称||false|string||
 |&emsp;&emsp;postRank|职级||false|string||
 |&emsp;&emsp;companyId|公司id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|组织机构编码||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 
 
@@ -1050,11 +997,6 @@
 |&emsp;&emsp;name|职务名称||false|string||
 |&emsp;&emsp;postRank|职级||false|string||
 |&emsp;&emsp;companyId|公司id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|组织机构编码||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 
 
@@ -1090,11 +1032,6 @@
 |&emsp;&emsp;name|职务名称||false|string||
 |&emsp;&emsp;postRank|职级||false|string||
 |&emsp;&emsp;companyId|公司id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|组织机构编码||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 
 
@@ -1217,11 +1154,6 @@
 |&emsp;&emsp;name|职务名称||false|string||
 |&emsp;&emsp;postRank|职级||false|string||
 |&emsp;&emsp;companyId|公司id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|组织机构编码||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
@@ -1320,8 +1252,6 @@
 |&emsp;&emsp;tableDataId|数据id||false|string||
 |&emsp;&emsp;fileId|关联文件id||false|string||
 |&emsp;&emsp;fileType|文档类型（folder:文件夹 excel:excel doc:word pp:ppt image:图片  archive:其他文档 video:视频）||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
 
 
 
@@ -1356,8 +1286,6 @@
 |&emsp;&emsp;tableDataId|数据id||false|string||
 |&emsp;&emsp;fileId|关联文件id||false|string||
 |&emsp;&emsp;fileType|文档类型（folder:文件夹 excel:excel doc:word pp:ppt image:图片  archive:其他文档 video:视频）||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
 
 
 
@@ -1392,8 +1320,6 @@
 |&emsp;&emsp;tableDataId|数据id||false|string||
 |&emsp;&emsp;fileId|关联文件id||false|string||
 |&emsp;&emsp;fileType|文档类型（folder:文件夹 excel:excel doc:word pp:ppt image:图片  archive:其他文档 video:视频）||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
 
 
 
@@ -1457,8 +1383,6 @@
 |&emsp;&emsp;tableDataId|数据id||false|string||
 |&emsp;&emsp;fileId|关联文件id||false|string||
 |&emsp;&emsp;fileType|文档类型（folder:文件夹 excel:excel doc:word pp:ppt image:图片  archive:其他文档 video:视频）||false|string||
-|&emsp;&emsp;createBy|创建人登录名称||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
 
@@ -1556,10 +1480,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleClass|规则实现类||false|string||
 |&emsp;&emsp;ruleParams|规则参数||false|string||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 
 
 
@@ -1594,10 +1514,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleClass|规则实现类||false|string||
 |&emsp;&emsp;ruleParams|规则参数||false|string||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 
 
 
@@ -1632,10 +1548,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleClass|规则实现类||false|string||
 |&emsp;&emsp;ruleParams|规则参数||false|string||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 
 
 
@@ -1699,10 +1611,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleClass|规则实现类||false|string||
 |&emsp;&emsp;ruleParams|规则参数||false|string||
-|&emsp;&emsp;updateBy|修改人||false|string||
-|&emsp;&emsp;updateTime|修改时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
 
@@ -1805,11 +1713,6 @@
 |&emsp;&emsp;dbName|数据库名称||false|string||
 |&emsp;&emsp;dbUsername|用户名||false|string||
 |&emsp;&emsp;dbPassword|密码||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 
 
@@ -1850,11 +1753,6 @@
 |&emsp;&emsp;dbName|数据库名称||false|string||
 |&emsp;&emsp;dbUsername|用户名||false|string||
 |&emsp;&emsp;dbPassword|密码||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 
 
@@ -1895,11 +1793,6 @@
 |&emsp;&emsp;dbName|数据库名称||false|string||
 |&emsp;&emsp;dbUsername|用户名||false|string||
 |&emsp;&emsp;dbPassword|密码||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 
 
@@ -1969,11 +1862,6 @@
 |&emsp;&emsp;dbName|数据库名称||false|string||
 |&emsp;&emsp;dbUsername|用户名||false|string||
 |&emsp;&emsp;dbPassword|密码||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;tenantId|租户ID||false|integer(int32)||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
@@ -2074,10 +1962,6 @@
 |&emsp;&emsp;toUserId|发送给用户id(允许为空)||false|string||
 |&emsp;&emsp;commentId|评论id(允许为空，不为空时，则为回复)||false|string||
 |&emsp;&emsp;commentContent|回复内容||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 
 
 
@@ -2114,10 +1998,6 @@
 |&emsp;&emsp;toUserId|发送给用户id(允许为空)||false|string||
 |&emsp;&emsp;commentId|评论id(允许为空，不为空时，则为回复)||false|string||
 |&emsp;&emsp;commentContent|回复内容||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 
 
 
@@ -2181,10 +2061,6 @@
 |&emsp;&emsp;toUserId|发送给用户id(允许为空)||false|string||
 |&emsp;&emsp;commentId|评论id(允许为空，不为空时，则为回复)||false|string||
 |&emsp;&emsp;commentContent|回复内容||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 
 
 
@@ -2221,10 +2097,6 @@
 |&emsp;&emsp;toUserId|发送给用户id(允许为空)||false|string||
 |&emsp;&emsp;commentId|评论id(允许为空，不为空时，则为回复)||false|string||
 |&emsp;&emsp;commentContent|回复内容||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 
 
 
@@ -2317,10 +2189,6 @@
 |&emsp;&emsp;toUserId|发送给用户id(允许为空)||false|string||
 |&emsp;&emsp;commentId|评论id(允许为空，不为空时，则为回复)||false|string||
 |&emsp;&emsp;commentContent|回复内容||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
 
@@ -2359,10 +2227,6 @@
 |&emsp;&emsp;toUserId|发送给用户id(允许为空)||false|string||
 |&emsp;&emsp;commentId|评论id(允许为空，不为空时，则为回复)||false|string||
 |&emsp;&emsp;commentContent|回复内容||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 
 
 
@@ -2399,10 +2263,6 @@
 |&emsp;&emsp;toUserId|发送给用户id(允许为空)||false|string||
 |&emsp;&emsp;commentId|评论id(允许为空，不为空时，则为回复)||false|string||
 |&emsp;&emsp;commentContent|回复内容||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 
 
 
@@ -2527,10 +2387,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleJson|规则JSON||false|string||
 |&emsp;&emsp;ruleDescription|规则描述||false|string||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 
 
 
@@ -2565,10 +2421,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleJson|规则JSON||false|string||
 |&emsp;&emsp;ruleDescription|规则描述||false|string||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 
 
 
@@ -2603,10 +2455,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleJson|规则JSON||false|string||
 |&emsp;&emsp;ruleDescription|规则描述||false|string||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 
 
 
@@ -2670,10 +2518,6 @@
 |&emsp;&emsp;ruleCode|规则Code||false|string||
 |&emsp;&emsp;ruleJson|规则JSON||false|string||
 |&emsp;&emsp;ruleDescription|规则描述||false|string||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新时间||false|string(date-time)||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建时间||false|string(date-time)||
 |pageNo||query|false|integer(int32)||
 |pageSize||query|false|integer(int32)||
 
@@ -2797,11 +2641,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentVisitHistory|文档访问历史|body|true|DocumentVisitHistory|DocumentVisitHistory|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
 |&emsp;&emsp;documentTitle|文档标题||false|string||
@@ -2836,11 +2675,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentVisitHistory|文档访问历史|body|true|DocumentVisitHistory|DocumentVisitHistory|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
 |&emsp;&emsp;documentTitle|文档标题||false|string||
@@ -2875,11 +2709,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentVisitHistory|文档访问历史|body|true|DocumentVisitHistory|DocumentVisitHistory|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
 |&emsp;&emsp;documentTitle|文档标题||false|string||
@@ -2943,11 +2772,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentVisitHistory|文档访问历史|query|true|DocumentVisitHistory|DocumentVisitHistory|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
 |&emsp;&emsp;documentTitle|文档标题||false|string||
@@ -3045,11 +2869,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentLibrary|知识库|body|true|DocumentLibrary|DocumentLibrary|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;title|文档标题||false|string||
 |&emsp;&emsp;tags|文档标签||false|string||
 |&emsp;&emsp;content|文档内容||false|string||
@@ -3086,11 +2905,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentLibrary|知识库|body|true|DocumentLibrary|DocumentLibrary|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;title|文档标题||false|string||
 |&emsp;&emsp;tags|文档标签||false|string||
 |&emsp;&emsp;content|文档内容||false|string||
@@ -3127,11 +2941,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentLibrary|知识库|body|true|DocumentLibrary|DocumentLibrary|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;title|文档标题||false|string||
 |&emsp;&emsp;tags|文档标签||false|string||
 |&emsp;&emsp;content|文档内容||false|string||
@@ -3255,11 +3064,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentLibrary|知识库|query|true|DocumentLibrary|DocumentLibrary|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;title|文档标题||false|string||
 |&emsp;&emsp;tags|文档标签||false|string||
 |&emsp;&emsp;content|文档内容||false|string||
@@ -3386,11 +3190,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |testStandards|测试标准|body|true|TestStandards|TestStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;content|内容||false|string||
@@ -3427,11 +3226,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |testStandards|测试标准|body|true|TestStandards|TestStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;content|内容||false|string||
@@ -3468,11 +3262,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |testStandards|测试标准|body|true|TestStandards|TestStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;content|内容||false|string||
@@ -3538,11 +3327,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |testStandards|测试标准|query|true|TestStandards|TestStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;content|内容||false|string||
@@ -3642,11 +3426,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |radiateType|辐射源类型|body|true|RadiateType|RadiateType|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;managementNo|管理编号||false|string||
@@ -3683,11 +3462,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |radiateType|辐射源类型|body|true|RadiateType|RadiateType|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;managementNo|管理编号||false|string||
@@ -3724,11 +3498,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |radiateType|辐射源类型|body|true|RadiateType|RadiateType|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;managementNo|管理编号||false|string||
@@ -3794,11 +3563,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |radiateType|辐射源类型|query|true|RadiateType|RadiateType|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;managementNo|管理编号||false|string||
@@ -3899,11 +3663,6 @@
 |nasaDataRecord|NASA数据管理|body|true|NasaDataRecord|NasaDataRecord|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;deviceType|器件类型||false|string||
 |&emsp;&emsp;deviceName|器件名称||false|string||
 |&emsp;&emsp;deviceMode|器件型号||false|string||
@@ -3949,11 +3708,6 @@
 |nasaDataRecord|NASA数据管理|body|true|NasaDataRecord|NasaDataRecord|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;deviceType|器件类型||false|string||
 |&emsp;&emsp;deviceName|器件名称||false|string||
 |&emsp;&emsp;deviceMode|器件型号||false|string||
@@ -3999,11 +3753,6 @@
 |nasaDataRecord|NASA数据管理|body|true|NasaDataRecord|NasaDataRecord|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;deviceType|器件类型||false|string||
 |&emsp;&emsp;deviceName|器件名称||false|string||
 |&emsp;&emsp;deviceMode|器件型号||false|string||
@@ -4105,11 +3854,6 @@
 |nasaDataRecord|NASA数据管理|query|true|NasaDataRecord|NasaDataRecord|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;deviceType|器件类型||false|string||
 |&emsp;&emsp;deviceName|器件名称||false|string||
 |&emsp;&emsp;deviceMode|器件型号||false|string||
@@ -4218,11 +3962,6 @@
 |localDatabase|当期数据库记录|body|true|LocalDatabase|LocalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;type|类型||false|string||
@@ -4306,11 +4045,6 @@
 |localDatabase|当期数据库记录|body|true|LocalDatabase|LocalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;type|类型||false|string||
@@ -4394,11 +4128,6 @@
 |localDatabase|当期数据库记录|body|true|LocalDatabase|LocalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;type|类型||false|string||
@@ -4567,11 +4296,6 @@
 |localDatabase|当期数据库记录|query|true|LocalDatabase|LocalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;type|类型||false|string||
@@ -4717,11 +4441,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |irradiationStandards|辐照标准|body|true|IrradiationStandards|IrradiationStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;environmentalTemperature|辐照环境温度||false|string||
@@ -4765,11 +4484,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |irradiationStandards|辐照标准|body|true|IrradiationStandards|IrradiationStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;environmentalTemperature|辐照环境温度||false|string||
@@ -4813,11 +4527,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |irradiationStandards|辐照标准|body|true|IrradiationStandards|IrradiationStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;environmentalTemperature|辐照环境温度||false|string||
@@ -4890,11 +4599,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |irradiationStandards|辐照标准|query|true|IrradiationStandards|IrradiationStandards|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|标准名称||false|string||
 |&emsp;&emsp;code|标准代码||false|string||
 |&emsp;&emsp;environmentalTemperature|辐照环境温度||false|string||
@@ -5002,11 +4706,6 @@
 |historicalDatabase|历史一期记录|body|true|HistoricalDatabase|HistoricalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;type|类型||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;clientName|委托方||false|string||
@@ -5052,11 +4751,6 @@
 |historicalDatabase|历史一期记录|body|true|HistoricalDatabase|HistoricalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;type|类型||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;clientName|委托方||false|string||
@@ -5102,11 +4796,6 @@
 |historicalDatabase|历史一期记录|body|true|HistoricalDatabase|HistoricalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;type|类型||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;clientName|委托方||false|string||
@@ -5208,11 +4897,6 @@
 |historicalDatabase|历史一期记录|query|true|HistoricalDatabase|HistoricalDatabase|
 |&emsp;&emsp;id|主键||false|string||
 |&emsp;&emsp;dataType|||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;type|类型||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;clientName|委托方||false|string||
@@ -5320,11 +5004,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentUser|试验人员|body|true|ExperimentUser|ExperimentUser|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;userId|人员||false|string||
 |&emsp;&emsp;userName|||false|string||
@@ -5359,11 +5038,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentUser|试验人员|body|true|ExperimentUser|ExperimentUser|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;userId|人员||false|string||
 |&emsp;&emsp;userName|||false|string||
@@ -5398,11 +5072,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentUsers|试验人员|body|true|array|ExperimentUser|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;userId|人员||false|string||
 |&emsp;&emsp;userName|||false|string||
@@ -5437,11 +5106,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentUser|试验人员|body|true|ExperimentUser|ExperimentUser|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;userId|人员||false|string||
 |&emsp;&emsp;userName|||false|string||
@@ -5534,11 +5198,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentUser|试验人员|query|true|ExperimentUser|ExperimentUser|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;userId|人员||false|string||
 |&emsp;&emsp;userName|||false|string||
@@ -5636,11 +5295,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentTestProcess|测试过程|body|true|ExperimentTestProcess|ExperimentTestProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -5741,11 +5395,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentTestProcess|测试过程|body|true|ExperimentTestProcess|ExperimentTestProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -5846,11 +5495,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentTestProcess|测试过程|body|true|ExperimentTestProcess|ExperimentTestProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -6009,11 +5653,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentTestProcess|测试过程|query|true|ExperimentTestProcess|ExperimentTestProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -6177,11 +5816,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentSampleInfo|试验样品信息|body|true|ExperimentSampleInfo|ExperimentSampleInfo|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleType|样品类型||false|string||
 |&emsp;&emsp;sampleModel|样品型号||false|string||
@@ -6220,11 +5854,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentSampleInfo|试验样品信息|body|true|ExperimentSampleInfo|ExperimentSampleInfo|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleType|样品类型||false|string||
 |&emsp;&emsp;sampleModel|样品型号||false|string||
@@ -6263,11 +5892,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentSampleInfo|试验样品信息|body|true|ExperimentSampleInfo|ExperimentSampleInfo|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleType|样品类型||false|string||
 |&emsp;&emsp;sampleModel|样品型号||false|string||
@@ -6306,11 +5930,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentSampleInfo|试验样品信息|query|true|ExperimentSampleInfo|ExperimentSampleInfo|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleType|样品类型||false|string||
 |&emsp;&emsp;sampleModel|样品型号||false|string||
@@ -6378,11 +5997,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentSampleInfo|试验样品信息|query|true|ExperimentSampleInfo|ExperimentSampleInfo|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleType|样品类型||false|string||
 |&emsp;&emsp;sampleModel|样品型号||false|string||
@@ -6565,11 +6179,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewRule|试验评定规则|body|true|ExperimentReviewRule|ExperimentReviewRule|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;processType|试验流程标准||false|string||
 |&emsp;&emsp;title|建议标题||false|string||
 |&emsp;&emsp;result|评定结果||false|string||
@@ -6607,11 +6216,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewRule|试验评定规则|body|true|ExperimentReviewRule|ExperimentReviewRule|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;processType|试验流程标准||false|string||
 |&emsp;&emsp;title|建议标题||false|string||
 |&emsp;&emsp;result|评定结果||false|string||
@@ -6649,11 +6253,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewRule|试验评定规则|body|true|ExperimentReviewRule|ExperimentReviewRule|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;processType|试验流程标准||false|string||
 |&emsp;&emsp;title|建议标题||false|string||
 |&emsp;&emsp;result|评定结果||false|string||
@@ -6720,11 +6319,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewRule|试验评定规则|query|true|ExperimentReviewRule|ExperimentReviewRule|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;processType|试验流程标准||false|string||
 |&emsp;&emsp;title|建议标题||false|string||
 |&emsp;&emsp;result|评定结果||false|string||
@@ -6825,11 +6419,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewDetail|试验评定真值表|body|true|ExperimentReviewDetail|ExperimentReviewDetail|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentName|||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
@@ -6869,11 +6458,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewDetail|试验评定真值表|body|true|ExperimentReviewDetail|ExperimentReviewDetail|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentName|||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
@@ -6913,11 +6497,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewDetail|试验评定真值表|body|true|ExperimentReviewDetail|ExperimentReviewDetail|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentName|||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
@@ -6986,11 +6565,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReviewDetail|试验评定真值表|query|true|ExperimentReviewDetail|ExperimentReviewDetail|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentName|||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
@@ -7093,11 +6667,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReview|试验评定结果|body|true|ExperimentReview|ExperimentReview|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentName|||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
@@ -7153,11 +6722,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReview|试验评定结果|body|true|ExperimentReview|ExperimentReview|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentName|||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
@@ -7213,11 +6777,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReview|试验评定结果|body|true|ExperimentReview|ExperimentReview|
 |&emsp;&emsp;id|id||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;experimentName|||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
@@ -7332,11 +6891,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|query|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -7711,11 +7265,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -7763,11 +7312,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -7815,11 +7359,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -7867,11 +7406,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -7919,11 +7453,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -7971,11 +7500,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -8023,11 +7547,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -8075,11 +7594,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -8127,11 +7641,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|body|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -8237,11 +7746,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentReport|试验报告|query|true|ExperimentReport|ExperimentReport|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleInfo|样品信息||false|string||
 |&emsp;&emsp;imgUrls|偏置原理图||false|string||
@@ -8352,11 +7856,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRating|试验评分|body|true|ExperimentRating|ExperimentRating|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|实验ID||false|string||
 |&emsp;&emsp;rateUserId|评分人||false|string||
 |&emsp;&emsp;totalScore|总分数||false|string||
@@ -8404,11 +7903,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRating|试验评分|body|true|ExperimentRating|ExperimentRating|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|实验ID||false|string||
 |&emsp;&emsp;rateUserId|评分人||false|string||
 |&emsp;&emsp;totalScore|总分数||false|string||
@@ -8456,11 +7950,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRating|试验评分|body|true|ExperimentRating|ExperimentRating|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|实验ID||false|string||
 |&emsp;&emsp;rateUserId|评分人||false|string||
 |&emsp;&emsp;totalScore|总分数||false|string||
@@ -8508,11 +7997,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRating|试验评分|body|true|ExperimentRating|ExperimentRating|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|实验ID||false|string||
 |&emsp;&emsp;rateUserId|评分人||false|string||
 |&emsp;&emsp;totalScore|总分数||false|string||
@@ -8589,11 +8073,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRating|试验评分|query|true|ExperimentRating|ExperimentRating|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|实验ID||false|string||
 |&emsp;&emsp;rateUserId|评分人||false|string||
 |&emsp;&emsp;totalScore|总分数||false|string||
@@ -8704,11 +8183,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRadiationProcess|辐照过程|body|true|ExperimentRadiationProcess|ExperimentRadiationProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|剂量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -8765,11 +8239,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRadiationProcess|辐照过程|body|true|ExperimentRadiationProcess|ExperimentRadiationProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|剂量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -8826,11 +8295,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRadiationProcess|辐照过程|body|true|ExperimentRadiationProcess|ExperimentRadiationProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|剂量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -8945,11 +8409,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentRadiationProcess|辐照过程|query|true|ExperimentRadiationProcess|ExperimentRadiationProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|剂量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -9069,11 +8528,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentLog|试验日志|body|true|ExperimentLog|ExperimentLog|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;logContent|日志内容||false|string||
 
@@ -9106,11 +8560,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentLog|试验日志|body|true|ExperimentLog|ExperimentLog|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;logContent|日志内容||false|string||
 
@@ -9143,11 +8592,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentLog|试验日志|body|true|ExperimentLog|ExperimentLog|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;logContent|日志内容||false|string||
 
@@ -9209,11 +8653,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentLog|试验日志|query|true|ExperimentLog|ExperimentLog|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;logContent|日志内容||false|string||
 |pageNo||query|false|integer(int32)||
@@ -9309,11 +8748,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentIrradiationBoard|试验辐照板信息|body|true|ExperimentIrradiationBoard|ExperimentIrradiationBoard|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -9373,11 +8807,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentIrradiationBoard|试验辐照板信息|body|true|ExperimentIrradiationBoard|ExperimentIrradiationBoard|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -9437,11 +8866,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentIrradiationBoard|试验辐照板信息|body|true|ExperimentIrradiationBoard|ExperimentIrradiationBoard|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -9530,11 +8954,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentIrradiationBoard|试验辐照板信息|query|true|ExperimentIrradiationBoard|ExperimentIrradiationBoard|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -9657,11 +9076,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentFile|试验文件|body|true|ExperimentFile|ExperimentFile|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;fileName|文件名称||false|string||
 |&emsp;&emsp;fileType|类型||false|string||
@@ -9696,11 +9110,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentFile|试验文件|body|true|ExperimentFile|ExperimentFile|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;fileName|文件名称||false|string||
 |&emsp;&emsp;fileType|类型||false|string||
@@ -9766,11 +9175,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentFile|试验文件|body|true|ExperimentFile|ExperimentFile|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;fileName|文件名称||false|string||
 |&emsp;&emsp;fileType|类型||false|string||
@@ -9894,11 +9298,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentFile|试验文件|query|true|ExperimentFile|ExperimentFile|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;fileName|文件名称||false|string||
 |&emsp;&emsp;fileType|类型||false|string||
@@ -9996,11 +9395,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDoc|试验文档|body|true|ExperimentDoc|ExperimentDoc|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;docType|文档类型,可用值:辐照试验计划表,试验报告评审表,设备使用记录表,试验报告,辐照试验总结单||false|string||
 |&emsp;&emsp;filePath|文件地址||false|string||
@@ -10035,11 +9429,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDoc|试验文档|body|true|ExperimentDoc|ExperimentDoc|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;docType|文档类型,可用值:辐照试验计划表,试验报告评审表,设备使用记录表,试验报告,辐照试验总结单||false|string||
 |&emsp;&emsp;filePath|文件地址||false|string||
@@ -10074,11 +9463,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDoc|试验文档|body|true|ExperimentDoc|ExperimentDoc|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;docType|文档类型,可用值:辐照试验计划表,试验报告评审表,设备使用记录表,试验报告,辐照试验总结单||false|string||
 |&emsp;&emsp;filePath|文件地址||false|string||
@@ -10200,11 +9584,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDoc|试验文档|query|true|ExperimentDoc|ExperimentDoc|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;docType|文档类型,可用值:辐照试验计划表,试验报告评审表,设备使用记录表,试验报告,辐照试验总结单||false|string||
 |&emsp;&emsp;filePath|文件地址||false|string||
@@ -10362,11 +9741,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationEquipment|试验加偏设备信息|body|true|ExperimentDeviationEquipment|ExperimentDeviationEquipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -10444,11 +9818,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationEquipment|试验加偏设备信息|body|true|ExperimentDeviationEquipment|ExperimentDeviationEquipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -10526,11 +9895,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationEquipment|试验加偏设备信息|body|true|ExperimentDeviationEquipment|ExperimentDeviationEquipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -10637,11 +10001,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationEquipment|试验加偏设备信息|query|true|ExperimentDeviationEquipment|ExperimentDeviationEquipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -10782,11 +10141,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationCondition|试验偏置条件信息|body|true|ExperimentDeviationCondition|ExperimentDeviationCondition|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -10855,11 +10209,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationCondition|试验偏置条件信息|body|true|ExperimentDeviationCondition|ExperimentDeviationCondition|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -10928,11 +10277,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationCondition|试验偏置条件信息|body|true|ExperimentDeviationCondition|ExperimentDeviationCondition|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -11030,11 +10374,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentDeviationCondition|试验偏置条件信息|query|true|ExperimentDeviationCondition|ExperimentDeviationCondition|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;experimentId|试验ID||false|string||
 |&emsp;&emsp;sampleId|样品ID||false|string||
 |&emsp;&emsp;sampleInfo|试验样品信息||false|ExperimentSampleInfo|ExperimentSampleInfo|
@@ -11166,11 +10505,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentAnnealProcess|退火过程|body|true|ExperimentAnnealProcess|ExperimentAnnealProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -11328,11 +10662,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentAnnealProcess|退火过程|body|true|ExperimentAnnealProcess|ExperimentAnnealProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -11490,11 +10819,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentAnnealProcess|退火过程|body|true|ExperimentAnnealProcess|ExperimentAnnealProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -11681,11 +11005,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experimentAnnealProcess|退火过程|query|true|ExperimentAnnealProcess|ExperimentAnnealProcess|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;radiationSource| 辐照源||false|string||
 |&emsp;&emsp;measurementRate|计量率||false|string||
 |&emsp;&emsp;radiationStandard|辐照标准||false|string||
@@ -11908,11 +11227,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|body|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -12226,11 +11540,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|body|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -12543,11 +11852,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|body|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -12860,11 +12164,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|body|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -13176,11 +12475,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|body|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -13521,11 +12815,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|body|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -13838,11 +13127,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|body|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -14183,11 +13467,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |experiment|试验管理|query|true|Experiment|Experiment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;indexNo|序号||false|integer(int32)||
 |&emsp;&emsp;experimentNo|试验编号||false|string||
 |&emsp;&emsp;name|名称||false|string||
@@ -14592,11 +13871,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |equipment|设备|body|true|Equipment|Equipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;factoryNo|出厂编号||false|string||
@@ -14634,11 +13908,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |equipment|设备|body|true|Equipment|Equipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;factoryNo|出厂编号||false|string||
@@ -14676,11 +13945,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |equipment|设备|body|true|Equipment|Equipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;factoryNo|出厂编号||false|string||
@@ -14747,11 +14011,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |equipment|设备|query|true|Equipment|Equipment|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;factoryNo|出厂编号||false|string||
@@ -14852,11 +14111,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentFavorites|我的收藏文档|body|true|DocumentFavorites|DocumentFavorites|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;documentTitle|文档名称||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
@@ -14890,11 +14144,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentFavorites|我的收藏文档|body|true|DocumentFavorites|DocumentFavorites|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;documentTitle|文档名称||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
@@ -14928,11 +14177,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentFavorites|我的收藏文档|body|true|DocumentFavorites|DocumentFavorites|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;documentTitle|文档名称||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
@@ -14995,11 +14239,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |documentFavorites|我的收藏文档|query|true|DocumentFavorites|DocumentFavorites|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;documentId|文档ID||false|string||
 |&emsp;&emsp;documentTitle|文档名称||false|string||
 |&emsp;&emsp;userId|用户ID||false|string||
@@ -15096,10 +14335,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |searchResult|系统预搜索的信息模型|body|true|SearchResult|SearchResult|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 |&emsp;&emsp;dataType|数据类型||false|integer(int32)||
 |&emsp;&emsp;content|搜索内容||false|string||
 |&emsp;&emsp;extentInfo|扩展信息||false|string||
@@ -15133,10 +14368,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |searchResult|系统预搜索的信息模型|body|true|SearchResult|SearchResult|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 |&emsp;&emsp;dataType|数据类型||false|integer(int32)||
 |&emsp;&emsp;content|搜索内容||false|string||
 |&emsp;&emsp;extentInfo|扩展信息||false|string||
@@ -15170,10 +14401,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |searchResult|系统预搜索的信息模型|body|true|SearchResult|SearchResult|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 |&emsp;&emsp;dataType|数据类型||false|integer(int32)||
 |&emsp;&emsp;content|搜索内容||false|string||
 |&emsp;&emsp;extentInfo|扩展信息||false|string||
@@ -15301,11 +14528,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |component|元器件|body|true|Component|Component|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;size|特征尺寸||false|string||
@@ -15346,11 +14568,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |component|元器件|body|true|Component|Component|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;size|特征尺寸||false|string||
@@ -15391,11 +14608,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |component|元器件|body|true|Component|Component|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;size|特征尺寸||false|string||
@@ -15465,11 +14677,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |component|元器件|query|true|Component|Component|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;model|型号||false|string||
 |&emsp;&emsp;size|特征尺寸||false|string||
@@ -15573,11 +14780,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |cnasTest|cnas测试参数列表|body|true|CnasTest|CnasTest|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;testTarget|检测对象||false|string||
 |&emsp;&emsp;parameter|参数||false|string||
 |&emsp;&emsp;testStandard|检测标准||false|string||
@@ -15612,11 +14814,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |cnasTest|cnas测试参数列表|body|true|CnasTest|CnasTest|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;testTarget|检测对象||false|string||
 |&emsp;&emsp;parameter|参数||false|string||
 |&emsp;&emsp;testStandard|检测标准||false|string||
@@ -15651,11 +14848,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |cnasTest|cnas测试参数列表|body|true|CnasTest|CnasTest|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;testTarget|检测对象||false|string||
 |&emsp;&emsp;parameter|参数||false|string||
 |&emsp;&emsp;testStandard|检测标准||false|string||
@@ -15719,11 +14911,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |cnasTest|cnas测试参数列表|query|true|CnasTest|CnasTest|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;testTarget|检测对象||false|string||
 |&emsp;&emsp;parameter|参数||false|string||
 |&emsp;&emsp;testStandard|检测标准||false|string||
@@ -15821,11 +15008,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |client|委托方|body|true|Client|Client|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;address|地址||false|string||
 
@@ -15858,11 +15040,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |client|委托方|body|true|Client|Client|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;address|地址||false|string||
 
@@ -15895,11 +15072,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |client|委托方|body|true|Client|Client|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;address|地址||false|string||
 
@@ -15961,11 +15133,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |client|委托方|query|true|Client|Client|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
-|&emsp;&emsp;sysOrgCode|所属部门||false|string||
 |&emsp;&emsp;name|名称||false|string||
 |&emsp;&emsp;address|地址||false|string||
 |pageNo||query|false|integer(int32)||
@@ -16243,10 +15410,6 @@
 | -------- | -------- | ----- | -------- | -------- | ------ |
 |stageData|暂存的数据|body|true|StageData|StageData|
 |&emsp;&emsp;id|主键||false|string||
-|&emsp;&emsp;createBy|创建人||false|string||
-|&emsp;&emsp;createTime|创建日期||false|string(date-time)||
-|&emsp;&emsp;updateBy|更新人||false|string||
-|&emsp;&emsp;updateTime|更新日期||false|string(date-time)||
 |&emsp;&emsp;bizId|||false|string||
 |&emsp;&emsp;dataType|数据类型||false|integer(int32)||
 |&emsp;&emsp;content|暂存的数据||false|string||
@@ -16416,10 +15579,6 @@
 |&emsp;&emsp;description|||false|string||
 |&emsp;&emsp;sortOrder|||false|integer(int32)||
 |&emsp;&emsp;status|||false|integer(int32)||
-|&emsp;&emsp;createBy|||false|string||
-|&emsp;&emsp;createTime|||false|string(date-time)||
-|&emsp;&emsp;updateBy|||false|string||
-|&emsp;&emsp;updateTime|||false|string(date-time)||
 |&emsp;&emsp;itemColor|||false|string||
 
 

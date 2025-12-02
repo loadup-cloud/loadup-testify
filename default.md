@@ -34,20 +34,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysTableWhiteList|sys_table_white_list对象|body|true|SysTableWhiteList|
-|id|主键id||false|string|
-|tableName|允许的表名||false|string|
-|fieldName|允许的字段名||false|string|
-|status|状态||false|string|
-
-
 ## 系统表白名单-添加
 
 
@@ -58,20 +44,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysTableWhiteList|sys_table_white_list对象|body|true|SysTableWhiteList|
-|id|主键id||false|string|
-|tableName|允许的表名||false|string|
-|fieldName|允许的字段名||false|string|
-|status|状态||false|string|
 
 
 ## 系统表白名单-通过id查询
@@ -86,16 +58,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 系统表白名单-通过id删除
 
 
@@ -108,16 +70,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 系统表白名单-批量删除
 
 
@@ -128,16 +80,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 角色首页配置
@@ -155,23 +97,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysRoleIndex|sys_role_index对象|body|true|SysRoleIndex|
-|id|id||false|string|
-|roleCode|角色编码||false|string|
-|url|路由地址||false|string|
-|component|组件||false|string|
-|route|是否路由菜单||false|boolean|
-|priority|优先级||false|integer(int32)|
-|status|状态||false|string|
-
-
 ## 角色首页配置-添加
 
 
@@ -182,23 +107,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysRoleIndex|sys_role_index对象|body|true|SysRoleIndex|
-|id|id||false|string|
-|roleCode|角色编码||false|string|
-|url|路由地址||false|string|
-|component|组件||false|string|
-|route|是否路由菜单||false|boolean|
-|priority|优先级||false|integer(int32)|
-|status|状态||false|string|
 
 
 ## 角色首页配置-通过id查询
@@ -213,16 +121,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 角色首页配置-通过code查询
 
 
@@ -233,16 +131,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|roleCode||query|true|string|
 
 
 ## 角色首页配置-分页列表查询
@@ -257,25 +145,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysRoleIndex|sys_role_index对象|query|true|SysRoleIndex|
-|id|id||false|string|
-|roleCode|角色编码||false|string|
-|url|路由地址||false|string|
-|component|组件||false|string|
-|route|是否路由菜单||false|boolean|
-|priority|优先级||false|integer(int32)|
-|status|状态||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 角色首页配置-通过id删除
 
 
@@ -288,16 +157,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 角色首页配置-批量删除
 
 
@@ -308,16 +167,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 部门角色
@@ -335,21 +184,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDepartRole|sys_depart_role对象|body|true|SysDepartRole|
-|id|id||false|string|
-|departId|部门id||false|string|
-|roleName|部门角色名称||false|string|
-|roleCode|部门角色编码||false|string|
-|description|描述||false|string|
-
-
 ## 部门角色-添加
 
 
@@ -360,21 +194,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDepartRole|sys_depart_role对象|body|true|SysDepartRole|
-|id|id||false|string|
-|departId|部门id||false|string|
-|roleName|部门角色名称||false|string|
-|roleCode|部门角色编码||false|string|
-|description|描述||false|string|
 
 
 ## 部门角色-通过id查询
@@ -389,16 +208,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 部门角色-分页列表查询
 
 
@@ -409,24 +218,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDepartRole|sys_depart_role对象|query|true|SysDepartRole|
-|id|id||false|string|
-|departId|部门id||false|string|
-|roleName|部门角色名称||false|string|
-|roleCode|部门角色编码||false|string|
-|description|描述||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-|deptId||query|false|string|
 
 
 ## 部门角色-通过id删除
@@ -441,16 +232,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 部门角色-批量删除
 
 
@@ -461,16 +242,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 部门权限表
@@ -488,20 +259,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDepartPermission|部门权限表|body|true|SysDepartPermission|
-|id|id||false|string|
-|departId|部门id||false|string|
-|permissionId|权限id||false|string|
-|dataRuleIds|数据规则id||false|string|
-
-
 ## 部门权限表-添加
 
 
@@ -512,20 +269,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDepartPermission|部门权限表|body|true|SysDepartPermission|
-|id|id||false|string|
-|departId|部门id||false|string|
-|permissionId|权限id||false|string|
-|dataRuleIds|数据规则id||false|string|
 
 
 ## 部门权限表-通过id查询
@@ -540,16 +283,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 部门权限表-分页列表查询
 
 
@@ -560,22 +293,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDepartPermission|部门权限表|query|true|SysDepartPermission|
-|id|id||false|string|
-|departId|部门id||false|string|
-|permissionId|权限id||false|string|
-|dataRuleIds|数据规则id||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 部门权限表-通过id删除
@@ -590,16 +307,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 部门权限表-批量删除
 
 
@@ -610,16 +317,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 职务表
@@ -637,22 +334,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysPosition|sys_position对象|body|true|SysPosition|
-|id|id||false|string|
-|code|职务编码||false|string|
-|name|职务名称||false|string|
-|postRank|职级||false|string|
-|companyId|公司id||false|string|
-|tenantId|租户ID||false|integer(int32)|
-
-
 ## 职务表-添加
 
 
@@ -663,22 +344,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysPosition|sys_position对象|body|true|SysPosition|
-|id|id||false|string|
-|code|职务编码||false|string|
-|name|职务名称||false|string|
-|postRank|职级||false|string|
-|companyId|公司id||false|string|
-|tenantId|租户ID||false|integer(int32)|
 
 
 ## 职务表-通过多个id查询
@@ -693,16 +358,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
-
-
 ## 职务表-通过id查询
 
 
@@ -713,16 +368,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 职务表-通过code查询
@@ -737,16 +382,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|code||query|true|string|
-
-
 ## 职务表-分页列表查询
 
 
@@ -757,24 +392,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysPosition|sys_position对象|query|true|SysPosition|
-|id|id||false|string|
-|code|职务编码||false|string|
-|name|职务名称||false|string|
-|postRank|职级||false|string|
-|companyId|公司id||false|string|
-|tenantId|租户ID||false|integer(int32)|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 职务表-通过id删除
@@ -789,16 +406,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 职务表-批量删除
 
 
@@ -809,16 +416,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 表单评论文件
@@ -836,21 +433,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysFormFile|sys_form_file对象|body|true|SysFormFile|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fileId|关联文件id||false|string|
-|fileType|文档类型（folder:文件夹 excel:excel doc:word pp:ppt image:图片  archive:其他文档 video:视频）||false|string|
-
-
 ## 表单评论文件-添加
 
 
@@ -861,21 +443,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysFormFile|sys_form_file对象|body|true|SysFormFile|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fileId|关联文件id||false|string|
-|fileType|文档类型（folder:文件夹 excel:excel doc:word pp:ppt image:图片  archive:其他文档 video:视频）||false|string|
 
 
 ## 表单评论文件-通过id查询
@@ -890,16 +457,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 表单评论文件-分页列表查询
 
 
@@ -910,23 +467,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysFormFile|sys_form_file对象|query|true|SysFormFile|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fileId|关联文件id||false|string|
-|fileType|文档类型（folder:文件夹 excel:excel doc:word pp:ppt image:图片  archive:其他文档 video:视频）||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 表单评论文件-通过id删除
@@ -941,16 +481,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 表单评论文件-批量删除
 
 
@@ -961,16 +491,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 填值规则
@@ -988,21 +508,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysFillRule|填值规则|body|true|SysFillRule|
-|id|主键ID||false|string|
-|ruleName|规则名称||false|string|
-|ruleCode|规则Code||false|string|
-|ruleClass|规则实现类||false|string|
-|ruleParams|规则参数||false|string|
-
-
 ## 填值规则-添加
 
 
@@ -1013,21 +518,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysFillRule|填值规则|body|true|SysFillRule|
-|id|主键ID||false|string|
-|ruleName|规则名称||false|string|
-|ruleCode|规则Code||false|string|
-|ruleClass|规则实现类||false|string|
-|ruleParams|规则参数||false|string|
 
 
 ## 填值规则-通过id查询
@@ -1042,16 +532,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 填值规则-分页列表查询
 
 
@@ -1062,23 +542,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysFillRule|填值规则|query|true|SysFillRule|
-|id|主键ID||false|string|
-|ruleName|规则名称||false|string|
-|ruleCode|规则Code||false|string|
-|ruleClass|规则实现类||false|string|
-|ruleParams|规则参数||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 填值规则-通过id删除
@@ -1093,16 +556,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 填值规则-批量删除
 
 
@@ -1113,16 +566,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 多数据源管理
@@ -1140,27 +583,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDataSource|sys_data_source对象|body|true|SysDataSource|
-|id|id||false|string|
-|code|数据源编码||false|string|
-|name|数据源名称||false|string|
-|remark|备注||false|string|
-|dbType|数据库类型||false|string|
-|dbDriver|驱动类||false|string|
-|dbUrl|数据源地址||false|string|
-|dbName|数据库名称||false|string|
-|dbUsername|用户名||false|string|
-|dbPassword|密码||false|string|
-|tenantId|租户ID||false|integer(int32)|
-
-
 ## 多数据源管理-添加
 
 
@@ -1171,27 +593,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDataSource|sys_data_source对象|body|true|SysDataSource|
-|id|id||false|string|
-|code|数据源编码||false|string|
-|name|数据源名称||false|string|
-|remark|备注||false|string|
-|dbType|数据库类型||false|string|
-|dbDriver|驱动类||false|string|
-|dbUrl|数据源地址||false|string|
-|dbName|数据库名称||false|string|
-|dbUsername|用户名||false|string|
-|dbPassword|密码||false|string|
-|tenantId|租户ID||false|integer(int32)|
 
 
 ## 多数据源管理-通过id查询
@@ -1206,16 +607,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 多数据源管理-分页列表查询
 
 
@@ -1226,29 +617,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDataSource|sys_data_source对象|query|true|SysDataSource|
-|id|id||false|string|
-|code|数据源编码||false|string|
-|name|数据源名称||false|string|
-|remark|备注||false|string|
-|dbType|数据库类型||false|string|
-|dbDriver|驱动类||false|string|
-|dbUrl|数据源地址||false|string|
-|dbName|数据库名称||false|string|
-|dbUsername|用户名||false|string|
-|dbPassword|密码||false|string|
-|tenantId|租户ID||false|integer(int32)|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 多数据源管理-通过id删除
@@ -1263,16 +631,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 多数据源管理-批量删除
 
 
@@ -1283,16 +641,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 系统评论回复表
@@ -1310,23 +658,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysComment|sys_comment对象|body|true|SysComment|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fromUserId|来源用户id||false|string|
-|toUserId|发送给用户id(允许为空)||false|string|
-|commentId|评论id(允许为空，不为空时，则为回复)||false|string|
-|commentContent|回复内容||false|string|
-
-
 ## 系统评论表-添加文件
 
 
@@ -1337,14 +668,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-暂无
 
 
 ## 系统评论回复表-添加
@@ -1359,23 +682,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysComment|sys_comment对象|body|true|SysComment|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fromUserId|来源用户id||false|string|
-|toUserId|发送给用户id(允许为空)||false|string|
-|commentId|评论id(允许为空，不为空时，则为回复)||false|string|
-|commentContent|回复内容||false|string|
-
-
 ## 系统评论表-添加文本
 
 
@@ -1386,23 +692,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysComment|sys_comment对象|body|true|SysComment|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fromUserId|来源用户id||false|string|
-|toUserId|发送给用户id(允许为空)||false|string|
-|commentId|评论id(允许为空，不为空时，则为回复)||false|string|
-|commentContent|回复内容||false|string|
 
 
 ## 系统评论表-添加文件
@@ -1417,14 +706,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-暂无
-
-
 ## 系统评论回复表-通过id查询
 
 
@@ -1435,16 +716,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 系统评论回复表-分页列表查询
@@ -1459,25 +730,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysComment|sys_comment对象|query|true|SysComment|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fromUserId|来源用户id||false|string|
-|toUserId|发送给用户id(允许为空)||false|string|
-|commentId|评论id(允许为空，不为空时，则为回复)||false|string|
-|commentContent|回复内容||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 系统评论回复表-列表查询
 
 
@@ -1488,23 +740,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysComment|sys_comment对象|query|true|SysComment|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fromUserId|来源用户id||false|string|
-|toUserId|发送给用户id(允许为空)||false|string|
-|commentId|评论id(允许为空，不为空时，则为回复)||false|string|
-|commentContent|回复内容||false|string|
 
 
 ## 系统评论回复表-列表查询
@@ -1519,23 +754,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysComment|sys_comment对象|query|true|SysComment|
-|id|id||false|string|
-|tableName|表名||false|string|
-|tableDataId|数据id||false|string|
-|fromUserId|来源用户id||false|string|
-|toUserId|发送给用户id(允许为空)||false|string|
-|commentId|评论id(允许为空，不为空时，则为回复)||false|string|
-|commentContent|回复内容||false|string|
-
-
 ## 系统评论回复表-通过id删除
 
 
@@ -1546,16 +764,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 系统评论回复表-通过id删除
@@ -1570,16 +778,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 系统评论回复表-批量删除
 
 
@@ -1590,16 +788,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 编码校验规则
@@ -1617,21 +805,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysCheckRule|sys_check_rule对象|body|true|SysCheckRule|
-|id|主键id||false|string|
-|ruleName|规则名称||false|string|
-|ruleCode|规则Code||false|string|
-|ruleJson|规则JSON||false|string|
-|ruleDescription|规则描述||false|string|
-
-
 ## 编码校验规则-添加
 
 
@@ -1642,21 +815,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysCheckRule|sys_check_rule对象|body|true|SysCheckRule|
-|id|主键id||false|string|
-|ruleName|规则名称||false|string|
-|ruleCode|规则Code||false|string|
-|ruleJson|规则JSON||false|string|
-|ruleDescription|规则描述||false|string|
 
 
 ## 编码校验规则-通过id查询
@@ -1671,16 +829,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 编码校验规则-分页列表查询
 
 
@@ -1691,23 +839,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysCheckRule|sys_check_rule对象|query|true|SysCheckRule|
-|id|主键id||false|string|
-|ruleName|规则名称||false|string|
-|ruleCode|规则Code||false|string|
-|ruleJson|规则JSON||false|string|
-|ruleDescription|规则描述||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 编码校验规则-通过Code校验传入的值
@@ -1722,17 +853,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ruleCode||query|true|string|
-|value||query|true|string|
-
-
 ## 编码校验规则-通过id删除
 
 
@@ -1745,16 +865,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 编码校验规则-批量删除
 
 
@@ -1765,16 +875,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 文档访问历史
@@ -1792,21 +892,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentVisitHistory|文档访问历史|body|true|DocumentVisitHistory|
-|id|主键||false|string|
-|documentId|文档ID||false|string|
-|userId|用户ID||false|string|
-|documentTitle|文档标题||false|string|
-|visitCount|访问次数||false|integer(int32)|
-
-
 ## 文档访问历史-添加
 
 
@@ -1817,21 +902,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentVisitHistory|文档访问历史|body|true|DocumentVisitHistory|
-|id|主键||false|string|
-|documentId|文档ID||false|string|
-|userId|用户ID||false|string|
-|documentTitle|文档标题||false|string|
-|visitCount|访问次数||false|integer(int32)|
 
 
 ## 文档访问历史-通过id查询
@@ -1846,16 +916,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 文档访问历史-分页列表查询
 
 
@@ -1866,23 +926,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentVisitHistory|文档访问历史|query|true|DocumentVisitHistory|
-|id|主键||false|string|
-|documentId|文档ID||false|string|
-|userId|用户ID||false|string|
-|documentTitle|文档标题||false|string|
-|visitCount|访问次数||false|integer(int32)|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 文档访问历史-通过id删除
@@ -1897,16 +940,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 文档访问历史-批量删除
 
 
@@ -1917,16 +950,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 知识库
@@ -1944,23 +967,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentLibrary|知识库|body|true|DocumentLibrary|
-|id|主键||false|string|
-|title|文档标题||false|string|
-|tags|文档标签||false|string|
-|content|文档内容||false|string|
-|parentId|父级ID||false|string|
-|type|类型(DOCUMENT/FOLDER)||false|string|
-|fileList|附件||false|string|
-
-
 ## 知识库-添加
 
 
@@ -1971,23 +977,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentLibrary|知识库|body|true|DocumentLibrary|
-|id|主键||false|string|
-|title|文档标题||false|string|
-|tags|文档标签||false|string|
-|content|文档内容||false|string|
-|parentId|父级ID||false|string|
-|type|类型(DOCUMENT/FOLDER)||false|string|
-|fileList|附件||false|string|
 
 
 ## 知识库-文档树查询
@@ -2002,16 +991,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|parentId||query|true|string|
-
-
 ## 知识库-首页搜索
 
 
@@ -2022,16 +1001,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|keyWord||query|true|string|
 
 
 ## 知识库-通过id查询
@@ -2046,16 +1015,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 知识库-分页列表查询
 
 
@@ -2066,25 +1025,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentLibrary|知识库|query|true|DocumentLibrary|
-|id|主键||false|string|
-|title|文档标题||false|string|
-|tags|文档标签||false|string|
-|content|文档内容||false|string|
-|parentId|父级ID||false|string|
-|type|类型(DOCUMENT/FOLDER)||false|string|
-|fileList|附件||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 知识库-首页查询
@@ -2099,14 +1039,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-暂无
-
-
 ## 知识库-通过id删除
 
 
@@ -2119,16 +1051,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 知识库-批量删除
 
 
@@ -2139,16 +1061,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 测试标准
@@ -2166,23 +1078,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|testStandards|测试标准|body|true|TestStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|content|内容||false|string|
-|attachment|附件||false|string|
-|temperatureRequirements|温度要求||false|string|
-|humidityRequirements|湿度要求||false|string|
-
-
 ## 测试标准-添加
 
 
@@ -2193,23 +1088,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|testStandards|测试标准|body|true|TestStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|content|内容||false|string|
-|attachment|附件||false|string|
-|temperatureRequirements|温度要求||false|string|
-|humidityRequirements|湿度要求||false|string|
 
 
 ## 测试标准-通过id查询
@@ -2224,16 +1102,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 测试标准-分页列表查询
 
 
@@ -2244,25 +1112,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|testStandards|测试标准|query|true|TestStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|content|内容||false|string|
-|attachment|附件||false|string|
-|temperatureRequirements|温度要求||false|string|
-|humidityRequirements|湿度要求||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 测试标准-通过id删除
@@ -2277,16 +1126,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 测试标准-批量删除
 
 
@@ -2297,16 +1136,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 辐射源类型
@@ -2324,23 +1153,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|radiateType|辐射源类型|body|true|RadiateType|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|attachment|附件||false|string|
-
-
 ## 辐射源类型-添加
 
 
@@ -2351,23 +1163,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|radiateType|辐射源类型|body|true|RadiateType|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|attachment|附件||false|string|
 
 
 ## 辐射源类型-通过id查询
@@ -2382,16 +1177,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 辐射源类型-分页列表查询
 
 
@@ -2402,25 +1187,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|radiateType|辐射源类型|query|true|RadiateType|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|attachment|附件||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 辐射源类型-通过id删除
@@ -2435,16 +1201,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 辐射源类型-批量删除
 
 
@@ -2455,16 +1211,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # NASA数据管理
@@ -2482,32 +1228,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|nasaDataRecord|NASA数据管理|body|true|NasaDataRecord|
-|id|主键||false|string|
-|dataType|||false|string|
-|deviceType|器件类型||false|string|
-|deviceName|器件名称||false|string|
-|deviceMode|器件型号||false|string|
-|deviceFunction|器件功能||false|string|
-|deviceBatch|器件批次||false|string|
-|manufacturer|生产厂家||false|string|
-|experimentDate|试验时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountNasa|西核院统计||false|integer(int64)|
-|totalCountLhs|理化所统计||false|integer(int64)|
-|fileList|附件IDs||false|string|
-|fileMap|||false|object|
-|originData|原始数据||false|string|
-
-
 ## NASA数据管理-添加
 
 
@@ -2518,32 +1238,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|nasaDataRecord|NASA数据管理|body|true|NasaDataRecord|
-|id|主键||false|string|
-|dataType|||false|string|
-|deviceType|器件类型||false|string|
-|deviceName|器件名称||false|string|
-|deviceMode|器件型号||false|string|
-|deviceFunction|器件功能||false|string|
-|deviceBatch|器件批次||false|string|
-|manufacturer|生产厂家||false|string|
-|experimentDate|试验时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountNasa|西核院统计||false|integer(int64)|
-|totalCountLhs|理化所统计||false|integer(int64)|
-|fileList|附件IDs||false|string|
-|fileMap|||false|object|
-|originData|原始数据||false|string|
 
 
 ## 外网数据统计
@@ -2558,14 +1252,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-暂无
-
-
 ## NASA数据管理-通过id查询
 
 
@@ -2576,16 +1262,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## NASA数据管理-分页列表查询
@@ -2600,34 +1276,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|nasaDataRecord|NASA数据管理|query|true|NasaDataRecord|
-|id|主键||false|string|
-|dataType|||false|string|
-|deviceType|器件类型||false|string|
-|deviceName|器件名称||false|string|
-|deviceMode|器件型号||false|string|
-|deviceFunction|器件功能||false|string|
-|deviceBatch|器件批次||false|string|
-|manufacturer|生产厂家||false|string|
-|experimentDate|试验时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountNasa|西核院统计||false|integer(int64)|
-|totalCountLhs|理化所统计||false|integer(int64)|
-|fileList|附件IDs||false|string|
-|fileMap|||false|object|
-|originData|原始数据||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## NASA数据管理-通过id删除
 
 
@@ -2640,16 +1288,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## NASA数据管理-批量删除
 
 
@@ -2660,16 +1298,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 当期数据库记录
@@ -2687,60 +1315,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|localDatabase|当期数据库记录|body|true|LocalDatabase|
-|id|主键||false|string|
-|dataType|||false|string|
-|experimentId|试验ID||false|string|
-|experimentNo|试验编号||false|string|
-|type|类型||false|string|
-|name|名称||false|string|
-|clientName|委托方||false|string|
-|startDate|试验开始时间||false|string|
-|endDate|试验结束时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|status|状态||false|string|
-|sampleModel|样品型号||false|string|
-|description|描述||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
-
-
 ## 当期数据库记录-添加
 
 
@@ -2751,60 +1325,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|localDatabase|当期数据库记录|body|true|LocalDatabase|
-|id|主键||false|string|
-|dataType|||false|string|
-|experimentId|试验ID||false|string|
-|experimentNo|试验编号||false|string|
-|type|类型||false|string|
-|name|名称||false|string|
-|clientName|委托方||false|string|
-|startDate|试验开始时间||false|string|
-|endDate|试验结束时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|status|状态||false|string|
-|sampleModel|样品型号||false|string|
-|description|描述||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
 
 
 ## 当期数据统计
@@ -2819,14 +1339,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-暂无
-
-
 ## 数据库全局搜索
 
 
@@ -2837,16 +1349,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|kw||query|true|string|
 
 
 ## 当期数据库记录-通过id查询
@@ -2861,16 +1363,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 当期数据库记录-分页列表查询
 
 
@@ -2881,62 +1373,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|localDatabase|当期数据库记录|query|true|LocalDatabase|
-|id|主键||false|string|
-|dataType|||false|string|
-|experimentId|试验ID||false|string|
-|experimentNo|试验编号||false|string|
-|type|类型||false|string|
-|name|名称||false|string|
-|clientName|委托方||false|string|
-|startDate|试验开始时间||false|string|
-|endDate|试验结束时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|status|状态||false|string|
-|sampleModel|样品型号||false|string|
-|description|描述||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 当期数据库记录-通过id删除
@@ -2951,16 +1387,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 当期数据库记录-批量删除
 
 
@@ -2971,16 +1397,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 辐照标准
@@ -2998,30 +1414,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|irradiationStandards|辐照标准|body|true|IrradiationStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|environmentalTemperature|辐照环境温度||false|string|
-|annealTimes|退火时长||false|string|
-|roomAnnealTemperature|室温退火温度||false|string|
-|acceleratedAnnealTemperature|加速退火温度||false|string|
-|radiationSource|辐射源||false|string|
-|conditionA|条件A||false|string|
-|conditionB|条件B||false|string|
-|conditionC|条件C||false|string|
-|conditionD|条件D||false|string|
-|conditionE|条件E||false|string|
-|conditionF|条件F||false|string|
-
-
 ## 辐照标准-添加
 
 
@@ -3032,30 +1424,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|irradiationStandards|辐照标准|body|true|IrradiationStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|environmentalTemperature|辐照环境温度||false|string|
-|annealTimes|退火时长||false|string|
-|roomAnnealTemperature|室温退火温度||false|string|
-|acceleratedAnnealTemperature|加速退火温度||false|string|
-|radiationSource|辐射源||false|string|
-|conditionA|条件A||false|string|
-|conditionB|条件B||false|string|
-|conditionC|条件C||false|string|
-|conditionD|条件D||false|string|
-|conditionE|条件E||false|string|
-|conditionF|条件F||false|string|
 
 
 ## 辐照标准-通过id查询
@@ -3070,16 +1438,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 辐照标准-分页列表查询
 
 
@@ -3090,32 +1448,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|irradiationStandards|辐照标准|query|true|IrradiationStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|environmentalTemperature|辐照环境温度||false|string|
-|annealTimes|退火时长||false|string|
-|roomAnnealTemperature|室温退火温度||false|string|
-|acceleratedAnnealTemperature|加速退火温度||false|string|
-|radiationSource|辐射源||false|string|
-|conditionA|条件A||false|string|
-|conditionB|条件B||false|string|
-|conditionC|条件C||false|string|
-|conditionD|条件D||false|string|
-|conditionE|条件E||false|string|
-|conditionF|条件F||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 辐照标准-通过id删除
@@ -3130,16 +1462,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 辐照标准-批量删除
 
 
@@ -3150,16 +1472,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 历史一期记录
@@ -3177,32 +1489,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|historicalDatabase|历史一期记录|body|true|HistoricalDatabase|
-|id|主键||false|string|
-|dataType|||false|string|
-|type|类型||false|string|
-|name|名称||false|string|
-|clientName|委托方||false|string|
-|manufacturer|生产厂家||false|string|
-|experimentDate|试验时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|dataProvider|数据提供者||false|string|
-|dataEntry|数据录入者||false|string|
-|deviceMode|器件型号||false|string|
-|fileUrl|附件||false|string|
-|description|描述||false|string|
-
-
 ## 历史一期记录-添加
 
 
@@ -3213,32 +1499,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|historicalDatabase|历史一期记录|body|true|HistoricalDatabase|
-|id|主键||false|string|
-|dataType|||false|string|
-|type|类型||false|string|
-|name|名称||false|string|
-|clientName|委托方||false|string|
-|manufacturer|生产厂家||false|string|
-|experimentDate|试验时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|dataProvider|数据提供者||false|string|
-|dataEntry|数据录入者||false|string|
-|deviceMode|器件型号||false|string|
-|fileUrl|附件||false|string|
-|description|描述||false|string|
 
 
 ## 历史数据统计
@@ -3253,14 +1513,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-暂无
-
-
 ## 历史一期记录-通过id查询
 
 
@@ -3271,16 +1523,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 历史一期记录-分页列表查询
@@ -3295,34 +1537,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|historicalDatabase|历史一期记录|query|true|HistoricalDatabase|
-|id|主键||false|string|
-|dataType|||false|string|
-|type|类型||false|string|
-|name|名称||false|string|
-|clientName|委托方||false|string|
-|manufacturer|生产厂家||false|string|
-|experimentDate|试验时间||false|string|
-|dataSource|数据来源||false|string|
-|experimentUser|试验人员||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|dataProvider|数据提供者||false|string|
-|dataEntry|数据录入者||false|string|
-|deviceMode|器件型号||false|string|
-|fileUrl|附件||false|string|
-|description|描述||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 历史一期记录-通过id删除
 
 
@@ -3335,16 +1549,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 历史一期记录-批量删除
 
 
@@ -3355,16 +1559,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验人员
@@ -3382,21 +1576,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentUser|试验人员|body|true|ExperimentUser|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-
-
 ## 试验人员-批量添加
 
 
@@ -3407,21 +1586,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentUsers|试验人员|body|true|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
 
 
 ## 试验人员-添加
@@ -3436,21 +1600,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentUser|试验人员|body|true|ExperimentUser|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-
-
 ## 试验人员-通过id查询
 
 
@@ -3461,16 +1610,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 测试过程-通过实验ID查询
@@ -3485,16 +1624,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
-
-
 ## 试验人员-分页列表查询
 
 
@@ -3505,23 +1634,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentUser|试验人员|query|true|ExperimentUser|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验人员-通过id删除
@@ -3536,16 +1648,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验人员-批量删除
 
 
@@ -3556,16 +1658,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 测试过程
@@ -3583,77 +1675,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentTestProcess|测试过程|body|true|ExperimentTestProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|计量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|environmentalTemperature|环境温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|testStartTime|测试开始时间||false|string(date-time)|
-|testEndTime|测试结束时间||false|string(date-time)|
-|environmentalHumidity|环境湿度||false|string|
-|testParameters|测试参数(json 大字段)||false|string|
-|testEquipment|测试设备(json 大字段)||false|string|
-|testEquipmentList|||false|array|
-|sampleModel|||false|string|
-|equipmentModel|||false|string|
-|managementNo|||false|string|
-|lifespan|||false|string|
-|equipmentName|||false|string|
-|roomNo|||false|string|
-|testMeteringPoint|测试计量点||false|string|
-|testMeteringPointList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|testFluencePoint|测试注量点||false|string|
-|testFluencePointList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|annealingDuration|退火时长||false|string|
-|annealingDurationList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|testData|测试数据(json 大字段)||false|string|
-|testResult|测试结果||false|string|
-|sampleInfo|样品信息||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|testStandardsId|测试标准||false|string|
-|testStandards|测试标准||false|TestStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|content|内容||false|string|
-|attachment|附件||false|string|
-|temperatureRequirements|温度要求||false|string|
-|humidityRequirements|湿度要求||false|string|
-
-
 ## 测试过程-添加
 
 
@@ -3664,77 +1685,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentTestProcess|测试过程|body|true|ExperimentTestProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|计量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|environmentalTemperature|环境温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|testStartTime|测试开始时间||false|string(date-time)|
-|testEndTime|测试结束时间||false|string(date-time)|
-|environmentalHumidity|环境湿度||false|string|
-|testParameters|测试参数(json 大字段)||false|string|
-|testEquipment|测试设备(json 大字段)||false|string|
-|testEquipmentList|||false|array|
-|sampleModel|||false|string|
-|equipmentModel|||false|string|
-|managementNo|||false|string|
-|lifespan|||false|string|
-|equipmentName|||false|string|
-|roomNo|||false|string|
-|testMeteringPoint|测试计量点||false|string|
-|testMeteringPointList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|testFluencePoint|测试注量点||false|string|
-|testFluencePointList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|annealingDuration|退火时长||false|string|
-|annealingDurationList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|testData|测试数据(json 大字段)||false|string|
-|testResult|测试结果||false|string|
-|sampleInfo|样品信息||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|testStandardsId|测试标准||false|string|
-|testStandards|测试标准||false|TestStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|content|内容||false|string|
-|attachment|附件||false|string|
-|temperatureRequirements|温度要求||false|string|
-|humidityRequirements|湿度要求||false|string|
 
 
 ## 测试过程-通过id查询
@@ -3749,16 +1699,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 测试过程-通过实验ID查询
 
 
@@ -3769,16 +1709,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
 
 
 ## 测试过程-分页列表查询
@@ -3793,79 +1723,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentTestProcess|测试过程|query|true|ExperimentTestProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|计量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|environmentalTemperature|环境温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|testStartTime|测试开始时间||false|string(date-time)|
-|testEndTime|测试结束时间||false|string(date-time)|
-|environmentalHumidity|环境湿度||false|string|
-|testParameters|测试参数(json 大字段)||false|string|
-|testEquipment|测试设备(json 大字段)||false|string|
-|testEquipmentList|||false|array|
-|sampleModel|||false|string|
-|equipmentModel|||false|string|
-|managementNo|||false|string|
-|lifespan|||false|string|
-|equipmentName|||false|string|
-|roomNo|||false|string|
-|testMeteringPoint|测试计量点||false|string|
-|testMeteringPointList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|testFluencePoint|测试注量点||false|string|
-|testFluencePointList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|annealingDuration|退火时长||false|string|
-|annealingDurationList|||false|array|
-|point|||false|string|
-|startTime|||false|string|
-|endTime|||false|string|
-|result|||false|string|
-|testData|测试数据(json 大字段)||false|string|
-|testResult|测试结果||false|string|
-|sampleInfo|样品信息||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|testStandardsId|测试标准||false|string|
-|testStandards|测试标准||false|TestStandards|
-|id|主键||false|string|
-|name|标准名称||false|string|
-|code|标准代码||false|string|
-|content|内容||false|string|
-|attachment|附件||false|string|
-|temperatureRequirements|温度要求||false|string|
-|humidityRequirements|湿度要求||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 测试过程-通过id删除
 
 
@@ -3878,16 +1735,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 测试过程-批量删除
 
 
@@ -3898,16 +1745,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验样品信息
@@ -3925,25 +1762,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentSampleInfo|试验样品信息|body|true|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-
-
 ## 试验样品信息-添加
 
 
@@ -3954,25 +1772,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentSampleInfo|试验样品信息|body|true|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
 
 
 ## 试验样品信息-列表查询
@@ -3987,25 +1786,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentSampleInfo|试验样品信息|query|true|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-
-
 ## 试验样品信息-通过id查询
 
 
@@ -4016,16 +1796,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 试验样品信息-分页列表查询
@@ -4040,27 +1810,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentSampleInfo|试验样品信息|query|true|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 试验样品信息-分页列表名称型号
 
 
@@ -4071,14 +1820,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-暂无
 
 
 ## 试验样品信息-列表查询样品型号
@@ -4093,14 +1834,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-暂无
-
-
 ## 试验样品信息-列表查询样品批次
 
 
@@ -4111,14 +1844,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-暂无
 
 
 ## 试验样品信息-通过id删除
@@ -4133,16 +1858,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验样品信息-批量删除
 
 
@@ -4153,16 +1868,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验评定规则
@@ -4180,24 +1885,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReviewRule|试验评定规则|body|true|ExperimentReviewRule|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer(int32)|
-
-
 ## 试验评定规则-添加
 
 
@@ -4208,24 +1895,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReviewRule|试验评定规则|body|true|ExperimentReviewRule|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer(int32)|
 
 
 ## 试验评定规则-通过id查询
@@ -4240,16 +1909,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验评定规则-分页列表查询
 
 
@@ -4260,26 +1919,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReviewRule|试验评定规则|query|true|ExperimentReviewRule|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer(int32)|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验评定规则-通过id删除
@@ -4294,16 +1933,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验评定规则-批量删除
 
 
@@ -4314,16 +1943,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验评定真值表
@@ -4341,26 +1960,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReviewDetail|试验评定真值表|body|true|ExperimentReviewDetail|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准||false|string|
-|ruleId|规则ID||false|string|
-|priority|规则优先级||false|integer(int32)|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-
-
 ## 试验评定真值表-添加
 
 
@@ -4371,26 +1970,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReviewDetail|试验评定真值表|body|true|ExperimentReviewDetail|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准||false|string|
-|ruleId|规则ID||false|string|
-|priority|规则优先级||false|integer(int32)|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
 
 
 ## 试验评定真值表-通过id查询
@@ -4405,16 +1984,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验评定真值表-分页列表查询
 
 
@@ -4425,28 +1994,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReviewDetail|试验评定真值表|query|true|ExperimentReviewDetail|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准||false|string|
-|ruleId|规则ID||false|string|
-|priority|规则优先级||false|integer(int32)|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验评定真值表-通过id删除
@@ -4461,16 +2008,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验评定真值表-批量删除
 
 
@@ -4481,16 +2018,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验评定结果
@@ -4508,37 +2035,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReview|试验评定结果|body|true|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-
-
 ## 试验评定结果-添加
 
 
@@ -4549,37 +2045,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReview|试验评定结果|body|true|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
 
 
 ## 试验评定结果-通过id查询
@@ -4594,16 +2059,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验评定结果-通过试验id查询
 
 
@@ -4614,17 +2069,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
-|sampleId||query|false|string|
 
 
 ## 试验评定列表-分页列表查询
@@ -4639,230 +2083,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experiment|试验管理|query|true|Experiment|
-|id|主键||false|string|
-|indexNo|序号||false|integer(int32)|
-|experimentNo|试验编号||false|string|
-|name|名称||false|string|
-|clientName|委托方名称||false|string|
-|type|试验类型||false|string|
-|startDate|试验开始日期||false|string|
-|endDate|试验结束日期||false|string|
-|radiationSourceType|辐射源类型||false|string|
-|supervisor|||false|string|
-|supervisorName|||false|string|
-|status|状态||false|string|
-|statusList|||false|array|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|irradiationBoardList|试验辐照板信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|copyCount|复制次数||false|integer(int32)|
-|fileList|试验文件||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|experimentUser|||false|string|
-|experimentUserList|试验人员||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|experimentReportList|试验报告||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|experimentRatingList|试验评分||false|array|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|sampleType|||false|string|
-|sampleName|||false|string|
-|equipmentModel|||false|string|
-|sampleModel|||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|reportStatus|理化所统计||false|string|
-|pageName|试验页面||false|string|
-|radiationStandard|辐照标准||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 试验评定结果-通过id删除
 
 
@@ -4875,16 +2095,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验评定结果-批量删除
 
 
@@ -4895,16 +2105,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验报告
@@ -4922,34 +2122,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReport|试验报告|body|true|ExperimentReport|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-
-
 ## 试验报告-编辑
 
 
@@ -4960,34 +2132,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReport|试验报告|body|true|ExperimentReport|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
 
 
 ## 试验报告-撤回
@@ -5002,34 +2146,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReport|试验报告|body|true|ExperimentReport|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-
-
 ## 试验报告-审核
 
 
@@ -5040,34 +2156,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReport|试验报告|body|true|ExperimentReport|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
 
 
 ## 试验报告-添加
@@ -5082,34 +2170,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReport|试验报告|body|true|ExperimentReport|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-
-
 ## 试验报告-通过id查询
 
 
@@ -5120,16 +2180,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 试验报告-通过实验ID查询
@@ -5144,16 +2194,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
-
-
 ## 试验报告-分页列表查询
 
 
@@ -5164,36 +2204,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentReport|试验报告|query|true|ExperimentReport|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验报告-通过id删除
@@ -5208,16 +2218,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验报告-批量删除
 
 
@@ -5228,16 +2228,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验评分
@@ -5255,34 +2245,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentRating|试验评分|body|true|ExperimentRating|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-
-
 ## 试验评分-添加
 
 
@@ -5293,34 +2255,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentRating|试验评分|body|true|ExperimentRating|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
 
 
 ## 试验评分-批量添加
@@ -5335,34 +2269,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentRating|试验评分|body|true|ExperimentRating|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-
-
 ## 试验评分-通过id查询
 
 
@@ -5373,16 +2279,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 试验评分-分页列表查询
@@ -5397,36 +2293,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentRating|试验评分|query|true|ExperimentRating|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 试验评分-通过id删除
 
 
@@ -5439,16 +2305,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验评分-批量删除
 
 
@@ -5459,16 +2315,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 辐照过程
@@ -5486,38 +2332,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentRadiationProcess|辐照过程|body|true|ExperimentRadiationProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|剂量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|environmentalTemperature|环境温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|radiationStartTime|辐照开始时间||false|string(date-time)|
-|radiationEndTime|辐照结束时间||false|string(date-time)|
-|sampleInfo|样品信息||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-
-
 ## 辐照过程-添加
 
 
@@ -5528,38 +2342,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentRadiationProcess|辐照过程|body|true|ExperimentRadiationProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|剂量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|environmentalTemperature|环境温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|radiationStartTime|辐照开始时间||false|string(date-time)|
-|radiationEndTime|辐照结束时间||false|string(date-time)|
-|sampleInfo|样品信息||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
 
 
 ## 辐照过程-通过id查询
@@ -5574,16 +2356,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 辐照过程-通过实验ID查询
 
 
@@ -5594,16 +2366,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
 
 
 ## 辐照过程-分页列表查询
@@ -5618,40 +2380,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentRadiationProcess|辐照过程|query|true|ExperimentRadiationProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|剂量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|environmentalTemperature|环境温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|radiationStartTime|辐照开始时间||false|string(date-time)|
-|radiationEndTime|辐照结束时间||false|string(date-time)|
-|sampleInfo|样品信息||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 辐照过程-通过id删除
 
 
@@ -5664,16 +2392,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 辐照过程-批量删除
 
 
@@ -5684,16 +2402,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验日志
@@ -5711,19 +2419,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentLog|试验日志|body|true|ExperimentLog|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|logContent|日志内容||false|string|
-
-
 ## 试验日志-添加
 
 
@@ -5734,19 +2429,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentLog|试验日志|body|true|ExperimentLog|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|logContent|日志内容||false|string|
 
 
 ## 试验日志-通过id查询
@@ -5761,16 +2443,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验日志-分页列表查询
 
 
@@ -5781,21 +2453,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentLog|试验日志|query|true|ExperimentLog|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|logContent|日志内容||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验日志-通过id删除
@@ -5810,16 +2467,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验日志-批量删除
 
 
@@ -5830,16 +2477,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验辐照板信息
@@ -5857,41 +2494,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentIrradiationBoard|试验辐照板信息|body|true|ExperimentIrradiationBoard|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-
-
 ## 试验辐照板信息-添加
 
 
@@ -5902,41 +2504,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentIrradiationBoard|试验辐照板信息|body|true|ExperimentIrradiationBoard|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
 
 
 ## 试验辐照板信息-通过id查询
@@ -5951,16 +2518,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验辐照板信息-分页列表查询
 
 
@@ -5971,43 +2528,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentIrradiationBoard|试验辐照板信息|query|true|ExperimentIrradiationBoard|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验辐照板信息-通过id删除
@@ -6022,16 +2542,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验辐照板信息-批量删除
 
 
@@ -6042,16 +2552,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验文件
@@ -6069,21 +2569,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentFile|试验文件|body|true|ExperimentFile|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-
-
 ## 试验管理-上传试验文件
 
 
@@ -6096,18 +2581,7 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
 **接口描述**:<p>fileType 选传, 值为 [&#39;辐照试验委托书&#39;,&#39;试验大纲&#39;,&#39;沟通记录表&#39;,&#39;合同/委托书评审表&#39;,&#39;试验大纲评审表&#39;,&#39;试验流程检查单&#39;,&#39;辐照试验更改申请表&#39;,&#39;满意度调查表&#39;,&#39;其他文件&#39;],不传默认 &#39;其他文件&#39;,</br> experimentId 选传,上传完成后自动保存到试验管理,不传则不保存</p>
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|false|string|
-|fileType||query|false|string|
 
 
 ## 试验文件-添加
@@ -6122,21 +2596,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentFile|试验文件|body|true|ExperimentFile|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-
-
 ## 试验报告-通过实验ID分类查询
 
 
@@ -6149,17 +2608,7 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
 **接口描述**:<p>根据分类查询,返回Map结构</p>
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
 
 
 ## 试验文件-通过id查询
@@ -6174,16 +2623,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验报告-通过实验ID查询
 
 
@@ -6196,17 +2635,7 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
 **接口描述**:<p>根据实验ID查询,返回List结构</p>
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
 
 
 ## 试验文件-分页列表查询
@@ -6221,23 +2650,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentFile|试验文件|query|true|ExperimentFile|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 试验文件-通过id删除
 
 
@@ -6250,16 +2662,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验文件-批量删除
 
 
@@ -6270,16 +2672,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验文档
@@ -6297,21 +2689,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDoc|试验文档|body|true|ExperimentDoc|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|docType|文档类型,可用值:辐照试验计划表,试验报告评审表,设备使用记录表,试验报告,辐照试验总结单||false|string|
-|filePath|文件地址||false|string|
-|version|版本号||false|string|
-
-
 ## 试验文档-添加
 
 
@@ -6322,21 +2699,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDoc|试验文档|body|true|ExperimentDoc|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|docType|文档类型,可用值:辐照试验计划表,试验报告评审表,设备使用记录表,试验报告,辐照试验总结单||false|string|
-|filePath|文件地址||false|string|
-|version|版本号||false|string|
 
 
 ## 试验报告-通过实验ID查询所有版本文档
@@ -6351,16 +2713,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
-
-
 ## 试验文档-通过id查询
 
 
@@ -6371,16 +2723,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 试验报告-通过实验ID查询
@@ -6395,16 +2737,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId||query|true|string|
-
-
 ## 试验文档-分页列表查询
 
 
@@ -6415,23 +2747,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDoc|试验文档|query|true|ExperimentDoc|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|docType|文档类型,可用值:辐照试验计划表,试验报告评审表,设备使用记录表,试验报告,辐照试验总结单||false|string|
-|filePath|文件地址||false|string|
-|version|版本号||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 重新生成试验文档
@@ -6446,17 +2761,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId|实验id|query|true|string|
-|type|文档类型|query|true|string|
-
-
 ## 试验文档下载
 
 
@@ -6467,17 +2771,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentId|实验id|query|true|string|
-|type|文档类型(辐照试验计划表,设备使用记录表,试验报告评审表,试验报告,辐照试验总结单)|query|true|string|
 
 
 ## 试验文档-通过id删除
@@ -6492,16 +2785,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验文档-批量删除
 
 
@@ -6512,16 +2795,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验加偏设备信息
@@ -6539,54 +2812,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDeviationEquipment|试验加偏设备信息|body|true|ExperimentDeviationEquipment|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-
-
 ## 试验加偏设备信息-添加
 
 
@@ -6597,54 +2822,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDeviationEquipment|试验加偏设备信息|body|true|ExperimentDeviationEquipment|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
 
 
 ## 试验加偏设备信息-通过id查询
@@ -6659,16 +2836,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验加偏设备信息-分页列表查询
 
 
@@ -6679,56 +2846,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDeviationEquipment|试验加偏设备信息|query|true|ExperimentDeviationEquipment|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验加偏设备信息-通过id删除
@@ -6743,16 +2860,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验加偏设备信息-批量删除
 
 
@@ -6763,16 +2870,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验偏置条件信息
@@ -6790,50 +2887,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDeviationCondition|试验偏置条件信息|body|true|ExperimentDeviationCondition|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-
-
 ## 试验偏置条件信息-添加
 
 
@@ -6844,50 +2897,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDeviationCondition|试验偏置条件信息|body|true|ExperimentDeviationCondition|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
 
 
 ## 试验偏置条件信息-通过id查询
@@ -6902,16 +2911,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验偏置条件信息-分页列表查询
 
 
@@ -6922,52 +2921,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentDeviationCondition|试验偏置条件信息|query|true|ExperimentDeviationCondition|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 试验偏置条件信息-通过id删除
@@ -6982,16 +2935,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验偏置条件信息-批量删除
 
 
@@ -7002,16 +2945,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 退火过程
@@ -7029,114 +2962,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentAnnealProcess|退火过程|body|true|ExperimentAnnealProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|计量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|annealTemperature|退火温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|annealStartTime|退火开始时间||false|string(date-time)|
-|annealEndTime|退火结束时间||false|string(date-time)|
-|deviationCondition|偏置条件||false|string|
-|deviationEquipment|加偏设备||false|string|
-|sampleInfo|样品信息||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-
-
 ## 退火过程-添加
 
 
@@ -7147,114 +2972,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentAnnealProcess|退火过程|body|true|ExperimentAnnealProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|计量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|annealTemperature|退火温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|annealStartTime|退火开始时间||false|string(date-time)|
-|annealEndTime|退火结束时间||false|string(date-time)|
-|deviationCondition|偏置条件||false|string|
-|deviationEquipment|加偏设备||false|string|
-|sampleInfo|样品信息||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
 
 
 ## 退火过程-通过id查询
@@ -7269,16 +2986,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 退火过程-分页列表查询
 
 
@@ -7289,116 +2996,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experimentAnnealProcess|退火过程|query|true|ExperimentAnnealProcess|
-|id|主键||false|string|
-|radiationSource| 辐照源||false|string|
-|measurementRate|计量率||false|string|
-|radiationStandard|辐照标准||false|string|
-|annealTemperature|退火温度||false|string|
-|comment|备注||false|string|
-|exceptionRecord|异常记录||false|string|
-|radiationDetail|辐照详情（json存储）||false|string|
-|experimentId|试验ID||false|string|
-|annealStartTime|退火开始时间||false|string(date-time)|
-|annealEndTime|退火结束时间||false|string(date-time)|
-|deviationCondition|偏置条件||false|string|
-|deviationEquipment|加偏设备||false|string|
-|sampleInfo|样品信息||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 退火过程-通过id删除
@@ -7413,16 +3010,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 退火过程-批量删除
 
 
@@ -7433,16 +3020,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 试验管理
@@ -7460,230 +3037,8 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
 **接口描述**:<p>编辑试验,传sampleInfoList,deviationConditionList,deviationEquipmentList,irradiationBoardList,不用传fileList 
  experimentUser 用逗号隔开,无修改的字段可不传</p>
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experiment|试验管理|body|true|Experiment|
-|id|主键||false|string|
-|indexNo|序号||false|integer(int32)|
-|experimentNo|试验编号||false|string|
-|name|名称||false|string|
-|clientName|委托方名称||false|string|
-|type|试验类型||false|string|
-|startDate|试验开始日期||false|string|
-|endDate|试验结束日期||false|string|
-|radiationSourceType|辐射源类型||false|string|
-|supervisor|||false|string|
-|supervisorName|||false|string|
-|status|状态||false|string|
-|statusList|||false|array|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|irradiationBoardList|试验辐照板信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|copyCount|复制次数||false|integer(int32)|
-|fileList|试验文件||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|experimentUser|||false|string|
-|experimentUserList|试验人员||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|experimentReportList|试验报告||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|experimentRatingList|试验评分||false|array|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|sampleType|||false|string|
-|sampleName|||false|string|
-|equipmentModel|||false|string|
-|sampleModel|||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|reportStatus|理化所统计||false|string|
-|pageName|试验页面||false|string|
-|radiationStandard|辐照标准||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
 
 
 ## 试验管理-修改实验统计
@@ -7698,229 +3053,7 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
 **接口描述**:<p>修改实验统计</p>
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experiment|试验管理|body|true|Experiment|
-|id|主键||false|string|
-|indexNo|序号||false|integer(int32)|
-|experimentNo|试验编号||false|string|
-|name|名称||false|string|
-|clientName|委托方名称||false|string|
-|type|试验类型||false|string|
-|startDate|试验开始日期||false|string|
-|endDate|试验结束日期||false|string|
-|radiationSourceType|辐射源类型||false|string|
-|supervisor|||false|string|
-|supervisorName|||false|string|
-|status|状态||false|string|
-|statusList|||false|array|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|irradiationBoardList|试验辐照板信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|copyCount|复制次数||false|integer(int32)|
-|fileList|试验文件||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|experimentUser|||false|string|
-|experimentUserList|试验人员||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|experimentReportList|试验报告||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|experimentRatingList|试验评分||false|array|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|sampleType|||false|string|
-|sampleName|||false|string|
-|equipmentModel|||false|string|
-|sampleModel|||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|reportStatus|理化所统计||false|string|
-|pageName|试验页面||false|string|
-|radiationStandard|辐照标准||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
 
 
 ## 试验管理-暂存
@@ -7935,228 +3068,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experiment|试验管理|body|true|Experiment|
-|id|主键||false|string|
-|indexNo|序号||false|integer(int32)|
-|experimentNo|试验编号||false|string|
-|name|名称||false|string|
-|clientName|委托方名称||false|string|
-|type|试验类型||false|string|
-|startDate|试验开始日期||false|string|
-|endDate|试验结束日期||false|string|
-|radiationSourceType|辐射源类型||false|string|
-|supervisor|||false|string|
-|supervisorName|||false|string|
-|status|状态||false|string|
-|statusList|||false|array|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|irradiationBoardList|试验辐照板信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|copyCount|复制次数||false|integer(int32)|
-|fileList|试验文件||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|experimentUser|||false|string|
-|experimentUserList|试验人员||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|experimentReportList|试验报告||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|experimentRatingList|试验评分||false|array|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|sampleType|||false|string|
-|sampleName|||false|string|
-|equipmentModel|||false|string|
-|sampleModel|||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|reportStatus|理化所统计||false|string|
-|pageName|试验页面||false|string|
-|radiationStandard|辐照标准||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
-
-
 ## 试验管理-试验复制
 
 
@@ -8167,16 +3078,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 ## 试验管理-完成试验
@@ -8191,228 +3092,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experiment|试验管理|body|true|Experiment|
-|id|主键||false|string|
-|indexNo|序号||false|integer(int32)|
-|experimentNo|试验编号||false|string|
-|name|名称||false|string|
-|clientName|委托方名称||false|string|
-|type|试验类型||false|string|
-|startDate|试验开始日期||false|string|
-|endDate|试验结束日期||false|string|
-|radiationSourceType|辐射源类型||false|string|
-|supervisor|||false|string|
-|supervisorName|||false|string|
-|status|状态||false|string|
-|statusList|||false|array|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|irradiationBoardList|试验辐照板信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|copyCount|复制次数||false|integer(int32)|
-|fileList|试验文件||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|experimentUser|||false|string|
-|experimentUserList|试验人员||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|experimentReportList|试验报告||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|experimentRatingList|试验评分||false|array|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|sampleType|||false|string|
-|sampleName|||false|string|
-|equipmentModel|||false|string|
-|sampleModel|||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|reportStatus|理化所统计||false|string|
-|pageName|试验页面||false|string|
-|radiationStandard|辐照标准||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
-
-
 ## 试验管理-添加
 
 
@@ -8425,229 +3104,7 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
 **接口描述**:<p>添加试验,传sampleInfoList,deviationConditionList,deviationEquipmentList,irradiationBoardList,不用传fileList. </br> experimentUser 用,隔开</p>
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experiment|试验管理|body|true|Experiment|
-|id|主键||false|string|
-|indexNo|序号||false|integer(int32)|
-|experimentNo|试验编号||false|string|
-|name|名称||false|string|
-|clientName|委托方名称||false|string|
-|type|试验类型||false|string|
-|startDate|试验开始日期||false|string|
-|endDate|试验结束日期||false|string|
-|radiationSourceType|辐射源类型||false|string|
-|supervisor|||false|string|
-|supervisorName|||false|string|
-|status|状态||false|string|
-|statusList|||false|array|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|irradiationBoardList|试验辐照板信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|copyCount|复制次数||false|integer(int32)|
-|fileList|试验文件||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|experimentUser|||false|string|
-|experimentUserList|试验人员||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|experimentReportList|试验报告||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|experimentRatingList|试验评分||false|array|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|sampleType|||false|string|
-|sampleName|||false|string|
-|equipmentModel|||false|string|
-|sampleModel|||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|reportStatus|理化所统计||false|string|
-|pageName|试验页面||false|string|
-|radiationStandard|辐照标准||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
 
 
 ## 试验管理-通过id查询
@@ -8662,16 +3119,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验管理-分页列表查询
 
 
@@ -8682,231 +3129,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|experiment|试验管理|query|true|Experiment|
-|id|主键||false|string|
-|indexNo|序号||false|integer(int32)|
-|experimentNo|试验编号||false|string|
-|name|名称||false|string|
-|clientName|委托方名称||false|string|
-|type|试验类型||false|string|
-|startDate|试验开始日期||false|string|
-|endDate|试验结束日期||false|string|
-|radiationSourceType|辐射源类型||false|string|
-|supervisor|||false|string|
-|supervisorName|||false|string|
-|status|状态||false|string|
-|statusList|||false|array|
-|sampleInfoList|试验样品信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|irradiationBoardList|试验辐照板信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|irradiationBoardNumber|辐照板数量||false|string|
-|irradiationBoardCode|辐照板编号||false|string|
-|measurementValidity|计量有效期||false|string|
-|sourceArea|占源面积||false|string|
-|irradiationBoardImage|辐照板图片||false|string|
-|deviationConditionList|试验偏置条件信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleNumber|样品编号||false|string|
-|offsetCondition|偏置条件||false|string|
-|offsetVoltage|偏置电压||false|string|
-|offsetCurrent|偏置电流||false|string|
-|loadCapacity|负载||false|string|
-|otherCondition|其它条件||false|string|
-|offsetPowerPhoto|偏置电源显示界面照片||false|string|
-|inputSignal|输入信号||false|string|
-|signalPhoto|信号显示界面源照片||false|string|
-|pinType|管脚接入方式||false|string|
-|signalType|信号类型||false|string|
-|signalFrequency|信号频率||false|string|
-|signalAmplitude|信号幅值||false|string|
-|dutyCycle|占空比||false|string|
-|deviationEquipmentList|试验加偏设备信息||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleId|样品ID||false|string|
-|sampleInfo|试验样品信息||false|ExperimentSampleInfo|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|样品批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|sampleName|样品名称||false|string|
-|sampleName|样品名称||false|string|
-|sampleType|样品类型||false|string|
-|sampleModel|样品型号||false|string|
-|sampleBatch|批次||false|string|
-|modelBatch|型号批次||false|string|
-|sampleManufacturer|生产厂家||false|string|
-|sampleImage|图片||false|string|
-|equipmentModel|设备型号||false|string|
-|equipmentId|设备名称||false|string|
-|equipmentName|设备名称||false|string|
-|equipment|设备||false|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|equipmentType|设备类型||false|string|
-|equipmentImage|设备图片||false|string|
-|measurementValidity|计量有效期||false|string|
-|roomNo|房间号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|copyCount|复制次数||false|integer(int32)|
-|fileList|试验文件||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|fileName|文件名称||false|string|
-|fileType|类型||false|string|
-|fileUrl|文件链接||false|string|
-|experimentUser|||false|string|
-|experimentUserList|试验人员||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|userId|人员||false|string|
-|userName|||false|string|
-|type|类型||false|string|
-|experimentReportList|试验报告||false|array|
-|id|主键||false|string|
-|experimentId|试验ID||false|string|
-|sampleInfo|样品信息||false|string|
-|imgUrls|偏置原理图||false|string|
-|description|偏置原理说明||false|string|
-|auditor|审核员||false|string|
-|proofreader|校对员||false|string|
-|confirmer|确认员||false|string|
-|reportName|报告名称||false|string|
-|status|状态(申请中待校对:INIT,不合格:REJECT ,校对通过待审核：PROOFREAD_PASS,审核通过待批准：AUDIT_PASS，批准通过：PASSED)||false|string|
-|auditorMemo|审批意见||false|string|
-|proofreaderMemo|校对意见||false|string|
-|confirmerMemo|批准意见||false|string|
-|auditorTime|审批时间||false|string|
-|proofreaderTime|校对时间||false|string|
-|confirmerTime|批准时间||false|string|
-|fileUrl|生成的文件路径||false|string|
-|memo|||false|string|
-|experimentRatingList|试验评分||false|array|
-|id|主键||false|string|
-|experimentId|实验ID||false|string|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|experimentName|||false|string|
-|experimentNo|||false|string|
-|rateUserName|||false|string|
-|rateUserList|试验评分||false|array|
-|rateUserId|评分人||false|string|
-|totalScore|总分数||false|string|
-|baseScore|基础分||false|string|
-|completionScore|完成分||false|string|
-|difficultyScore|难度分||false|string|
-|managementScore|管理支撑分||false|string|
-|sampleType|||false|string|
-|sampleName|||false|string|
-|equipmentModel|||false|string|
-|sampleModel|||false|string|
-|totalCountXhy|西核院统计||false|integer(int32)|
-|totalCountLhs|理化所统计||false|integer(int32)|
-|reportStatus|理化所统计||false|string|
-|pageName|试验页面||false|string|
-|radiationStandard|辐照标准||false|string|
-|experimentReview|试验评定结果||false|ExperimentReview|
-|id|id||false|string|
-|experimentId|试验ID||false|string|
-|experimentName|||false|string|
-|sampleId|样品ID||false|string|
-|sampleName|||false|string|
-|processType|试验流程标准,可用值:GJB548C,ESCC229000,ESCC22500,QJ10004||false|string|
-|needAnneal|是否需要退火,可用值:Y,N||false|string|
-|targetedAnneal|是否进行了针对性的退火表征试验,可用值:Y,N||false|string|
-|needRadiation|是否需要辐照,可用值:Y,N||false|string|
-|needBurnin|是否需要老练,可用值:Y,N||false|string|
-|result|评定结果||false|string|
-|reviewStatus|评定状态||false|string|
-|matchedRuleList|试验评定规则||false|array|
-|id|id||false|string|
-|processType|试验流程标准||false|string|
-|title|建议标题||false|string|
-|result|评定结果||false|string|
-|impactDesc|损伤机理||false|string|
-|impactScope|适用范围||false|string|
-|expression|规则表达式||false|string|
-|priority|规则优先级||false|integer|
-|experimentReviewList|||false|array|
-|experimentId|||false|string|
-|sampleName|||false|string|
-|sampleId|||false|string|
-|processType|||false|string|
-|reviewResult|||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-|pageName||query|false|string|
 
 
 ## 试验管理-检查能否生成报告
@@ -8921,16 +3143,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验管理-通过id删除
 
 
@@ -8943,16 +3155,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 试验管理-批量删除
 
 
@@ -8963,16 +3165,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 设备
@@ -8990,24 +3182,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|equipment|设备|body|true|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-
-
 ## 设备-添加
 
 
@@ -9018,24 +3192,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|equipment|设备|body|true|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
 
 
 ## 设备-通过id查询
@@ -9050,16 +3206,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 设备-分页列表查询
 
 
@@ -9070,26 +3216,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|equipment|设备|query|true|Equipment|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|factoryNo|出厂编号||false|string|
-|managementNo|管理编号||false|string|
-|expireDate|有效期||false|string|
-|roomNo|房间号||false|string|
-|images|图片||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 设备-通过id删除
@@ -9104,16 +3230,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 设备-批量删除
 
 
@@ -9124,16 +3240,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 我的收藏文档
@@ -9151,20 +3257,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentFavorites|我的收藏文档|body|true|DocumentFavorites|
-|id|主键||false|string|
-|documentId|文档ID||false|string|
-|documentTitle|文档名称||false|string|
-|userId|用户ID||false|string|
-
-
 ## 我的收藏文档-添加
 
 
@@ -9175,20 +3267,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentFavorites|我的收藏文档|body|true|DocumentFavorites|
-|id|主键||false|string|
-|documentId|文档ID||false|string|
-|documentTitle|文档名称||false|string|
-|userId|用户ID||false|string|
 
 
 ## 我的收藏文档-通过id查询
@@ -9203,16 +3281,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 我的收藏文档-分页列表查询
 
 
@@ -9223,22 +3291,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|documentFavorites|我的收藏文档|query|true|DocumentFavorites|
-|id|主键||false|string|
-|documentId|文档ID||false|string|
-|documentTitle|文档名称||false|string|
-|userId|用户ID||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 我的收藏文档-通过id删除
@@ -9253,16 +3305,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 我的收藏文档-批量删除
 
 
@@ -9273,16 +3315,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 样品元器件模糊预搜索API
@@ -9300,20 +3332,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|searchResult|系统预搜索的信息模型|body|true|SearchResult|
-|id|主键||false|string|
-|dataType|数据类型||false|integer(int32)|
-|content|搜索内容||false|string|
-|extentInfo|扩展信息||false|string|
-
-
 ## 器件搜索数据-添加
 
 
@@ -9324,20 +3342,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|searchResult|系统预搜索的信息模型|body|true|SearchResult|
-|id|主键||false|string|
-|dataType|数据类型||false|integer(int32)|
-|content|搜索内容||false|string|
-|extentInfo|扩展信息||false|string|
 
 
 ## 器件查询 - 分页查询API
@@ -9352,17 +3356,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|type||query|false|integer(int32)|
-|content||query|false|string|
-
-
 ## 器件查询 - 分页查询API
 
 
@@ -9375,19 +3368,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|type||query|false|integer(int32)|
-|content||query|false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
-
-
 ## 器件搜索数据-通过id删除
 
 
@@ -9398,16 +3378,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 # 元器件
@@ -9425,27 +3395,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|component|元器件|body|true|Component|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|size|特征尺寸||false|string|
-|material|器件材料||false|string|
-|technology|器件工艺||false|string|
-|manufacturer|生产厂家||false|string|
-|batchNo|批次||false|string|
-|oemLine|代工线||false|string|
-|type|类型||false|string|
-|attachment|附件||false|string|
-
-
 ## 元器件-添加
 
 
@@ -9456,27 +3405,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|component|元器件|body|true|Component|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|size|特征尺寸||false|string|
-|material|器件材料||false|string|
-|technology|器件工艺||false|string|
-|manufacturer|生产厂家||false|string|
-|batchNo|批次||false|string|
-|oemLine|代工线||false|string|
-|type|类型||false|string|
-|attachment|附件||false|string|
 
 
 ## 元器件-通过id查询
@@ -9491,16 +3419,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 元器件-分页列表查询
 
 
@@ -9511,29 +3429,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|component|元器件|query|true|Component|
-|id|主键||false|string|
-|name|名称||false|string|
-|model|型号||false|string|
-|size|特征尺寸||false|string|
-|material|器件材料||false|string|
-|technology|器件工艺||false|string|
-|manufacturer|生产厂家||false|string|
-|batchNo|批次||false|string|
-|oemLine|代工线||false|string|
-|type|类型||false|string|
-|attachment|附件||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 元器件-通过id删除
@@ -9548,16 +3443,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 元器件-批量删除
 
 
@@ -9568,16 +3453,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # cnas测试参数列表
@@ -9595,21 +3470,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|cnasTest|cnas测试参数列表|body|true|CnasTest|
-|id|主键||false|string|
-|testTarget|检测对象||false|string|
-|parameter|参数||false|string|
-|testStandard|检测标准||false|string|
-|time|创建时间||false|string(date-time)|
-
-
 ## cnas测试参数列表-添加
 
 
@@ -9620,21 +3480,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|cnasTest|cnas测试参数列表|body|true|CnasTest|
-|id|主键||false|string|
-|testTarget|检测对象||false|string|
-|parameter|参数||false|string|
-|testStandard|检测标准||false|string|
-|time|创建时间||false|string(date-time)|
 
 
 ## cnas测试参数列表-通过id查询
@@ -9649,16 +3494,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## cnas测试参数列表-分页列表查询
 
 
@@ -9669,23 +3504,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|cnasTest|cnas测试参数列表|query|true|CnasTest|
-|id|主键||false|string|
-|testTarget|检测对象||false|string|
-|parameter|参数||false|string|
-|testStandard|检测标准||false|string|
-|time|创建时间||false|string(date-time)|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## cnas测试参数列表-通过id删除
@@ -9700,16 +3518,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## cnas测试参数列表-批量删除
 
 
@@ -9720,16 +3528,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 委托方
@@ -9747,19 +3545,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|client|委托方|body|true|Client|
-|id|主键||false|string|
-|name|名称||false|string|
-|address|地址||false|string|
-
-
 ## 委托方-添加
 
 
@@ -9770,19 +3555,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|client|委托方|body|true|Client|
-|id|主键||false|string|
-|name|名称||false|string|
-|address|地址||false|string|
 
 
 ## 委托方-通过id查询
@@ -9797,16 +3569,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 委托方-分页列表查询
 
 
@@ -9817,21 +3579,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|client|委托方|query|true|Client|
-|id|主键||false|string|
-|name|名称||false|string|
-|address|地址||false|string|
-|pageNo||query|false|integer(int32)|
-|pageSize||query|false|integer(int32)|
 
 
 ## 委托方-通过id删除
@@ -9846,16 +3593,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
-
-
 ## 委托方-批量删除
 
 
@@ -9866,16 +3603,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
 
 
 # 用户登录
@@ -9893,17 +3620,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|qrcodeId||query|true|string|
-|token||query|true|string|
-
-
 ## 手机号登录接口
 
 
@@ -9914,18 +3630,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|jSONObject|JSONObject|body|true|JSONObject|
-|empty|||false|boolean|
-|innerMap|||false|object|
 
 
 ## 登录接口
@@ -9940,20 +3644,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysLoginModel|登录对象|body|true|SysLoginModel|
-|username|账号||false|string|
-|password|密码||false|string|
-|captcha|验证码||false|string|
-|checkKey|验证码key||false|string|
-
-
 ## 获取验证码
 
 
@@ -9964,16 +3654,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|key||path|true|string|
 
 
 ## 获取用户扫码后保存的token
@@ -9988,16 +3668,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|qrcodeId||query|true|string|
-
-
 ## 登录二维码
 
 
@@ -10008,14 +3678,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-暂无
 
 
 # 试验实施暂存数据API
@@ -10033,20 +3695,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded,application/json`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|stageData|暂存的数据|body|true|StageData|
-|id|主键||false|string|
-|bizId|||false|string|
-|dataType|数据类型||false|integer(int32)|
-|content|暂存的数据||false|string|
-
-
 ## 器件搜索数据-通过bizId查询
 
 
@@ -10057,17 +3705,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|bizId||query|true|string|
-|dataType||query|true|integer(int32)|
 
 
 # oss-file-controller
@@ -10085,16 +3722,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|ids||query|true|string|
-
-
 ## 文件管理-通过id查询
 
 
@@ -10105,16 +3732,6 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|id||query|true|string|
 
 
 # 重复校验
@@ -10132,20 +3749,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|duplicateCheckVo|重复校验数据模型|query|true|DuplicateCheckVo|
-|tableName|表名||false|string|
-|fieldName|字段名||false|string|
-|fieldVal|字段值||false|string|
-|dataId|数据ID||false|string|
-
-
 # 数据字典
 
 
@@ -10161,24 +3764,6 @@
 **请求数据类型**:`application/x-www-form-urlencoded`
 
 
-
-
-**请求参数**:
-
-
-| 参数名称 | 参数说明 | 请求类型    | 是否必须 | 数据类型 |
-| -------- | -------- | ----- | -------- | -------- |
-|sysDictItem||query|true|SysDictItem|
-|id|||false|string|
-|dictId|||false|string|
-|itemText|||false|string|
-|itemValue|||false|string|
-|description|||false|string|
-|sortOrder|||false|integer(int32)|
-|status|||false|integer(int32)|
-|itemColor|||false|string|
-
-
 # 试验序列
 
 
@@ -10192,13 +3777,5 @@
 
 
 **请求数据类型**:`application/x-www-form-urlencoded`
-
-
-
-
-**请求参数**:
-
-
-暂无
 
 

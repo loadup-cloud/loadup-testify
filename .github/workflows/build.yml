@@ -42,19 +42,5 @@ jobs:
           GITHUB_ACTOR: ${{ secrets.PACKAGES_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.PACKAGES_TOKEN }}
       
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: loadup-testify-artifacts
-          path: |
-            **/target/*.jar
-            !**/target/*-original.jar
-          retention-days: 30
-      
-      - name: Upload source artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: loadup-testify-sources
-          path: |
-            **/target/*-sources.jar
-          retention-days: 30
+      # Removed upload-artifact steps: artifacts are deployed to the Maven repository
+      # via the 'Deploy to GitHub Packages' mvn deploy step above.

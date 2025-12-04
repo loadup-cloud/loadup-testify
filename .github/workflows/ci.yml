@@ -41,6 +41,3 @@ jobs:
         env:
           GITHUB_ACTOR: ${{ secrets.OSSRH_USERNAME }}
           GITHUB_TOKEN: ${{ secrets.OSSRH_TOKEN }}
-      
-      # Removed upload-artifact steps: artifacts are deployed to the Maven repository
-      # via the 'Deploy to GitHub Packages' mvn deploy step above.

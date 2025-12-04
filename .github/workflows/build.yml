@@ -25,11 +25,8 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
       
-      - name: Build with Maven
+      - name: Build and package with Maven
         run: mvn clean verify
-      
-      - name: Package artifacts
-        run: mvn package -DskipTests
       
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

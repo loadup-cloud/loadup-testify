@@ -39,11 +39,18 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Locale;
 
 /**
  * Loader for test case configurations and data.
@@ -236,6 +243,20 @@ public class TestCaseLoader {
         }
 
         try {
+            // First try to determine target raw class. For primitive/wrapper/simple types we will
+            // do a direct conversion without going through Jackson to improve compatibility.
+            Class<?> targetClass;
+            if (targetType instanceof Class<?>) {
+                targetClass = (Class<?>) targetType;
+            } else {
+                JavaType jt = jsonMapper.getTypeFactory().constructType(targetType);
+                targetClass = jt.getRawClass();
+            }
+
+            if (isDirectlyConvertible(targetClass)) {
+                return convertSimpleType(value, targetClass);
+            }
+
             JavaType javaType = jsonMapper.getTypeFactory().constructType(targetType);
 
             // If it's already the correct type, return it
@@ -249,6 +270,275 @@ public class TestCaseLoader {
         } catch (IOException e) {
             throw new DataLoadingException("Failed to convert argument to type: " + targetType, e);
         }
+    }
+
+    // New helper to decide which classes should be converted without Jackson
+    private boolean isDirectlyConvertible(Class<?> cls) {
+        return cls == String.class || cls.isPrimitive() || isWrapperType(cls)
+                || cls == BigDecimal.class || cls == BigInteger.class
+                || Date.class.isAssignableFrom(cls) || isJavaTimeType(cls) || cls.isEnum();
+    }
+
+    // Helper to check for wrapper classes
+    private boolean isWrapperType(Class<?> cls) {
+        return cls == Boolean.class || cls == Byte.class || cls == Short.class || cls == Integer.class
+                || cls == Long.class || cls == Float.class || cls == Double.class || cls == Character.class
+                || cls == Void.class;
+    }
+
+    // Convert simple/primitive/wrapper/string/big types/enum/java-time/date without Jackson
+    private Object convertSimpleType(Object value, Class<?> targetClass) {
+        // If already instance of target (covers wrapper types and many cases), return directly
+        if (targetClass.isInstance(value)) {
+            return value;
+        }
+
+        // Handle String explicitly
+        if (targetClass == String.class) {
+            return String.valueOf(value);
+        }
+
+        // Handle BigDecimal / BigInteger - prefer creating from String to preserve precision
+        if (targetClass == BigDecimal.class) {
+            if (value instanceof BigDecimal) return value;
+            try {
+                // Prefer the exact string representation to avoid double precision loss
+                return new BigDecimal(String.valueOf(value));
+            } catch (NumberFormatException nfe) {
+                throw new DataLoadingException("Failed to convert value to BigDecimal: " + value, nfe);
+            }
+        }
+        if (targetClass == BigInteger.class) {
+            if (value instanceof BigInteger) return value;
+            try {
+                return new BigInteger(String.valueOf(value));
+            } catch (NumberFormatException nfe) {
+                throw new DataLoadingException("Failed to convert value to BigInteger: " + value, nfe);
+            }
+        }
+
+        // Handle booleans
+        if (targetClass == boolean.class || targetClass == Boolean.class) {
+            if (value instanceof Boolean) {
+                return value;
+            }
+            String s = String.valueOf(value);
+            return Boolean.parseBoolean(s);
+        }
+
+        // Handle characters
+        if (targetClass == char.class || targetClass == Character.class) {
+            if (value instanceof Character) {
+                return value;
+            }
+            String s = String.valueOf(value);
+            if (!s.isEmpty()) {
+                return s.charAt(0);
+            }
+            throw new DataLoadingException("Cannot convert value to char: " + value);
+        }
+
+        // Handle numbers (primitive wrappers)
+        if (Number.class.isAssignableFrom(targetClass) || targetClass.isPrimitive()) {
+            Number number = null;
+            if (value instanceof Number) {
+                number = (Number) value;
+            } else {
+                String s = String.valueOf(value);
+                try {
+                    if (targetClass == byte.class || targetClass == Byte.class) {
+                        return Byte.parseByte(s);
+                    }
+                    if (targetClass == short.class || targetClass == Short.class) {
+                        return Short.parseShort(s);
+                    }
+                    if (targetClass == int.class || targetClass == Integer.class) {
+                        return Integer.parseInt(s);
+                    }
+                    if (targetClass == long.class || targetClass == Long.class) {
+                        return Long.parseLong(s);
+                    }
+                    if (targetClass == float.class || targetClass == Float.class) {
+                        return Float.parseFloat(s);
+                    }
+                    if (targetClass == double.class || targetClass == Double.class) {
+                        return Double.parseDouble(s);
+                    }
+                } catch (NumberFormatException nfe) {
+                    throw new DataLoadingException("Failed to convert value to number type " + targetClass + ": " + value, nfe);
+                }
+            }
+
+            if (number != null) {
+                if (targetClass == byte.class || targetClass == Byte.class) {
+                    return number.byteValue();
+                }
+                if (targetClass == short.class || targetClass == Short.class) {
+                    return number.shortValue();
+                }
+                if (targetClass == int.class || targetClass == Integer.class) {
+                    return number.intValue();
+                }
+                if (targetClass == long.class || targetClass == Long.class) {
+                    return number.longValue();
+                }
+                if (targetClass == float.class || targetClass == Float.class) {
+                    return number.floatValue();
+                }
+                if (targetClass == double.class || targetClass == Double.class) {
+                    return number.doubleValue();
+                }
+            }
+        }
+
+        // Handle enums
+        if (targetClass.isEnum()) {
+            String s = String.valueOf(value);
+            // try by name
+            try {
+                @SuppressWarnings({"unchecked", "rawtypes"})
+                Object enumVal = Enum.valueOf((Class<? extends Enum>) targetClass, s);
+                return enumVal;
+            } catch (IllegalArgumentException iae) {
+                // try case-insensitive match
+                for (Object constant : targetClass.getEnumConstants()) {
+                    if (String.valueOf(constant).equalsIgnoreCase(s)) {
+                        return constant;
+                    }
+                }
+                // try numeric ordinal
+                try {
+                    int ord = Integer.parseInt(s);
+                    Object[] consts = targetClass.getEnumConstants();
+                    if (ord >= 0 && ord < consts.length) {
+                        return consts[ord];
+                    }
+                } catch (NumberFormatException nfe) {
+                    // ignore
+                }
+                throw new DataLoadingException("Failed to convert value to enum " + targetClass + ": " + value, iae);
+            }
+        }
+
+        // Handle java.util.Date
+        if (Date.class.isAssignableFrom(targetClass)) {
+            if (value instanceof Date) return value;
+            if (value instanceof Number) {
+                return new Date(((Number) value).longValue());
+            }
+            String s = String.valueOf(value);
+            // try ISO first
+            Instant inst = tryParseToInstant(s);
+            if (inst != null) {
+                return Date.from(inst);
+            }
+            // try parse as epoch millis
+            try {
+                long ms = Long.parseLong(s);
+                return new Date(ms);
+            } catch (NumberFormatException nfe) {
+                throw new DataLoadingException("Failed to convert value to Date: " + value, nfe);
+            }
+        }
+
+        // Handle java.time types
+        if (isJavaTimeType(targetClass)) {
+            if (value instanceof Number) {
+                long epoch = ((Number) value).longValue();
+                if (targetClass == Instant.class) return Instant.ofEpochMilli(epoch);
+                if (targetClass == LocalDate.class) return Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDate();
+                if (targetClass == LocalDateTime.class) return Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalDateTime();
+                if (targetClass == LocalTime.class) return Instant.ofEpochMilli(epoch).atZone(ZoneId.systemDefault()).toLocalTime();
+                if (targetClass == OffsetDateTime.class) return OffsetDateTime.ofInstant(Instant.ofEpochMilli(epoch), ZoneId.systemDefault());
+                if (targetClass == ZonedDateTime.class) return ZonedDateTime.ofInstant(Instant.ofEpochMilli(epoch), ZoneId.systemDefault());
+            }
+            String s = String.valueOf(value);
+            // try ISO or common formats
+            Instant parsed = tryParseToInstant(s);
+            if (parsed != null) {
+                if (targetClass == Instant.class) return parsed;
+                if (targetClass == LocalDate.class) return parsed.atZone(ZoneId.systemDefault()).toLocalDate();
+                if (targetClass == LocalDateTime.class) return parsed.atZone(ZoneId.systemDefault()).toLocalDateTime();
+                if (targetClass == LocalTime.class) return parsed.atZone(ZoneId.systemDefault()).toLocalTime();
+                if (targetClass == OffsetDateTime.class) return OffsetDateTime.ofInstant(parsed, ZoneId.systemDefault());
+                if (targetClass == ZonedDateTime.class) return ZonedDateTime.ofInstant(parsed, ZoneId.systemDefault());
+            }
+            // if parsing failed at this point, throw
+            throw new DataLoadingException("Failed to convert value to java.time type " + targetClass + ": " + value);
+        }
+
+        // Fallback: try to convert via string representation using Jackson as last resort
+        try {
+            JavaType jt = jsonMapper.getTypeFactory().constructType(targetClass);
+            String json = jsonMapper.writeValueAsString(value);
+            return jsonMapper.readValue(json, jt);
+        } catch (IOException e) {
+            throw new DataLoadingException("Failed to convert simple type to target type " + targetClass + ": " + value, e);
+        }
+    }
+
+    // Common formatters to try for non-ISO date/time strings (order matters)
+    private static final DateTimeFormatter[] COMMON_FORMATTERS = new DateTimeFormatter[]{
+            DateTimeFormatter.ISO_DATE_TIME,
+            DateTimeFormatter.ISO_OFFSET_DATE_TIME,
+            DateTimeFormatter.ISO_INSTANT,
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssX", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyy/MM/dd", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("dd/MM/yyyy", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("MM/dd/yyyy", Locale.getDefault()),
+            DateTimeFormatter.ofPattern("yyyyMMdd", Locale.getDefault())
+    };
+
+    // Try parsing a string to Instant using ISO or common formatters; return null if none match
+    private Instant tryParseToInstant(String s) {
+        if (s == null || s.isEmpty()) return null;
+        // try ISO instant first
+        try {
+            return Instant.parse(s);
+        } catch (DateTimeParseException ignored) {
+        }
+
+        // try common formatters
+        for (DateTimeFormatter fmt : COMMON_FORMATTERS) {
+            try {
+                // try parsing as ZonedDateTime
+                try {
+                    return ZonedDateTime.parse(s, fmt).toInstant();
+                } catch (DateTimeParseException ignored) {
+                }
+                // try OffsetDateTime
+                try {
+                    return OffsetDateTime.parse(s, fmt).toInstant();
+                } catch (DateTimeParseException ignored) {
+                }
+                // try LocalDateTime
+                try {
+                    LocalDateTime ldt = LocalDateTime.parse(s, fmt);
+                    return ldt.atZone(ZoneId.systemDefault()).toInstant();
+                } catch (DateTimeParseException ignored) {
+                }
+                // try LocalDate (at start of day)
+                try {
+                    LocalDate ld = LocalDate.parse(s, fmt);
+                    return ld.atStartOfDay(ZoneId.systemDefault()).toInstant();
+                } catch (DateTimeParseException ignored) {
+                }
+            } catch (Exception ignore) {
+                // move to next formatter
+            }
+        }
+        return null;
+    }
+
+    private boolean isJavaTimeType(Class<?> cls) {
+        return cls == Instant.class || cls == LocalDate.class || cls == LocalDateTime.class
+                || cls == LocalTime.class || cls == OffsetDateTime.class || cls == ZonedDateTime.class;
     }
 
     /**

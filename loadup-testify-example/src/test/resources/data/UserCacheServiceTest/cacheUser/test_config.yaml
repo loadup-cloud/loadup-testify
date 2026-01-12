@@ -1,0 +1,5 @@
+description: "Cache user test"
+enabled: true
+args:
+  - userId
+  - userData

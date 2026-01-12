@@ -25,10 +25,32 @@ LoadUp Testify is a Maven multi-module project designed to be integrated into ot
 | `starter` | Spring Boot Starter for easy integration | All modules |
 | `example` | Integration examples demonstrating all features | `starter` |
 
+## Requirements
+
+- Java 21+
+- Spring Boot 3.4.3+
+- Maven 3.6+
+
+## Features
+
+### 🚀 Core Features
+- **Data-Driven Testing**: Separation of test logic (Java) and test data (CSV/YAML).
+- **Implicit Discovery**: Automatically discovers test cases based on folder structure.
+- **Smart Argument Injection**: Automatically injects method arguments from CSV data.
+- **Comprehensive Assertions**: Built-in support for JSON response and Database state verification.
+
+### 📦 Testcontainers Integration
+- **Zero-Config Setup**: Automatically configures Spring Boot properties for common containers (MySQL, Redis, S3/LocalStack).
+- **@EnableContainer**: Declarative annotation to start containers.
+- **Shared Containers**: Efficiently reuses containers across test classes to speed up execution.
+
+### ⚡ Concurrency & Performance
+- **@TestifyConcurrency**: Run tests in parallel with configurable threads and iterations.
+- **Performance Assertions**: Assert on TPS (Transactions Per Second) and Max Duration directly in `test_config.yaml`.
+
 ## Quick Start
 
-### 1. Add Spring Boot Starter Dependency
-
+### 1. Add Dependency
 ```xml
 <dependency>
     <groupId>com.github.loadup</groupId>
@@ -38,25 +60,17 @@ LoadUp Testify is a Maven multi-module project designed to be integrated into ot
 </dependency>
 ```
 
-The starter automatically includes all necessary modules (common, data, core, assertions) and configures Spring Boot auto-configuration.
-
-### 2. Create Test Class
-
+### 2. Write Test
 ```java
-@SpringBootTest(classes = YourApplication.class)
-@ActiveProfiles("test")
-public class UserServiceTest extends TestifyTestBase {
+@SpringBootTest
+public class UserServiceTest {
 
-    @TestBean  // Marks the service under test
     @Autowired
     private UserService userService;
 
-    @MockitoBean  // Mock external dependencies
-    private RoleService roleService;
-
-    @Test(dataProvider = "TestifyProvider")
-    public void testCreateUser(String caseId, PrepareData prepareData) {
-        runTest(caseId, prepareData);
+    @TestifyTest
+    public void createUser(String username, String email) {
+        userService.createUser(username, email);
     }
 }
 ```
@@ -177,14 +191,15 @@ loadup.testify.verbose-logging=true
 
 ## Features
 
-### @TestBean Annotation
+### Implicit Bean Detection
 
-Mark the service under test with `@TestBean` instead of overriding `getTestBean()`:
+The service under test is automatically detected based on the test class name convention:
+- `UserServiceTest` → Detects field of type `UserService`
+- `OrderServiceTest` → Detects field of type `OrderService`
 
 ```java
-@TestBean
 @Autowired
-private UserService userService;
+private UserService userService; // Automatically detected as the test bean
 ```
 
 ### Method Name Normalization
@@ -223,7 +238,7 @@ mvn clean install
 
 ## Technology Stack
 
-- **Java:** 17+
+- **Java:** 21+
 - **Spring Boot:** 3.5.8
 - **TestNG:** 7.11.0
 - **Jackson:** 2.19.4

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -17,8 +15,7 @@
     <packaging>pom</packaging>
     <name>LoadUp Testify - Data Driven Test SDK</name>
     <description>A Spring Boot based data-driven test library for simplified test case writing, data preparation and
-        assertions
-    </description>
+        assertions</description>
     <inceptionYear>2026</inceptionYear>
 
     <modules>
@@ -28,12 +25,13 @@
         <module>loadup-testify-assertions</module>
         <module>loadup-testify-spring-boot-starter</module>
         <module>loadup-testify-example</module>
+        <module>loadup-testify-containers</module>
     </modules>
 
     <properties>
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng.version>7.11.0</testng.version>
         <lombok.version>1.18.42</lombok.version>
@@ -45,11 +43,20 @@
         <jackson.version>2.19.4</jackson.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <commons-collections4.version>4.5.0</commons-collections4.version>
-
+        <commons.io.version>2.16.1</commons.io.version>
+        <testcontainers.version>2.0.3</testcontainers.version>
+        <spotless.skip>true</spotless.skip>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.4.3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
             <!-- Internal modules -->
             <dependency>
                 <groupId>com.github.loadup</groupId>
@@ -159,14 +166,14 @@
 
     <repositories>
         <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
         </repository>
     </repositories>
 

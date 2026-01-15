@@ -1,0 +1,13 @@
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/diff/DiffReportBuilder.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/engine/DbAssertEngine.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/model/FieldDiff.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/model/MatchResult.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/model/RowDiff.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/operator/OperatorMatcher.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/operator/OperatorProcessor.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/operator/impl/ApproxTimeMatcher.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/operator/impl/JsonMatcher.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/operator/impl/NumberMatcher.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/operator/impl/RegexMatcher.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/operator/impl/SimpleMatcher.java
+/Users/lise/PersonalSpace/loadup-cloud/loadup-testify/testify-assert-engine/src/main/java/com/github/loadup/testify/asserts/util/ColumnNormalizer.java

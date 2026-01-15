@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="testify-core" />
+        <module name="testify-demo" />
+        <module name="testify-assert-engine" />
+        <module name="testify-mock-engine" />
+        <module name="testify-spring-boot-starter" />
+        <module name="testify-data-engine" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="testify-assert-engine" options="-parameters" />
+      <module name="testify-core" options="-parameters" />
+      <module name="testify-data-engine" options="-parameters" />
+      <module name="testify-demo" options="-parameters" />
+      <module name="testify-mock-engine" options="-parameters" />
+      <module name="testify-root" options="-parameters" />
+      <module name="testify-spring-boot-starter" options="-parameters" />
+    </option>
+  </component>
+</project>

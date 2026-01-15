@@ -1,0 +1,64 @@
+# Example YAML test case for UserService.createUser
+# 
+# This file demonstrates how a fully YAML-driven test would work
+# once TestNG integration is complete.
+#
+# NOTE: This is currently a reference example. The actual test in
+# UserServiceTest.java uses helper methods instead until the
+# TestNG Listener and Data Provider are fully integrated.
+
+variables:
+  # Generate unique test data using Datafaker
+  userId: ${fn.uuid()}
+  userName: ${faker.name.fullName()}
+  email: ${faker.internet.emailAddress()}
+  createdAt: ${time.now()}
+  
+  # Derived variables
+  emailDomain: ${faker.internet.domainName()}
+
+# Test method input parameters
+# These would be automatically injected by TestifyDataProvider
+input:
+  - ${userId}    # String userId
+  - ${userName}  # String userName
+  - ${email}     # String email
+
+# Mock configurations (optional)
+# mocks:
+#   - bean: emailService
+#     method: sendWelcomeEmail
+#     returnValue: true
+
+# Database setup and cleanup
+setup:
+  # SQL cleanup with variable substitution
+  clean_sql: |
+    DELETE FROM users WHERE user_id = '${userId}';
+    DELETE FROM users WHERE email = '${email}';
+  
+  # Optional: Pre-insert data if needed
+  # db_setup:
+  #   table: users
+  #   data:
+  #     - user_id: ${userId}
+  #       user_name: "Existing User"
+  #       email: "existing@example.com"
+  #       status: INACTIVE
+  #       created_at: ${time.now('-1d')}
+
+# Database assertions
+expect:
+  database:
+    table: users
+    mode: strict  # Exact row count match
+    rows:
+      # Match by user_id
+      - _match: {user_id: ${userId}}
+        user_name: ${userName}
+        email: ${email}
+        status: ACTIVE
+        created_at:
+          op: approx
+          val: ${createdAt}
+          delta: 2000  # 2 second tolerance

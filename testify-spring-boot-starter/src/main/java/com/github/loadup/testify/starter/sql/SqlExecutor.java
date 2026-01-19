@@ -1,7 +1,7 @@
 package com.github.loadup.testify.starter.sql;
 
-import com.github.loadup.testify.data.engine.VariableContext;
-import com.github.loadup.testify.data.engine.VariableEngine;
+import com.github.loadup.testify.data.engine.variable.VariableContext;
+import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,102 +1,88 @@
 package com.github.loadup.testify.starter.testng;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.github.loadup.testify.core.loader.YamlLoader;
+import com.github.loadup.testify.asserts.engine.DbAssertEngine;
 import com.github.loadup.testify.core.model.TestContext;
-import com.github.loadup.testify.data.engine.VariableContext;
-import org.testng.ITestContext;
+import com.github.loadup.testify.data.engine.variable.VariableContext;
+import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.lang.reflect.Method;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 /**
- * TestNG listener for Testify framework.
- * Automatically loads YAML test cases before test execution and cleans up
- * after.
- * 
- * Usage: Add @Listeners(TestifyListener.class) to your test class
- * or configure in testng.xml
+ * TestNG listener for Testify framework. Automatically executes YAML-defined setup and assertions.
+ *
+ * <p>Usage: Add @Listeners(TestifyListener.class) to your test class or configure in testng.xml
  */
+@Slf4j
 public class TestifyListener implements ITestListener {
+  private final DbAssertEngine dbAssertEngine = new DbAssertEngine();
 
-    private static final String TESTCASES_DIR = "testcases";
-    private final YamlLoader yamlLoader = new YamlLoader();
+  // Added debug logs to trace TestContext loading and listener execution
+  @Override
+  public void onTestStart(ITestResult result) {
+    try {
+      TestContext tc = getTestContext(result);
+      log.info("Test started: {}", result.getName());
+      if (tc == null || tc.setup() == null) return;
+      SqlExecutionEngine sqlEngine = SpringContextHolder.getBean(SqlExecutionEngine.class);
 
-    @Override
-    public void onTestStart(ITestResult result) {
-        try {
-            // Load YAML test case
-            TestContext testContext = loadTestCase(result);
-
-            // Store in test result for data provider access
-            if (testContext != null) {
-                result.setAttribute("testContext", testContext);
-            }
-        } catch (Exception e) {
-            result.setThrowable(new RuntimeException("Failed to load test case YAML", e));
-        }
+      // 执行 setup (传入 yamlPath 解决 CSV 寻址问题)
+      sqlEngine.executeSetup(
+              tc.setup(),
+              VariableContext.get(),
+              tc.yamlPath()
+      );
+    } catch (Exception e) {
+      result.setStatus(ITestResult.FAILURE);
+      result.setThrowable(new RuntimeException("Failed to execute test setup", e));
     }
+  }
 
-    @Override
-    public void onTestSuccess(ITestResult result) {
-        cleanup();
+  @Override
+  public void onTestSuccess(ITestResult result) {
+    try {
+      TestContext tc = getTestContext(result);
+      if (tc == null || tc.expect() == null) return;
+      dbAssertEngine.compare(tc.expect(), VariableContext.get());
+
+    } catch (Exception e) {
+      result.setStatus(ITestResult.FAILURE);
+      result.setThrowable(new RuntimeException("Failed to execute test assertions", e));
+    } finally {
+      cleanup();
     }
+  }
 
-    @Override
-    public void onTestFailure(ITestResult result) {
-        cleanup();
+  @Override
+  public void onTestFailure(ITestResult result) {
+    cleanup();
+  }
+
+  @Override
+  public void onTestSkipped(ITestResult result) {
+    cleanup();
+  }
+
+  /** Get TestContext from test context attributes. */
+  private TestContext getTestContext(ITestResult result) {
+    String contextKey =
+        result.getMethod().getRealClass().getName() + "." + result.getMethod().getMethodName();
+    Object attr = result.getTestContext().getAttribute(contextKey);
+    return attr instanceof TestContext ? (TestContext) attr : null;
+  }
+
+  /** Cleanup after test execution. Clears variable context and mock registry. */
+  private void cleanup() {
+    // Clear variable context for this thread
+    VariableContext.clear();
+
+    // Clear mock registry (if mocks were used)
+    try {
+      Class<?> mockRegistryClass =
+          Class.forName("com.github.loadup.testify.mock.registry.MockRegistry");
+      mockRegistryClass.getMethod("clear").invoke(null);
+    } catch (Exception e) {
+      // MockRegistry not available or already cleared - ignore
     }
-
-    @Override
-    public void onTestSkipped(ITestResult result) {
-        cleanup();
-    }
-
-    /**
-     * Load YAML test case for the current test method.
-     * Convention: src/test/resources/testcases/[ClassName]/[methodName].yaml
-     */
-    private TestContext loadTestCase(ITestResult result) {
-        Method method = result.getMethod().getConstructorOrMethod().getMethod();
-        Class<?> testClass = result.getTestClass().getRealClass();
-
-        // Build YAML file path following convention
-        String className = testClass.getSimpleName();
-        String methodName = method.getName();
-
-        Path yamlPath = Paths.get(TESTCASES_DIR, className, methodName + ".yaml");
-
-        try {
-            // Load YAML using YamlLoader
-            TestContext context = yamlLoader.load(yamlPath.toString());
-
-            // Variables are already resolved by YamlLoader and stored in VariableContext
-            // No additional processing needed here
-
-            return context;
-        } catch (Exception e) {
-            // YAML file not found or loading failed - this is OK, test may not use YAML
-            return null;
-        }
-    }
-
-    /**
-     * Cleanup after test execution.
-     * Clears variable context and mock registry.
-     */
-    private void cleanup() {
-        // Clear variable context for this thread
-        VariableContext.clear();
-
-        // Clear mock registry (if mocks were used)
-        try {
-            Class<?> mockRegistryClass = Class.forName("com.github.loadup.testify.mock.registry.MockRegistry");
-            mockRegistryClass.getMethod("clear").invoke(null);
-        } catch (Exception e) {
-            // MockRegistry not available or already cleared - ignore
-        }
-    }
+  }
 }

@@ -2,7 +2,7 @@ package com.github.loadup.testify.starter.testng;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.loadup.testify.core.loader.YamlLoader;
+import com.github.loadup.testify.starter.loader.YamlLoader;
 import com.github.loadup.testify.core.model.TestContext;
 import com.github.loadup.testify.data.engine.variable.VariableContext;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;

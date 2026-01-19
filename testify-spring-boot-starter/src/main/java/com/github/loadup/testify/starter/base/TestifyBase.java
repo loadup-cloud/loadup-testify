@@ -1,6 +1,7 @@
 package com.github.loadup.testify.starter.base;
 
 import com.github.loadup.testify.asserts.engine.DbAssertEngine;
+import com.github.loadup.testify.starter.config.TestifyAutoConfiguration;
 import com.github.loadup.testify.starter.config.TestifyProperties;
 import com.github.loadup.testify.starter.sql.SqlExecutor;
 import com.github.loadup.testify.starter.testng.TestifyListener;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Listeners;
 
@@ -23,6 +25,8 @@ import java.util.Map;
 @Getter
 @Setter
 @Listeners(TestifyListener.class)
+@SpringBootTest
+@ContextConfiguration(classes = TestifyAutoConfiguration.class)
 public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
 
 }

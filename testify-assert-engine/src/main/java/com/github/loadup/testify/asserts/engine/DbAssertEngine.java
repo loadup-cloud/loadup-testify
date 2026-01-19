@@ -1,17 +1,18 @@
 package com.github.loadup.testify.asserts.engine;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.loadup.testify.asserts.diff.DiffReportBuilder;
 import com.github.loadup.testify.asserts.model.FieldDiff;
 import com.github.loadup.testify.asserts.model.MatchResult;
 import com.github.loadup.testify.asserts.model.RowDiff;
 import com.github.loadup.testify.asserts.operator.OperatorProcessor;
 import com.github.loadup.testify.asserts.util.ColumnNormalizer;
+import com.github.loadup.testify.core.util.SpringContextHolder;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Database assertion engine with support for: - Case-insensitive column name matching - Snake_case
@@ -19,7 +20,7 @@ import java.util.Map;
  * custom criteria
  */
 public class DbAssertEngine {
-
+  private static final ObjectMapper objectMapper = new ObjectMapper();
   private String columnNamingStrategy = "caseInsensitive"; // Default strategy
 
   public DbAssertEngine() {}
@@ -121,20 +122,94 @@ public class DbAssertEngine {
     Map<String, Object> normalizedCriteria =
         ColumnNormalizer.normalizeMap(criteria, columnNamingStrategy);
 
+    // 修改 findMatchedRow 内部的 filter 逻辑
     return actuals.stream()
         .filter(
             row ->
                 normalizedCriteria.entrySet().stream()
                     .allMatch(
                         e -> {
-                          Object expectedValue = e.getValue();
-                          Object actualValue = row.get(e.getKey());
-                          // Use simple equality for match criteria
-                          return String.valueOf(expectedValue).equals(String.valueOf(actualValue));
+                          Object exp = e.getValue();
+                          Object act = row.get(e.getKey());
+                          // 使用更健壮的比对，处理数值类型差异
+                          if (exp instanceof Number && act instanceof Number) {
+                            return Double.compare(
+                                    ((Number) exp).doubleValue(), ((Number) act).doubleValue())
+                                == 0;
+                          }
+                          return String.valueOf(exp).equals(String.valueOf(act));
                         }))
         .findFirst()
         .orElse(null);
   }
 
-  public void compare(JsonNode expect, Map<String, Object> stringObjectMap) {}
+  public void compare(JsonNode expectNode, Map<String, Object> context) {
+    if (expectNode == null || !expectNode.has("database")) return;
+
+    JsonNode dbExpect = expectNode.get("database");
+    // 支持 database 块是对象（单表）或数组（多表）
+    if (dbExpect.isArray()) {
+      for (JsonNode tableExpect : dbExpect) {
+        processTableAssertion(tableExpect, context);
+      }
+    } else {
+      processTableAssertion(dbExpect, context);
+    }
+  }
+
+  private void processTableAssertion(JsonNode tableNode, Map<String, Object> context) {
+    String tableName = tableNode.get("table").asText();
+    String mode = tableNode.has("mode") ? tableNode.get("mode").asText() : "lenient";
+    JsonNode rowsNode = tableNode.get("rows");
+
+    // 1. 转换期望行
+    List<Map<String, Object>> expectedRows = convertJsonNodeToList(rowsNode);
+
+    // 2. 从数据库抓取实际行
+    List<Map<String, Object>> actualRows = fetchActualRows(tableName, rowsNode, context);
+
+    // 3. 执行比对
+    verify(tableName, actualRows, expectedRows, mode);
+  }
+
+  /** 将 JsonNode (ArrayNode) 转换为 List<Map> */
+  private List<Map<String, Object>> convertJsonNodeToList(JsonNode rowsNode) {
+    if (rowsNode == null || !rowsNode.isArray()) {
+      return Collections.emptyList();
+    }
+    // 使用 Jackson 的 TypeReference 进行深度转换，保持类型正确（如 Boolean, Number）
+    return objectMapper.convertValue(rowsNode, new TypeReference<>() {});
+  }
+
+  private List<Map<String, Object>> fetchActualRows(
+      String tableName, JsonNode rowsNode, Map<String, Object> context) {
+    JdbcTemplate jdbcTemplate = SpringContextHolder.getBean(JdbcTemplate.class);
+    List<Map<String, Object>> results = new ArrayList<>();
+
+    for (JsonNode rowNode : rowsNode) {
+      if (rowNode.has("_match")) {
+        JsonNode matchNode = rowNode.get("_match");
+        Map<String, Object> criteria =
+            objectMapper.convertValue(matchNode, new TypeReference<>() {});
+
+        StringBuilder sql =
+            new StringBuilder("SELECT * FROM ").append(tableName).append(" WHERE 1=1 ");
+        List<Object> params = new ArrayList<>();
+
+        for (Map.Entry<String, Object> entry : criteria.entrySet()) {
+          sql.append(" AND ").append(entry.getKey()).append(" = ?");
+          params.add(entry.getValue());
+        }
+
+        results.addAll(jdbcTemplate.queryForList(sql.toString(), params.toArray()));
+      }
+    }
+
+    // 如果 rows 里面没有任何 _match 且 actual 依然为空，可能需要兜底全表扫描（视业务而定）
+    if (results.isEmpty() && !rowsNode.isEmpty() && !rowsNode.get(0).has("_match")) {
+      return jdbcTemplate.queryForList("SELECT * FROM " + tableName + " LIMIT 100");
+    }
+
+    return results;
+  }
 }

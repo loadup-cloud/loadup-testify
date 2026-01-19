@@ -1,4 +1,3 @@
-
 package com.github.loadup.testify.asserts.operator;
 
 import com.github.loadup.testify.asserts.model.MatchResult;
@@ -7,44 +6,42 @@ import com.github.loadup.testify.asserts.operator.impl.*;
 import java.util.Map;
 
 /**
- * Central processor for all operator-based assertions.
- * Uses JDK 21 pattern matching for switch expressions.
+ * Central processor for all operator-based assertions. Uses JDK 21 pattern matching for switch
+ * expressions.
  */
+import com.github.loadup.testify.asserts.model.MatchResult;
+import java.util.List;
+import java.util.Map;
+
 public class OperatorProcessor {
 
-    public static MatchResult process(Object actual, Object expected) {
-        // If expected is not a Map, default to simple equality verification
-        if (!(expected instanceof Map<?, ?> config)) {
-            return SimpleMatcher.eq(actual, expected);
-        }
+  // 建议通过 Spring 自动注入所有的 Matcher 实现类
+  private static final List<OperatorMatcher> MATCHERS =
+      List.of(
+          new NumberMatcher(),
+          new RegexMatcher(),
+          new ApproxTimeMatcher(),
+          new JsonMatcher(),
+          new StringMatcher() // 包含 contains, ne 等
+          );
 
-        String op = String.valueOf(config.get("op"));
-        Object val = config.get("val");
-
-        return switch (op) {
-            case "eq" -> SimpleMatcher.eq(actual, val);
-            case "ne" -> SimpleMatcher.ne(actual, val);
-            case "gt" -> NumberMatcher.compare(actual, val, "gt");
-            case "ge" -> NumberMatcher.compare(actual, val, "ge");
-            case "lt" -> NumberMatcher.compare(actual, val, "lt");
-            case "le" -> NumberMatcher.compare(actual, val, "le");
-            case "contains" -> {
-                boolean match = String.valueOf(actual).contains(String.valueOf(val));
-                yield match ? MatchResult.pass()
-                        : MatchResult.fail(actual, val, "String does not contain expected substring");
-            }
-            case "regex" -> RegexMatcher.matchRegex(actual, val);
-            case "approx" -> {
-                ApproxTimeMatcher matcher = new ApproxTimeMatcher();
-                String error = matcher.match(actual, expected);
-                yield error == null ? MatchResult.pass()
-                        : MatchResult.fail(actual, val, error);
-            }
-            case "json" -> {
-                Object matchMode = config.get("mode");
-                yield JsonMatcher.matchJson(actual, val, matchMode);
-            }
-            default -> SimpleMatcher.eq(actual, val);
-        };
+  public static MatchResult process(Object actual, Object expected) {
+    // 1. 如果不是 Map，走最简单的等值比对
+    if (!(expected instanceof Map<?, ?> config)) {
+      return SimpleMatcher.eq(actual, expected);
     }
+
+    @SuppressWarnings("unchecked")
+    Map<String, Object> operatorConfig = (Map<String, Object>) config;
+    String op = String.valueOf(operatorConfig.getOrDefault("op", "eq"));
+    Object val = operatorConfig.get("val");
+
+    // 2. 寻找合适的 Matcher 并执行
+    return MATCHERS.stream()
+        .filter(m -> m.support(op))
+        .findFirst()
+        .map(m -> m.match(actual, val, operatorConfig))
+        // 3. 兜底逻辑：如果找不到算子，尝试 eq
+        .orElseGet(() -> SimpleMatcher.eq(actual, val));
+  }
 }

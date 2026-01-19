@@ -2,6 +2,7 @@ package com.github.loadup.testify.starter.testng;
 
 import com.github.loadup.testify.asserts.engine.DbAssertEngine;
 import com.github.loadup.testify.core.model.TestContext;
+import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.variable.VariableContext;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import lombok.extern.slf4j.Slf4j;

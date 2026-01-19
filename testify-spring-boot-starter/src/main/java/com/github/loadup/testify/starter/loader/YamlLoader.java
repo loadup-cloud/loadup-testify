@@ -1,4 +1,4 @@
-package com.github.loadup.testify.core.loader;
+package com.github.loadup.testify.starter.loader;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;

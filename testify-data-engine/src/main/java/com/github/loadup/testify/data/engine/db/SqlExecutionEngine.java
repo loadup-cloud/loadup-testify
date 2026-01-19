@@ -8,7 +8,10 @@ import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.util.*;
 import java.util.Map;
+
+import io.micrometer.common.util.internal.logging.Slf4JLoggerFactory;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class SqlExecutionEngine {
 
   private final JdbcTemplate jdbcTemplate;
@@ -29,7 +33,9 @@ public class SqlExecutionEngine {
 
     // 1. 处理原始 SQL
     if (setupNode.has("clean_sql")) {
-      executeRawSql(setupNode.get("clean_sql").asText(), context);
+      String cleanSql = setupNode.get("clean_sql").asText();
+      log.info("executing clean_sql: {}", cleanSql);
+      executeRawSql(cleanSql, context);
     }
 
     // 2. 处理合并后的 db_setup (List 结构)
@@ -79,7 +85,7 @@ public class SqlExecutionEngine {
     }
 
     jdbcTemplate.batchUpdate(sql, batchArgs);
-    //    log.info("Inserted {} rows into {} from YAML data", batchArgs.size(), tableName);
+    log.info("Inserted {} rows into {} from YAML data", batchArgs.size(), tableName);
   }
 
   /** 处理 CSV 文件加载 */

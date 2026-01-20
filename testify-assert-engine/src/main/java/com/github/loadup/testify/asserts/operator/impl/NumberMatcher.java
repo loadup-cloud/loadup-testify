@@ -2,7 +2,6 @@ package com.github.loadup.testify.asserts.operator.impl;
 
 import com.github.loadup.testify.asserts.model.MatchResult;
 import com.github.loadup.testify.asserts.operator.OperatorMatcher;
-
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Set;

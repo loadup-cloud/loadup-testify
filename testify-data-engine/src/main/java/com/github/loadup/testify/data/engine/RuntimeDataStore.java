@@ -1,7 +1,6 @@
 package com.github.loadup.testify.data.engine;
 
 import com.github.loadup.testify.data.engine.variable.VariableContext;
-
 import java.util.HashMap;
 import java.util.Map;
 

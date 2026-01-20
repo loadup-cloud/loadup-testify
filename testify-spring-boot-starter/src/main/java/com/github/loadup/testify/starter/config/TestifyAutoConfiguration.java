@@ -1,11 +1,11 @@
 package com.github.loadup.testify.starter.config;
 
+import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import com.github.loadup.testify.starter.container.TestifyContainerManager;
 import com.github.loadup.testify.starter.db.DbConnectionProvider;
 import com.github.loadup.testify.starter.db.PhysicalDbConnectionProvider;
-import com.github.loadup.testify.core.util.SpringContextHolder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;

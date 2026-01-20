@@ -12,6 +12,7 @@
 ### Add Dependency
 
 ```xml
+
 <dependency>
     <groupId>com.github.loadup.framework</groupId>
     <artifactId>testify-spring-boot-starter</artifactId>
@@ -41,7 +42,7 @@ expect:
     table: users
     mode: strict
     rows:
-      - _match: {user_id: ${userId}}
+      - _match: { user_id: ${ userId } }
         user_name: ${userName}
         status: ACTIVE
         created_at:
@@ -55,28 +56,30 @@ expect:
 ## ✨ Features
 
 ### 🎯 Zero Code Intrusion
+
 - **YAML-driven**: Define test data, mocks, and assertions in YAML files
 - **Convention over configuration**: Auto-match YAML files by test class/method names
 - **No service code changes**: Tests run against existing services without modification
 
 ### 🔧 Powerful Variable Engine
+
 ```yaml
 variables:
   # Faker integration
   name: ${faker.name.fullName()}
   email: ${faker.internet.emailAddress()}
-  
+
   # Time calculations
   now: ${time.now()}
   tomorrow: ${time.now('+1d')}
   lastWeek: ${time.now('-7d')}
   formatted: ${time.format('+1d', 'yyyy-MM-dd')}
-  
+
   # Built-in functions
   id: ${fn.uuid()}
   random: ${fn.random(1, 100)}
   text: ${fn.randomString(20)}
-  
+
   # Variable references
   fullName: ${name}
   greeting: Hello ${name}!
@@ -84,16 +87,16 @@ variables:
 
 ### 🎭 Smart Operator Matching
 
-| Operator | Description | Example |
-|----------|-------------|---------|
-| `eq` | Equals (default) | `status: ACTIVE` |
-| `ne` | Not equals | `{op: ne, val: DELETED}` |
-| `gt`/`ge` | Greater than (or equal) | `{op: gt, val: 100}` |
-| `lt`/`le` | Less than (or equal) | `{op: le, val: 99}` |
-| `regex` | Regex match | `{op: regex, val: "^\\d{10}$"}` |
-| `approx` | Time approximation | `{op: approx, val: ${now}, delta: 1000}` |
-| `json` | JSON comparison | `{op: json, val: {...}, mode: full}` |
-| `contains` | String contains | `{op: contains, val: "test"}` |
+| Operator   | Description             | Example                                  |
+|------------|-------------------------|------------------------------------------|
+| `eq`       | Equals (default)        | `status: ACTIVE`                         |
+| `ne`       | Not equals              | `{op: ne, val: DELETED}`                 |
+| `gt`/`ge`  | Greater than (or equal) | `{op: gt, val: 100}`                     |
+| `lt`/`le`  | Less than (or equal)    | `{op: le, val: 99}`                      |
+| `regex`    | Regex match             | `{op: regex, val: "^\\d{10}$"}`          |
+| `approx`   | Time approximation      | `{op: approx, val: ${now}, delta: 1000}` |
+| `json`     | JSON comparison         | `{op: json, val: {...}, mode: full}`     |
+| `contains` | String contains         | `{op: contains, val: "test"}`            |
 
 ### 📊 Database Assertions with Rich Diff Reports
 
@@ -103,7 +106,7 @@ expect:
     table: orders
     mode: strict
     rows:
-      - _match: {order_id: ${orderId}}  # Row matching criteria
+      - _match: { order_id: ${ orderId } }  # Row matching criteria
         status:
           op: eq
           val: COMPLETED
@@ -112,11 +115,12 @@ expect:
           val: 100
         metadata:
           op: json
-          val: {"source": "web"}
+          val: { "source": "web" }
           mode: partial  # LENIENT mode
 ```
 
 **Diff Output**:
+
 ```
 ❌ [Database Assertion Failed] Table: orders
 ================================================================================
@@ -131,6 +135,7 @@ Row Index: [0] | Status: DIFF | Match Criteria: {order_id=abc-123}
 ### 🗄️ Flexible Column Name Matching
 
 Configure in `application-test.yml`:
+
 ```yaml
 testify:
   database:
@@ -183,6 +188,7 @@ variables:
 ### Time Offset Calculations
 
 Supports flexible time arithmetic:
+
 ```yaml
 variables:
   now: ${time.now()}
@@ -199,7 +205,7 @@ expect:
   database:
     table: products
     rows:
-      - _match: {product_id: ${productId}}
+      - _match: { product_id: ${ productId } }
         metadata:
           op: json
           val: |
@@ -260,7 +266,7 @@ input:
 mocks:
   - bean: serviceName
     method: methodName
-    returnValue: {...}
+    returnValue: { ... }
 
 # Database setup
 setup:
@@ -277,7 +283,7 @@ expect:
     table: tableName
     mode: strict  # or lenient
     rows:
-      - _match: {id: ${var1}}  # Optional: row matching criteria
+      - _match: { id: ${ var1 } }  # Optional: row matching criteria
         field1: value1
         field2:
           op: operator
@@ -289,11 +295,13 @@ expect:
 ## 🏗️ Build & Test
 
 ### Compile Framework
+
 ```bash
 mvn clean compile
 ```
 
 ### Install Locally
+
 ```bash
 mvn clean install -DskipTests
 ```
@@ -302,12 +310,12 @@ mvn clean install -DskipTests
 
 ## 🎯 Implementation Status
 
-| Phase | Status | Progress |
-|-------|--------|----------|
-| **Phase 1**: Core & Data Engine | ✅ Complete | 100% |
-| **Phase 2**: Assert Engine | ✅ Complete | 100% |
-| **Phase 3**: Mock & Starter | ✅ Complete | 80% |
-| **Phase 4**: Demo & Verification | 🚧 In Progress | 20% |
+| Phase                            | Status         | Progress |
+|----------------------------------|----------------|----------|
+| **Phase 1**: Core & Data Engine  | ✅ Complete     | 100%     |
+| **Phase 2**: Assert Engine       | ✅ Complete     | 100%     |
+| **Phase 3**: Mock & Starter      | ✅ Complete     | 80%      |
+| **Phase 4**: Demo & Verification | 🚧 In Progress | 20%      |
 
 ### Completed Components
 
@@ -316,7 +324,7 @@ mvn clean install -DskipTests
 ✅ **ColumnNormalizer** - Case-insensitive, snake_case/camelCase conversion  
 ✅ **DbAssertEngine** - Enhanced with rich diff reporting  
 ✅ **MockRegistry** - Thread-local mock tracking  
-✅ **Spring Boot Integration** - Auto-configuration, properties support  
+✅ **Spring Boot Integration** - Auto-configuration, properties support
 
 ### Remaining Work (Phase 4)
 
@@ -324,7 +332,7 @@ mvn clean install -DskipTests
 🚧 SQL Execution Engine  
 🚧 Complete Testcontainers Support  
 🚧 Demo Module with Examples  
-🚧 TestifyBase Abstract Class  
+🚧 TestifyBase Abstract Class
 
 ---
 
@@ -339,6 +347,7 @@ mvn clean install -DskipTests
 ## 🤝 Contributing
 
 This framework uses JDK 21 features extensively:
+
 - **Record classes** for immutable data models
 - **Pattern matching for switch** in operator processing
 - **Enhanced instanceof** for type checking
@@ -354,6 +363,7 @@ Copyright © 2026 LoadUp Framework
 ## 🙏 Acknowledgments
 
 Built with:
+
 - Spring Boot 3.4.3
 - TestNG 7.10.1
 - Mockito 5.14.2

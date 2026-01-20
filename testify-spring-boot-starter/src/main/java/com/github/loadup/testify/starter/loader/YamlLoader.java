@@ -5,14 +5,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import com.github.loadup.testify.core.model.TestContext;
-
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-
+import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import java.io.InputStream;
 import java.util.Map;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class YamlLoader {

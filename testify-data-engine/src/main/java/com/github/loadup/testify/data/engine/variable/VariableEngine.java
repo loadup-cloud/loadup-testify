@@ -1,15 +1,18 @@
 package com.github.loadup.testify.data.engine.variable;
 
-import java.time.LocalDateTime;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.*;
+import com.github.loadup.testify.data.engine.helper.FunctionHelper;
+import com.github.loadup.testify.data.engine.helper.TimeHelper;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
-
-import com.github.loadup.testify.data.engine.helper.FunctionHelper;
-import com.github.loadup.testify.data.engine.helper.TimeHelper;
+import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
-import org.apache.commons.text.StringSubstitutor;
+import org.springframework.context.expression.MapAccessor;
 import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.ParserContext;
+import org.springframework.expression.common.TemplateParserContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
@@ -18,139 +21,133 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
  * functions with offsets: ${time.now('+1d')}, ${time.now('-2h')} - Custom functions: ${fn.uuid()},
  * ${fn.random(1, 100)} - Variable cross-references with dependency resolution
  */
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.*;
-
+@Slf4j
 public class VariableEngine {
 
   private final Faker faker = new Faker();
   private final ExpressionParser spelParser = new SpelExpressionParser();
-
-  /** 核心方法：解析变量块并处理依赖顺序 */
+  private final ParserContext templateContext = new ParserContext() {
+    @Override
+    public boolean isTemplate() { return true; }
+    @Override
+    public String getExpressionPrefix() { return "${"; }
+    @Override
+    public String getExpressionSuffix() { return "}"; }
+  };
+  // --- 1. Entry Points (入口方法) ---
+  /** 场景 A: 初始化 YAML variables 块。处理依赖关系并生成上下文。 */
   public Map<String, Object> resolveVariables(Map<String, String> rawVariables) {
     Map<String, Object> context = new LinkedHashMap<>();
     if (rawVariables == null) return context;
 
-    StandardEvaluationContext spelContext = createSpelContext();
-    Map<String, String> stringContext = new HashMap<>();
-    Set<String> resolved = new HashSet<>();
-
-    int maxIterations = rawVariables.size() * 2; // 防止死循环
-    int iteration = 0;
-
-    while (resolved.size() < rawVariables.size() && iteration++ < maxIterations) {
-      for (Map.Entry<String, String> entry : rawVariables.entrySet()) {
-        String key = entry.getKey();
-        if (resolved.contains(key)) continue;
-
-        try {
-          String value = entry.getValue();
-          // 替换已经解析过的变量
-          String substituted = StringSubstitutor.replace(value, stringContext);
-
-          // 执行 SpEL 或 Faker
-          Object evaluated = evaluate(substituted, spelContext);
-
-          context.put(key, evaluated);
-          stringContext.put(key, String.valueOf(evaluated));
-          resolved.add(key);
-        } catch (Exception ignored) {
-          // 依赖尚未就绪，等待下一轮解析
-        }
-      }
+    // 利用 SpEL 自身的能力，多次迭代解析直到结果稳定（处理变量间引用）
+    int maxIterations = rawVariables.size() * 2;
+    for (int i = 0; i < maxIterations && context.size() < rawVariables.size(); i++) {
+      rawVariables.forEach(
+          (key, value) -> {
+            if (!context.containsKey(key)) {
+              try {
+                Object evaluated = evaluate(value, context);
+                if (evaluated != null && !String.valueOf(evaluated).contains("${")) {
+                  context.put(key, evaluated);
+                }
+              } catch (Exception ignored) {
+              }
+            }
+          });
     }
     return context;
   }
 
-  /** 递归遍历 JsonNode 树，替换所有文本节点中的变量 */
+  /** 场景 B: 解析整个 JsonNode 树 (用于 input, setup, expect 等) */
   public JsonNode resolveJsonNode(JsonNode node, Map<String, Object> context) {
-    if (node == null || node.isNull()) {
-      return node;
-    }
+    if (node == null || !node.isContainerNode() && !node.isTextual()) return node;
 
     if (node.isTextual()) {
-      // 解析文本中的变量：可能是 "${id}" -> 123 (LongNode)
-      // 也可能是 "Hello ${name}" -> "Hello Tom" (TextNode)
-      Object resolvedValue = resolveString(node.asText(), context);
-      return convertToNode(resolvedValue);
+      return convertToNode(evaluate(node.asText(), context));
     }
 
     if (node.isObject()) {
-      ObjectNode objectNode = (ObjectNode) node;
-      // 注意：这里需要创建一个新 Map 迭代，因为在迭代过程中不能修改 objectNode
-      Iterator<Map.Entry<String, JsonNode>> fields = objectNode.fields();
-      Map<String, JsonNode> updates = new HashMap<>();
-      while (fields.hasNext()) {
-        Map.Entry<String, JsonNode> entry = fields.next();
-        updates.put(entry.getKey(), resolveJsonNode(entry.getValue(), context));
-      }
-      updates.forEach(objectNode::set);
-      return objectNode;
+      ObjectNode newNode = JsonNodeFactory.instance.objectNode();
+      node.fields()
+          .forEachRemaining(
+              entry -> newNode.set(entry.getKey(), resolveJsonNode(entry.getValue(), context)));
+      return newNode;
     }
 
     if (node.isArray()) {
-      ArrayNode arrayNode = (ArrayNode) node;
-      for (int i = 0; i < arrayNode.size(); i++) {
-        arrayNode.set(i, resolveJsonNode(arrayNode.get(i), context));
-      }
-      return arrayNode;
+      ArrayNode newNode = JsonNodeFactory.instance.arrayNode();
+      node.forEach(item -> newNode.add(resolveJsonNode(item, context)));
+      return newNode;
     }
-
     return node;
   }
 
-  public Object resolveString(String text, Map<String, Object> context) {
-    if (text == null || !text.contains("${")) return text;
+  // --- 2. Core Evaluator (评估核心) ---
 
-    // 处理纯变量引用，保持原始类型
-    if (text.startsWith("${")
-        && text.endsWith("}")
-        && !text.substring(2, text.length() - 1).contains("${")) {
-      String varName = text.substring(2, text.length() - 1);
-      if (context.containsKey(varName)) return context.get(varName);
+  /** 统一的解析方法：处理纯占位符、混合字符串、工具类调用 */
+  public Object evaluate(String text, Map<String, Object> context) {
+    if (text == null || !text.contains("${")) return text;
+    log.info("开始解析: {}, 当前 Context 中的 Key: {}", text, context.keySet());
+    // 如果是纯变量引用，如 "${userId}"，且 context 中已有，直接返回对象保持类型
+    String expression = text.trim();
+    if (expression.startsWith("${")
+        && expression.endsWith("}")
+        && countOccurrences(expression, "${") == 1) {
+      String varName = expression.substring(2, expression.length() - 1);
+      if (context != null && context.containsKey(varName)) return context.get(varName);
     }
 
-    // 处理混合字符串模板
-    StringSubstitutor sub = new StringSubstitutor(context);
-    return sub.replace(text);
+    try {
+      StandardEvaluationContext spelContext = buildSpelContext(context);
+      // 自动为变量增加 # 前缀，以符合 SpEL 规范
+      String processedText = ensureHashPrefix(text);
+      Object result = spelParser.parseExpression(processedText, templateContext).getValue(spelContext);
+      return result != null ? result : text;
+    } catch (Exception e) {
+      log.warn("SpEL 解析失败: {}，错误: {}", text, e.getMessage());
+      return text;
+    }
   }
 
-  private Object evaluate(String expression, StandardEvaluationContext spelContext) {
-    if (expression.startsWith("${") && expression.endsWith("}")) {
-      String pureExp = expression.substring(2, expression.length() - 1);
-      return spelParser.parseExpression(pureExp).getValue(spelContext);
+  // --- 3. Helpers (内部辅助) ---
+
+  private StandardEvaluationContext buildSpelContext(Map<String, Object> context) {
+    StandardEvaluationContext ctx = new StandardEvaluationContext();
+    ctx.addPropertyAccessor(new MapAccessor());
+
+    // 注册核心工具
+    ctx.setVariable("fn", new FunctionHelper());
+    ctx.setVariable("time", new TimeHelper());
+    ctx.setVariable("faker", faker);
+
+    // 注册业务变量
+    if (context != null) {
+      context.forEach(ctx::setVariable);
     }
-    return expression;
+    return ctx;
+  }
+
+  private String ensureHashPrefix(String text) {
+    // 匹配 ${ 后面不是 # 的所有情况，自动补上 #。使得 ${time.now()} 变为 ${#time.now()}
+    return text.replaceAll("\\$\\{(?=[^#])", "\\${#");
   }
 
   private JsonNode convertToNode(Object obj) {
     if (obj == null) return NullNode.instance;
     return switch (obj) {
-      case String s -> TextNode.valueOf(s);
+      case JsonNode j -> j;
       case Integer i -> IntNode.valueOf(i);
       case Long l -> LongNode.valueOf(l);
       case Double d -> DoubleNode.valueOf(d);
       case Boolean b -> BooleanNode.valueOf(b);
-      case TemporalAccessor t -> TextNode.valueOf(DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(t));
-      case JsonNode node -> node; // 如果已经是节点则直接返回
-      default -> TextNode.valueOf(obj.toString()); // 兜底处理
+      case TemporalAccessor t ->
+          TextNode.valueOf(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(t));
+      default -> TextNode.valueOf(obj.toString());
     };
   }
 
-  private StandardEvaluationContext createSpelContext() {
-    StandardEvaluationContext ctx = new StandardEvaluationContext();
-    ctx.setVariable("fn", new FunctionHelper());
-    ctx.setVariable("time", new TimeHelper());
-    ctx.setVariable("faker", faker);
-    return ctx;
-  }
-
-  public String replacePlaceholders(String text, Map<String, Object> context) {
-    if (text == null) {
-      return null;
-    }
-    StringSubstitutor sub = new StringSubstitutor(context);
-    sub.setEnableSubstitutionInVariables(true); // Support nested substitutions
-    return sub.replace(text);
+  private int countOccurrences(String str, String sub) {
+    return (str.length() - str.replace(sub, "").length()) / sub.length();
   }
 }

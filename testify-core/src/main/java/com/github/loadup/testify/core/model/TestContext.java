@@ -1,7 +1,7 @@
 package com.github.loadup.testify.core.model;
 
-import java.util.Map;
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.Map;
 
 /**
  * @author lise

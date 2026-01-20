@@ -5,6 +5,7 @@ This module demonstrates the usage of the Testify framework with example service
 ## Overview
 
 The demo shows how to:
+
 - Define test data using variables (Faker, time functions, custom functions)
 - Write database assertions with operators
 - Use YAML-driven tests with zero code intrusion
@@ -158,12 +159,14 @@ testify:
 ## Features Demonstrated
 
 ### Variable Types
+
 - **Faker**: `${faker.name.fullName()}`, `${faker.internet.emailAddress()}`
 - **Time**: `${time.now()}`, `${time.now('+1d')}`, `${time.epochMilli()}`
 - **Functions**: `${fn.uuid()}`, `${fn.random(1, 100)}`
 - **References**: `${userId}`, `${userName}`
 
 ### Operators
+
 - `eq`: Exact match
 - `ne`: Not equal
 - `gt`, `ge`, `lt`, `le`: Numeric comparisons
@@ -173,6 +176,7 @@ testify:
 - `contains`: String contains
 
 ### Database Features
+
 - Case-insensitive column matching
 - Row matching by `_match` criteria
 - Rich diff reporting with ASCII tables
@@ -181,6 +185,7 @@ testify:
 ## Next Steps
 
 To complete the demo:
+
 1. Implement TestNG Listener for automatic YAML loading
 2. Implement Data Provider for parameter injection
 3. Create sample services (UserService, OrderService)

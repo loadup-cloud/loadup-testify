@@ -75,9 +75,8 @@ public class TestifyDataProvider {
 
     return dataList.iterator();
   }
-  /**
-   * 将解析后的 JsonNode 转换为 Java 方法参数
-   */
+
+  /** 将解析后的 JsonNode 转换为 Java 方法参数 */
   private static Object[] convertToArgs(JsonNode inputNode, Class<?>[] parameterTypes) {
     Object[] args = new Object[parameterTypes.length];
     for (int i = 0; i < parameterTypes.length; i++) {
@@ -89,6 +88,7 @@ public class TestifyDataProvider {
     }
     return args;
   }
+
   /**
    * Load YAML test case for the current test method. Convention:
    * src/test/resources/testcases/[ClassName]/[methodName].yaml

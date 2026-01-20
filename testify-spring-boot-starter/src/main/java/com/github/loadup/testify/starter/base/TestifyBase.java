@@ -15,7 +15,7 @@ import org.testng.annotations.Listeners;
  */
 @Getter
 @Setter
-@Listeners(TestifyListener.class)
 @SpringBootTest
 @ContextConfiguration(classes = TestifyAutoConfiguration.class)
+@Listeners(TestifyListener.class)
 public abstract class TestifyBase extends AbstractTestNGSpringContextTests {}

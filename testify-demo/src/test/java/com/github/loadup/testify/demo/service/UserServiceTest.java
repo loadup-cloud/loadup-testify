@@ -3,6 +3,7 @@ package com.github.loadup.testify.demo.service;
 import static org.testng.Assert.*;
 
 import com.github.loadup.testify.demo.DemoApplication;
+import com.github.loadup.testify.starter.base.TestifyBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -18,8 +19,7 @@ import org.testng.annotations.Test;
  */
 @SpringBootTest(classes = DemoApplication.class)
 @ActiveProfiles("test")
-@Listeners(com.github.loadup.testify.starter.testng.TestifyListener.class)
-public class UserServiceTest extends AbstractTestNGSpringContextTests {
+public class UserServiceTest extends TestifyBase {
 
   @Autowired private UserService userService;
 

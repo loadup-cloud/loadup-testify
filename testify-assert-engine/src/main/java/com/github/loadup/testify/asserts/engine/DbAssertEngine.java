@@ -13,6 +13,7 @@ import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -29,17 +30,16 @@ public class DbAssertEngine {
 
   /** 对外入口：解析变量并触发单表/多表比对 */
   public void compare(JsonNode expectNode, Map<String, Object> context) {
-    if (expectNode == null || !expectNode.has("database")) return;
+    if (expectNode == null) return;
 
     // 1. 变量解析：一次性解析整个 expect 块（包括 ${nowTime} 等）
     VariableEngine variableEngine = SpringContextHolder.getBean(VariableEngine.class);
     JsonNode resolvedExpect = variableEngine.resolveJsonNode(expectNode, context);
 
-    JsonNode dbExpect = resolvedExpect.get("database");
-    if (dbExpect.isArray()) {
-      dbExpect.forEach(tableNode -> processTableAssertion(tableNode, context));
+    if (resolvedExpect.isArray()) {
+      resolvedExpect.forEach(tableNode -> processTableAssertion(tableNode, context));
     } else {
-      processTableAssertion(dbExpect, context);
+      processTableAssertion(resolvedExpect, context);
     }
   }
 
@@ -91,7 +91,7 @@ public class DbAssertEngine {
       Map<String, Object> actualRow = findMatchedRow(normalizedActuals, normalizedExpected, i);
 
       if (actualRow == null) {
-        diffs.add(new RowDiff(i, "MISSING", "数据库中未找到匹配行", expectedRow, null));
+        diffs.add(RowDiff.missing(i, "No matching row found in DB", expectedRow));
         continue;
       }
 
@@ -105,17 +105,43 @@ public class DbAssertEngine {
             MatchResult result = OperatorProcessor.process(actVal, expVal);
 
             if (!result.isPassed()) {
-              fieldDiffs.put(field, new FieldDiff(expVal, actVal, result.message()));
+              fieldDiffs.put(field, new FieldDiff(field, expVal, actVal, result.message()));
             }
           });
 
       if (!fieldDiffs.isEmpty()) {
-        diffs.add(new RowDiff(i, "DIFF", "字段校验失败", expectedRow, fieldDiffs));
+        diffs.add(RowDiff.diff(i, "Field validation failed", expectedRow, fieldDiffs));
       }
     }
 
+    // 在 DbAssertEngine 中修改报表抛出逻辑
     if (!diffs.isEmpty()) {
-      throw new AssertionError(DiffReportBuilder.build(tableName, diffs));
+      List<FieldDiff> finalDiffs =
+          diffs.stream()
+              .flatMap(
+                  rd -> {
+                    if ("MISSING".equals(rd.getType())) {
+                      // 将行缺失转换为一条特殊的 FieldDiff
+                      return Stream.of(
+                          new FieldDiff(
+                              "table[" + tableName + "].row[" + rd.getIndex() + "]",
+                              "PRESENT",
+                              "ABSENT",
+                              rd.getMessage()));
+                    }
+                    // 将行内每个字段差异转换为 FieldDiff，并补全 path
+                    return rd.getFieldDiffs().entrySet().stream()
+                        .map(
+                            entry ->
+                                new FieldDiff(
+                                    tableName + "[" + rd.getIndex() + "]." + entry.getKey(),
+                                    entry.getValue().expected(),
+                                    entry.getValue().actual(),
+                                    entry.getValue().message()));
+                  })
+              .collect(Collectors.toList());
+
+      throw new AssertionError(DiffReportBuilder.build("Database Assertion", finalDiffs));
     }
   }
 

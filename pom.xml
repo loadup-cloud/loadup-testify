@@ -26,7 +26,7 @@
 
         <spring-boot.version>3.4.3</spring-boot.version>
         <testcontainers.version>2.0.3</testcontainers.version>
-        <testng.version>7.10.1</testng.version>
+        <testng.version>7.11.0</testng.version>
         <datafaker.version>2.5.3</datafaker.version>
         <javers.version>7.10.0</javers.version>
         <jsonassert.version>1.5.3</jsonassert.version>

@@ -1,12 +1,14 @@
 package com.github.loadup.testify.demo.model;
 
+import java.time.LocalDateTime;
+
 /** User entity for demo. */
 public class User {
   private String userId;
   private String userName;
   private String email;
   private String status;
-  private Long createdAt;
+  private LocalDateTime createdAt;
 
   public User() {}
 
@@ -15,7 +17,7 @@ public class User {
     this.userName = userName;
     this.email = email;
     this.status = "ACTIVE";
-    this.createdAt = System.currentTimeMillis();
+    this.createdAt = LocalDateTime.now();
   }
 
   // Getters and setters
@@ -51,11 +53,12 @@ public class User {
     this.status = status;
   }
 
-  public Long getCreatedAt() {
+  public LocalDateTime getCreatedAt() {
     return createdAt;
   }
 
-  public void setCreatedAt(Long createdAt) {
+  public User setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
+    return this;
   }
 }

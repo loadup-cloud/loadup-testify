@@ -1,5 +1,7 @@
 package com.github.loadup.testify.starter.config;
 
+import com.github.loadup.testify.asserts.engine.DbAssertEngine;
+import com.github.loadup.testify.asserts.engine.ResponseAssertEngine;
 import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
@@ -45,6 +47,18 @@ public class TestifyAutoConfiguration {
   @ConditionalOnMissingBean
   public VariableEngine testifyVariableEngine() {
     return new VariableEngine();
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public ResponseAssertEngine responseAssertEngine() {
+    return new ResponseAssertEngine();
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public DbAssertEngine dbAssertEngine() {
+    return new DbAssertEngine();
   }
 
   @Bean

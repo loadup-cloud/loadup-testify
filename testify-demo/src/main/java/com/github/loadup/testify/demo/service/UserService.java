@@ -15,12 +15,14 @@ public class UserService {
   }
 
   /** Create a new user. */
-  public void createUser(String userId, String userName, String email) {
+  public User createUser(String userId, String userName, String email) {
     long createdAt = System.currentTimeMillis();
 
     String sql =
         "INSERT INTO users (user_id, user_name, email, status, created_at) VALUES (?, ?, ?, ?, ?)";
     jdbcTemplate.update(sql, userId, userName, email, "ACTIVE", createdAt);
+    User user = new User(userId, userName, email);
+    return user;
   }
 
   /** Get user by ID. */
@@ -34,7 +36,6 @@ public class UserService {
           user.setUserName(rs.getString("user_name"));
           user.setEmail(rs.getString("email"));
           user.setStatus(rs.getString("status"));
-          user.setCreatedAt(rs.getLong("created_at"));
           return user;
         },
         userId);

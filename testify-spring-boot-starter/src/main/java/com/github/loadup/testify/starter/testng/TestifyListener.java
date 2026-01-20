@@ -1,6 +1,8 @@
 package com.github.loadup.testify.starter.testng;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.github.loadup.testify.asserts.engine.DbAssertEngine;
+import com.github.loadup.testify.asserts.engine.ResponseAssertEngine;
 import com.github.loadup.testify.core.model.TestContext;
 import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
@@ -34,10 +36,19 @@ public class TestifyListener implements IInvokedMethodListener {
       // 核心逻辑：只有业务代码执行成功（Status=SUCCESS）时，才运行断言
       if (testResult.isSuccess()) {
         TestContext tc = lookup(testResult);
-        if (tc != null && tc.expect() != null) {
-          log.info(">>> [Testify] 开始数据库断言...");
-          DbAssertEngine dbAssertEngine = new DbAssertEngine();
-          dbAssertEngine.compare(tc.expect(), VariableContext.get());
+        if (tc == null || tc.expect() == null) return;
+        // 1. 自动获取返回值作为实际响应 (Actual Response)
+        Object actualResponse = null;//testResult.getReturnValue();
+        JsonNode expect = tc.expect(); // 这是 expect 根节点
+        // 1. 校验 Response
+        if (expect.has("response") ) {
+          log.info(">>> [Testify] 检测到响应值预期，开始比对...");
+          new ResponseAssertEngine()
+              .compare(expect.get("response"), actualResponse, VariableContext.get());
+        }
+        if (expect.has("database")) {
+          log.info(">>> [Testify] 检测到数据库预期，开始比对...");
+          new DbAssertEngine().compare(expect.get("database"), VariableContext.get());
         }
       }
     } catch (Throwable e) {

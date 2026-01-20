@@ -2,8 +2,8 @@ package com.github.loadup.testify.asserts.operator.impl;
 
 import com.github.loadup.testify.asserts.model.MatchResult;
 import com.github.loadup.testify.asserts.operator.OperatorMatcher;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import com.github.loadup.testify.asserts.util.TimeParser;
+import java.time.*;
 import java.util.Map;
 
 /**
@@ -12,6 +12,8 @@ import java.util.Map;
  * strings - Epoch milliseconds (Long)
  */
 public class ApproxTimeMatcher implements OperatorMatcher {
+  private static final TimeParser timeParser = new TimeParser();
+
   @Override
   public boolean support(String op) {
     return "approx".equals(op);
@@ -44,23 +46,21 @@ public class ApproxTimeMatcher implements OperatorMatcher {
 
     // 如果是 Java 8 时间对象
     if (value instanceof java.time.temporal.TemporalAccessor ta) {
-      return LocalDateTime.from(ta).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+      try {
+        return java.time.Instant.from(ta).toEpochMilli();
+      } catch (Exception e) {
+        return LocalDateTime.from(ta).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+      }
     }
 
     // 如果是 SQL Timestamp 或 Date
     if (value instanceof java.util.Date d) return d.getTime();
 
     // 如果是字符串，尝试多种常用格式解析
-    String str = value.toString();
-    try {
-      // 尝试 ISO 格式: 2023-10-01T10:00:00
-      return LocalDateTime.parse(str.replace(" ", "T"))
-          .atZone(ZoneId.systemDefault())
-          .toInstant()
-          .toEpochMilli();
-    } catch (Exception e) {
-      // 兜底方案：使用 Timestamp.valueOf
-      return java.sql.Timestamp.valueOf(str).getTime();
+    if (value instanceof String str) {
+      return timeParser.toMillis(str);
     }
+
+    throw new IllegalArgumentException("不支持的时间格式: " + value.getClass());
   }
 }

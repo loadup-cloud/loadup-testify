@@ -1,4 +1,4 @@
-package com.github.loadup.testify.data.engine.variable;
+package com.github.loadup.testify.core.variable;
 
 import java.util.HashMap;
 import java.util.Map;

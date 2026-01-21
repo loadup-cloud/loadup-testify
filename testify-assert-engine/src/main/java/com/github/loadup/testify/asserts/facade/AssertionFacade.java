@@ -2,7 +2,7 @@ package com.github.loadup.testify.asserts.facade;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.loadup.testify.asserts.engine.TestifyAssertEngine;
-import com.github.loadup.testify.data.engine.variable.VariableContext;
+import com.github.loadup.testify.core.variable.VariableContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

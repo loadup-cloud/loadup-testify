@@ -2,7 +2,6 @@ package com.github.loadup.testify.asserts.engine;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.loadup.testify.asserts.diff.DiffReportBuilder;
 import com.github.loadup.testify.asserts.model.FieldDiff;
 import com.github.loadup.testify.asserts.model.MatchResult;
@@ -10,16 +9,21 @@ import com.github.loadup.testify.asserts.model.RowDiff;
 import com.github.loadup.testify.asserts.operator.OperatorProcessor;
 import com.github.loadup.testify.asserts.util.ColumnNormalizer;
 import com.github.loadup.testify.core.util.JsonUtil;
-import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+@RequiredArgsConstructor
 @Slf4j
 public class DbAssertEngine implements TestifyAssertEngine {
+
+  private final JdbcTemplate jdbcTemplate;
+  private final VariableEngine variableEngine;
+
   private String columnNamingStrategy = "caseInsensitive";
 
   @Override
@@ -29,12 +33,11 @@ public class DbAssertEngine implements TestifyAssertEngine {
 
   @Override
   public void compare(
-          JsonNode expectNode, Object actualEx, Map<String, Object> context, List<String> reportList) {
-  /** 对外入口：解析变量并触发单表/多表比对 */
+      JsonNode expectNode, Object actualEx, Map<String, Object> context, List<String> reportList) {
+    /** 对外入口：解析变量并触发单表/多表比对 */
     if (expectNode == null) return;
 
     // 1. 变量解析：一次性解析整个 expect 块（包括 ${nowTime} 等）
-    VariableEngine variableEngine = SpringContextHolder.getBean(VariableEngine.class);
     JsonNode resolvedExpect = variableEngine.resolveJsonNode(expectNode, context);
 
     if (resolvedExpect.isArray()) {
@@ -50,7 +53,8 @@ public class DbAssertEngine implements TestifyAssertEngine {
     JsonNode rowsNode = tableNode.get("rows");
 
     // 2. 转换数据结构
-    List<Map<String, Object>> expectedRows = JsonUtil.convertValue(rowsNode, new TypeReference<>() {});
+    List<Map<String, Object>> expectedRows =
+        JsonUtil.convertValue(rowsNode, new TypeReference<>() {});
 
     // 3. 抓取数据：根据解析后的 rowsNode 构造 SQL
     List<Map<String, Object>> actualRows = fetchActualRows(tableName, expectedRows);
@@ -171,7 +175,6 @@ public class DbAssertEngine implements TestifyAssertEngine {
 
   private List<Map<String, Object>> fetchActualRows(
       String tableName, List<Map<String, Object>> expectedRows) {
-    JdbcTemplate jdbcTemplate = SpringContextHolder.getBean(JdbcTemplate.class);
     List<Map<String, Object>> results = new ArrayList<>();
 
     for (Map<String, Object> row : expectedRows) {

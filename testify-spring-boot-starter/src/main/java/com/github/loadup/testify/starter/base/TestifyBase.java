@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.loadup.testify.asserts.facade.AssertionFacade;
 import com.github.loadup.testify.core.model.TestContext;
 import com.github.loadup.testify.core.util.JsonUtil;
-import com.github.loadup.testify.core.util.SpringContextHolder;
+import com.github.loadup.testify.starter.util.SpringContextHolder;
+import com.github.loadup.testify.core.variable.VariableContext;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
-import com.github.loadup.testify.data.engine.variable.VariableContext;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -22,7 +22,7 @@ import org.testng.annotations.BeforeMethod;
 
 @Slf4j
 @SpringBootTest
-public abstract class TestifyBase extends AbstractTestNGSpringContextTests   {
+public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
 
   @Autowired protected AssertionFacade assertionFacade;
 
@@ -37,24 +37,13 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests   {
     this.currentTestContext = (TestContext) testngContext.getAttribute(contextKey);
   }
 
-  /** 对外提供的解析工具：将方法入参中的占位符替换为真实值 */
-  protected Object[] resolveArgs(Object... args) {
-    VariableEngine ve = SpringContextHolder.getBean(VariableEngine.class);
-    Map<String, Object> context = VariableContext.get();
-    Object[] resolved = new Object[args.length];
-    for (int i = 0; i < args.length; i++) {
-      // resolveValue 内部会判断是否是 String 以及是否包含 ${}
-    }
-    return resolved;
-  }
-
   /**
    * 核心编排方法
    *
    * @param action 业务逻辑闭包
    * @param <T> 返回值类型
    */
-  protected <T> void runTest(Supplier<T> action, Object... params) {
+  protected <T> void runTest(Supplier<T> action) {
     // 1. 获取 Spring 容器中的 VariableEngine
     VariableEngine variableEngine = SpringContextHolder.getBean(VariableEngine.class);
 

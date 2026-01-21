@@ -45,11 +45,36 @@
             </dependency>
 
             <dependency>
-                <groupId>com.yourcompany.testify</groupId>
+                <groupId>com.github.loadup.framework</groupId>
                 <artifactId>testify-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-data-engine</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-assert-engine</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-mock-engine</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-demo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>

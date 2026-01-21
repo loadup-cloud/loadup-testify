@@ -1,12 +1,10 @@
 package com.github.loadup.testify.asserts.engine;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.github.loadup.testify.asserts.diff.DiffReportBuilder;
 import com.github.loadup.testify.asserts.model.FieldDiff;
 import com.github.loadup.testify.asserts.model.MatchResult;
 import com.github.loadup.testify.asserts.operator.OperatorProcessor;
-import com.github.loadup.testify.core.util.JsonUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

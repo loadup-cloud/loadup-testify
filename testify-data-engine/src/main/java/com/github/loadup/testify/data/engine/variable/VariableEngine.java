@@ -8,7 +8,6 @@ import java.lang.reflect.Method;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
-import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 import org.springframework.context.expression.MapAccessor;
@@ -29,7 +28,6 @@ public class VariableEngine {
   private final ExpressionParser spelParser = new SpelExpressionParser();
   private final Map<String, TestifyFunction> functionRegistry = new HashMap<>();
   // 匹配 ${prefix.method(args)}
-  private static final Pattern FUNC_PATTERN = Pattern.compile("(\\w+)\\.(\\w+)\\((.*)\\)");
   private final ParserContext templateContext =
       new ParserContext() {
         @Override

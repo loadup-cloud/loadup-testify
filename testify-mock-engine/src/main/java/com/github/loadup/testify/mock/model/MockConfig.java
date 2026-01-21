@@ -1,7 +1,6 @@
 package com.github.loadup.testify.mock.model;
 
 import java.util.List;
-import java.util.Map;
 
 /** Mock configuration from YAML. Represents a single mock stub definition. */
 public record MockConfig(

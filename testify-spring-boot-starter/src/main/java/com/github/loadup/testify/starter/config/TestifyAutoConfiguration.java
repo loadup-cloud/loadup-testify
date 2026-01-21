@@ -5,7 +5,7 @@ import com.github.loadup.testify.asserts.engine.ExceptionAssertEngine;
 import com.github.loadup.testify.asserts.engine.ResponseAssertEngine;
 import com.github.loadup.testify.asserts.engine.TestifyAssertEngine;
 import com.github.loadup.testify.asserts.facade.AssertionFacade;
-import com.github.loadup.testify.core.util.SpringContextHolder;
+import com.github.loadup.testify.starter.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import com.github.loadup.testify.data.engine.function.CommonFunction;
 import com.github.loadup.testify.data.engine.function.TestifyFunction;
@@ -77,8 +77,8 @@ public class TestifyAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public DbAssertEngine dbAssertEngine() {
-    return new DbAssertEngine();
+  public DbAssertEngine dbAssertEngine(JdbcTemplate jdbcTemplate,VariableEngine variableEngine) {
+    return new DbAssertEngine(jdbcTemplate,variableEngine);
   }
 
   @Bean

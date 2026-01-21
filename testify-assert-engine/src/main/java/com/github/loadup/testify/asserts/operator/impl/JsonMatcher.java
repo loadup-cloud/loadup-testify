@@ -3,12 +3,9 @@ package com.github.loadup.testify.asserts.operator.impl;
 import com.github.loadup.testify.asserts.model.MatchResult;
 import com.github.loadup.testify.asserts.operator.OperatorMatcher;
 import com.github.loadup.testify.core.util.JsonUtil;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompare;
-import org.skyscreamer.jsonassert.JSONCompareMode;
-import org.skyscreamer.jsonassert.JSONCompareResult;
-
 import java.util.Map;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.skyscreamer.jsonassert.JSONCompareMode;
 
 /** JSON matcher supporting partial (LENIENT) and full (STRICT) comparison modes. */
 public class JsonMatcher implements OperatorMatcher {

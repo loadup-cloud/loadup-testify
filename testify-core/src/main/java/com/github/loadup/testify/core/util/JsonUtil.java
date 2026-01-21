@@ -40,8 +40,19 @@ public class JsonUtil {
     return mapper.valueToTree(obj);
   }
 
-  public static <T> T convertValue(
-      JsonNode exp, TypeReference<T> typeReference) {
+  public static <T> T convertValue(JsonNode exp, TypeReference<T> typeReference) {
     return mapper.convertValue(exp, typeReference);
+  }
+
+  public static <T> T convertValue(String exp, Class<T> parameterType) {
+    return mapper.convertValue(exp, parameterType);
+  }
+
+  public static <T> T convertValue(Map<String, Object> variables, TypeReference<T> typeReference) {
+    return mapper.convertValue(variables, typeReference);
+  }
+
+  public static <T> T convertValue(JsonNode jsonNode, Class<T> parameterType) {
+    return mapper.convertValue(jsonNode, parameterType);
   }
 }

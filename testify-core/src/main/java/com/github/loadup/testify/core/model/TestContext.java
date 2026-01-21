@@ -2,18 +2,50 @@ package com.github.loadup.testify.core.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author lise
  * @version TestContext.java, v 0.1 2026年01月13日 10:34 lise
  */
 // 对应 YAML 的根结构
-public record TestContext(
-    String testName,
-    String yamlPath,
-    Map<String, Object> variables, // 变量定义块
-    JsonNode input, // 支持 List 或 单一对象，使用 JsonNode 延迟解析
-    JsonNode mocks, // Mock 配置
-    JsonNode setup, // 包含 clean_sql 等
-    JsonNode expect // 期望值
-    ) {}
+@Getter
+@Setter
+public final class TestContext {
+  private String testName;
+  private String yamlPath;
+  private Map<String, Object> variables;
+  private JsonNode input;
+  private JsonNode mocks;
+  private JsonNode setup;
+  private JsonNode expect;
+
+  public String testName() {
+    return testName;
+  }
+
+  public String yamlPath() {
+    return yamlPath;
+  }
+
+  public Map<String, Object> variables() {
+    return variables;
+  }
+
+  public JsonNode input() {
+    return input;
+  }
+
+  public JsonNode mocks() {
+    return mocks;
+  }
+
+  public JsonNode setup() {
+    return setup;
+  }
+
+  public JsonNode expect() {
+    return expect;
+  }
+}

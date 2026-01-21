@@ -1,12 +1,12 @@
 variables:
-  userId: test-123
-  userName: "Test User"
+  userId: "${time.now()}"
+  userName: "${faker.name().firstName()}"
   email: test@example.com
-  nowTime: ${#time.now()}
+  nowTime: ${time.now()}
 
 input:
   - test-1234
-  - "Test User"
+  - ${userName}
   - test@example.com
 
 setup:
@@ -18,12 +18,13 @@ setup:
 #          user_name: "Admin"
 
 expect:
-  exception:
-    type: 'java.lang.IllegalArgumentException'
-    message: 'User ID cannot be empty'
+#  exception:
+#    type: 'java.lang.IllegalArgumentException'
+#    message: 'User ID cannot be empty'
   # 预期响应结果
   response:
-    userId: "sadasdasdasdasdasdasdasdasdasdasdasdtest-12342"
+    userId: "test-1234"
+    userName: ${userName}
     createdAt:
       op: approx
       val: ${nowTime}
@@ -32,8 +33,8 @@ expect:
     mode: strict
     rows:
       - _match: { user_id: "test-1234" }
-        user_name: "Test User"
-        email: test@example.com2
+        user_name: ${userName}
+        email: test@example.com
         status: ACTIVE
         created_at:
           op: approx

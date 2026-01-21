@@ -1,10 +1,13 @@
-package com.github.loadup.testify.data.engine.helper;
+package com.github.loadup.testify.data.engine.function;
 
 import java.util.Random;
 import java.util.UUID;
 
 /** Custom functions accessible via ${fn.XXX()} */
-public class FunctionHelper {
+public class CommonFunction implements TestifyFunction {
+  @Override
+  public String getPrefix() { return "fn"; }
+
   public String uuid() {
     return UUID.randomUUID().toString();
   }

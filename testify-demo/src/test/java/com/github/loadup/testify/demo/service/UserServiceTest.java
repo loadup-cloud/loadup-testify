@@ -7,9 +7,6 @@ import com.github.loadup.testify.starter.base.TestifyBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.testng.Reporter;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 /**
@@ -43,8 +40,8 @@ public class UserServiceTest extends TestifyBase {
     // - Database assertions are verified after test
 
     // The actual service call happens automatically based on YAML configuration
-    runTest(() -> userService.createUser(userId, userName, email));
-//    Reporter.getCurrentTestResult().setAttribute("actualResponse", res);
+    runTest(() -> userService.createUser(userId, val(userName), email));
+    //    Reporter.getCurrentTestResult().setAttribute("actualResponse", res);
   }
 
   /** Traditional test for updateUserStatus (can coexist with YAML tests). */

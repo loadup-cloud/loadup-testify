@@ -7,6 +7,9 @@ import com.github.loadup.testify.asserts.engine.TestifyAssertEngine;
 import com.github.loadup.testify.asserts.facade.AssertionFacade;
 import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
+import com.github.loadup.testify.data.engine.function.CommonFunction;
+import com.github.loadup.testify.data.engine.function.TestifyFunction;
+import com.github.loadup.testify.data.engine.function.TimeFunction;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import com.github.loadup.testify.starter.container.TestifyContainerManager;
 import com.github.loadup.testify.starter.db.DbConnectionProvider;
@@ -48,9 +51,22 @@ public class TestifyAutoConfiguration {
   }
 
   @Bean
+  public TimeFunction timeFunction() {
+    return new TimeFunction();
+  }
+
+  @Bean
+  public CommonFunction commonFunction() {
+    return new CommonFunction();
+  }
+
+
+
+  /** 1. 自动收集容器中所有的 TestifyFunction 实现 */
+  @Bean
   @ConditionalOnMissingBean
-  public VariableEngine variableEngine() {
-    return new VariableEngine();
+  public VariableEngine variableEngine(List<TestifyFunction> functions) {
+    return new VariableEngine(functions);
   }
 
   @Bean

@@ -2,19 +2,21 @@ package com.github.loadup.testify.data.engine.variable;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.*;
-import com.github.loadup.testify.data.engine.helper.FunctionHelper;
-import com.github.loadup.testify.data.engine.helper.TimeHelper;
+import com.github.loadup.testify.core.util.JsonUtil;
+import com.github.loadup.testify.data.engine.function.TestifyFunction;
+import java.lang.reflect.Method;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 import java.util.*;
+import java.util.regex.Pattern;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 import org.springframework.context.expression.MapAccessor;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.ParserContext;
-import org.springframework.expression.common.TemplateParserContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
+import org.springframework.util.StringUtils;
 
 /**
  * Variable resolution engine supporting: - Datafaker expressions: ${faker.name.firstName} - Time
@@ -24,39 +26,125 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 @Slf4j
 public class VariableEngine {
 
-  private final Faker faker = new Faker();
   private final ExpressionParser spelParser = new SpelExpressionParser();
-  private final ParserContext templateContext = new ParserContext() {
-    @Override
-    public boolean isTemplate() { return true; }
-    @Override
-    public String getExpressionPrefix() { return "${"; }
-    @Override
-    public String getExpressionSuffix() { return "}"; }
-  };
+  private final Map<String, TestifyFunction> functionRegistry = new HashMap<>();
+  // 匹配 ${prefix.method(args)}
+  private static final Pattern FUNC_PATTERN = Pattern.compile("(\\w+)\\.(\\w+)\\((.*)\\)");
+  private final ParserContext templateContext =
+      new ParserContext() {
+        @Override
+        public boolean isTemplate() {
+          return true;
+        }
+
+        @Override
+        public String getExpressionPrefix() {
+          return "${";
+        }
+
+        @Override
+        public String getExpressionSuffix() {
+          return "}";
+        }
+      };
+
+  public VariableEngine(List<TestifyFunction> customFunctions) {
+    // 2. 注册用户自定义函数 (由 Spring 注入)
+    if (customFunctions != null) {
+      customFunctions.forEach(f -> functionRegistry.put(f.getPrefix(), f));
+    }
+  }
+
+  /** 解析入口，假设已经正则匹配出: "time", "afterDays", ["5"] */
+  public Object executeFunction(String prefix, String methodName, String argsStr) {
+    TestifyFunction target = functionRegistry.get(prefix);
+    if (target == null) throw new RuntimeException("Unknown function prefix: " + prefix);
+    // 解析参数列表 (简单处理：按逗号分隔，并去除空格)
+    String[] rawArgs = StringUtils.hasText(argsStr) ? argsStr.split(",") : new String[0];
+    // 1. 找到匹配的方法
+    Method method =
+        Arrays.stream(target.getClass().getMethods())
+            .filter(m -> m.getName().equals(methodName) && m.getParameterCount() == rawArgs.length)
+            .findFirst()
+            .orElseThrow(() -> new RuntimeException("Method not found: " + methodName));
+
+    try {
+      // 2. 动态转换参数类型 (String -> target method type)
+      Object[] convertedArgs = new Object[method.getParameterCount()];
+      Class<?>[] parameterTypes = method.getParameterTypes();
+      for (int i = 0; i < rawArgs.length; i++) {
+        // 利用 Jackson 的强力转换能力，支持基本类型、List、Map 等转换
+        String arg = rawArgs[i].trim().replaceAll("^['\"]|['\"]$", ""); // 去掉可能的引号
+        convertedArgs[i] = JsonUtil.convertValue(arg, parameterTypes[i]);
+      }
+
+      // 3. 反射调用
+      return method.invoke(target, convertedArgs);
+    } catch (Exception e) {
+      throw new RuntimeException("Function execution failed: " + methodName, e);
+    }
+  }
+
   // --- 1. Entry Points (入口方法) ---
-  /** 场景 A: 初始化 YAML variables 块。处理依赖关系并生成上下文。 */
   public Map<String, Object> resolveVariables(Map<String, String> rawVariables) {
     Map<String, Object> context = new LinkedHashMap<>();
     if (rawVariables == null) return context;
 
-    // 利用 SpEL 自身的能力，多次迭代解析直到结果稳定（处理变量间引用）
-    int maxIterations = rawVariables.size() * 2;
-    for (int i = 0; i < maxIterations && context.size() < rawVariables.size(); i++) {
-      rawVariables.forEach(
-          (key, value) -> {
-            if (!context.containsKey(key)) {
-              try {
-                Object evaluated = evaluate(value, context);
-                if (evaluated != null && !String.valueOf(evaluated).contains("${")) {
-                  context.put(key, evaluated);
-                }
-              } catch (Exception ignored) {
-              }
-            }
-          });
+    // 拓扑排序的简化版：迭代尝试
+    // 假设 a: ${b}, b: 1。第一轮 a 失败, b 成功；第二轮 a 成功。
+    int maxIterations = 3;
+    for (int i = 0; i < maxIterations; i++) {
+      boolean changed = false;
+      for (Map.Entry<String, String> entry : rawVariables.entrySet()) {
+        String key = entry.getKey();
+        if (context.containsKey(key)) continue;
+
+        try {
+          Object evaluated = evaluate(entry.getValue(), context);
+          // 只有当解析结果不再包含 ${ 占位符时，才认为该变量已完全解析
+          if (evaluated != null && !String.valueOf(evaluated).contains("${")) {
+            context.put(key, evaluated);
+            changed = true;
+          }
+        } catch (Exception ignored) {
+        }
+      }
+      if (!changed) break; // 如果这一轮没有新变量被解析，提前退出
     }
     return context;
+  }
+
+  // --- 2. Core Evaluator (评估核心) ---
+
+  // 修改后的 evaluate 核心逻辑
+  public Object evaluate(String text, Map<String, Object> context) {
+    if (text == null || !text.contains("${")) return text;
+
+    try {
+      StandardEvaluationContext spelContext = buildSpelContext(context);
+      String trimmed = text.trim();
+
+      // 场景 A: 纯占位符 "${faker.name()}"
+      if (trimmed.startsWith("${")
+          && trimmed.endsWith("}")
+          && countOccurrences(trimmed, "${") == 1) {
+        String expression = trimmed.substring(2, trimmed.length() - 1);
+
+        // --- 修复点：针对纯表达式，手动补一个 # ---
+        String spelExpr = expression.startsWith("#") ? expression : "#" + expression;
+
+        return spelParser.parseExpression(spelExpr).getValue(spelContext);
+      }
+
+      // 场景 B: 混合字符串 "Hello ${faker.name()}"
+      // 这里 ensureHashPrefix 会把 "${" 替换成 "${#"
+      String processedText = ensureHashPrefix(text);
+      return spelParser.parseExpression(processedText, templateContext).getValue(spelContext);
+
+    } catch (Exception e) {
+      log.warn("SpEL 解析失败: {}, 错误: {}", text, e.getMessage());
+      return text;
+    }
   }
 
   /** 场景 B: 解析整个 JsonNode 树 (用于 input, setup, expect 等) */
@@ -83,33 +171,6 @@ public class VariableEngine {
     return node;
   }
 
-  // --- 2. Core Evaluator (评估核心) ---
-
-  /** 统一的解析方法：处理纯占位符、混合字符串、工具类调用 */
-  public Object evaluate(String text, Map<String, Object> context) {
-    if (text == null || !text.contains("${")) return text;
-    log.info("开始解析: {}, 当前 Context 中的 Key: {}", text, context.keySet());
-    // 如果是纯变量引用，如 "${userId}"，且 context 中已有，直接返回对象保持类型
-    String expression = text.trim();
-    if (expression.startsWith("${")
-        && expression.endsWith("}")
-        && countOccurrences(expression, "${") == 1) {
-      String varName = expression.substring(2, expression.length() - 1);
-      if (context != null && context.containsKey(varName)) return context.get(varName);
-    }
-
-    try {
-      StandardEvaluationContext spelContext = buildSpelContext(context);
-      // 自动为变量增加 # 前缀，以符合 SpEL 规范
-      String processedText = ensureHashPrefix(text);
-      Object result = spelParser.parseExpression(processedText, templateContext).getValue(spelContext);
-      return result != null ? result : text;
-    } catch (Exception e) {
-      log.warn("SpEL 解析失败: {}，错误: {}", text, e.getMessage());
-      return text;
-    }
-  }
-
   // --- 3. Helpers (内部辅助) ---
 
   private StandardEvaluationContext buildSpelContext(Map<String, Object> context) {
@@ -117,10 +178,11 @@ public class VariableEngine {
     ctx.addPropertyAccessor(new MapAccessor());
 
     // 注册核心工具
-    ctx.setVariable("fn", new FunctionHelper());
-    ctx.setVariable("time", new TimeHelper());
-    ctx.setVariable("faker", faker);
-
+    functionRegistry.forEach(
+        (prefix, functionInstance) -> {
+          ctx.setVariable(prefix, functionInstance);
+        });
+    ctx.setVariable("faker", new Faker());
     // 注册业务变量
     if (context != null) {
       context.forEach(ctx::setVariable);
@@ -130,7 +192,7 @@ public class VariableEngine {
 
   private String ensureHashPrefix(String text) {
     // 匹配 ${ 后面不是 # 的所有情况，自动补上 #。使得 ${time.now()} 变为 ${#time.now()}
-    return text.replaceAll("\\$\\{(?=[^#])", "\\${#");
+    return text.replaceAll("\\$\\{(?![#0-9'\"\\-])", "\\${#");
   }
 
   private JsonNode convertToNode(Object obj) {

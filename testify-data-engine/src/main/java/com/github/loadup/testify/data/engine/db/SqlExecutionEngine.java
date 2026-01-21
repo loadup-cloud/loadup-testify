@@ -26,7 +26,7 @@ public class SqlExecutionEngine {
   private final JdbcTemplate jdbcTemplate;
   private final VariableEngine variableEngine;
 
-  public void executeSetup(JsonNode setupNode, Map<String, Object> context, String yamlPath) {
+  public void execute(JsonNode setupNode, Map<String, Object> context, String yamlPath) {
     if (setupNode == null || setupNode.isNull()) return;
 
     // 1. 处理原始 SQL

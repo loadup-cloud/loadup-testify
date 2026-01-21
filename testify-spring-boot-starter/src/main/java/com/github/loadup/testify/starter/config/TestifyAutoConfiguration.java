@@ -1,13 +1,17 @@
 package com.github.loadup.testify.starter.config;
 
 import com.github.loadup.testify.asserts.engine.DbAssertEngine;
+import com.github.loadup.testify.asserts.engine.ExceptionAssertEngine;
 import com.github.loadup.testify.asserts.engine.ResponseAssertEngine;
+import com.github.loadup.testify.asserts.engine.TestifyAssertEngine;
+import com.github.loadup.testify.asserts.facade.AssertionFacade;
 import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import com.github.loadup.testify.starter.container.TestifyContainerManager;
 import com.github.loadup.testify.starter.db.DbConnectionProvider;
 import com.github.loadup.testify.starter.db.PhysicalDbConnectionProvider;
+import java.util.List;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -45,14 +49,14 @@ public class TestifyAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public VariableEngine testifyVariableEngine() {
+  public VariableEngine variableEngine() {
     return new VariableEngine();
   }
 
   @Bean
   @ConditionalOnMissingBean
-  public ResponseAssertEngine responseAssertEngine() {
-    return new ResponseAssertEngine();
+  public ResponseAssertEngine responseAssertEngine(VariableEngine variableEngine) {
+    return new ResponseAssertEngine(variableEngine);
   }
 
   @Bean
@@ -63,7 +67,19 @@ public class TestifyAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public SqlExecutionEngine testifySqlExecutionEngine(
+  public ExceptionAssertEngine exceptionAssertEngine() {
+    return new ExceptionAssertEngine();
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public AssertionFacade assertionFacade(List<TestifyAssertEngine> engines) {
+    return new AssertionFacade(engines);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public SqlExecutionEngine sqlExecutionEngine(
       JdbcTemplate jdbcTemplate, VariableEngine variableEngine) {
     return new SqlExecutionEngine(jdbcTemplate, variableEngine);
   }

@@ -9,6 +9,7 @@ import com.github.loadup.testify.asserts.model.MatchResult;
 import com.github.loadup.testify.asserts.model.RowDiff;
 import com.github.loadup.testify.asserts.operator.OperatorProcessor;
 import com.github.loadup.testify.asserts.util.ColumnNormalizer;
+import com.github.loadup.testify.core.util.JsonUtil;
 import com.github.loadup.testify.core.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import java.util.*;
@@ -18,18 +19,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @Slf4j
-public class DbAssertEngine {
-  private static final ObjectMapper objectMapper = new ObjectMapper();
+public class DbAssertEngine implements TestifyAssertEngine {
   private String columnNamingStrategy = "caseInsensitive";
 
-  public DbAssertEngine() {}
-
-  public DbAssertEngine(String strategy) {
-    this.columnNamingStrategy = strategy;
+  @Override
+  public String supportKey() {
+    return "database";
   }
 
+  @Override
+  public void compare(
+          JsonNode expectNode, Object actualEx, Map<String, Object> context, List<String> reportList) {
   /** 对外入口：解析变量并触发单表/多表比对 */
-  public void compare(JsonNode expectNode, Map<String, Object> context) {
     if (expectNode == null) return;
 
     // 1. 变量解析：一次性解析整个 expect 块（包括 ${nowTime} 等）
@@ -49,8 +50,7 @@ public class DbAssertEngine {
     JsonNode rowsNode = tableNode.get("rows");
 
     // 2. 转换数据结构
-    List<Map<String, Object>> expectedRows =
-        objectMapper.convertValue(rowsNode, new TypeReference<>() {});
+    List<Map<String, Object>> expectedRows = JsonUtil.convertValue(rowsNode, new TypeReference<>() {});
 
     // 3. 抓取数据：根据解析后的 rowsNode 构造 SQL
     List<Map<String, Object>> actualRows = fetchActualRows(tableName, expectedRows);

@@ -2,7 +2,6 @@ package com.github.loadup.testify.asserts.engine;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.loadup.testify.asserts.diff.DiffReportBuilder;
 import com.github.loadup.testify.asserts.model.FieldDiff;
 import com.github.loadup.testify.asserts.model.MatchResult;
@@ -12,12 +11,22 @@ import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
-public class ResponseAssertEngine {
-  private final VariableEngine variableEngine = new VariableEngine();
+public class ResponseAssertEngine implements TestifyAssertEngine {
+  private final VariableEngine variableEngine;
 
-  public void compare(JsonNode expectRes, Object actualRes, Map<String, Object> context) {
+  public ResponseAssertEngine(VariableEngine variableEngine) {
+    this.variableEngine = variableEngine;
+  }
+
+  @Override
+  public String supportKey() {
+    return "response";
+  }
+
+  @Override
+  public void compare(
+      JsonNode expectRes, Object actualRes, Map<String, Object> context, List<String> reportList) {
     // 1. 准备数据：解析变量 & 转换为树
     JsonNode resolvedExpect = variableEngine.resolveJsonNode(expectRes, context);
     JsonNode actualNode = JsonUtil.valueToTree(actualRes);
@@ -46,7 +55,7 @@ public class ResponseAssertEngine {
       return;
     }
 
-    // 情况 B: 期望节点是普通的 JSON 对象
+    // 情况 B: 期望节点是普通的 JSON 对象(递归)
     if (exp.isObject()) {
       exp.fields()
           .forEachRemaining(
@@ -55,9 +64,9 @@ public class ResponseAssertEngine {
                 recursiveCheck(path + "." + key, entry.getValue(), act.path(key), diffs);
               });
     }
-    // 情况 C: 期望节点是数组
+    // 情况 C: 期望节点是数组(递归)
     else if (exp.isArray()) {
-      if (exp.size() != act.size()) {
+      if (!act.isArray() || exp.size() != act.size()) {
         diffs.add(
             new FieldDiff(
                 path, "Size: " + exp.size(), "Size: " + act.size(), "Array size mismatch"));
@@ -71,8 +80,10 @@ public class ResponseAssertEngine {
     else {
       Object expVal = getValueFromJsonNode(exp);
       Object actVal = getValueFromJsonNode(act);
-      if (!Objects.equals(expVal, actVal)) {
-        diffs.add(new FieldDiff(path, expVal, actVal, "Value mismatch"));
+      // 统一走 OperatorProcessor，这样即使是普通值，也能享受 SimpleMatcher 提供的类型兼容性比对
+      MatchResult result = OperatorProcessor.process(actVal, expVal);
+      if (!result.isPassed()) {
+        diffs.add(new FieldDiff(path, expVal, actVal, result.message()));
       }
     }
   }
@@ -82,7 +93,7 @@ public class ResponseAssertEngine {
   }
 
   private Object getValueFromJsonNode(JsonNode node) {
-    if (node.isMissingNode() || node.isNull()) return null;
+    if (node == null || node.isMissingNode() || node.isNull()) return null;
     if (node.isNumber()) return node.numberValue();
     if (node.isBoolean()) return node.booleanValue();
     return node.asText();

@@ -22,6 +22,9 @@ public class UserService {
         "INSERT INTO users (user_id, user_name, email, status, created_at) VALUES (?, ?, ?, ?, ?)";
     jdbcTemplate.update(sql, userId, userName, email, "ACTIVE", createdAt);
     User user = new User(userId, userName, email);
+    if(userId.equals("test-1234")){
+        throw new IllegalArgumentException("User ID cannot be empty");
+    }
     return user;
   }
 

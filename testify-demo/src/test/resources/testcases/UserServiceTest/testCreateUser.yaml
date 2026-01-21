@@ -18,6 +18,9 @@ setup:
 #          user_name: "Admin"
 
 expect:
+  exception:
+    type: 'java.lang.IllegalArgumentException'
+    message: 'User ID cannot be empty'
   # 预期响应结果
   response:
     userId: "sadasdasdasdasdasdasdasdasdasdasdasdtest-12342"

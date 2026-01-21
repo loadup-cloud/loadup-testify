@@ -40,8 +40,8 @@ public class JsonUtil {
     return mapper.valueToTree(obj);
   }
 
-  public static Map<String, Object> convertValue(
-      JsonNode exp, TypeReference<Map<String, Object>> typeReference) {
+  public static <T> T convertValue(
+      JsonNode exp, TypeReference<T> typeReference) {
     return mapper.convertValue(exp, typeReference);
   }
 }

@@ -32,6 +32,7 @@
         <jsonassert.version>1.5.3</jsonassert.version>
         <commons-text.version>1.15.0</commons-text.version>
         <commons-csv.version>1.10.0</commons-csv.version>
+        <testcontainers.version>2.0.3</testcontainers.version>
     </properties>
 
     <dependencyManagement>
@@ -132,4 +133,28 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+        </repository>
+
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>aliyun</id>
+            <url>https://maven.aliyun.com/repository/public</url>
+        </repository>
+    </repositories>
 </project>

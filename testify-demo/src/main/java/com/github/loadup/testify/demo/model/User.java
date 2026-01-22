@@ -9,6 +9,7 @@ public class User {
   private String email;
   private String status;
   private LocalDateTime createdAt;
+  private Order order;
 
   public User() {}
 
@@ -59,6 +60,15 @@ public class User {
 
   public User setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
+    return this;
+  }
+
+  public Order getOrder() {
+    return order;
+  }
+
+  public User setOrder(Order order) {
+    this.order = order;
     return this;
   }
 }

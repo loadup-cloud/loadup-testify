@@ -8,11 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="testify-core" />
-        <module name="testify-demo" />
         <module name="testify-assert-engine" />
+        <module name="testify-demo" />
         <module name="testify-mock-engine" />
-        <module name="testify-spring-boot-starter" />
         <module name="testify-data-engine" />
+        <module name="testify-spring-boot-starter" />
       </profile>
     </annotationProcessing>
   </component>

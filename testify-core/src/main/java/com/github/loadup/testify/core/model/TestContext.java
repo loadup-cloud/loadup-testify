@@ -1,6 +1,7 @@
 package com.github.loadup.testify.core.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.util.List;
 import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public final class TestContext {
   private String yamlPath;
   private Map<String, Object> variables;
   private JsonNode input;
-  private JsonNode mocks;
+  private List<MockConfig> mocks;
   private JsonNode setup;
   private JsonNode expect;
 
@@ -37,7 +38,7 @@ public final class TestContext {
     return input;
   }
 
-  public JsonNode mocks() {
+  public List<MockConfig> mocks() {
     return mocks;
   }
 

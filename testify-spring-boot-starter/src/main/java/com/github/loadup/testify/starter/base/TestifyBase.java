@@ -4,10 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.loadup.testify.asserts.facade.AssertionFacade;
 import com.github.loadup.testify.core.model.TestContext;
 import com.github.loadup.testify.core.util.JsonUtil;
-import com.github.loadup.testify.starter.util.SpringContextHolder;
 import com.github.loadup.testify.core.variable.VariableContext;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
+import com.github.loadup.testify.mock.engine.MockEngine;
+import com.github.loadup.testify.starter.util.SpringContextHolder;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,7 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
   @Autowired protected AssertionFacade assertionFacade;
 
   @Autowired protected SqlExecutionEngine sqlExecutionEngine;
+  @Autowired protected MockEngine mockEngine;
 
   private TestContext currentTestContext;
 
@@ -62,8 +64,14 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
       // 1.2 存入线程上下文，供后续所有 Engine 使用
       VariableContext.set(resolvedVars);
       log.info("Resolved Variables: {}", resolvedVars);
+      // 1.3 应用 Mock 配置，自动解析 Mock 配置中的变量
+      // 传入 resolvedVars 使得 Mock 的返回值支持 ${faker} 等动态函数
+      if (currentTestContext.mocks() != null) {
+        mockEngine.applyMocks(currentTestContext.mocks(), resolvedVars);
+      }
+      System.out.println("Context Bean Hash: " + System.identityHashCode(applicationContext.getBean("orderService")));
 
-      // 1.3 执行数据准备（Setup SQL），自动解析 SQL 中的变量
+      // 1.4 执行数据准备（Setup SQL），自动解析 SQL 中的变量
       if (currentTestContext.setup() != null) {
         sqlExecutionEngine.execute(
             currentTestContext.setup(), resolvedVars, currentTestContext.yamlPath());
@@ -93,6 +101,7 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
       throw new RuntimeException("Testify execution error", e);
     } finally {
       // 必须清理，防止 ThreadLocal 污染
+      //mockEngine.resetAllMocks();
       VariableContext.clear();
     }
   }

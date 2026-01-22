@@ -5,21 +5,26 @@ import com.github.loadup.testify.asserts.engine.ExceptionAssertEngine;
 import com.github.loadup.testify.asserts.engine.ResponseAssertEngine;
 import com.github.loadup.testify.asserts.engine.TestifyAssertEngine;
 import com.github.loadup.testify.asserts.facade.AssertionFacade;
-import com.github.loadup.testify.starter.util.SpringContextHolder;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import com.github.loadup.testify.data.engine.function.CommonFunction;
 import com.github.loadup.testify.data.engine.function.TestifyFunction;
 import com.github.loadup.testify.data.engine.function.TimeFunction;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
+import com.github.loadup.testify.mock.MockProxyPostProcessor;
+import com.github.loadup.testify.mock.engine.MockEngine;
+import com.github.loadup.testify.mock.engine.MockInterceptor;
 import com.github.loadup.testify.starter.container.TestifyContainerManager;
 import com.github.loadup.testify.starter.db.DbConnectionProvider;
 import com.github.loadup.testify.starter.db.PhysicalDbConnectionProvider;
+import com.github.loadup.testify.starter.util.SpringContextHolder;
 import java.util.List;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -28,6 +33,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 @Configuration
 @EnableConfigurationProperties(TestifyProperties.class)
+@EnableAspectJAutoProxy(proxyTargetClass = true, exposeProxy = true)
 public class TestifyAutoConfiguration {
 
   @Bean
@@ -60,8 +66,6 @@ public class TestifyAutoConfiguration {
     return new CommonFunction();
   }
 
-
-
   /** 1. 自动收集容器中所有的 TestifyFunction 实现 */
   @Bean
   @ConditionalOnMissingBean
@@ -77,8 +81,8 @@ public class TestifyAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public DbAssertEngine dbAssertEngine(JdbcTemplate jdbcTemplate,VariableEngine variableEngine) {
-    return new DbAssertEngine(jdbcTemplate,variableEngine);
+  public DbAssertEngine dbAssertEngine(JdbcTemplate jdbcTemplate, VariableEngine variableEngine) {
+    return new DbAssertEngine(jdbcTemplate, variableEngine);
   }
 
   @Bean
@@ -98,5 +102,28 @@ public class TestifyAutoConfiguration {
   public SqlExecutionEngine sqlExecutionEngine(
       JdbcTemplate jdbcTemplate, VariableEngine variableEngine) {
     return new SqlExecutionEngine(jdbcTemplate, variableEngine);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public MockInterceptor mockInterceptor(VariableEngine variableEngine) {
+    return new MockInterceptor(variableEngine);
+  }
+
+  @Bean
+  @ConditionalOnMissingBean
+  public MockEngine mockEngine(
+      ApplicationContext applicationContext,
+      VariableEngine variableEngine,
+      MockInterceptor mockInterceptor) {
+    return new MockEngine(applicationContext, variableEngine, mockInterceptor);
+  }
+
+
+
+  /** 定义一个切面，只拦截符合条件的业务类 */
+  @Bean
+  public MockProxyPostProcessor testifyMockAdvisor(MockInterceptor interceptor) {
+    return new MockProxyPostProcessor(interceptor);
   }
 }

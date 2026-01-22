@@ -210,4 +210,40 @@ public class VariableEngine {
   private int countOccurrences(String str, String sub) {
     return (str.length() - str.replace(sub, "").length()) / sub.length();
   }
+
+  // 建议添加到 VariableEngine 类中
+  public Object resolveValue(Object value, Map<String, Object> context) {
+    if (value == null) return null;
+
+    // 1. 如果是 JsonNode (来自 YAML 解析后的原始结构)
+    if (value instanceof JsonNode node) {
+      // 调用我们之前实现的递归解析 JsonNode 的方法
+      JsonNode resolvedNode = resolveJsonNode(node, context);
+      // 将解析后的 JsonNode 转回 Java 对象（Map, List, 或基本类型）
+      return JsonUtil.convertValue(resolvedNode, Object.class);
+    }
+
+    // 2. 如果是 字符串 (比如 "Welcome ${name}")
+    if (value instanceof String str) {
+      return evaluate(str, context);
+    }
+
+    // 3. 如果是 集合 (手动创建的 List/Map)
+    if (value instanceof Collection<?> col) {
+      return col.stream().map(item -> resolveValue(item, context)).toList();
+    }
+
+    // 2. 处理 Map 嵌套 (YAML 中的复杂对象)
+    if (value instanceof Map) {
+      Map<String, Object> map = (Map<String, Object>) value;
+      Map<String, Object> resolvedMap = new LinkedHashMap<>(map.size());
+      for (Map.Entry<String, Object> entry : map.entrySet()) {
+        resolvedMap.put(entry.getKey(), resolveValue(entry.getValue(), context)); // 递归调用
+      }
+      return resolvedMap;
+    }
+
+
+    return value;
+  }
 }

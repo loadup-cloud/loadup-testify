@@ -1,124 +1,127 @@
 package com.github.loadup.testify.mock.engine;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.loadup.testify.mock.model.MockConfig;
-import com.github.loadup.testify.mock.registry.MockRegistry;
-import java.lang.reflect.Method;
-import java.util.List;
-import org.mockito.Mockito;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.github.loadup.testify.core.model.MockConfig;
+import com.github.loadup.testify.data.engine.variable.VariableEngine;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.context.ApplicationContext;
+import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
- * Mock engine for dynamic bean mocking and stubbing.
- * Integrates with Spring ApplicationContext and Mockito.
+ * Mock 引擎：负责解析配置并向 AOP 拦截器注册 Mock 规则
  */
+@Slf4j
 public class MockEngine {
+  private final ApplicationContext applicationContext;
+  private final VariableEngine variableEngine;
+  private final MockInterceptor mockInterceptor;
 
-    private static final Logger logger = LoggerFactory.getLogger(MockEngine.class);
-    private final ApplicationContext applicationContext;
-    private final ObjectMapper objectMapper;
+  public MockEngine(ApplicationContext applicationContext,
+                    VariableEngine variableEngine,
+                    MockInterceptor mockInterceptor) {
+    this.applicationContext = applicationContext;
+    this.variableEngine = variableEngine;
+    this.mockInterceptor = mockInterceptor;
+  }
 
-    public MockEngine(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
-        this.objectMapper = new ObjectMapper();
+  /**
+   * 应用 Mock 配置
+   */
+  public void applyMocks( List<MockConfig> configs, Map<String, Object> resolvedVars) {
+    if (configs == null || configs.isEmpty()) return;
+
+    for (MockConfig config : configs) {
+      try {
+        applySingleMock(config, resolvedVars);
+      } catch (Exception e) {
+        log.error(">>> [ENGINE] Failed to apply mock for bean: {}", config.bean(), e);
+        throw new RuntimeException("Mock setup failed for bean: " + config.bean(), e);
+      }
+    }
+  }
+
+  private void applySingleMock(MockConfig config, Map<String, Object> context) throws Exception {
+    String beanName = config.bean();
+
+    // 1. 从容器获取 Bean（此时该 Bean 已被 TestifyMockProxyCreator 代理）
+    Object bean = applicationContext.getBean(beanName);
+
+    // 2. 自动探测方法的返回类型（修复了 Optional 泛型问题）
+    Class<?> returnType = getMethodReturnType(bean, config);
+
+    // 3. 解析 Mock 匹配条件中的参数变量
+    List<Object> expectedArgs = null;
+    if (config.args() != null) {
+      // 解析 YAML 中的 args，如 [ "${userId}", "any" ]
+      Object resolvedArgs = variableEngine.resolveValue(config.args(), context);
+      if (resolvedArgs instanceof List) {
+        expectedArgs = (List<Object>) resolvedArgs;
+      }
     }
 
-    /**
-     * Apply mocks defined in YAML configuration.
-     * 
-     * @param mockConfigs List of mock configurations
-     */
-    public void applyMocks(List<MockConfig> mockConfigs) {
-        if (mockConfigs == null || mockConfigs.isEmpty()) {
-            return;
+    // 4. 将元数据注册到 AOP 拦截器
+    // 核心逻辑：不在这里做返回值转换，只存原始配置，确保拦截时动态解析变量
+    mockInterceptor.registerMock(
+            beanName,
+            config.method(),
+            expectedArgs,
+            config.thenReturn(),  // 可能是对象、Map 或包含表达式的 String
+            config.thenThrow(),   // 异常类名
+            returnType,           // 运行时转换的目标类型
+            context               // 保持当前的变量上下文
+    );
+
+    log.info(">>> [ENGINE] Mock registered: {}.{} (TargetType: {})",
+            beanName, config.method(), returnType.getSimpleName());
+  }
+
+  /**
+   * 获取目标方法的返回类型，支持重载识别
+   */
+  private Class<?> getMethodReturnType(Object bean, MockConfig config) {
+    // 穿透所有代理，获取真实的业务类
+    Class<?> targetClass = AopUtils.getTargetClass(bean);
+
+    // 获取所有同名方法
+    Method[] methods = Arrays.stream(targetClass.getMethods())
+            .filter(m -> m.getName().equals(config.method()))
+            .toArray(Method[]::new);
+
+    if (methods.length == 0) {
+      throw new NoSuchMethodError("No method named '" + config.method() + "' in " + targetClass.getName());
+    }
+
+    // 策略 1：如果指定了 args，按参数数量精准匹配（最常见场景）
+    if (config.args() != null) {
+      int argCount = ((List<?>) config.args()).size();
+      for (Method m : methods) {
+        if (m.getParameterCount() == argCount) {
+          return m.getReturnType();
         }
-
-        for (MockConfig config : mockConfigs) {
-            try {
-                applyMock(config);
-            } catch (Exception e) {
-                logger.error("Failed to apply mock for bean: " + config.bean(), e);
-                throw new RuntimeException("Mock configuration error: " + config.bean(), e);
-            }
-        }
+      }
     }
 
-    /**
-     * Apply a single mock configuration.
-     */
-    private void applyMock(MockConfig config) throws Exception {
-        String beanName = config.bean();
-        String methodName = config.method();
-
-        // Get bean from Spring context
-        Object bean = applicationContext.getBean(beanName);
-        Object mockedBean;
-
-        // Check if already mocked in this test case
-        if (MockRegistry.isMocked(beanName)) {
-            mockedBean = MockRegistry.get(beanName);
-        } else {
-            // Create spy or mock
-            mockedBean = Mockito.spy(bean);
-            MockRegistry.register(beanName, mockedBean);
-        }
-
-        // Find method
-        Method[] methods = bean.getClass().getMethods();
-        Method targetMethod = null;
-        for (Method method : methods) {
-            if (method.getName().equals(methodName)) {
-                targetMethod = method;
-                break; // Use first matching method (simplified, could be enhanced with parameter
-                       // matching)
-            }
-        }
-
-        if (targetMethod == null) {
-            throw new NoSuchMethodException("Method not found: " + methodName + " in bean: " + beanName);
-        }
-
-        // Configure stub
-        configureStub(mockedBean, targetMethod, config);
+    // 策略 2：如果没有 args 或者没搜到匹配数量的方法，检查是否有重载
+    if (methods.length > 1) {
+      long distinctTypes = Arrays.stream(methods).map(Method::getReturnType).distinct().count();
+      if (distinctTypes > 1) {
+        log.warn(">>> [ENGINE] Ambiguous return type for method '{}'. Using first found: {}",
+                config.method(), methods[0].getReturnType().getSimpleName());
+      }
     }
 
-    /**
-     * Configure Mockito stub based on configuration.
-     */
-    private void configureStub(Object mockedBean, Method method, MockConfig config) throws Exception {
-        // Note: This is a simplified implementation
-        // In real scenarios, we'd need to use Mockito's when().thenReturn() API
-        // which requires compile-time knowledge of the bean type
-        // For now, we'll document that advanced stubbing should be done in code
+    // 默认返回第一个同名方法的返回类型
+    return methods[0].getReturnType();
+  }
 
-        logger.info("Mock configured for bean: {} method: {}", config.bean(), config.method());
-
-        // Advanced stubbing would be implemented here using reflection and Mockito's
-        // API
-        // This would require dynamic bytecode generation or using Mockito's internal
-        // APIs
-        // For the demo, we'll provide a simplified version
-    }
-
-    /**
-     * Reset all mocked beans to their original state.
-     */
-    public void resetAllMocks() {
-        MockRegistry.getAllMockedBeans().values().forEach(mock -> {
-            try {
-                Mockito.reset(mock);
-            } catch (Exception e) {
-                logger.warn("Failed to reset mock: " + mock.getClass().getName(), e);
-            }
-        });
-    }
-
-    /**
-     * Clear all mock registrations.
-     */
-    public void clearAllMocks() {
-        MockRegistry.clear();
-    }
+  /**
+   * 测试结束后的清理工作
+   */
+  public void resetAllMocks() {
+    mockInterceptor.clear();
+    log.info(">>> [ENGINE] All AOP mock rules have been cleared.");
+  }
 }

@@ -55,4 +55,8 @@ public class JsonUtil {
   public static <T> T convertValue(JsonNode jsonNode, Class<T> parameterType) {
     return mapper.convertValue(jsonNode, parameterType);
   }
+
+  public static Object convertValue(Object resolvedValue, Class<?> returnType) {
+      return mapper.convertValue(resolvedValue, returnType);
+  }
 }

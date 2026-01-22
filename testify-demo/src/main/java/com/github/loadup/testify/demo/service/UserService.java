@@ -1,6 +1,8 @@
 package com.github.loadup.testify.demo.service;
 
+import com.github.loadup.testify.demo.model.Order;
 import com.github.loadup.testify.demo.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
   private final JdbcTemplate jdbcTemplate;
+  @Autowired public OrderService orderService;
 
   public UserService(JdbcTemplate jdbcTemplate) {
     this.jdbcTemplate = jdbcTemplate;
@@ -22,9 +25,12 @@ public class UserService {
         "INSERT INTO users (user_id, user_name, email, status, created_at) VALUES (?, ?, ?, ?, ?)";
     jdbcTemplate.update(sql, userId, userName, email, "ACTIVE", createdAt);
     User user = new User(userId, userName, email);
-    if(userId.equals("test-12345")){
-        throw new IllegalArgumentException("User ID cannot be empty");
+    if (userId.equals("test-12345")) {
+      throw new IllegalArgumentException("User ID cannot be empty");
     }
+    System.out.println(">>> [EXEC] OrderService instance: " + System.identityHashCode(orderService));
+    Order order = orderService.createOrder(userName);
+    user.setOrder(order);
     return user;
   }
 

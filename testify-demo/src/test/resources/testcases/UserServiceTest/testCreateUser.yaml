@@ -16,6 +16,15 @@ setup:
 #      data: # 模式 A：直接定义数据行
 #        - user_id: ${userId}
 #          user_name: "Admin"
+mocks:
+  # 场景1：基础 Mock，匹配任意入参，返回动态生成的随机数据
+  - bean: "orderService"
+    args:
+      - "${userName}"
+    method: "createOrder"
+    thenReturn:
+      orderId: "123456"
+      orderName: ${userName}
 
 expect:
 #  exception:
@@ -28,6 +37,9 @@ expect:
     createdAt:
       op: approx
       val: ${nowTime}
+    order:
+      orderId: "123456"
+      orderName:  ${userName}
   database:
     table: users
     mode: strict

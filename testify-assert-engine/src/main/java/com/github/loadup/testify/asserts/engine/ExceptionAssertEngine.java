@@ -18,15 +18,20 @@ public class ExceptionAssertEngine implements TestifyAssertEngine {
   @Override
   public void compare(
       JsonNode expectEx, Object actual, Map<String, Object> context, List<String> reportList) {
-    if (expectEx == null || actual == null) {
+    if (expectEx == null) {
       return;
+    }
+    List<FieldDiff> diffs = new ArrayList<>();
+    if (actual == null) {
+      String expectType = expectEx.get("type").asText();
+      diffs.add(new FieldDiff("exception", expectType, "Null", "Expected exception but none"));
+      throw new AssertionError(DiffReportBuilder.build("Exception Assertion", diffs));
     }
     if (!(actual instanceof Throwable actualEx)) {
       return;
     }
     // 自动获取最底层的原始异常 (Root Cause)
     Throwable rootCause = getRootCause(actualEx);
-    List<FieldDiff> diffs = new ArrayList<>();
 
     // 1. 校验异常类型 (支持简写)
     if (expectEx.has("type")) {

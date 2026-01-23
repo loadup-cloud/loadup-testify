@@ -8,6 +8,8 @@ import com.github.loadup.testify.asserts.model.MatchResult;
 import com.github.loadup.testify.asserts.operator.OperatorProcessor;
 import com.github.loadup.testify.core.util.JsonUtil;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
+import com.jayway.jsonpath.JsonPath;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -25,17 +27,34 @@ public class ResponseAssertEngine implements TestifyAssertEngine {
   }
 
   @Override
-  public void compare(
-      JsonNode expectRes, Object actualRes, Map<String, Object> context, List<String> reportList) {
-    // 1. 准备数据：解析变量 & 转换为树
-    JsonNode resolvedExpect = variableEngine.resolveJsonNode(expectRes, context);
+  public void compare(JsonNode expectRes, Object actualRes, Map<String, Object> context, List<String> reportList) {
     JsonNode actualNode = JsonUtil.valueToTree(actualRes);
-
     List<FieldDiff> diffs = new ArrayList<>();
-    // 2. 递归校验
-    recursiveCheck("res", resolvedExpect, actualNode, diffs);
 
-    // 3. 结果处理
+    // 将期待配置转为 Map，识别 JsonPath
+    Map<String, JsonNode> expectMap = JsonUtil.convertValue(expectRes, new TypeReference<Map<String, JsonNode>>() {});
+
+    expectMap.forEach((key, expNode) -> {
+      // 解析变量（针对 op 中的 val 等）
+      JsonNode resolvedExp = variableEngine.resolveJsonNode(expNode, context);
+
+      if (key.startsWith("$")) {
+        // --- 场景 A: JsonPath 匹配 ---
+        try {
+          String actualJson = JsonUtil.toJson(actualRes);
+          // 使用 Jayway JsonPath 提取实际值
+          Object extractedAct = JsonPath.read(actualJson, key);
+          JsonNode actNode = JsonUtil.valueToTree(extractedAct);
+          recursiveCheck(key, resolvedExp, actNode, diffs);
+        } catch (Exception e) {
+          diffs.add(new FieldDiff(key, "JsonPath exists", "Error/Missing", e.getMessage()));
+        }
+      } else {
+        // --- 场景 B: 原有的递归全量匹配 ---
+        recursiveCheck("res." + key, resolvedExp, actualNode.path(key), diffs);
+      }
+    });
+
     if (!diffs.isEmpty()) {
       throw new AssertionError(DiffReportBuilder.build("API Response Assertion", diffs));
     }

@@ -52,15 +52,35 @@ public class DbAssertEngine implements TestifyAssertEngine {
     String mode = tableNode.has("mode") ? tableNode.get("mode").asText() : "lenient";
     JsonNode rowsNode = tableNode.get("rows");
 
+
     // 2. 转换数据结构
     List<Map<String, Object>> expectedRows =
         JsonUtil.convertValue(rowsNode, new TypeReference<>() {});
+    int timeout = tableNode.path("timeout").asInt(0);
+    int interval = tableNode.path("interval").asInt(500);
+    long end = System.currentTimeMillis() + timeout;
 
     // 3. 抓取数据：根据解析后的 rowsNode 构造 SQL
-    List<Map<String, Object>> actualRows = fetchActualRows(tableName, expectedRows);
+    AssertionError lastError = null;
+    do {
+      try {
+        List<Map<String, Object>> actualRows = fetchActualRows(tableName, expectedRows);
+        // 4. 执行验证
+        verify(tableName, actualRows, expectedRows, mode);
+        return; // 如果成功，直接返回
+      } catch (AssertionError e) {
+        lastError = e;
+        if (timeout > 0) {
+            try {
+                Thread.sleep(interval);
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+      }
+    } while (System.currentTimeMillis() < end);
 
-    // 4. 执行验证
-    verify(tableName, actualRows, expectedRows, mode);
+    throw lastError;
   }
 
   public void verify(

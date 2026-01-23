@@ -2,13 +2,13 @@ package com.github.loadup.testify.mock.engine;
 
 import com.github.loadup.testify.core.model.MockConfig;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.aop.support.AopUtils;
-import org.springframework.context.ApplicationContext;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.support.AopUtils;
+import org.springframework.context.ApplicationContext;
 
 /**
  * Mock 引擎：负责解析配置并向 AOP 拦截器注册 Mock 规则
@@ -121,7 +121,17 @@ public class MockEngine {
    * 测试结束后的清理工作
    */
   public void resetAllMocks() {
+    // 遍历所有规则，找出 hit == false 的
+    mockInterceptor.getMockRules().forEach((bean, methodMap) -> {
+      methodMap.forEach((method, rules) -> {
+        for (int i = 0; i < rules.size(); i++) {
+          if (!rules.get(i).isHit()) {
+            log.warn(">>> [TESTIFY-AUDIT] 警告: Mock 规则未触发! Bean: {}, Method: {}, Index: {}, Args: {}",
+                    bean, method, i, rules.get(i).getExpectedArgs());
+          }
+        }
+      });
+    });
     mockInterceptor.clear();
-    log.info(">>> [ENGINE] All AOP mock rules have been cleared.");
   }
 }

@@ -57,6 +57,10 @@ public class JsonUtil {
   }
 
   public static Object convertValue(Object resolvedValue, Class<?> returnType) {
-      return mapper.convertValue(resolvedValue, returnType);
+    return mapper.convertValue(resolvedValue, returnType);
+  }
+
+  public static boolean equals(Object expected, Object actual) {
+    return JsonUtil.toJson(expected).equals(JsonUtil.toJson(actual));
   }
 }

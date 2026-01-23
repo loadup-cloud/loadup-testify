@@ -2,16 +2,19 @@ package com.github.loadup.testify.mock.engine;
 
 import com.github.loadup.testify.core.util.JsonUtil;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
+import com.github.loadup.testify.mock.model.MockRule;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.support.AopUtils;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.util.StringUtils;
 
 /** 核心拦截器：实现 AOP 方法拦截、多规则参数匹配及动态变量解析 */
@@ -19,8 +22,11 @@ import org.springframework.util.StringUtils;
 public class MockInterceptor implements MethodInterceptor {
 
   private final VariableEngine variableEngine;
+  // 注入 Spring 的转换服务
+  private final ConversionService conversionService = DefaultConversionService.getSharedInstance();
 
   /** 存储结构：Map<BeanName, Map<MethodName, List<MockRule>>> 一个方法可以对应多个 Rule（不同参数对应不同返回值） */
+  @Getter
   private final Map<String, Map<String, List<MockRule>>> mockRules = new ConcurrentHashMap<>();
 
   public MockInterceptor(VariableEngine variableEngine) {
@@ -40,7 +46,7 @@ public class MockInterceptor implements MethodInterceptor {
     mockRules
         .computeIfAbsent(beanName, k -> new ConcurrentHashMap<>())
         .computeIfAbsent(methodName, k -> new ArrayList<>())
-        .add(new MockRule(expectedArgs, returnValue, throwEx, returnType, context));
+        .add(new MockRule(expectedArgs, returnValue, throwEx, returnType, context, false));
 
     log.info(
         ">>> [TESTIFY-REGISTRY] Registered Mock: {}.{} (Args: {})",
@@ -62,7 +68,6 @@ public class MockInterceptor implements MethodInterceptor {
 
     String beanName = resolveBeanName(invocation.getThis());
     String methodName = invocation.getMethod().getName();
-    Object[] actualArgs = invocation.getArguments();
 
     Map<String, List<MockRule>> beanRules = mockRules.get(beanName);
     if (beanRules != null) {
@@ -70,7 +75,8 @@ public class MockInterceptor implements MethodInterceptor {
       if (rules != null) {
         // 遍历规则，寻找匹配当前入参的 Rule
         for (MockRule rule : rules) {
-          if (isArgsMatch(rule, actualArgs)) {
+          if (isArgsMatch(rule, invocation)) {
+            rule.setHit(true); // 标记命中
             return executeMockAction(rule);
           }
         }
@@ -84,7 +90,9 @@ public class MockInterceptor implements MethodInterceptor {
   /** 参数匹配核心算法 */
 
   // 修改后的匹配方法
-  private boolean isArgsMatch(MockRule rule, Object[] actualArgs) {
+  private boolean isArgsMatch(MockRule rule, MethodInvocation invocation) {
+    Object[] actualArgs = invocation.getArguments();
+    Method method = invocation.getMethod();
     List<Object> rawExpectedArgs = rule.getExpectedArgs();
 
     // 1. YAML 没配 args，代表匹配任意参数
@@ -107,18 +115,30 @@ public class MockInterceptor implements MethodInterceptor {
       Object expected = resolvedExpectedArgs.get(i);
       Object actual = actualArgs[i];
 
-      if ("any".equals(expected)) continue;
-      if (expected == null && actual == null) continue;
+      if ("any".equals(expected)) {
+        continue;
+      }
+      if (expected == null && actual == null) {
+        continue;
+      }
+      // 获取该位置参数的真实定义类型（例如 Long.class）
+      Class<?> targetType = method.getParameterTypes()[i];
 
-      if (expected != null) {
-        // 强化比对：处理类型不一致（Integer vs Long）
-        if (!expected.equals(actual)) {
-          String expStr = JsonUtil.toJson(expected);
-          String actStr = JsonUtil.toJson(actual);
-          if (!expStr.equals(actStr)) return false;
+      try {
+        // 核心：将 YAML 解析出的值强转为方法参数的真实类型再比对
+        Object convertedExpected = conversionService.convert(expected, targetType);
+
+        if (convertedExpected != null && !convertedExpected.equals(actual)) {
+          // 如果 equals 失败，再走 JSON 兜底（处理 Map/POJO 比对）
+          if (!JsonUtil.equals(convertedExpected, actual)) {
+            return false;
+          }
         }
-      } else {
-        return false;
+      } catch (Exception e) {
+        // 如果类型转换失败（比如字符串转数字转不动），降级走 JSON 比对
+        if (!JsonUtil.equals(expected, actual)) {
+          return false;
+        }
       }
     }
     return true;
@@ -158,15 +178,5 @@ public class MockInterceptor implements MethodInterceptor {
     Class<?> targetClass = AopUtils.getTargetClass(instance);
     String simpleName = targetClass.getSimpleName();
     return Character.toLowerCase(simpleName.charAt(0)) + simpleName.substring(1);
-  }
-
-  @Data
-  @AllArgsConstructor
-  private static class MockRule {
-    private List<Object> expectedArgs; // 预期参数条件
-    private Object returnValue; // 原始返回配置
-    private String throwEx; // 异常配置
-    private Class<?> returnType; // 方法返回类型
-    private Map<String, Object> context; // 变量上下文
   }
 }

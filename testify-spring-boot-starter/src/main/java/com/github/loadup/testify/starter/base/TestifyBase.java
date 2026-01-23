@@ -8,6 +8,7 @@ import com.github.loadup.testify.core.variable.VariableContext;
 import com.github.loadup.testify.data.engine.db.SqlExecutionEngine;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
 import com.github.loadup.testify.mock.engine.MockEngine;
+import com.github.loadup.testify.starter.container.TestifyInfraInitializer;
 import com.github.loadup.testify.starter.util.SpringContextHolder;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.ITestContext;
 import org.testng.Reporter;
@@ -23,6 +25,7 @@ import org.testng.annotations.BeforeMethod;
 
 @Slf4j
 @SpringBootTest
+@ContextConfiguration(initializers = TestifyInfraInitializer.class) // 强制关联初始化器
 public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
 
   @Autowired protected AssertionFacade assertionFacade;

@@ -15,6 +15,7 @@
         <module>testify-assert-engine</module>
         <module>testify-mock-engine</module>
         <module>testify-spring-boot-starter</module>
+        <module>testify-infra-container</module>
         <module>testify-demo</module>
     </modules>
 
@@ -74,6 +75,22 @@
             <dependency>
                 <groupId>com.github.loadup.framework</groupId>
                 <artifactId>testify-demo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-infra-container</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-infra-container-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.loadup.framework</groupId>
+                <artifactId>testify-infra-container-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

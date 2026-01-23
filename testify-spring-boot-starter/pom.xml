@@ -111,5 +111,9 @@
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.github.loadup.framework</groupId>
+            <artifactId>testify-infra-container-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -36,15 +36,16 @@ public class DiffReportBuilder {
 
     // 数据行
     for (FieldDiff diff : diffs) {
-      sb.append(String.format(headerFormat,
+      sb.append(
+          String.format(
+              headerFormat,
               // 路径：保留尾部 (TAIL)
               truncate(diff.path(), COL_PATH - 2, TruncateMode.TAIL),
               // 期望/实际：保留头部 (HEAD) 或 中间截断
               truncate(formatValue(diff.expected()), COL_EXP - 2, TruncateMode.MIDDLE),
               truncate(formatValue(diff.actual()), COL_ACT - 2, TruncateMode.MIDDLE),
               // 错误消息：保留头部
-              truncate(diff.message(), COL_MSG - 2, TruncateMode.HEAD)
-      ));
+              truncate(diff.message(), COL_MSG - 2, TruncateMode.HEAD)));
     }
     sb.append("-".repeat(TOTAL_WIDTH)).append("\n");
     sb.append(String.format("  Total Diffs: %d\n", diffs.size()));
@@ -77,7 +78,10 @@ public class DiffReportBuilder {
       case HEAD -> str.substring(0, max - 3) + "...";
     };
   }
+
   public enum TruncateMode {
-    HEAD, TAIL, MIDDLE
+    HEAD,
+    TAIL,
+    MIDDLE
   }
 }

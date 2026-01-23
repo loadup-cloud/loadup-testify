@@ -69,7 +69,9 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
       if (currentTestContext.mocks() != null) {
         mockEngine.applyMocks(currentTestContext.mocks(), resolvedVars);
       }
-      System.out.println("Context Bean Hash: " + System.identityHashCode(applicationContext.getBean("orderService")));
+      System.out.println(
+          "Context Bean Hash: "
+              + System.identityHashCode(applicationContext.getBean("orderService")));
 
       // 1.4 执行数据准备（Setup SQL），自动解析 SQL 中的变量
       if (currentTestContext.setup() != null) {
@@ -101,7 +103,7 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
       throw new RuntimeException("Testify execution error", e);
     } finally {
       // 必须清理，防止 ThreadLocal 污染
-      //mockEngine.resetAllMocks();
+      // mockEngine.resetAllMocks();
       VariableContext.clear();
     }
   }

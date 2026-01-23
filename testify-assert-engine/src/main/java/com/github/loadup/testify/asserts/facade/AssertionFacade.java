@@ -14,20 +14,21 @@ public class AssertionFacade {
 
   public AssertionFacade(List<TestifyAssertEngine> engines) {
     // 自动将所有引擎按 supportKey 存入 Map
-      this.engineMap = engines.stream()
-              .collect(Collectors.toMap(
-                      TestifyAssertEngine::supportKey,
-                      e -> e,
-                      (existing, replacement) -> {
-                          // 如果发生冲突，抛出明确的错误信息
-                          throw new IllegalStateException(String.format(
-                                  "Duplicate AssertEngine key: '%s' found in %s and %s",
-                                  existing.supportKey(),
-                                  existing.getClass().getSimpleName(),
-                                  replacement.getClass().getSimpleName()
-                          ));
-                      }
-              ));
+    this.engineMap =
+        engines.stream()
+            .collect(
+                Collectors.toMap(
+                    TestifyAssertEngine::supportKey,
+                    e -> e,
+                    (existing, replacement) -> {
+                      // 如果发生冲突，抛出明确的错误信息
+                      throw new IllegalStateException(
+                          String.format(
+                              "Duplicate AssertEngine key: '%s' found in %s and %s",
+                              existing.supportKey(),
+                              existing.getClass().getSimpleName(),
+                              replacement.getClass().getSimpleName()));
+                    }));
   }
 
   public List<String> executeAll(JsonNode expectRoot, Object actualRes, Throwable businessError) {

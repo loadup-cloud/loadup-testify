@@ -70,10 +70,10 @@ public class UserService {
 
 ```java
 public class UserServiceTest extends TestifyBase {
-    
+
     @Autowired
     private UserService userService;
-    
+
     @Test
     public void testCreateUser() {
         // Test is driven by YAML file:

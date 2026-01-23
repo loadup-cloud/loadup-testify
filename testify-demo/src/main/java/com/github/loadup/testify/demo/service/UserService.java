@@ -28,7 +28,8 @@ public class UserService {
     if (userId.equals("test-12345")) {
       throw new IllegalArgumentException("User ID cannot be empty");
     }
-    System.out.println(">>> [EXEC] OrderService instance: " + System.identityHashCode(orderService));
+    System.out.println(
+        ">>> [EXEC] OrderService instance: " + System.identityHashCode(orderService));
     Order order = orderService.createOrder(userName);
     user.setOrder(order);
     return user;

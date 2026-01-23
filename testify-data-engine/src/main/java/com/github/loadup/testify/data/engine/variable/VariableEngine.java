@@ -243,7 +243,6 @@ public class VariableEngine {
       return resolvedMap;
     }
 
-
     return value;
   }
 }

@@ -1,6 +1,5 @@
 package com.github.loadup.testify.demo.model;
 
-
 /** User entity for demo. */
 public class Order {
   private String orderId;

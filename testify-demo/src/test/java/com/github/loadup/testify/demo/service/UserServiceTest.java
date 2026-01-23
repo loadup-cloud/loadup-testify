@@ -21,7 +21,6 @@ public class UserServiceTest extends TestifyBase {
 
   @Autowired private UserService userService;
 
-
   @Autowired private org.springframework.jdbc.core.JdbcTemplate jdbcTemplate;
 
   /**
@@ -41,7 +40,8 @@ public class UserServiceTest extends TestifyBase {
     // - Database assertions are verified after test
 
     // The actual service call happens automatically based on YAML configuration
-    System.out.println("Local Field Hash: " + System.identityHashCode(this.userService.orderService));
+    System.out.println(
+        "Local Field Hash: " + System.identityHashCode(this.userService.orderService));
     runTest(() -> userService.createUser(userId, val(userName), email));
     //    Reporter.getCurrentTestResult().setAttribute("actualResponse", res);
   }

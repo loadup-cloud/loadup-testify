@@ -44,13 +44,15 @@ public class MockProxyPostProcessor implements BeanPostProcessor {
     boolean hasServiceAnnotation = AnnotatedElementUtils.hasAnnotation(targetClass, Service.class);
 
     // 2. 根据命名规范识别（支持业务 Service、FeignClient、MyBatis Mapper 等常见业务组件）
-    boolean isBusinessService = className.endsWith("Service")
+    boolean isBusinessService =
+        className.endsWith("Service")
             || className.endsWith("ServiceImpl")
-            || className.contains(".service.")  // 包含 service 包路径
+            || className.contains(".service.") // 包含 service 包路径
             || className.contains(".manager."); // 包含 manager 包路径
 
     // 3. 排除 Spring 系统自带的 Bean (通常以 org.springframework 开头)
-    boolean isSystemBean = className.startsWith("org.springframework")
+    boolean isSystemBean =
+        className.startsWith("org.springframework")
             || className.startsWith("java.")
             || className.startsWith("javax.")
             || className.startsWith("jakarta.");

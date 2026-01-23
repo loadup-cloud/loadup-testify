@@ -119,8 +119,6 @@ public class TestifyAutoConfiguration {
     return new MockEngine(applicationContext, variableEngine, mockInterceptor);
   }
 
-
-
   /** 定义一个切面，只拦截符合条件的业务类 */
   @Bean
   public MockProxyPostProcessor testifyMockAdvisor(MockInterceptor interceptor) {

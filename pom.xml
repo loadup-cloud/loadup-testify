@@ -32,7 +32,7 @@
         <javers.version>7.10.0</javers.version>
         <jsonassert.version>1.5.3</jsonassert.version>
         <commons-text.version>1.15.0</commons-text.version>
-        <commons-csv.version>1.10.0</commons-csv.version>
+        <commons.csv.version>1.10.0</commons.csv.version>
         <testcontainers.version>2.0.3</testcontainers.version>
     </properties>
 
@@ -113,7 +113,7 @@
             <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-csv</artifactId>
-                <version>${commons-csv.version}</version>
+                <version>${commons.csv.version}</version>
             </dependency>
 
             <dependency>

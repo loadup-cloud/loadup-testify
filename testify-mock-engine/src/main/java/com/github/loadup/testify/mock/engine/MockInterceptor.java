@@ -1,8 +1,9 @@
 package com.github.loadup.testify.mock.engine;
 
+import com.github.loadup.testify.core.model.MockRule;
 import com.github.loadup.testify.core.util.JsonUtil;
 import com.github.loadup.testify.data.engine.variable.VariableEngine;
-import com.github.loadup.testify.mock.model.MockRule;
+import com.jayway.jsonpath.JsonPath;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +42,13 @@ public class MockInterceptor implements MethodInterceptor {
       Object returnValue,
       String throwEx,
       Class<?> returnType,
-      Map<String, Object> context) {
+      Map<String, Object> context,
+      Long delay) {
 
     mockRules
         .computeIfAbsent(beanName, k -> new ConcurrentHashMap<>())
         .computeIfAbsent(methodName, k -> new ArrayList<>())
-        .add(new MockRule(expectedArgs, returnValue, throwEx, returnType, context, false));
+        .add(new MockRule(expectedArgs, returnValue, throwEx, returnType, context, delay, false));
 
     log.info(
         ">>> [TESTIFY-REGISTRY] Registered Mock: {}.{} (Args: {})",
@@ -121,6 +123,10 @@ public class MockInterceptor implements MethodInterceptor {
       if (expected == null && actual == null) {
         continue;
       }
+      // 识别 JSONPath 模式
+      if (expected instanceof String && ((String) expected).startsWith("$jsonPath")) {
+        return matchJsonPath((String) expected, actual);
+      }
       // 获取该位置参数的真实定义类型（例如 Long.class）
       Class<?> targetType = method.getParameterTypes()[i];
 
@@ -146,6 +152,15 @@ public class MockInterceptor implements MethodInterceptor {
 
   /** 执行 Mock 结果：解析变量并处理类型转换 */
   private Object executeMockAction(MockRule rule) throws Throwable {
+    // 1. 处理延迟模拟
+    if (rule.getDelay() != null && rule.getDelay() > 0) {
+      log.info(">>> [TESTIFY-LATENCY] Simulating delay: {}ms", rule.getDelay());
+      try {
+        Thread.sleep(rule.getDelay());
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
+    }
     // A. 异常 Mock
     if (StringUtils.hasText(rule.getThrowEx())) {
       log.info(">>> [TESTIFY-HIT] Mock Throwing: {}", rule.getThrowEx());
@@ -178,5 +193,39 @@ public class MockInterceptor implements MethodInterceptor {
     Class<?> targetClass = AopUtils.getTargetClass(instance);
     String simpleName = targetClass.getSimpleName();
     return Character.toLowerCase(simpleName.charAt(0)) + simpleName.substring(1);
+  }
+
+  /**
+   * 执行 JSONPath 匹配
+   *
+   * @param expression 形如 "$jsonPath($.id): 123"
+   * @param actual 运行时真实的入参对象
+   */
+  private boolean matchJsonPath(String expression, Object actual) {
+    try {
+      // 解析表达式，提取路径和期望值
+      // 简单处理：截取 () 里的路径和 : 后的期望值
+      String path = expression.substring(expression.indexOf("(") + 1, expression.indexOf(")"));
+      String expectedValueStr = expression.substring(expression.indexOf(":") + 1).trim();
+
+      // 将实际对象转为 JSON 字符串或 Document
+      String actualJson = JsonUtil.toJson(actual);
+      if (!expression.contains(":")) {
+        path = expression.substring(expression.indexOf("(") + 1, expression.lastIndexOf(")"));
+        Object result = JsonPath.read(actualJson, path);
+        // 对于过滤谓词，如果匹配到数据，返回的是非空 List
+        if (result instanceof List) {
+          return !((List<?>) result).isEmpty();
+        }
+        return result != null;
+      }
+      Object actualValue = JsonPath.read(actualJson, path);
+
+      // 比对提取出的值与期望值（统一转字符串比对，避开类型坑）
+      return String.valueOf(actualValue).equals(expectedValueStr);
+    } catch (Exception e) {
+      log.warn(">>> [TESTIFY-JSONPATH] 匹配失败: {} , 异常: {}", expression, e.getMessage());
+      return false;
+    }
   }
 }

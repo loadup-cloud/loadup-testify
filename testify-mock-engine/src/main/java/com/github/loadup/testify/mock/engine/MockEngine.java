@@ -71,7 +71,8 @@ public class MockEngine {
             config.thenReturn(),  // 可能是对象、Map 或包含表达式的 String
             config.thenThrow(),   // 异常类名
             returnType,           // 运行时转换的目标类型
-            context               // 保持当前的变量上下文
+            context ,              // 保持当前的变量上下文
+            config.delay()
     );
 
     log.info(">>> [ENGINE] Mock registered: {}.{} (TargetType: {})",

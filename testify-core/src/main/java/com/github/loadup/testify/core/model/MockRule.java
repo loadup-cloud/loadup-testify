@@ -1,4 +1,4 @@
-package com.github.loadup.testify.mock.model;
+package com.github.loadup.testify.core.model;
 
 import java.util.List;
 import java.util.Map;
@@ -13,5 +13,6 @@ public class MockRule {
   private String throwEx; // 异常配置
   private Class<?> returnType; // 方法返回类型
   private Map<String, Object> context; // 变量上下文
+  private Long delay; // 新增存储
   private boolean hit; // 记录是否被触发过
 }

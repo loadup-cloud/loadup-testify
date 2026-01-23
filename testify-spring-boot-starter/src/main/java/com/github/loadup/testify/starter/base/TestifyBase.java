@@ -72,9 +72,6 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
       if (currentTestContext.mocks() != null) {
         mockEngine.applyMocks(currentTestContext.mocks(), resolvedVars);
       }
-      System.out.println(
-          "Context Bean Hash: "
-              + System.identityHashCode(applicationContext.getBean("orderService")));
 
       // 1.4 执行数据准备（Setup SQL），自动解析 SQL 中的变量
       if (currentTestContext.setup() != null) {

@@ -28,7 +28,6 @@ public class MockProxyPostProcessor implements BeanPostProcessor {
       // 必须：强制使用 CGLIB，防止接口注入失效
       factory.setProxyTargetClass(true);
       Object proxy = factory.getProxy();
-      System.out.println(">>> [TESTIFY-SETUP] Successfully wrapped proxy for: " + beanName);
       return proxy;
     }
     return bean;

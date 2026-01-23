@@ -1,372 +1,191 @@
-# Testify - Zero-Code Integration Testing Framework
+# Testify 自动化测试框架深度开发手册
 
-> 基于 Spring Boot 3.4.3 和 JDK 21 的声明式集成测试框架  
-> 通过 YAML 定义测试数据、Mock 行为和数据库断言，实现零代码侵入的自动化测试
+Testify 是一款基于 Spring Boot 生态构建的 **声明式、数据驱动** 集成测试框架。它通过 YAML 定义测试逻辑，利用 AOP 拦截技术实现动态 Mock，并提供了一套支持异步重试和复杂逻辑比对的断言系统。
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
-[![JDK](https://img.shields.io/badge/JDK-21-orange)]()
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.3-green)]()
+---
 
-## 🚀 Quick Start
+## 一、 技术栈 (Technology Stack)
 
-### Add Dependency
+Testify 集成了以下核心技术，确保了框架的灵活性和强大功能：
 
-```xml
+* **核心引擎**: Java 17+, Spring Boot (IoC/AOP/ConversionService)
+* **测试驱动**: TestNG (DataProvider 机制)
+* **Mock 拦截**: Spring AOP (基于 `BeanPostProcessor` 的动态代理)
+* **变量引擎**: Spring Expression Language (SpEL), Java Faker (数据模拟)
+* **JSON 处理**: Jackson (序列化), Jayway JsonPath (路径提取)
+* **断言增强**: JSONAssert (对象比对), 自定义 Operator 体系
+* **数据库**: Spring JdbcTemplate (执行清理与校验)
 
-<dependency>
-    <groupId>com.github.loadup.framework</groupId>
-    <artifactId>testify-spring-boot-starter</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <scope>test</scope>
-</dependency>
-```
+---
 
-### Create Test YAML
+## 二、 架构设计与核心流程
 
-Create `src/test/resources/testcases/UserServiceTest/testCreateUser.yaml`:
+Testify 采用 **“基类驱动 + 闭包执行”** 的模式。
+
+1. **DataProvider 映射**: `TestifyDataProvider` 解析 YAML 中的 `input` 列表，自动绑定到 `@Test` 方法的入参。
+2. **变量生命周期**: 在测试方法执行前，`VariableEngine` 预解析 `variables`。
+3. **AOP 拦截网**: `runTest` 执行期间，`MockInterceptor` 处于激活状态，根据配置拦截指定的 Bean。
+4. **闭包执行 (Lambda)**：业务代码在 `runTest` 的闭包内运行，框架自动捕获异常并记录结果。
+5. **自动断言**: 业务完成后，自动触发 Response 和 Database 断言。
+
+---
+
+## 三、 YAML 配置规范 (Full Reference)
+
+### 3.1 变量配置 (`variables`)
+
+支持动态函数，可在 YAML 其他位置通过 `${varName}` 引用。
 
 ```yaml
 variables:
-  userId: ${fn.uuid()}
-  userName: ${faker.name.fullName()}
-  email: ${faker.internet.emailAddress()}
-  createdAt: ${time.now()}
+  userId: "${time.now()}"             # 自定义时间函数
+  userName: "${faker.name().firstName()}" # Faker 函数
+  email: "test@example.com"
+  nowTime: ${time.now()}
 
+```
+
+### 3.2 参数输入 (`input`)
+
+列表项顺序必须与 `@Test` 方法参数顺序完全一致。
+
+```yaml
 input:
-  - userId: ${userId}
-    userName: ${userName}
-    email: ${email}
+  - "test-1234"      # 对应参数1
+  - ${userName}      # 对应参数2 (解析变量)
+  - "test@example.com" # 对应参数3
 
+```
+
+### 3.3 环境准备 (`setup`)
+
+```yaml
+setup:
+  clean_sql: DELETE FROM users WHERE user_id = '${userId}'; # 执行清理
+  # db_setup: 预置数据（可选）
+
+```
+
+### 3.4 智能 Mock (`mocks`)
+
+基于 AOP 拦截，支持匹配 `any`、变量、或 JsonPath。
+
+```yaml
+mocks:
+  - bean: "orderService"
+    method: "createOrder"
+    args: ["${userName}"] # 参数匹配
+    thenReturn:           # 模拟成功返回
+      orderId: "123456"
+    # thenThrow: "com.xxx.BizException" # 模拟异常返回
+    delay: 500             # 延时响应 (ms)
+
+```
+
+### 3.5 闭环断言 (`expect`)
+
+#### (1) 异常断言 (`exception`) - **核心增强**
+
+用于测试异常流，验证方法是否抛出了预期的异常及其描述。
+
+```yaml
+expect:
+  exception:
+    type: 'java.lang.IllegalArgumentException' # 异常全路径类名
+    message: 'User ID cannot be empty'         # 异常消息（支持模糊匹配）
+
+```
+
+#### (2) Response 响应断言
+
+支持递归比对和 JsonPath。
+
+```yaml
+expect:
+  response:
+    "$.userId": "test-1234"      # JsonPath 模式
+    userName: ${userName}        # 递归属性模式
+    createdAt:                   # 操作符模式
+      op: approx
+      val: ${nowTime}
+
+```
+
+#### (3) Database 数据库断言
+
+支持异步重试。
+
+```yaml
 expect:
   database:
     table: users
-    mode: strict
+    timeout: 3000                # 开启 3s 异步重试轮询
     rows:
-      - _match: { user_id: ${ userId } }
-        user_name: ${userName}
+      - _match: { user_id: "test-1234" }
         status: ACTIVE
-        created_at:
-          op: approx
-          val: ${createdAt}
-          delta: 1000
+        created_at: { op: approx, val: ${nowTime} }
+
 ```
 
 ---
 
-## ✨ Features
+## 四、 代码编写手册
 
-### 🎯 Zero Code Intrusion
+### 4.1 测试类实现
 
-- **YAML-driven**: Define test data, mocks, and assertions in YAML files
-- **Convention over configuration**: Auto-match YAML files by test class/method names
-- **No service code changes**: Tests run against existing services without modification
+继承 `TestifyBase`，并使用 DataProvider 绑定：
 
-### 🔧 Powerful Variable Engine
+```java
+public class UserCreateTest extends TestifyBase {
 
-```yaml
-variables:
-  # Faker integration
-  name: ${faker.name.fullName()}
-  email: ${faker.internet.emailAddress()}
-
-  # Time calculations
-  now: ${time.now()}
-  tomorrow: ${time.now('+1d')}
-  lastWeek: ${time.now('-7d')}
-  formatted: ${time.format('+1d', 'yyyy-MM-dd')}
-
-  # Built-in functions
-  id: ${fn.uuid()}
-  random: ${fn.random(1, 100)}
-  text: ${fn.randomString(20)}
-
-  # Variable references
-  fullName: ${name}
-  greeting: Hello ${name}!
-```
-
-### 🎭 Smart Operator Matching
-
-| Operator   | Description             | Example                                  |
-|------------|-------------------------|------------------------------------------|
-| `eq`       | Equals (default)        | `status: ACTIVE`                         |
-| `ne`       | Not equals              | `{op: ne, val: DELETED}`                 |
-| `gt`/`ge`  | Greater than (or equal) | `{op: gt, val: 100}`                     |
-| `lt`/`le`  | Less than (or equal)    | `{op: le, val: 99}`                      |
-| `regex`    | Regex match             | `{op: regex, val: "^\\d{10}$"}`          |
-| `approx`   | Time approximation      | `{op: approx, val: ${now}, delta: 1000}` |
-| `json`     | JSON comparison         | `{op: json, val: {...}, mode: full}`     |
-| `contains` | String contains         | `{op: contains, val: "test"}`            |
-
-### 📊 Database Assertions with Rich Diff Reports
-
-```yaml
-expect:
-  database:
-    table: orders
-    mode: strict
-    rows:
-      - _match: { order_id: ${ orderId } }  # Row matching criteria
-        status:
-          op: eq
-          val: COMPLETED
-        total_amount:
-          op: ge
-          val: 100
-        metadata:
-          op: json
-          val: { "source": "web" }
-          mode: partial  # LENIENT mode
-```
-
-**Diff Output**:
+    @Test(
+        dataProvider = "testifyData",
+        dataProviderClass = com.github.loadup.testify.starter.testng.TestifyDataProvider.class)
+    public void testCreateUser(String userId, String userName, String email) {
+        // runTest 包裹业务代码，自动完成 Mock 注册与断言触发
+        runTest(() -> {
+            // val() 辅助函数从当前解析后的上下文中获取实时值
+            userService.createUser(userId, val(userName), email);
+        });
+    }
+}
 
 ```
-❌ [Database Assertion Failed] Table: orders
-================================================================================
-Row Index: [0] | Status: DIFF | Match Criteria: {order_id=abc-123}
-  | Field         | Expected (Operator) | Actual Value    | Message
-  | ------------- | ------------------- | --------------- | ---------------
-  | status        | COMPLETED           | PENDING         | ❌ Values not equal
-  | total_amount  | >= 100              | 95              | ❌ Numeric comparison failed
---------------------------------------------------------------------------------
-```
 
-### 🗄️ Flexible Column Name Matching
+### 4.2 操作符体系 (`op`)
 
-Configure in `application-test.yml`:
-
-```yaml
-testify:
-  database:
-    columnNamingStrategy: caseInsensitive  # or camelCase, snake_case
-```
-
-- **caseInsensitive** (recommended): `user_id` matches `USER_ID`, `User_Id`
-- **camelCase**: `user_name` → `userName`
-- **snake_case**: `userName` → `user_name`
-
-### 🐳 Testcontainers Integration
-
-```yaml
-testify:
-  containers:
-    enabled: true  # Auto-start MySQL, Redis containers
-```
-
-When `enabled: false`, uses physical database from `spring.datasource.*` properties.
+| 操作符 | 场景 | 示例 |
+| --- | --- | --- |
+| `approx` | 动态时间、数值近似比对 | `{op: approx, val: "${now}"}` |
+| `json` | 调用 JSONAssert 进行局部比对 | `{op: json, mode: lenient, val: {...}}` |
+| `notNull` | 非空检查 | `{op: notNull}` |
+| `gt / lt` | 数值范围校验 | `{op: gt, val: 0}` |
+| `regex` | 字符串正则匹配 | `{op: regex, val: "^138.*"}` |
 
 ---
 
-## 📦 Architecture
+## 五、 高级特性与最佳实践
 
-```
-testify
-├── testify-core              # Models (TestContext, RowDiff)
-├── testify-data-engine       # Variable resolution (Faker, SpEL, time)
-├── testify-assert-engine     # Operators & DB assertions
-├── testify-mock-engine       # Mock lifecycle (Mockito integration)
-└── testify-spring-boot-starter  # Auto-configuration & TestNG
-```
+### 5.1 异常断言的执行原理
 
----
+当你在 YAML 中定义了 `expect.exception` 时，`runTest` 内部的 Lambda 执行会被 `try-catch` 包裹。
 
-## 🔬 Advanced Features
+* 如果业务代码没有抛出异常，断言失败。
+* 如果抛出的异常类型或 Message 与 YAML 不符，断言失败。
+* 这种机制让异常测试（如校验参数、权限拦截）变得极其简单。
 
-### Variable Dependency Resolution
+### 5.2 异步链路处理
 
-Variables can reference other variables with automatic dependency ordering:
+针对 MQ 消费入库延迟场景：
 
-```yaml
-variables:
-  firstName: ${faker.name.firstName()}
-  lastName: ${faker.name.lastName()}
-  fullName: ${firstName} ${lastName}  # References other variables
-  greeting: Hello, ${fullName}!
-```
+* 在 `database` 配置中声明 `timeout: 3000`。
+* 框架会利用循环轮询机制，在 3 秒内不断尝试查询数据库。只要在超时前匹配成功，用例即判定为通过。
 
-### Time Offset Calculations
+### 5.3 变量一致性规范
 
-Supports flexible time arithmetic:
-
-```yaml
-variables:
-  now: ${time.now()}
-  oneDay: ${time.now('+1d')}      # Add 1 day
-  twoHours: ${time.now('-2h')}    # Subtract 2 hours
-  thirtyMin: ${time.now('+30m')}  # Add 30 minutes
-  epoch: ${time.epochMilli('+7d')} # Epoch milliseconds
-```
-
-### JSON Partial Matching
-
-```yaml
-expect:
-  database:
-    table: products
-    rows:
-      - _match: { product_id: ${ productId } }
-        metadata:
-          op: json
-          val: |
-            {
-              "category": "electronics",
-              "tags": ["new", "featured"]
-            }
-          mode: partial  # Ignores extra fields in actual JSON
-```
-
-### SQL Cleanup with Variables
-
-```yaml
-setup:
-  clean_sql: |
-    DELETE FROM orders WHERE user_id = '${userId}';
-    DELETE FROM order_items WHERE order_id = '${orderId}';
-```
+* **变量源**: 始终在 `variables` 中生成随机测试数据（如 `userId: ${time.now()}`）。
+* **全链路引用**: 在 `input`（入参）、`mocks`（匹配）、`expect`（校验）中统一引用占位符，确保测试数据的“自洽”。
 
 ---
 
-## 🛠️ Configuration
-
-### application-test.yml
-
-```yaml
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/testdb  # Used when containers disabled
-    username: root
-    password: root
-
-testify:
-  containers:
-    enabled: false  # true to use Testcontainers
-  database:
-    columnNamingStrategy: caseInsensitive
-```
-
----
-
-## 📖 YAML Structure Reference
-
-```yaml
-# Variable definitions (resolved first)
-variables:
-  var1: ${faker.expression}
-  var2: ${time.now('+1d')}
-  var3: ${fn.uuid()}
-
-# Test method input parameters
-input:
-  - param1: value1
-    param2: ${var1}
-
-# Mock configurations (to be implemented in Phase 4)
-mocks:
-  - bean: serviceName
-    method: methodName
-    returnValue: { ... }
-
-# Database setup
-setup:
-  clean_sql: DELETE FROM table WHERE id = '${var1}'
-  db_setup:
-    table: tableName
-    data:
-      - field1: value1
-        field2: ${var2}
-
-# Assertions
-expect:
-  database:
-    table: tableName
-    mode: strict  # or lenient
-    rows:
-      - _match: { id: ${ var1 } }  # Optional: row matching criteria
-        field1: value1
-        field2:
-          op: operator
-          val: expectedValue
-```
-
----
-
-## 🏗️ Build & Test
-
-### Compile Framework
-
-```bash
-mvn clean compile
-```
-
-### Install Locally
-
-```bash
-mvn clean install -DskipTests
-```
-
----
-
-## 🎯 Implementation Status
-
-| Phase                            | Status         | Progress |
-|----------------------------------|----------------|----------|
-| **Phase 1**: Core & Data Engine  | ✅ Complete     | 100%     |
-| **Phase 2**: Assert Engine       | ✅ Complete     | 100%     |
-| **Phase 3**: Mock & Starter      | ✅ Complete     | 80%      |
-| **Phase 4**: Demo & Verification | 🚧 In Progress | 20%      |
-
-### Completed Components
-
-✅ **VariableEngine** - Full time offset support, dependency resolution  
-✅ **All Operator Matchers** - SimpleMatcher, NumberMatcher, RegexMatcher, ApproxTimeMatcher, JsonMatcher  
-✅ **ColumnNormalizer** - Case-insensitive, snake_case/camelCase conversion  
-✅ **DbAssertEngine** - Enhanced with rich diff reporting  
-✅ **MockRegistry** - Thread-local mock tracking  
-✅ **Spring Boot Integration** - Auto-configuration, properties support
-
-### Remaining Work (Phase 4)
-
-🚧 TestNG Listener & Data Provider  
-🚧 SQL Execution Engine  
-🚧 Complete Testcontainers Support  
-🚧 Demo Module with Examples  
-🚧 TestifyBase Abstract Class
-
----
-
-## 📚 Documentation
-
-- [Implementation Plan](./brain/implementation_plan.md)
-- [Walkthrough](./brain/walkthrough.md)
-- [Task Tracking](./brain/task.md)
-
----
-
-## 🤝 Contributing
-
-This framework uses JDK 21 features extensively:
-
-- **Record classes** for immutable data models
-- **Pattern matching for switch** in operator processing
-- **Enhanced instanceof** for type checking
-
----
-
-## 📄 License
-
-Copyright © 2026 LoadUp Framework
-
----
-
-## 🙏 Acknowledgments
-
-Built with:
-
-- Spring Boot 3.4.3
-- TestNG 7.10.1
-- Mockito 5.14.2
-- Datafaker 2.5.3
-- JSONassert 1.5.3
-- Testcontainers 2.0.3
+**Testify 框架通过高度抽象的 YAML 配置，将繁琐的集成测试转化为清晰的数据流配置，是保障复杂微服务链路稳定性的核心利器。**

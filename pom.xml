@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.loadup.framework</groupId>
+    <groupId>io.github.loadup-cloud</groupId>
     <artifactId>testify</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -47,49 +47,56 @@
             </dependency>
 
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
+                <artifactId>loadup-dependencies</artifactId>
+                <version>1.0.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-data-engine</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-assert-engine</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-mock-engine</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-spring-boot-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-demo</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-infra-container</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-infra-container-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.github.loadup.framework</groupId>
+                <groupId>io.github.loadup-cloud</groupId>
                 <artifactId>testify-infra-container-mysql</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -137,43 +144,84 @@
     </dependencyManagement>
 
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.13.0</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <parameters>true</parameters>
-                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
 
-    <repositories>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
-        </repository>
+  <profiles>
+      <profile>
+          <id>github</id>
+          <activation>
+              <activeByDefault>true</activeByDefault>
+          </activation>
+          <repositories>
+              <repository>
+                  <releases>
+                      <enabled>true</enabled>
+                  </releases>
+                  <snapshots>
+                      <enabled>true</enabled>
+                  </snapshots>
+                  <id>github</id>
+                  <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+              </repository>
+              <repository>
+                  <releases>
+                      <enabled>true</enabled>
+                  </releases>
+                  <snapshots>
+                      <enabled>false</enabled>
+                  </snapshots>
+                  <id>aliyun</id>
+                  <url>https://maven.aliyun.com/repository/public</url>
+              </repository>
+          </repositories>
+          <distributionManagement>
+              <repository>
+                  <id>github</id>
+                  <name>LoadUp Apache Maven Packages</name>
+                  <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+              </repository>
+              <snapshotRepository>
+                  <id>github</id>
+                  <name>LoadUp Apache Maven Packages</name>
+                  <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+              </snapshotRepository>
+          </distributionManagement>
+      </profile>
+      <profile>
+          <id>release</id>
+          <distributionManagement>
+              <repository>
+                  <id>central</id>
+                  <url>https://central.sonatype.com/repository/maven-releases/</url>
+              </repository>
+          </distributionManagement>
+      </profile>
 
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>aliyun</id>
-            <url>https://maven.aliyun.com/repository/public</url>
-        </repository>
-    </repositories>
+  </profiles>
 
     <distributionManagement>
         <repository>

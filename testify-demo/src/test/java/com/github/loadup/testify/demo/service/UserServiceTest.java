@@ -2,11 +2,14 @@ package com.github.loadup.testify.demo.service;
 
 import static org.testng.Assert.*;
 
+import com.github.loadup.testify.core.annotation.TestifyParam;
 import com.github.loadup.testify.demo.DemoApplication;
+import com.github.loadup.testify.demo.model.User;
 import com.github.loadup.testify.starter.base.TestifyBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
@@ -28,11 +31,8 @@ public class UserServiceTest extends TestifyBase {
    * testCreateUser.yaml
    */
   @Test(
-      dataProvider = "testifyData",
-      dataProviderClass = com.github.loadup.testify.starter.testng.TestifyDataProvider.class)
-  public void testCreateUser(String userId, String userName, String email) {
-    System.err.println(
-        "testCreateUser called with params: " + userId + ", " + userName + ", " + email);
+      dataProvider = "testifyData")
+  public void testCreateUser(@TestifyParam("users") User user) {
     // Test logic is automatically executed by TestifyListener
     // - Variables are resolved from YAML
     // - Database is cleaned up before test
@@ -42,7 +42,7 @@ public class UserServiceTest extends TestifyBase {
     // The actual service call happens automatically based on YAML configuration
     System.out.println(
         "Local Field Hash: " + System.identityHashCode(this.userService.orderService));
-    runTest(() -> userService.createUser(userId, val(userName), email));
+    runTest(() -> userService.createUser(user));
     //    Reporter.getCurrentTestResult().setAttribute("actualResponse", res);
   }
 

@@ -1,2 +1,2 @@
-com.github.loadup.testify.infra.container.InfraProvider=\
-com.github.loadup.testify.infra.container.providers.KafkaInfraProvider
+io.github.loadup.testify.infra.container.InfraProvider=\
+io.github.loadup.testify.infra.container.providers.KafkaInfraProvider

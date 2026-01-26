@@ -140,7 +140,7 @@ public class UserCreateTest extends TestifyBase {
 
     @Test(
         dataProvider = "testifyData",
-        dataProviderClass = com.github.loadup.testify.starter.testng.TestifyDataProvider.class)
+        dataProviderClass = io.github.loadup.testify.starter.testng.TestifyDataProvider.class)
     public void testCreateUser(String userId, String userName, String email) {
         // runTest 包裹业务代码，自动完成 Mock 注册与断言触发
         runTest(() -> {

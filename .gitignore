@@ -1,7 +1,5 @@
 target/
 !.mvn/wrapper/maven-wrapper.jar
-!**/src/maincom.github.loadup.components.gatewaytarget/
-!**/src/testcom.github.loadup.components.gatewaytarget/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -29,8 +27,6 @@ target/
 /nbdist/
 /.nb-gradle/
 build/
-!**/src/maincom.github.loadup.components.gatewaybuild/
-!**/src/testcom.github.loadup.components.gatewaybuild/
 
 ### VS Code ###
 .vscode/
@@ -38,8 +34,7 @@ build/
 ### Mac OS ###
 .DS_Store
 
-loadup-dependencies
-loadup-capability
+pom.xml.versionsBackup
 *.log
 
 target

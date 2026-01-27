@@ -1,6 +1,7 @@
 # Testify 自动化测试框架深度开发手册
 
-Testify 是一款基于 Spring Boot 生态构建的 **声明式、数据驱动** 集成测试框架。它通过 YAML 定义测试逻辑，利用 AOP 拦截技术实现动态 Mock，并提供了一套支持异步重试和复杂逻辑比对的断言系统。
+Testify 是一款基于 Spring Boot 生态构建的 **声明式、数据驱动** 集成测试框架。它通过 YAML 定义测试逻辑，利用 AOP 拦截技术实现动态
+Mock，并提供了一套支持异步重试和复杂逻辑比对的断言系统。
 
 ---
 
@@ -154,13 +155,13 @@ public class UserCreateTest extends TestifyBase {
 
 ### 4.2 操作符体系 (`op`)
 
-| 操作符 | 场景 | 示例 |
-| --- | --- | --- |
-| `approx` | 动态时间、数值近似比对 | `{op: approx, val: "${now}"}` |
-| `json` | 调用 JSONAssert 进行局部比对 | `{op: json, mode: lenient, val: {...}}` |
-| `notNull` | 非空检查 | `{op: notNull}` |
-| `gt / lt` | 数值范围校验 | `{op: gt, val: 0}` |
-| `regex` | 字符串正则匹配 | `{op: regex, val: "^138.*"}` |
+| 操作符       | 场景                   | 示例                                      |
+|-----------|----------------------|-----------------------------------------|
+| `approx`  | 动态时间、数值近似比对          | `{op: approx, val: "${now}"}`           |
+| `json`    | 调用 JSONAssert 进行局部比对 | `{op: json, mode: lenient, val: {...}}` |
+| `notNull` | 非空检查                 | `{op: notNull}`                         |
+| `gt / lt` | 数值范围校验               | `{op: gt, val: 0}`                      |
+| `regex`   | 字符串正则匹配              | `{op: regex, val: "^138.*"}`            |
 
 ---
 

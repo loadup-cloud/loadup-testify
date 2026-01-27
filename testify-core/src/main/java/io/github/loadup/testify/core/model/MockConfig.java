@@ -1,6 +1,5 @@
 package io.github.loadup.testify.core.model;
 
-import java.util.List;
 import java.util.Map;
 
 /**

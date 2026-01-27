@@ -1,10 +1,11 @@
 package io.github.loadup.testify.core.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import java.util.List;
-import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author lise
@@ -14,39 +15,39 @@ import lombok.Setter;
 @Getter
 @Setter
 public final class TestContext {
-  private String testName;
-  private String yamlPath;
-  private Map<String, Object> variables;
-  private JsonNode input;
-  private List<MockConfig> mocks;
-  private JsonNode setup;
-  private JsonNode expect;
+    private String testName;
+    private String yamlPath;
+    private Map<String, Object> variables;
+    private JsonNode input;
+    private List<MockConfig> mocks;
+    private JsonNode setup;
+    private JsonNode expect;
 
-  public String testName() {
-    return testName;
-  }
+    public String testName() {
+        return testName;
+    }
 
-  public String yamlPath() {
-    return yamlPath;
-  }
+    public String yamlPath() {
+        return yamlPath;
+    }
 
-  public Map<String, Object> variables() {
-    return variables;
-  }
+    public Map<String, Object> variables() {
+        return variables;
+    }
 
-  public JsonNode input() {
-    return input;
-  }
+    public JsonNode input() {
+        return input;
+    }
 
-  public List<MockConfig> mocks() {
-    return mocks;
-  }
+    public List<MockConfig> mocks() {
+        return mocks;
+    }
 
-  public JsonNode setup() {
-    return setup;
-  }
+    public JsonNode setup() {
+        return setup;
+    }
 
-  public JsonNode expect() {
-    return expect;
-  }
+    public JsonNode expect() {
+        return expect;
+    }
 }

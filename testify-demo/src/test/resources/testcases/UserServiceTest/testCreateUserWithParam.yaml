@@ -6,8 +6,8 @@ variables:
 
 input:
   users: { userId: '${userId}',
-          userName: '${userName}',
-          email: test@example.com }
+           userName: '${userName}',
+           email: test@example.com }
 
 
 setup:
@@ -50,8 +50,12 @@ expect:
     mode: strict
     rows:
       - _match: { user_id: "${userId}" }
-        user_name: ${userName}
-        email: test@example.com
+        user_name:
+          op: contains
+          val: ${userName}
+        email:
+          op: regex
+          val: .+@example\.com
         status: ACTIVE
         created_at:
           op: approx

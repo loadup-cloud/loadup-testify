@@ -1,4 +1,3 @@
-
 package io.github.loadup.testify.core.annotation;
 
 import java.lang.annotation.ElementType;

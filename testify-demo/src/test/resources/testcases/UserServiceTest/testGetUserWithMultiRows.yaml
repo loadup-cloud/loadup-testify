@@ -1,12 +1,12 @@
 variables:
-  userId: "test-12345"
+  userId: "${fn.uuid()}"
   userId2: "${faker.random().nextLong(1000)}"
   userName: "${faker.name().firstName()}"
   email: test@example.com
   nowTime: ${time.now()}
 
 input:
-  id: '${userId2}'
+  id: '${userId}'
 
 
 setup:
@@ -14,14 +14,18 @@ setup:
   db_setup:
     - table: users
       data: # 模式 A：直接定义数据行
+        - user_id: "${userId}"
+          user_name: "Admin1"
+          created_at: '2026-01-01 00:00:00'
+          status: 'ACTIVE'
         - user_id: "${userId2}"
-          user_name: "Admin"
+          user_name: "Admin2"
           created_at: '2026-01-01 00:00:00'
           status: 'ACTIVE'
 expect:
   response:
-    userId: "${userId2}"
-    userName: 'Admin'
+    userId: "${userId}"
+    userName: 'Admin1'
     createdAt:
       op: approx
       val: '2026-01-01 00:00:00'
@@ -29,8 +33,14 @@ expect:
     table: users
     mode: strict
     rows:
+      - _match: { user_id: "${userId}" }
+        user_name: 'Admin1'
+        status: ACTIVE
+        created_at:
+          op: approx
+          val: '2026-01-01 00:00:00'
       - _match: { user_id: "${userId2}" }
-        user_name: 'Admin'
+        user_name: 'Admin2'
         status: ACTIVE
         created_at:
           op: approx

@@ -52,15 +52,16 @@ mvn test
 ### Service Class (No Changes Required!)
 
 ```java
+
 @Service
 public class UserService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    
+
     public void createUser(String userId, String userName, String email) {
         jdbcTemplate.update(
-            "INSERT INTO users (user_id, user_name, email, status) VALUES (?, ?, ?, ?)",
-            userId, userName, email, "ACTIVE"
+                "INSERT INTO users (user_id, user_name, email, status) VALUES (?, ?, ?, ?)",
+                userId, userName, email, "ACTIVE"
         );
     }
 }
@@ -109,7 +110,7 @@ expect:
     table: users
     mode: strict
     rows:
-      - _match: {user_id: ${userId}}
+      - _match: { user_id: ${ userId } }
         user_name: ${userName}
         email: ${email}
         status: ACTIVE

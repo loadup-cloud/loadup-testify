@@ -6,8 +6,8 @@ variables:
 
 input:
   users: { userId: test-1234,
-          userName: '${userName}',
-          email: test@example.com }
+           userName: '${userName}',
+           email: test@example.com }
 
 
 setup:
@@ -24,9 +24,9 @@ mocks:
       orderId: "${userId}"
       orderName: "${userName}"
     method: "createOrder"
-#    thenThrow:
-#      type: 'java.lang.IllegalArgumentException'
-#      message: 'Simulated exception for userId: ${userId}'
+    #    thenThrow:
+    #      type: 'java.lang.IllegalArgumentException'
+    #      message: 'Simulated exception for userId: ${userId}'
     thenReturn:
       orderId: "${userId}"
       orderName: ${userName}

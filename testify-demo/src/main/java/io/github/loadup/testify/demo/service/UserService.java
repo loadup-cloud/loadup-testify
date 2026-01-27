@@ -26,7 +26,7 @@ public class UserService {
      * Create a new user.
      */
     public User createUser(User user) {
-        long createdAt = System.currentTimeMillis();
+        LocalDateTime createdAt = LocalDateTime.now();
 //        if(user.getUserId().equals("Exception-123")){
 //            throw new IllegalArgumentException("Simulated exception for userId: " + user.getUserId());
 //        }

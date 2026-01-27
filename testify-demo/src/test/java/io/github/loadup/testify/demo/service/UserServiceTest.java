@@ -52,6 +52,11 @@ public class UserServiceTest extends TestifyBase {
         runTest(() -> userService.getUserById(id));
     }
 
+    @Test(dataProvider = "testifyData")
+    public void testGetUserWithMultiRows(String id) {
+        runTest(() -> userService.getUserById(id));
+    }
+
 //    /**
 //     * Traditional test for updateUserStatus (can coexist with YAML tests).
 //     */

@@ -10,12 +10,12 @@ package io.github.loadup.testify.asserts.operator.impl;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -33,28 +33,28 @@ import java.util.Set;
  * through BigDecimal conversion.
  */
 public class NumberMatcher implements OperatorMatcher {
-    private static final Set<String> OPS = Set.of("gt", "ge", "lt", "le");
+  private static final Set<String> OPS = Set.of("gt", "ge", "lt", "le");
 
-    @Override
-    public boolean support(String op) {
-        return OPS.contains(op);
-    }
+  @Override
+  public boolean support(String op) {
+    return OPS.contains(op);
+  }
 
-    @Override
-    public MatchResult match(Object actual, Object val, Map<String, Object> config) {
-        BigDecimal act = new BigDecimal(actual.toString());
-        BigDecimal exp = new BigDecimal(val.toString());
-        int res = act.compareTo(exp);
+  @Override
+  public MatchResult match(Object actual, Object val, Map<String, Object> config) {
+    BigDecimal act = new BigDecimal(actual.toString());
+    BigDecimal exp = new BigDecimal(val.toString());
+    int res = act.compareTo(exp);
 
-        String op = String.valueOf(config.get("op"));
-        boolean passed =
-                switch (op) {
-                    case "gt" -> res > 0;
-                    case "ge" -> res >= 0;
-                    case "lt" -> res < 0;
-                    case "le" -> res <= 0;
-                    default -> false;
-                };
-        return passed ? MatchResult.pass() : MatchResult.fail(actual, val, "Numeric match failed");
-    }
+    String op = String.valueOf(config.get("op"));
+    boolean passed =
+        switch (op) {
+          case "gt" -> res > 0;
+          case "ge" -> res >= 0;
+          case "lt" -> res < 0;
+          case "le" -> res <= 0;
+          default -> false;
+        };
+    return passed ? MatchResult.pass() : MatchResult.fail(actual, val, "Numeric match failed");
+  }
 }

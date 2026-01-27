@@ -12,6 +12,10 @@ import io.github.loadup.testify.data.engine.variable.VariableEngine;
 import io.github.loadup.testify.mock.engine.MockEngine;
 import io.github.loadup.testify.starter.container.TestifyInfraInitializer;
 import io.github.loadup.testify.starter.loader.YamlLoader;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
+import java.util.*;
+import java.util.function.Supplier;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,11 +27,6 @@ import org.testng.ITestContext;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
-
-import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.util.*;
-import java.util.function.Supplier;
 
 @Slf4j
 @SpringBootTest

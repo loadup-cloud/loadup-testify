@@ -9,7 +9,6 @@ import io.github.loadup.testify.asserts.model.MatchResult;
 import io.github.loadup.testify.asserts.operator.OperatorProcessor;
 import io.github.loadup.testify.core.util.JsonUtil;
 import io.github.loadup.testify.data.engine.variable.VariableEngine;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

@@ -1,11 +1,10 @@
 package io.github.loadup.testify.infra.container.manager;
 
 import io.github.loadup.testify.infra.container.InfraProvider;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.support.SpringFactoriesLoader;
-
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.io.support.SpringFactoriesLoader;
 
 @Slf4j
 public class ContainerManager {

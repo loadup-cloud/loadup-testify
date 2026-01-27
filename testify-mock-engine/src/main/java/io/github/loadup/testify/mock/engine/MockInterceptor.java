@@ -4,6 +4,12 @@ import com.jayway.jsonpath.JsonPath;
 import io.github.loadup.testify.core.model.MockRule;
 import io.github.loadup.testify.core.util.JsonUtil;
 import io.github.loadup.testify.data.engine.variable.VariableEngine;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -11,13 +17,6 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.support.DefaultConversionService;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 核心拦截器：实现 AOP 方法拦截、多规则参数匹配及动态变量解析

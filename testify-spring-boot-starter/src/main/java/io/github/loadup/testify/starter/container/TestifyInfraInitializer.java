@@ -1,6 +1,9 @@
 package io.github.loadup.testify.starter.container;
 
 import io.github.loadup.testify.infra.container.manager.ContainerManager;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.bind.Bindable;
 import org.springframework.boot.context.properties.bind.Binder;
@@ -10,10 +13,6 @@ import org.springframework.core.ResolvableType;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MapPropertySource;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
 
 @Slf4j
 public class TestifyInfraInitializer

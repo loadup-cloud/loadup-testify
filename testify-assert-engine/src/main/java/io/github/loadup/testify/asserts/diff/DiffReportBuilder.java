@@ -1,7 +1,6 @@
 package io.github.loadup.testify.asserts.diff;
 
 import io.github.loadup.testify.asserts.model.FieldDiff;
-
 import java.util.List;
 
 public class DiffReportBuilder {

@@ -1,15 +1,15 @@
-//package io.github.loadup.testify.starter.testng;
+// package io.github.loadup.testify.starter.testng;
 //
-//import com.fasterxml.jackson.databind.JsonNode;
-//import model.core.testify.loadup.github.io.TestContext;
-//import util.core.testify.loadup.github.io.JsonUtil;
-//import loader.starter.testify.loadup.github.io.YamlLoader;
-//import java.lang.reflect.Method;
-//import java.util.ArrayList;
-//import java.util.Iterator;
-//import java.util.List;
-//import org.testng.ITestContext;
-//import org.testng.annotations.DataProvider;
+// import com.fasterxml.jackson.databind.JsonNode;
+// import model.core.testify.loadup.github.io.TestContext;
+// import util.core.testify.loadup.github.io.JsonUtil;
+// import loader.starter.testify.loadup.github.io.YamlLoader;
+// import java.lang.reflect.Method;
+// import java.util.ArrayList;
+// import java.util.Iterator;
+// import java.util.List;
+// import org.testng.ITestContext;
+// import org.testng.annotations.DataProvider;
 //
 /// **
 // * DataProvider 职责： 1. 加载物理 YAML 文件。
@@ -18,7 +18,7 @@
 // *
 // * <p>3. 将原始的 input 节点转换为方法入参（不解析变量）。
 // */
-//public class TestifyDataProvider {
+// public class TestifyDataProvider {
 //
 //  private final YamlLoader yamlLoader = new YamlLoader();
 //
@@ -101,4 +101,4 @@
 //
 //      return args;
 //  }
-//}
+// }

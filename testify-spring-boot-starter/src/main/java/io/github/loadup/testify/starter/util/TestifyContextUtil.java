@@ -1,8 +1,7 @@
 package io.github.loadup.testify.starter.util;
 
-import org.testng.ITestResult;
-
 import java.lang.reflect.Method;
+import org.testng.ITestResult;
 
 public class TestifyContextUtil {
     public static String getContextKey(Method method) {

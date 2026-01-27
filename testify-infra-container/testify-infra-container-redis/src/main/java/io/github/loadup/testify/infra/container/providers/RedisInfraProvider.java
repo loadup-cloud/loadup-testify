@@ -1,11 +1,10 @@
 package io.github.loadup.testify.infra.container.providers;
 
 import io.github.loadup.testify.infra.container.InfraProvider;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
-
-import java.util.Map;
 
 @Slf4j
 public class RedisInfraProvider implements InfraProvider {

@@ -3,12 +3,11 @@ package io.github.loadup.testify.asserts.facade;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.github.loadup.testify.asserts.engine.TestifyAssertEngine;
 import io.github.loadup.testify.core.variable.VariableContext;
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class AssertionFacade {

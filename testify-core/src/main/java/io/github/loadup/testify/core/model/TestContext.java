@@ -1,11 +1,10 @@
 package io.github.loadup.testify.core.model;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.List;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author lise

@@ -1,10 +1,9 @@
 package io.github.loadup.testify.asserts.model;
 
+import java.util.Map;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Map;
 
 /**
  * 数据库行差异模型

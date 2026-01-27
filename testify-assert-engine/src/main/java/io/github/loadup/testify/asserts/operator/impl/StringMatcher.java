@@ -2,7 +2,6 @@ package io.github.loadup.testify.asserts.operator.impl;
 
 import io.github.loadup.testify.asserts.model.MatchResult;
 import io.github.loadup.testify.asserts.operator.OperatorMatcher;
-
 import java.util.Map;
 
 /**

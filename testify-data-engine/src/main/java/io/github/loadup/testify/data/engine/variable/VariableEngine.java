@@ -4,6 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.*;
 import io.github.loadup.testify.core.util.JsonUtil;
 import io.github.loadup.testify.data.engine.function.TestifyFunction;
+import java.lang.reflect.Method;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.*;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
 import org.springframework.context.expression.MapAccessor;
@@ -12,11 +16,6 @@ import org.springframework.expression.ParserContext;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.util.StringUtils;
-
-import java.lang.reflect.Method;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
-import java.util.*;
 
 /**
  * Variable resolution engine supporting: - Datafaker expressions: ${faker.name.firstName} - Time

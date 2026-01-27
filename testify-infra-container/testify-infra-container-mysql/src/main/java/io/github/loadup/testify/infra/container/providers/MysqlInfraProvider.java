@@ -1,11 +1,10 @@
 package io.github.loadup.testify.infra.container.providers;
 
 import io.github.loadup.testify.infra.container.InfraProvider;
-import lombok.extern.slf4j.Slf4j;
-import org.testcontainers.mysql.MySQLContainer;
-
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.testcontainers.mysql.MySQLContainer;
 
 @Slf4j
 public class MysqlInfraProvider implements InfraProvider {

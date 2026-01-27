@@ -1,13 +1,12 @@
 package io.github.loadup.testify.infra.container.providers;
 
 import io.github.loadup.testify.infra.container.InfraProvider;
-import lombok.extern.slf4j.Slf4j;
-import org.testcontainers.localstack.LocalStackContainer;
-import org.testcontainers.utility.DockerImageName;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.testcontainers.localstack.LocalStackContainer;
+import org.testcontainers.utility.DockerImageName;
 
 @Slf4j
 public class LocalstackInfraProvider implements InfraProvider {

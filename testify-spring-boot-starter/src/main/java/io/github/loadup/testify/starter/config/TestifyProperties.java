@@ -1,10 +1,8 @@
 package io.github.loadup.testify.starter.config;
 
+import java.util.*;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import java.util.*;
-
 
 @Data
 @ConfigurationProperties(prefix = "loadup.testify")

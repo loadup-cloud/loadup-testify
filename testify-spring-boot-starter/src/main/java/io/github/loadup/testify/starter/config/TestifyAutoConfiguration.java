@@ -69,8 +69,8 @@ public class TestifyAutoConfiguration {
 
   @Bean
   @ConditionalOnMissingBean
-  public ExceptionAssertEngine exceptionAssertEngine() {
-    return new ExceptionAssertEngine();
+  public ExceptionAssertEngine exceptionAssertEngine( VariableEngine variableEngine) {
+    return new ExceptionAssertEngine(variableEngine);
   }
 
   @Bean

@@ -227,6 +227,7 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
                 actualResult = action.get();
             } catch (Throwable e) {
                 businessError = e;
+                logger.error(e);
             }
 
             // --- 阶段 C: 断言 ---
@@ -273,7 +274,7 @@ public abstract class TestifyBase extends AbstractTestNGSpringContextTests {
     private void cleanup() {
         VariableContext.clear();
         // 如果需要重置Mock，可以在这里添加
-        // mockEngine.resetAllMocks();
+        mockEngine.resetAllMocks();
     }
 
     private void processReports(List<String> reports) {

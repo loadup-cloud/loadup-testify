@@ -1,5 +1,5 @@
 -- Database schema for Testify demo
-
+drop table if exists users;
 CREATE TABLE IF NOT EXISTS users
 (
     user_id
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS users
 (
     50
 ) NULL DEFAULT 'ACTIVE',
-    created_at BIGINT NULL,
-    updated_at BIGINT
+    created_at datetime NULL,
+    updated_at datetime
     );
 

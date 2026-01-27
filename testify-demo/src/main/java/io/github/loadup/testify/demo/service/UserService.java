@@ -16,7 +16,7 @@ public class UserService {
 
     private final JdbcTemplate jdbcTemplate;
     @Autowired
-    public OrderService orderService;
+    private OrderService orderService;
 
     public UserService(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -27,6 +27,9 @@ public class UserService {
      */
     public User createUser(User user) {
         long createdAt = System.currentTimeMillis();
+//        if(user.getUserId().equals("Exception-123")){
+//            throw new IllegalArgumentException("Simulated exception for userId: " + user.getUserId());
+//        }
 
         String sql =
                 "INSERT INTO users (user_id, user_name, email, status, created_at) VALUES (?, ?, ?, ?, ?)";
@@ -34,7 +37,7 @@ public class UserService {
 
         System.out.println(
                 ">>> [EXEC] OrderService instance: " + System.identityHashCode(orderService));
-        Order order = orderService.createOrder(user.getUserName());
+        Order order = orderService.createOrder(user.getUserId(), user.getUserName());
         user.setOrder(order);
         user.setCreatedAt(LocalDateTime.now());
         return user;
@@ -45,7 +48,7 @@ public class UserService {
      */
     public User getUserById(String userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
-        return jdbcTemplate.queryForObject(
+        User user1 = jdbcTemplate.queryForObject(
                 sql,
                 (rs, rowNum) -> {
                     User user = new User();
@@ -53,9 +56,11 @@ public class UserService {
                     user.setUserName(rs.getString("user_name"));
                     user.setEmail(rs.getString("email"));
                     user.setStatus(rs.getString("status"));
+                    user.setCreatedAt(rs.getTimestamp("created_at").toLocalDateTime());
                     return user;
                 },
                 userId);
+        return user1;
     }
 
     /**

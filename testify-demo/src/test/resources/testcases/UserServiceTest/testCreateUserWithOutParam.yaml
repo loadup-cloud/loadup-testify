@@ -21,31 +21,34 @@ mocks:
   # 场景1：基础 Mock，匹配任意入参，返回动态生成的随机数据
   - bean: "orderService"
     args:
-      - "${userName}"
+      orderId: "${userId}"
+      orderName: "${userName}"
     method: "createOrder"
+#    thenThrow:
+#      type: 'java.lang.IllegalArgumentException'
+#      message: 'Simulated exception for userId: ${userId}'
     thenReturn:
-      orderId: "123456"
+      orderId: "${userId}"
       orderName: ${userName}
-
 expect:
   #  exception:
   #    type: 'java.lang.IllegalArgumentException'
   #    message: 'User ID cannot be empty'
   # 预期响应结果
   response:
-    userId: "test-1234"
+    userId: "${userId}"
     userName: ${userName}
     createdAt:
       op: approx
       val: ${nowTime}
     order:
-      orderId: "123456"
+      orderId: ${userId}
       orderName: ${userName}
   database:
     table: users
     mode: strict
     rows:
-      - _match: { user_id: "test-1234" }
+      - _match: { user_id: "${userId}" }
         user_name: ${userName}
         email: test@example.com
         status: ACTIVE

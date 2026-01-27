@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 public class OrderService {
 
   /** Create a new user. */
-  public Order createOrder(String userName) {
+  public Order createOrder(String orderId,String orderName) {
     Order order = new Order();
-    order.setOrderId("12345");
-    order.setOrderName(userName);
+    order.setOrderId(orderId);
+    order.setOrderName(orderName);
     return order;
   }
 }

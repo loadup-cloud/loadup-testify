@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-
 /**
  * Integration test for UserService demonstrating YAML-driven testing with Testify.
  *
@@ -46,6 +44,11 @@ public class UserServiceTest extends TestifyBase {
 
     @Test(dataProvider = "testifyData")
     public void testGetUserWithSetup(String id) {
+        runTest(() -> userService.getUserById(id));
+    }
+
+    @Test(dataProvider = "testifyData")
+    public void testGetUserWithCsvSetup(String id) {
         runTest(() -> userService.getUserById(id));
     }
 

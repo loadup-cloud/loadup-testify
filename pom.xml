@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -10,13 +11,86 @@
     <groupId>io.github.loadup-cloud</groupId>
 
     <artifactId>loadup-testify</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>LoadUp Testify</name>
     <description>Reusable integration testing utilities and assertion engines.</description>
+    <url>https://github.com/loadup-cloud</url>
+    <inceptionYear>2025</inceptionYear>
+    <organization>
+        <name>loadup_cloud</name>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>Laysan</id>
+            <email>lslvxy@gmail.com</email>
+        </developer>
+    </developers>
 
     <modules>
-        <module>loadup-testify-assert-engine</module>
+        <module>loadup-testify-core</module>
         <module>loadup-testify-spring-boot-starter</module>
         <module>loadup-testify-test</module>
     </modules>
+
+
+    <properties>
+        <java.version>25</java.version>
+        <project.encoding>UTF-8</project.encoding>
+        <project.build.encoding>${project.encoding}</project.build.encoding>
+        <project.build.sourceEncoding>${project.encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.encoding}</project.reporting.outputEncoding>
+        <maven.compiler.encoding>${project.encoding}</maven.compiler.encoding>
+        <maven.resources.encoding>${project.encoding}</maven.resources.encoding>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <loadup.framework.version>0.0.1-SNAPSHOT</loadup.framework.version>
+
+        <!-- Manual quality and maintenance tools, aligned with LoadUp Framework. -->
+        <license.useJavaNoReformatCommentStartTag>false</license.useJavaNoReformatCommentStartTag>
+        <license.trimHeaderLine>true</license.trimHeaderLine>
+
+        <jacoco-plugin.version>0.8.15</jacoco-plugin.version>
+        <versions-plugin.version>2.23.0</versions-plugin.version>
+
+        <spotless-plugin.version>3.11.0</spotless-plugin.version>
+
+        <enforcer-plugin.version>3.6.3</enforcer-plugin.version>
+
+        <palantir-java-format.version>2.98.0</palantir-java-format.version>
+
+        <skip.spotless>false</skip.spotless>
+
+        <skip.enforcer>false</skip.enforcer>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.loadup-cloud</groupId>
+                <artifactId>loadup-dependencies</artifactId>
+                <version>${loadup.framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.loadup-cloud</groupId>
+                <artifactId>loadup-testify-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.loadup-cloud</groupId>
+                <artifactId>loadup-testify-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

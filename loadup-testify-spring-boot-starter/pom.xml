@@ -23,7 +23,7 @@
 
         <dependency>
             <groupId>io.github.loadup-cloud</groupId>
-            <artifactId>loadup-testify-assert-engine</artifactId>
+            <artifactId>loadup-testify-core</artifactId>
         </dependency>
         <dependency>
             <groupId>tools.jackson.dataformat</groupId>

@@ -7,7 +7,7 @@
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>loadup-testify-assert-engine</artifactId>
+    <artifactId>loadup-testify-core</artifactId>
     <name>LoadUp Testify Assert Engine</name>
     <description>Variable resolution, response/database/exception assertions and difference reports.</description>
 

@@ -90,3 +90,9 @@ Map 的空值和集合空值处理存在差异，不能把解析过程当作原�
 已有验证源码包括
 ScenarioAssertTest、TestifyAutoConfigurationTest、UserServiceIT、UserServiceBatchIT。职责和执行命令见 [测试模块](loadup-testify-test/README.md)
 。本轮仅更新文档，没有执行 Maven 或 Docker 测试。接入手册见 [README.md](README.md)。
+
+## BOM 与父 POM
+
+`loadup-testify-bom` 是独立 POM 制品，管理 core 和 starter 的版本，不包含执行示例模块，也不导入 framework BOM。
+仓库根父 POM 分别导入 Testify BOM 与 loadup-dependencies，负责为自身子模块提供版本。
+普通消费方导入 Testify BOM 即可取得两个测试工具坐标的版本，不必继承本仓库父 POM。

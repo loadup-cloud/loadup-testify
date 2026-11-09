@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.github.loadup-cloud</groupId>
+    <artifactId>loadup-testify-bom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>LoadUp Testify BOM</name>
+    <description>Dependency versions for published loadup-testify artifacts.</description>
+    <url>https://github.com/loadup-cloud</url>
+    <inceptionYear>2025</inceptionYear>
+    <organization>
+        <name>loadup_cloud</name>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>Laysan</id>
+            <email>lslvxy@gmail.com</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/loadup-cloud/loadup-testify.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/loadup-cloud/loadup-testify.git</developerConnection>
+        <url>https://github.com/loadup-cloud/loadup-testify</url>
+    </scm>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.loadup-cloud</groupId>
+                <artifactId>loadup-testify-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.loadup-cloud</groupId>
+                <artifactId>loadup-testify-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+        </plugins>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>LoadUp Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+        </repository>
+        <snapshotRepository>
+            <id>github</id>
+            <name>LoadUp Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>

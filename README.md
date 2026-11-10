@@ -35,7 +35,7 @@ Java 测试控制，适合 Service、Facade 和持久化集成测试。
 ```
 
 BOM 仅管理 core 与 starter；消费方继续以 test scope 引入实际测试工具。直接使用框架测试容器等无版本坐标时，另外导入
-framework 的 `loadup-dependencies`。独立安装和版本规则见 [Testify BOM](loadup-testify-bom/README.md)。
+framework 的 `loadup-framework-bom`。独立安装和版本规则见 [Testify BOM](loadup-testify-bom/README.md)。
 
 
 消费工程在 `dependencyManagement` 中导入 `loadup-testify-bom`，再添加以下依赖；Testify 版本由该 BOM 管理。JUnit 和 Spring 测试依赖由消费方的 Spring Boot 或 framework BOM 管理，注解包仍为 `org.junit.jupiter`。starter

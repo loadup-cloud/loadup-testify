@@ -94,5 +94,5 @@ ScenarioAssertTest、TestifyAutoConfigurationTest、UserServiceIT、UserServiceB
 ## BOM 与父 POM
 
 `loadup-testify-bom` 是独立 POM 制品，管理 core 和 starter 的版本，不包含执行示例模块，也不导入 framework BOM。
-仓库根父 POM 分别导入 Testify BOM 与 loadup-dependencies，负责为自身子模块提供版本。
+仓库根父 POM 分别导入 Testify BOM 与 loadup-framework-bom，负责为自身子模块提供版本。
 普通消费方导入 Testify BOM 即可取得两个测试工具坐标的版本，不必继承本仓库父 POM。

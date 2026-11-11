@@ -26,3 +26,7 @@ mvnd -f loadup-testify-bom/pom.xml clean install
 `-DaltDeploymentRepository=github::https://maven.pkg.github.com/loadup-cloud/loadup-packages`；此处只说明配置，未执行安装、发布或构建。
 
 新增或移除发布 JAR 时同步维护本 POM；内部测试 JAR 和聚合 POM 不进入对外版本清单。
+
+默认 Deploy 上传 GitHub Packages。中央库发布使用 `mvnd -f loadup-testify-bom/pom.xml clean deploy -Prelease`，
+独立 profile 会启用 Central Publishing 和 GPG，签名并上传 POM，不生成 sources/Javadoc JAR。
+凭证和版本要求见[仓库发布说明](../README.md#发布目标)。

@@ -3,7 +3,8 @@
 BOM 自带 groupId、artifactId、version 和发布元数据，不继承本仓库根父 POM。根父 POM 导入它，为实际子模块管理版本。
 因此模型依赖单向为 parent → BOM，不产生 parent ↔ BOM 循环。
 
-本 BOM 只显式声明 Maven Deploy 插件；通过原生属性 `spotless.skip=true`、`enforcer.skip=true` 跳过针对 BOM 的质量检查。
+本 BOM 默认激活 `github` profile，只显式声明 Maven Deploy 插件；手动启用 `release` 后额外加载 Central Publishing 与 GPG，签名并上传 BOM 的 POM。
+POM 制品不需要 sources/Javadoc JAR；原生属性 `spotless.skip=true`、`enforcer.skip=true` 跳过针对 BOM 的质量检查。
 这些属性不通过 BOM import 传递，业务模块继续执行父 POM 配置的检查。
 
 dependencyManagement 中的 ${project.version} 在 BOM 自身模型中解析，表示本仓库发布版本，不跟随消费工程版本。

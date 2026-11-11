@@ -21,6 +21,7 @@
     <developers>
         <developer>
             <id>Laysan</id>
+            <name>Laysan</name>
             <email>lslvxy@gmail.com</email>
         </developer>
     </developers>
@@ -30,6 +31,7 @@
         <url>https://github.com/loadup-cloud/loadup-testify</url>
     </scm>
     <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
         <loadup.framework.version>0.0.1-SNAPSHOT</loadup.framework.version>
         <spotless.skip>true</spotless.skip>
         <enforcer.skip>true</enforcer.skip>
@@ -64,16 +66,56 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
+    <profiles>
+        <profile>
             <id>github</id>
-            <name>LoadUp Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
-        </repository>
-        <snapshotRepository>
-            <id>github</id>
-            <name>LoadUp Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
-        </snapshotRepository>
-    </distributionManagement>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>LoadUp Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+                </repository>
+                <snapshotRepository>
+                    <id>github</id>
+                    <name>LoadUp Apache Maven Packages</name>
+                    <url>https://maven.pkg.github.com/loadup-cloud/loadup-packages</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>0.12.0</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>false</autoPublish>
+                            <skipPublishing>${maven.deploy.skip}</skipPublishing>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.2.8</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

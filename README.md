@@ -283,3 +283,19 @@ mvnd clean test -pl loadup-testify/loadup-testify-test -am \
 - [断言引擎接入](loadup-testify-assert-engine/README.md) / [设计](loadup-testify-assert-engine/ARCHITECTURE.md)（含变量引擎与内置函数）
 - [Starter 接入](loadup-testify-spring-boot-starter/README.md) / [设计](loadup-testify-spring-boot-starter/ARCHITECTURE.md)
 - [测试示例](loadup-testify-test/README.md) / [设计](loadup-testify-test/ARCHITECTURE.md)
+
+## 发布目标
+
+本仓库的 JAR、parent 与独立 BOM 默认激活 `github`，日常发布到 GitHub Packages；准备好正式版后再手动发布 Central：
+
+```bash
+mvnd clean deploy -DdeployAtEnd=true
+mvnd clean deploy -Prelease
+```
+
+`github` 使用 Maven settings 的 `github` server 凭证；`release` 使用 `central` server 的 Portal token 和本机 GPG 私钥。
+中央库 profile 为 JAR 附加 sources/Javadoc 并签名，独立 BOM 只签名 POM；普通构建和 GitHub 发布不启用 Central/GPG 插件。
+同一版本双仓发布时分别执行两条命令，每次选择一个 profile。正式发布需先准备配套的正式版 Framework 与 Testify 版本；
+当前 SNAPSHOT 日常发布使用 GitHub。Central 不由 CI 触发，`autoPublish=false`，上传校验后由人在 Portal 完成最终发布。
+若本地启用其他 profile，需显式组合 `github`；`maven.deploy.skip=true` 的内部测试模块在两个目标均排除。
+参见 [Central 官方说明](https://central.sonatype.org/publish/publish-portal-maven/)。

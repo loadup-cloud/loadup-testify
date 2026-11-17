@@ -99,7 +99,7 @@ createdAt: {op: approx, val: '${now}', threshold: 1000}
 普通字段递归比较，JsonPath 从实际结果中提取字段。实际对象可以包含未声明字段；需要严格 JSON 整体比较时在字段级使用 json /
 mode: full。缺失路径、缺失字段和不匹配值会收集为字段 diff。
 
-支持 eq、gt/ge/lt/le、regex、contains、size、approx、json；详见 [总体操作符表](../README.md)。approx threshold 默认3000ms；json
+支持 eq、gt/ge/lt/le、regex、contains、size、approx、json。approx threshold 默认3000ms；json
 默认 lenient，full 表示严格比较。未知操作符回退 eq。顶层 Map 被 ScenarioAssert 当作对象字段结构，并不等价于字段级操作符声明。
 
 ## 数据库断言契约

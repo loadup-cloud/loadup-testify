@@ -11,4 +11,4 @@ dependencyManagement 中的 ${project.version} 在 BOM 自身模型中解析，�
 BOM 不提供 Java 类，也不会自动引入 JAR。Testify core 的实现依赖 Framework，因此本 BOM 通过独立的
 `loadup.framework.version` 导入配套 Framework BOM。Testify parent 只导入自身同版本 BOM，并保留构建配置。
 消费方在 parent 中管理内部测试所需的 Testify BOM，实际工具依赖保持 `test` scope。
-本次只做 POM 结构与 IDE 静态检查，未执行 Maven 构建、安装或发布。
+待验收：当前 BOM 的 Maven 模型解析、配套制品安装及目标仓库发布。

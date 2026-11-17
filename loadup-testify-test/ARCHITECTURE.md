@@ -3,7 +3,7 @@
 ## 职责
 
 test 模块位于依赖图最上层，组合 Testify starter、Spring Boot Test、Testcontainers、MySQL driver 和示例服务。它验证组件行为，不是框架对外发布的业务
-API。
+API。示例集成测试使用 MySQL；这与 Pay 的 PostgreSQL 数据库基线不同，也不验证 PostgreSQL 方言兼容性。
 
 ## 分层
 

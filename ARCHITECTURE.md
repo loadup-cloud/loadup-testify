@@ -89,7 +89,7 @@ Map 的空值和集合空值处理存在差异，不能把解析过程当作原�
 
 已有验证源码包括
 ScenarioAssertTest、TestifyAutoConfigurationTest、UserServiceIT、UserServiceBatchIT。职责和执行命令见 [测试模块](loadup-testify-test/README.md)
-。本轮仅更新文档，没有执行 Maven 或 Docker 测试。接入手册见 [README.md](README.md)。
+。待验收：当前版本的 Maven 与真实数据库测试。接入手册见 [README.md](README.md)。
 
 ## BOM 与父 POM
 

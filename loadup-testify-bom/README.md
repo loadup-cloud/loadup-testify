@@ -23,10 +23,15 @@ mvnd -f loadup-testify-bom/pom.xml clean install
 ```
 
 该命令不编译 Java。正式消费还需要安装或发布同版本实际 JAR。上传本仓库完整 reactor 时，使用已配置凭证和显式部署目标
-`-DaltDeploymentRepository=github::https://maven.pkg.github.com/loadup-cloud/loadup-packages`；此处只说明配置，未执行安装、发布或构建。
+`-DaltDeploymentRepository=github::https://maven.pkg.github.com/loadup-cloud/loadup-packages`。
 
 新增或移除发布 JAR 时同步维护本 POM；内部测试 JAR 和聚合 POM 不进入对外版本清单。
 
 默认 Deploy 上传 GitHub Packages。中央库发布使用 `mvnd -f loadup-testify-bom/pom.xml clean deploy -Prelease`，
 独立 profile 会启用 Central Publishing 和 GPG，签名并上传 POM，不生成 sources/Javadoc JAR。
-凭证和版本要求见[仓库发布说明](../README.md#发布目标)。
+
+## 发布要求
+
+GitHub 使用 Maven settings 中 `github` server 的凭证。Central 使用 `central` server 的 Portal token、本机 GPG 私钥及配套正式版 Framework/Testify；SNAPSHOT 日常发布使用 GitHub。一次选择一个目标，显式启用其他 profile 时需按需组合 github。
+
+release 的 `autoPublish=false`，上传校验后在 Portal 完成发布；内部测试模块按各自 maven.deploy.skip 排除。发布结果需单独验证，BOM 模型解析或安装不代表上传成功。

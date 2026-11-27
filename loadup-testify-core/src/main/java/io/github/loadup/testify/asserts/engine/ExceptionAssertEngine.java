@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.asserts.engine;
 
 import io.github.loadup.commons.json.JsonUtil;
@@ -27,67 +28,71 @@ import java.util.Map;
 import tools.jackson.databind.JsonNode;
 
 public class ExceptionAssertEngine implements TestifyAssertEngine {
-    private final VariableEngine variableEngine;
+  private final VariableEngine variableEngine;
 
-    public ExceptionAssertEngine(VariableEngine variableEngine) {
-        this.variableEngine = variableEngine;
+  public ExceptionAssertEngine(VariableEngine variableEngine) {
+    this.variableEngine = variableEngine;
+  }
+
+  @Override
+  public void compare(JsonNode expectEx, Object actual, Map<String, Object> context) {
+    if (expectEx == null) {
+      return;
+    }
+    List<FieldDiff> diffs = new ArrayList<>();
+    if (actual == null) {
+      String expectType = expectEx.get("type").asString();
+      diffs.add(new FieldDiff("exception", expectType, "Null", "Expected exception but none"));
+      throw new AssertionError(DiffReportBuilder.build("Exception Assertion", diffs));
+    }
+    if (!(actual instanceof Throwable actualEx)) {
+      return;
     }
 
-    @Override
-    public void compare(JsonNode expectEx, Object actual, Map<String, Object> context) {
-        if (expectEx == null) {
-            return;
-        }
-        List<FieldDiff> diffs = new ArrayList<>();
-        if (actual == null) {
-            String expectType = expectEx.get("type").asString();
-            diffs.add(new FieldDiff("exception", expectType, "Null", "Expected exception but none"));
-            throw new AssertionError(DiffReportBuilder.build("Exception Assertion", diffs));
-        }
-        if (!(actual instanceof Throwable actualEx)) {
-            return;
-        }
+    Throwable rootCause = getRootCause(actualEx);
 
-        Throwable rootCause = getRootCause(actualEx);
-
-        if (expectEx.has("type")) {
-            String expectType = expectEx.get("type").asString();
-            if (!isTypeMatch(expectType, rootCause)) {
-                diffs.add(new FieldDiff(
-                        "exception.type", expectType, rootCause.getClass().getSimpleName(), "Exception type mismatch"));
-            }
-        }
-
-        if (expectEx.has("message")) {
-            JsonNode messageNode = expectEx.get("message");
-            String actualMsg = rootCause.getMessage();
-            Object resolved = variableEngine.resolveValue(messageNode, context);
-            String expectedMsg = JsonUtil.valueToTree(resolved).asString();
-
-            MatchResult result = OperatorProcessor.process(actualMsg, expectedMsg);
-
-            if (!result.isPassed()) {
-                diffs.add(new FieldDiff("exception.message", expectedMsg, actualMsg, result.message()));
-            }
-        }
-
-        if (!diffs.isEmpty()) {
-            throw new AssertionError(DiffReportBuilder.build("Exception Assertion", diffs));
-        }
+    if (expectEx.has("type")) {
+      String expectType = expectEx.get("type").asString();
+      if (!isTypeMatch(expectType, rootCause)) {
+        diffs.add(
+            new FieldDiff(
+                "exception.type",
+                expectType,
+                rootCause.getClass().getSimpleName(),
+                "Exception type mismatch"));
+      }
     }
 
-    private boolean isTypeMatch(String expectType, Throwable actualEx) {
-        String fullClassName = actualEx.getClass().getName();
-        String simpleName = actualEx.getClass().getSimpleName();
+    if (expectEx.has("message")) {
+      JsonNode messageNode = expectEx.get("message");
+      String actualMsg = rootCause.getMessage();
+      Object resolved = variableEngine.resolveValue(messageNode, context);
+      String expectedMsg = JsonUtil.valueToTree(resolved).asString();
 
-        return fullClassName.equals(expectType) || simpleName.equalsIgnoreCase(expectType);
+      MatchResult result = OperatorProcessor.process(actualMsg, expectedMsg);
+
+      if (!result.isPassed()) {
+        diffs.add(new FieldDiff("exception.message", expectedMsg, actualMsg, result.message()));
+      }
     }
 
-    private Throwable getRootCause(Throwable t) {
-        Throwable cause = t;
-        while (cause.getCause() != null && cause.getCause() != cause) {
-            cause = cause.getCause();
-        }
-        return cause;
+    if (!diffs.isEmpty()) {
+      throw new AssertionError(DiffReportBuilder.build("Exception Assertion", diffs));
     }
+  }
+
+  private boolean isTypeMatch(String expectType, Throwable actualEx) {
+    String fullClassName = actualEx.getClass().getName();
+    String simpleName = actualEx.getClass().getSimpleName();
+
+    return fullClassName.equals(expectType) || simpleName.equalsIgnoreCase(expectType);
+  }
+
+  private Throwable getRootCause(Throwable t) {
+    Throwable cause = t;
+    while (cause.getCause() != null && cause.getCause() != cause) {
+      cause = cause.getCause();
+    }
+    return cause;
+  }
 }

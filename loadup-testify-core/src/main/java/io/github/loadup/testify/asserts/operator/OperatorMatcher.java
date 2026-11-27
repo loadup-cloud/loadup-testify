@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.asserts.operator;
 
 import io.github.loadup.testify.asserts.model.MatchResult;
@@ -20,7 +21,7 @@ import java.util.Map;
 
 public interface OperatorMatcher {
 
-    MatchResult match(Object actual, Object expectedValue, Map<String, Object> config);
+  MatchResult match(Object actual, Object expectedValue, Map<String, Object> config);
 
-    boolean support(String op);
+  boolean support(String op);
 }

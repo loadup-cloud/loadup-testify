@@ -13,19 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.starter.cases;
 
 import java.util.Map;
 import tools.jackson.databind.JsonNode;
 
-public record TestifyCase(String name, Map<String, Object> variables, JsonNode input, JsonNode expect) {
+public record TestifyCase(
+    String name, Map<String, Object> variables, JsonNode input, JsonNode expect) {
 
-    public TestifyCase {
-        variables = variables == null ? Map.of() : variables;
-    }
+  public TestifyCase {
+    variables = variables == null ? Map.of() : variables;
+  }
 
-    @Override
-    public String toString() {
-        return name;
-    }
+  @Override
+  public String toString() {
+    return name;
+  }
 }

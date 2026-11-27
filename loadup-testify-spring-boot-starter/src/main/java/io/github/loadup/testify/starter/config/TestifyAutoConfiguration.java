@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.starter.config;
 
 import io.github.loadup.testify.asserts.engine.DbAssertEngine;
@@ -38,44 +39,45 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @ConditionalOnClass(JdbcTemplate.class)
 public class TestifyAutoConfiguration {
 
-    @Bean
-    @ConditionalOnMissingBean
-    @ConditionalOnBean(JdbcTemplate.class)
-    public TestScenario testScenario(JdbcTemplate jdbcTemplate) {
-        return new TestScenario(jdbcTemplate);
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  @ConditionalOnBean(JdbcTemplate.class)
+  public TestScenario testScenario(JdbcTemplate jdbcTemplate) {
+    return new TestScenario(jdbcTemplate);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public VariableEngine testifyVariableEngine() {
-        return new VariableEngine(List.of(new TimeFunction(), new CommonFunction()));
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  public VariableEngine testifyVariableEngine() {
+    return new VariableEngine(List.of(new TimeFunction(), new CommonFunction()));
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public ResponseAssertEngine responseAssertEngine(VariableEngine variableEngine) {
-        return new ResponseAssertEngine(variableEngine);
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  public ResponseAssertEngine responseAssertEngine(VariableEngine variableEngine) {
+    return new ResponseAssertEngine(variableEngine);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    @ConditionalOnBean(JdbcTemplate.class)
-    public DbAssertEngine dbAssertEngine(JdbcTemplate jdbcTemplate, VariableEngine variableEngine) {
-        return new DbAssertEngine(jdbcTemplate, variableEngine);
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  @ConditionalOnBean(JdbcTemplate.class)
+  public DbAssertEngine dbAssertEngine(JdbcTemplate jdbcTemplate, VariableEngine variableEngine) {
+    return new DbAssertEngine(jdbcTemplate, variableEngine);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public ExceptionAssertEngine exceptionAssertEngine(VariableEngine variableEngine) {
-        return new ExceptionAssertEngine(variableEngine);
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  public ExceptionAssertEngine exceptionAssertEngine(VariableEngine variableEngine) {
+    return new ExceptionAssertEngine(variableEngine);
+  }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public ScenarioAssert scenarioAssert(
-            ResponseAssertEngine responseAssertEngine,
-            ObjectProvider<DbAssertEngine> dbAssertEngine,
-            ExceptionAssertEngine exceptionAssertEngine) {
-        return new ScenarioAssert(responseAssertEngine, dbAssertEngine.getIfAvailable(), exceptionAssertEngine);
-    }
+  @Bean
+  @ConditionalOnMissingBean
+  public ScenarioAssert scenarioAssert(
+      ResponseAssertEngine responseAssertEngine,
+      ObjectProvider<DbAssertEngine> dbAssertEngine,
+      ExceptionAssertEngine exceptionAssertEngine) {
+    return new ScenarioAssert(
+        responseAssertEngine, dbAssertEngine.getIfAvailable(), exceptionAssertEngine);
+  }
 }

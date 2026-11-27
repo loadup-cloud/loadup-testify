@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.asserts.operator.impl;
 
 import io.github.loadup.testify.asserts.model.MatchResult;
@@ -21,22 +22,22 @@ import java.util.Objects;
 import org.apache.commons.lang3.StringUtils;
 
 public class SimpleMatcher {
-    public static MatchResult eq(Object actual, Object expected) {
-        if (actual == null && expected == null) {
-            return MatchResult.pass();
-        }
-        if (actual == null || expected == null) {
-            return MatchResult.fail(actual, expected, "One of the values is null");
-        }
-
-        if (StringUtils.isNumeric(actual.toString()) && StringUtils.isNumeric(expected.toString())) {
-            return new BigDecimal(actual.toString()).compareTo(new BigDecimal(expected.toString())) == 0
-                    ? MatchResult.pass()
-                    : MatchResult.fail(actual, expected, "Numeric values not equal");
-        }
-
-        return Objects.equals(actual, expected)
-                ? MatchResult.pass()
-                : MatchResult.fail(actual, expected, "Values are not equal");
+  public static MatchResult eq(Object actual, Object expected) {
+    if (actual == null && expected == null) {
+      return MatchResult.pass();
     }
+    if (actual == null || expected == null) {
+      return MatchResult.fail(actual, expected, "One of the values is null");
+    }
+
+    if (StringUtils.isNumeric(actual.toString()) && StringUtils.isNumeric(expected.toString())) {
+      return new BigDecimal(actual.toString()).compareTo(new BigDecimal(expected.toString())) == 0
+          ? MatchResult.pass()
+          : MatchResult.fail(actual, expected, "Numeric values not equal");
+    }
+
+    return Objects.equals(actual, expected)
+        ? MatchResult.pass()
+        : MatchResult.fail(actual, expected, "Values are not equal");
+  }
 }

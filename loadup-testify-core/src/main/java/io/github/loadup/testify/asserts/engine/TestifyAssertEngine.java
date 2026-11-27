@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.asserts.engine;
 
 import java.util.Map;
 import tools.jackson.databind.JsonNode;
 
 public interface TestifyAssertEngine {
-    void compare(JsonNode expectNode, Object actual, Map<String, Object> context);
+  void compare(JsonNode expectNode, Object actual, Map<String, Object> context);
 }

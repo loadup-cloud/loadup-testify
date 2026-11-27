@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.data.engine.function;
 
 public interface TestifyFunction {
 
-    String getPrefix();
+  String getPrefix();
 }

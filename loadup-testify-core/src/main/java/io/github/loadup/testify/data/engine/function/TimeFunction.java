@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.data.engine.function;
 
 import java.time.LocalDateTime;
@@ -22,102 +23,93 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TimeFunction implements TestifyFunction {
-    // Pattern to extract time offset like '+1d' or '-2h'
-    private static final Pattern TIME_OFFSET_PATTERN = Pattern.compile("([+-])(\\d+)([hdms])");
+  // Pattern to extract time offset like '+1d' or '-2h'
+  private static final Pattern TIME_OFFSET_PATTERN = Pattern.compile("([+-])(\\d+)([hdms])");
 
-    @Override
-    public String getPrefix() {
-        return "time";
+  @Override
+  public String getPrefix() {
+    return "time";
+  }
+
+  /** Get current timestamp as ISO-8601 string. */
+  public String now() {
+    return LocalDateTime.now().toString();
+  }
+
+  /**
+   * Get current timestamp with offset. Supported formats: - '+1d' or '-1d' for days - '+2h' or
+   * '-2h' for hours - '+30m' or '-30m' for minutes - '+60s' or '-60s' for seconds
+   */
+  public String now(String offset) {
+    LocalDateTime base = LocalDateTime.now();
+    LocalDateTime result = applyOffset(base, offset);
+    return result.toString();
+  }
+
+  /** Get current date/time formatted with pattern. */
+  public String format(String pattern) {
+    return LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
+  }
+
+  /** Get current date/time with offset and format. */
+  public String format(String offset, String pattern) {
+    LocalDateTime base = LocalDateTime.now();
+    LocalDateTime result = applyOffset(base, offset);
+    return result.format(DateTimeFormatter.ofPattern(pattern));
+  }
+
+  /** Get current epoch milliseconds. */
+  public long epochMilli() {
+    return System.currentTimeMillis();
+  }
+
+  /** Get epoch milliseconds with offset. */
+  public long epochMilli(String offset) {
+    LocalDateTime base = LocalDateTime.now();
+    LocalDateTime result = applyOffset(base, offset);
+    return result.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+  }
+
+  // Apply time offset like '+1d', '-2h', etc.
+  private LocalDateTime applyOffset(LocalDateTime base, String offset) {
+    if (offset == null || offset.isBlank()) {
+      return base;
     }
 
-    /**
-     * Get current timestamp as ISO-8601 string.
-     */
-    public String now() {
-        return LocalDateTime.now().toString();
+    Matcher matcher = TIME_OFFSET_PATTERN.matcher(offset);
+    if (!matcher.matches()) {
+      throw new IllegalArgumentException(
+          "Invalid time offset format: "
+              + offset
+              + ". Expected format: [+/-]<number>[d|h|m|s], e.g., '+1d' or '-2h'");
     }
 
-    /**
-     * Get current timestamp with offset. Supported formats: - '+1d' or '-1d' for days - '+2h' or
-     * '-2h' for hours - '+30m' or '-30m' for minutes - '+60s' or '-60s' for seconds
-     */
-    public String now(String offset) {
-        LocalDateTime base = LocalDateTime.now();
-        LocalDateTime result = applyOffset(base, offset);
-        return result.toString();
+    String sign = matcher.group(1);
+    int amount = Integer.parseInt(matcher.group(2));
+    String unit = matcher.group(3);
+
+    if ("-".equals(sign)) {
+      amount = -amount;
     }
 
-    /**
-     * Get current date/time formatted with pattern.
-     */
-    public String format(String pattern) {
-        return LocalDateTime.now().format(DateTimeFormatter.ofPattern(pattern));
-    }
+    return switch (unit) {
+      case "d" -> base.plusDays(amount);
+      case "h" -> base.plusHours(amount);
+      case "m" -> base.plusMinutes(amount);
+      case "s" -> base.plusSeconds(amount);
+      default -> throw new IllegalArgumentException("Unknown time unit: " + unit);
+    };
+  }
 
-    /**
-     * Get current date/time with offset and format.
-     */
-    public String format(String offset, String pattern) {
-        LocalDateTime base = LocalDateTime.now();
-        LocalDateTime result = applyOffset(base, offset);
-        return result.format(DateTimeFormatter.ofPattern(pattern));
-    }
+  public LocalDateTime nativeNow(String offset) {
+    return applyOffset(LocalDateTime.now(), offset);
+  }
 
-    /**
-     * Get current epoch milliseconds.
-     */
-    public long epochMilli() {
-        return System.currentTimeMillis();
-    }
-
-    /**
-     * Get epoch milliseconds with offset.
-     */
-    public long epochMilli(String offset) {
-        LocalDateTime base = LocalDateTime.now();
-        LocalDateTime result = applyOffset(base, offset);
-        return result.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-    }
-
-    // Apply time offset like '+1d', '-2h', etc.
-    private LocalDateTime applyOffset(LocalDateTime base, String offset) {
-        if (offset == null || offset.isBlank()) {
-            return base;
-        }
-
-        Matcher matcher = TIME_OFFSET_PATTERN.matcher(offset);
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException("Invalid time offset format: "
-                    + offset
-                    + ". Expected format: [+/-]<number>[d|h|m|s], e.g., '+1d' or '-2h'");
-        }
-
-        String sign = matcher.group(1);
-        int amount = Integer.parseInt(matcher.group(2));
-        String unit = matcher.group(3);
-
-        if ("-".equals(sign)) {
-            amount = -amount;
-        }
-
-        return switch (unit) {
-            case "d" -> base.plusDays(amount);
-            case "h" -> base.plusHours(amount);
-            case "m" -> base.plusMinutes(amount);
-            case "s" -> base.plusSeconds(amount);
-            default -> throw new IllegalArgumentException("Unknown time unit: " + unit);
-        };
-    }
-
-    public LocalDateTime nativeNow(String offset) {
-        return applyOffset(LocalDateTime.now(), offset);
-    }
-
-    public LocalDateTime startOfDay(String offset) {
-        return applyOffset(LocalDateTime.now(), offset)
-                .withHour(0)
-                .withMinute(0)
-                .withSecond(0)
-                .withNano(0);
-    }
+  public LocalDateTime startOfDay(String offset) {
+    return applyOffset(LocalDateTime.now(), offset)
+        .withHour(0)
+        .withMinute(0)
+        .withSecond(0)
+        .withNano(0);
+  }
 }

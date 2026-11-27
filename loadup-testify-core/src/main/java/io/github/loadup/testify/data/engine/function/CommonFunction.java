@@ -13,35 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.data.engine.function;
 
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CommonFunction implements TestifyFunction {
-    @Override
-    public String getPrefix() {
-        return "fn";
-    }
+  @Override
+  public String getPrefix() {
+    return "fn";
+  }
 
-    public String uuid() {
-        return UUID.randomUUID().toString();
-    }
+  public String uuid() {
+    return UUID.randomUUID().toString();
+  }
 
-    public int random(int min, int max) {
-        if (max <= min) {
-            return min;
-        }
-        return ThreadLocalRandom.current().nextInt(min, max);
+  public int random(int min, int max) {
+    if (max <= min) {
+      return min;
     }
+    return ThreadLocalRandom.current().nextInt(min, max);
+  }
 
-    public String randomString(int length) {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder sb = new StringBuilder(length);
-        ThreadLocalRandom random = ThreadLocalRandom.current();
-        for (int i = 0; i < length; i++) {
-            sb.append(chars.charAt(random.nextInt(chars.length())));
-        }
-        return sb.toString();
+  public String randomString(int length) {
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    StringBuilder sb = new StringBuilder(length);
+    ThreadLocalRandom random = ThreadLocalRandom.current();
+    for (int i = 0; i < length; i++) {
+      sb.append(chars.charAt(random.nextInt(chars.length())));
     }
+    return sb.toString();
+  }
 }

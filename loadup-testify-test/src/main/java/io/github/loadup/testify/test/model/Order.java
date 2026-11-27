@@ -13,27 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.test.model;
 
 public class Order {
-    private String orderId;
-    private String orderName;
+  private String orderId;
+  private String orderName;
 
-    public String getOrderId() {
-        return orderId;
-    }
+  public String getOrderId() {
+    return orderId;
+  }
 
-    public Order setOrderId(String orderId) {
-        this.orderId = orderId;
-        return this;
-    }
+  public Order setOrderId(String orderId) {
+    this.orderId = orderId;
+    return this;
+  }
 
-    public String getOrderName() {
-        return orderName;
-    }
+  public String getOrderName() {
+    return orderName;
+  }
 
-    public Order setOrderName(String orderName) {
-        this.orderName = orderName;
-        return this;
-    }
+  public Order setOrderName(String orderName) {
+    this.orderName = orderName;
+    return this;
+  }
 }

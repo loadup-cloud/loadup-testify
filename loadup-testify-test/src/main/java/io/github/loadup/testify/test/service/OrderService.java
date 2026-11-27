@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package io.github.loadup.testify.test.service;
 
 import io.github.loadup.testify.test.model.Order;
@@ -21,13 +22,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
-    /**
-     * Create a new user.
-     */
-    public Order createOrder(String orderId, String orderName) {
-        Order order = new Order();
-        order.setOrderId(orderId);
-        order.setOrderName(orderName);
-        return order;
-    }
+  /** Create a new user. */
+  public Order createOrder(String orderId, String orderName) {
+    Order order = new Order();
+    order.setOrderId(orderId);
+    order.setOrderName(orderName);
+    return order;
+  }
 }

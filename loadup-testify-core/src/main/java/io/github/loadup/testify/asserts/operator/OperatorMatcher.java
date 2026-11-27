@@ -21,7 +21,7 @@ import java.util.Map;
 
 public interface OperatorMatcher {
 
-  MatchResult match(Object actual, Object expectedValue, Map<String, Object> config);
+    MatchResult match(Object actual, Object expectedValue, Map<String, Object> config);
 
-  boolean support(String op);
+    boolean support(String op);
 }

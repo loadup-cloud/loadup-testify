@@ -32,6 +32,8 @@ mvnd -f loadup-testify-bom/pom.xml clean install
 
 ## 发布要求
 
-GitHub 使用 Maven settings 中 `github` server 的凭证。Central 使用 `central` server 的 Portal token、本机 GPG 私钥及配套正式版 Framework/Testify；SNAPSHOT 日常发布使用 GitHub。一次选择一个目标，显式启用其他 profile 时需按需组合 github。
+GitHub 使用 Maven settings 中 `github` server 的凭证。Central 使用 `central` server 的 Portal token、本机 GPG 私钥及配套正式版
+Framework/Testify；SNAPSHOT 日常发布使用 GitHub。一次选择一个目标，显式启用其他 profile 时需按需组合 github。
 
-release 的 `autoPublish=false`，上传校验后在 Portal 完成发布；内部测试模块按各自 maven.deploy.skip 排除。发布结果需单独验证，BOM 模型解析或安装不代表上传成功。
+release 的 `autoPublish=false`，上传校验后在 Portal 完成发布；内部测试模块按各自 maven.deploy.skip 排除。发布结果需单独验证，BOM
+模型解析或安装不代表上传成功。

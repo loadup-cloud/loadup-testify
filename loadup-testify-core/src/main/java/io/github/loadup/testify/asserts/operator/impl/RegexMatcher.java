@@ -21,22 +21,22 @@ import io.github.loadup.testify.asserts.operator.OperatorMatcher;
 import java.util.Map;
 
 public class RegexMatcher implements OperatorMatcher {
-  @Override
-  public boolean support(String op) {
-    return "regex".equals(op);
-  }
-
-  @Override
-  public MatchResult match(Object actual, Object val, Map<String, Object> config) {
-    if (actual == null) {
-      return MatchResult.fail(null, val, "Actual value is null");
+    @Override
+    public boolean support(String op) {
+        return "regex".equals(op);
     }
 
-    String regex = String.valueOf(val);
-    boolean matches = String.valueOf(actual).matches(regex);
+    @Override
+    public MatchResult match(Object actual, Object val, Map<String, Object> config) {
+        if (actual == null) {
+            return MatchResult.fail(null, val, "Actual value is null");
+        }
 
-    return matches
-        ? MatchResult.pass()
-        : MatchResult.fail(actual, val, "Actual value does not match regex pattern: " + regex);
-  }
+        String regex = String.valueOf(val);
+        boolean matches = String.valueOf(actual).matches(regex);
+
+        return matches
+                ? MatchResult.pass()
+                : MatchResult.fail(actual, val, "Actual value does not match regex pattern: " + regex);
+    }
 }

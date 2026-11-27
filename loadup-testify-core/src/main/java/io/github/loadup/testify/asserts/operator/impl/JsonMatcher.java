@@ -25,35 +25,34 @@ import org.skyscreamer.jsonassert.JSONCompareMode;
 
 public class JsonMatcher implements OperatorMatcher {
 
-  @Override
-  public boolean support(String op) {
-    return "json".equals(op);
-  }
-
-  /**
-   * Match JSON strings with specified comparison mode.
-   *
-   * @param actual Actual JSON value
-   * @param expected Expected JSON value
-   * @param config "full" for strict comparison, anything else for lenient (default)
-   * @return MatchResult
-   */
-  @Override
-  public MatchResult match(Object actual, Object expected, Map<String, Object> config) {
-    String matchMode = String.valueOf(config.getOrDefault("mode", "lenient"));
-    try {
-      String actStr = actual instanceof String ? (String) actual : JsonUtil.toJson(actual);
-      String expStr = expected instanceof String ? (String) expected : JsonUtil.toJson(expected);
-
-      JSONCompareMode mode =
-          "full".equals(matchMode) ? JSONCompareMode.STRICT : JSONCompareMode.LENIENT;
-      JSONAssert.assertEquals(expStr, actStr, mode);
-      return MatchResult.pass();
-    } catch (AssertionError e) {
-
-      return MatchResult.fail(actual, expected, e.getMessage());
-    } catch (Exception e) {
-      return MatchResult.fail(actual, expected, "JSON comparison error: " + e.getMessage());
+    @Override
+    public boolean support(String op) {
+        return "json".equals(op);
     }
-  }
+
+    /**
+     * Match JSON strings with specified comparison mode.
+     *
+     * @param actual Actual JSON value
+     * @param expected Expected JSON value
+     * @param config "full" for strict comparison, anything else for lenient (default)
+     * @return MatchResult
+     */
+    @Override
+    public MatchResult match(Object actual, Object expected, Map<String, Object> config) {
+        String matchMode = String.valueOf(config.getOrDefault("mode", "lenient"));
+        try {
+            String actStr = actual instanceof String ? (String) actual : JsonUtil.toJson(actual);
+            String expStr = expected instanceof String ? (String) expected : JsonUtil.toJson(expected);
+
+            JSONCompareMode mode = "full".equals(matchMode) ? JSONCompareMode.STRICT : JSONCompareMode.LENIENT;
+            JSONAssert.assertEquals(expStr, actStr, mode);
+            return MatchResult.pass();
+        } catch (AssertionError e) {
+
+            return MatchResult.fail(actual, expected, e.getMessage());
+        } catch (Exception e) {
+            return MatchResult.fail(actual, expected, "JSON comparison error: " + e.getMessage());
+        }
+    }
 }

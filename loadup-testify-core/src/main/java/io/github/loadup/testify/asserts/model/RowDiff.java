@@ -21,85 +21,82 @@ import java.util.Map;
 
 public class RowDiff {
 
-  private int index;
+    private int index;
 
-  private String type;
+    private String type;
 
-  private String message;
+    private String message;
 
-  private Map<String, Object> expectedRow;
+    private Map<String, Object> expectedRow;
 
-  private Map<String, FieldDiff> fieldDiffs;
+    private Map<String, FieldDiff> fieldDiffs;
 
-  public RowDiff(
-      int index,
-      String type,
-      String message,
-      Map<String, Object> expectedRow,
-      Map<String, FieldDiff> fieldDiffs) {
-    this.index = index;
-    this.type = type;
-    this.message = message;
-    this.expectedRow = expectedRow;
-    this.fieldDiffs = fieldDiffs;
-  }
+    public RowDiff(
+            int index,
+            String type,
+            String message,
+            Map<String, Object> expectedRow,
+            Map<String, FieldDiff> fieldDiffs) {
+        this.index = index;
+        this.type = type;
+        this.message = message;
+        this.expectedRow = expectedRow;
+        this.fieldDiffs = fieldDiffs;
+    }
 
-  public RowDiff() {}
+    public RowDiff() {}
 
-  public static RowDiff missing(int index, String message, Map<String, Object> expectedRow) {
-    return new RowDiff(index, "MISSING", message, expectedRow, null);
-  }
+    public static RowDiff missing(int index, String message, Map<String, Object> expectedRow) {
+        return new RowDiff(index, "MISSING", message, expectedRow, null);
+    }
 
-  public static RowDiff diff(
-      int index,
-      String message,
-      Map<String, Object> expectedRow,
-      Map<String, FieldDiff> fieldDiffs) {
-    return new RowDiff(index, "DIFF", message, expectedRow, fieldDiffs);
-  }
+    public static RowDiff diff(
+            int index, String message, Map<String, Object> expectedRow, Map<String, FieldDiff> fieldDiffs) {
+        return new RowDiff(index, "DIFF", message, expectedRow, fieldDiffs);
+    }
 
-  public int getIndex() {
-    return this.index;
-  }
+    public int getIndex() {
+        return this.index;
+    }
 
-  public void setIndex(int index) {
-    this.index = index;
-  }
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
-  public String getType() {
-    return this.type;
-  }
+    public String getType() {
+        return this.type;
+    }
 
-  public void setType(String type) {
-    this.type = type;
-  }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-  public String getMessage() {
-    return this.message;
-  }
+    public String getMessage() {
+        return this.message;
+    }
 
-  public void setMessage(String message) {
-    this.message = message;
-  }
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-  public Map<String, Object> getExpectedRow() {
-    return this.expectedRow;
-  }
+    public Map<String, Object> getExpectedRow() {
+        return this.expectedRow;
+    }
 
-  public void setExpectedRow(Map<String, Object> expectedRow) {
-    this.expectedRow = expectedRow;
-  }
+    public void setExpectedRow(Map<String, Object> expectedRow) {
+        this.expectedRow = expectedRow;
+    }
 
-  public Map<String, FieldDiff> getFieldDiffs() {
-    return this.fieldDiffs;
-  }
+    public Map<String, FieldDiff> getFieldDiffs() {
+        return this.fieldDiffs;
+    }
 
-  public void setFieldDiffs(Map<String, FieldDiff> fieldDiffs) {
-    this.fieldDiffs = fieldDiffs;
-  }
+    public void setFieldDiffs(Map<String, FieldDiff> fieldDiffs) {
+        this.fieldDiffs = fieldDiffs;
+    }
 
-  @Override
-  public String toString() {
-    return ToStringAsJson.reflectionToString(this);
-  }
+    @Override
+    public String toString() {
+        return ToStringAsJson.reflectionToString(this);
+    }
 }

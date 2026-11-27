@@ -31,57 +31,55 @@ import tools.jackson.dataformat.yaml.YAMLFactory;
 
 public final class CaseFiles {
 
-  private static final ObjectMapper YAML_MAPPER = new ObjectMapper(new YAMLFactory());
-  private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
+    private static final ObjectMapper YAML_MAPPER = new ObjectMapper(new YAMLFactory());
+    private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
 
-  private CaseFiles() {}
+    private CaseFiles() {}
 
-  public static List<TestifyCase> loadYaml(String classpathPath) {
-    try (InputStream in = new ClassPathResource(classpathPath).getInputStream()) {
-      return parse(YAML_MAPPER.readTree(in));
-    } catch (IOException | JacksonException e) {
-      throw new IllegalStateException("Failed to load testify cases from " + classpathPath, e);
+    public static List<TestifyCase> loadYaml(String classpathPath) {
+        try (InputStream in = new ClassPathResource(classpathPath).getInputStream()) {
+            return parse(YAML_MAPPER.readTree(in));
+        } catch (IOException | JacksonException e) {
+            throw new IllegalStateException("Failed to load testify cases from " + classpathPath, e);
+        }
     }
-  }
 
-  public static List<TestifyCase> loadJson(String classpathPath) {
-    try (InputStream in = new ClassPathResource(classpathPath).getInputStream()) {
-      return parse(JSON_MAPPER.readTree(in));
-    } catch (IOException | JacksonException e) {
-      throw new IllegalStateException("Failed to load testify cases from " + classpathPath, e);
+    public static List<TestifyCase> loadJson(String classpathPath) {
+        try (InputStream in = new ClassPathResource(classpathPath).getInputStream()) {
+            return parse(JSON_MAPPER.readTree(in));
+        } catch (IOException | JacksonException e) {
+            throw new IllegalStateException("Failed to load testify cases from " + classpathPath, e);
+        }
     }
-  }
 
-  private static List<TestifyCase> parse(JsonNode root) {
-    List<TestifyCase> cases = new ArrayList<>();
-    if (root == null || root.isNull()) {
-      return cases;
+    private static List<TestifyCase> parse(JsonNode root) {
+        List<TestifyCase> cases = new ArrayList<>();
+        if (root == null || root.isNull()) {
+            return cases;
+        }
+        if (root.isArray()) {
+            root.forEach(node -> cases.add(toCase(node)));
+        } else if (root.has("cases") && root.get("cases").isArray()) {
+            root.get("cases").forEach(node -> cases.add(toCase(node)));
+        } else {
+            cases.add(toCase(root));
+        }
+        return cases;
     }
-    if (root.isArray()) {
-      root.forEach(node -> cases.add(toCase(node)));
-    } else if (root.has("cases") && root.get("cases").isArray()) {
-      root.get("cases").forEach(node -> cases.add(toCase(node)));
-    } else {
-      cases.add(toCase(root));
-    }
-    return cases;
-  }
 
-  private static TestifyCase toCase(JsonNode node) {
-    String name = node.path("name").asString();
-    if (name.isBlank()) {
-      name = node.path("id").asString();
+    private static TestifyCase toCase(JsonNode node) {
+        String name = node.path("name").asString();
+        if (name.isBlank()) {
+            name = node.path("id").asString();
+        }
+        if (name.isBlank()) {
+            name = "case";
+        }
+        Map<String, Object> variables = node.has("variables")
+                ? YAML_MAPPER.convertValue(node.get("variables"), new TypeReference<LinkedHashMap<String, Object>>() {})
+                : Map.of();
+        JsonNode input = node.has("input") ? node.get("input") : node.get("params");
+        JsonNode expect = node.has("expect") ? node.get("expect") : node.get("expected");
+        return new TestifyCase(name, variables, input, expect);
     }
-    if (name.isBlank()) {
-      name = "case";
-    }
-    Map<String, Object> variables =
-        node.has("variables")
-            ? YAML_MAPPER.convertValue(
-                node.get("variables"), new TypeReference<LinkedHashMap<String, Object>>() {})
-            : Map.of();
-    JsonNode input = node.has("input") ? node.get("input") : node.get("params");
-    JsonNode expect = node.has("expect") ? node.get("expect") : node.get("expected");
-    return new TestifyCase(name, variables, input, expect);
-  }
 }

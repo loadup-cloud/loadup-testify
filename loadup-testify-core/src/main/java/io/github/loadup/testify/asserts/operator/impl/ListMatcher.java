@@ -22,23 +22,23 @@ import java.util.Collection;
 import java.util.Map;
 
 public class ListMatcher implements OperatorMatcher {
-  @Override
-  public boolean support(String op) {
-    return "size".equals(op);
-  }
-
-  @Override
-  public MatchResult match(Object actual, Object val, Map<String, Object> config) {
-    int actStr = 0;
-    if (actual instanceof Collection list) {
-      actStr = list.size();
+    @Override
+    public boolean support(String op) {
+        return "size".equals(op);
     }
 
-    int expStr = Integer.parseInt(String.valueOf(val));
+    @Override
+    public MatchResult match(Object actual, Object val, Map<String, Object> config) {
+        int actStr = 0;
+        if (actual instanceof Collection list) {
+            actStr = list.size();
+        }
 
-    boolean matched = actStr == expStr;
-    return matched
-        ? MatchResult.pass()
-        : MatchResult.fail(actual, val, "Actual List size does not matched expected size");
-  }
+        int expStr = Integer.parseInt(String.valueOf(val));
+
+        boolean matched = actStr == expStr;
+        return matched
+                ? MatchResult.pass()
+                : MatchResult.fail(actual, val, "Actual List size does not matched expected size");
+    }
 }

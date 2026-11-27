@@ -27,102 +27,98 @@ import tools.jackson.databind.JsonNode;
 
 public class ScenarioAssert {
 
-  private final ResponseAssertEngine responseAssertEngine;
-  private final DbAssertEngine dbAssertEngine;
-  private final ExceptionAssertEngine exceptionAssertEngine;
+    private final ResponseAssertEngine responseAssertEngine;
+    private final DbAssertEngine dbAssertEngine;
+    private final ExceptionAssertEngine exceptionAssertEngine;
 
-  public ScenarioAssert(
-      ResponseAssertEngine responseAssertEngine,
-      DbAssertEngine dbAssertEngine,
-      ExceptionAssertEngine exceptionAssertEngine) {
-    this.responseAssertEngine = responseAssertEngine;
-    this.dbAssertEngine = dbAssertEngine;
-    this.exceptionAssertEngine = exceptionAssertEngine;
-  }
-
-  public ScenarioAssert verify(Object actual, Object expected) {
-    return verify(actual, expected, Map.of());
-  }
-
-  /**
-   * Verify an actual result against an expected structure.
-   *
-   * @param actual the object returned by the code under test
-   * @param expected a Map, JsonNode or JSON string describing expected values
-   * @param variables resolved variables used to expand {@code ${...}} placeholders
-   */
-  public ScenarioAssert verify(Object actual, Object expected, Map<String, Object> variables) {
-    JsonNode expectNode = toNode(expected);
-    if (!expectNode.isObject() || expectNode.isEmpty()) {
-      MatchResult result = OperatorProcessor.process(actual, leafValue(expectNode));
-      if (!result.isPassed()) {
-        throw new AssertionError("Assertion failed: " + result.message());
-      }
-      return this;
+    public ScenarioAssert(
+            ResponseAssertEngine responseAssertEngine,
+            DbAssertEngine dbAssertEngine,
+            ExceptionAssertEngine exceptionAssertEngine) {
+        this.responseAssertEngine = responseAssertEngine;
+        this.dbAssertEngine = dbAssertEngine;
+        this.exceptionAssertEngine = exceptionAssertEngine;
     }
-    responseAssertEngine.compare(expectNode, actual, variables == null ? Map.of() : variables);
-    return this;
-  }
 
-  public ScenarioAssert verifyJson(String actualJson, Object expected) {
-    return verifyJson(actualJson, expected, Map.of());
-  }
-
-  /** Verify a raw JSON string response against the expected structure. */
-  public ScenarioAssert verifyJson(
-      String actualJson, Object expected, Map<String, Object> variables) {
-    return verify(JsonUtil.readTree(actualJson), expected, variables);
-  }
-
-  public ScenarioAssert verifyDb(Object expected) {
-    return verifyDb(expected, Map.of());
-  }
-
-  /** Verify database state, e.g. {@code {table: users, mode: strict, rows: [...]}}. */
-  public ScenarioAssert verifyDb(Object expected, Map<String, Object> variables) {
-    if (dbAssertEngine == null) {
-      throw new AssertionError(
-          "Database assertions require a DbAssertEngine backed by a JdbcTemplate bean");
+    public ScenarioAssert verify(Object actual, Object expected) {
+        return verify(actual, expected, Map.of());
     }
-    dbAssertEngine.compare(toNode(expected), null, variables == null ? Map.of() : variables);
-    return this;
-  }
 
-  public ScenarioAssert verifyException(Throwable actual, Object expected) {
-    return verifyException(actual, expected, Map.of());
-  }
+    /**
+     * Verify an actual result against an expected structure.
+     *
+     * @param actual the object returned by the code under test
+     * @param expected a Map, JsonNode or JSON string describing expected values
+     * @param variables resolved variables used to expand {@code ${...}} placeholders
+     */
+    public ScenarioAssert verify(Object actual, Object expected, Map<String, Object> variables) {
+        JsonNode expectNode = toNode(expected);
+        if (!expectNode.isObject() || expectNode.isEmpty()) {
+            MatchResult result = OperatorProcessor.process(actual, leafValue(expectNode));
+            if (!result.isPassed()) {
+                throw new AssertionError("Assertion failed: " + result.message());
+            }
+            return this;
+        }
+        responseAssertEngine.compare(expectNode, actual, variables == null ? Map.of() : variables);
+        return this;
+    }
 
-  /** Verify a thrown exception, e.g. {@code {type: ..., message: ...}}. */
-  public ScenarioAssert verifyException(
-      Throwable actual, Object expected, Map<String, Object> variables) {
-    exceptionAssertEngine.compare(
-        toNode(expected), actual, variables == null ? Map.of() : variables);
-    return this;
-  }
+    public ScenarioAssert verifyJson(String actualJson, Object expected) {
+        return verifyJson(actualJson, expected, Map.of());
+    }
 
-  private JsonNode toNode(Object value) {
-    if (value instanceof JsonNode node) {
-      return node;
+    /** Verify a raw JSON string response against the expected structure. */
+    public ScenarioAssert verifyJson(String actualJson, Object expected, Map<String, Object> variables) {
+        return verify(JsonUtil.readTree(actualJson), expected, variables);
     }
-    if (value instanceof String text) {
-      String trimmed = text.trim();
-      if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
-        return JsonUtil.readTree(text);
-      }
-    }
-    return JsonUtil.valueToTree(value);
-  }
 
-  private Object leafValue(JsonNode node) {
-    if (node == null || node.isNull()) {
-      return null;
+    public ScenarioAssert verifyDb(Object expected) {
+        return verifyDb(expected, Map.of());
     }
-    if (node.isNumber()) {
-      return node.numberValue();
+
+    /** Verify database state, e.g. {@code {table: users, mode: strict, rows: [...]}}. */
+    public ScenarioAssert verifyDb(Object expected, Map<String, Object> variables) {
+        if (dbAssertEngine == null) {
+            throw new AssertionError("Database assertions require a DbAssertEngine backed by a JdbcTemplate bean");
+        }
+        dbAssertEngine.compare(toNode(expected), null, variables == null ? Map.of() : variables);
+        return this;
     }
-    if (node.isBoolean()) {
-      return node.booleanValue();
+
+    public ScenarioAssert verifyException(Throwable actual, Object expected) {
+        return verifyException(actual, expected, Map.of());
     }
-    return node.asString();
-  }
+
+    /** Verify a thrown exception, e.g. {@code {type: ..., message: ...}}. */
+    public ScenarioAssert verifyException(Throwable actual, Object expected, Map<String, Object> variables) {
+        exceptionAssertEngine.compare(toNode(expected), actual, variables == null ? Map.of() : variables);
+        return this;
+    }
+
+    private JsonNode toNode(Object value) {
+        if (value instanceof JsonNode node) {
+            return node;
+        }
+        if (value instanceof String text) {
+            String trimmed = text.trim();
+            if (trimmed.startsWith("{") || trimmed.startsWith("[")) {
+                return JsonUtil.readTree(text);
+            }
+        }
+        return JsonUtil.valueToTree(value);
+    }
+
+    private Object leafValue(JsonNode node) {
+        if (node == null || node.isNull()) {
+            return null;
+        }
+        if (node.isNumber()) {
+            return node.numberValue();
+        }
+        if (node.isBoolean()) {
+            return node.booleanValue();
+        }
+        return node.asString();
+    }
 }

@@ -38,33 +38,37 @@ import org.springframework.boot.test.context.SpringBootTest;
 @EnableTestContainers(ContainerType.MYSQL)
 class UserServiceBatchIT {
 
-  @Autowired private UserService userService;
+    @Autowired
+    private UserService userService;
 
-  @Autowired private TestScenario scenario;
+    @Autowired
+    private TestScenario scenario;
 
-  @Autowired private ScenarioAssert scenarioAssert;
+    @Autowired
+    private ScenarioAssert scenarioAssert;
 
-  @Autowired private VariableEngine variableEngine;
+    @Autowired
+    private VariableEngine variableEngine;
 
-  static Stream<TestifyCase> cases() {
-    return CaseFiles.loadYaml("testcases/UserServiceIT/batch-create.yaml").stream();
-  }
+    static Stream<TestifyCase> cases() {
+        return CaseFiles.loadYaml("testcases/UserServiceIT/batch-create.yaml").stream();
+    }
 
-  @BeforeEach
-  void cleanUp() {
-    scenario.clean("users");
-  }
+    @BeforeEach
+    void cleanUp() {
+        scenario.clean("users");
+    }
 
-  @ParameterizedTest(name = "{0}")
-  @MethodSource("cases")
-  void createUser_batch(TestifyCase testCase) {
-    Map<String, Object> variables = variableEngine.resolveVariables(testCase.variables());
-    Object resolvedInput = variableEngine.resolveValue(testCase.input(), variables);
-    User input = (User) JsonUtil.convertValue(resolvedInput, User.class);
-    scenario.clean("users", "user_id", input.getUserId());
+    @ParameterizedTest(name = "{0}")
+    @MethodSource("cases")
+    void createUser_batch(TestifyCase testCase) {
+        Map<String, Object> variables = variableEngine.resolveVariables(testCase.variables());
+        Object resolvedInput = variableEngine.resolveValue(testCase.input(), variables);
+        User input = (User) JsonUtil.convertValue(resolvedInput, User.class);
+        scenario.clean("users", "user_id", input.getUserId());
 
-    User actual = userService.createUser(input);
+        User actual = userService.createUser(input);
 
-    scenarioAssert.verify(actual, testCase.expect(), variables);
-  }
+        scenarioAssert.verify(actual, testCase.expect(), variables);
+    }
 }

@@ -18,5 +18,5 @@ package io.github.loadup.testify.data.engine.function;
 
 public interface TestifyFunction {
 
-  String getPrefix();
+    String getPrefix();
 }

@@ -38,49 +38,52 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 @EnableTestContainers(ContainerType.MYSQL)
 class UserServiceIT {
 
-  @Autowired private UserService userService;
+    @Autowired
+    private UserService userService;
 
-  @Autowired private TestScenario scenario;
+    @Autowired
+    private TestScenario scenario;
 
-  @MockitoBean private OrderService orderService;
+    @MockitoBean
+    private OrderService orderService;
 
-  @BeforeEach
-  void cleanUp() {
-    scenario.clean("users");
-  }
+    @BeforeEach
+    void cleanUp() {
+        scenario.clean("users");
+    }
 
-  @Test
-  void createUser_shouldPersistUserAndUseMockedOrderService() {
-    String userId = scenario.uuid();
-    String userName = "Ada";
-    User user = new User(userId, userName, "ada@example.com");
-    Order order = new Order();
-    order.setOrderId(userId);
-    order.setOrderName(userName);
-    when(orderService.createOrder(userId, userName)).thenReturn(order);
+    @Test
+    void createUser_shouldPersistUserAndUseMockedOrderService() {
+        String userId = scenario.uuid();
+        String userName = "Ada";
+        User user = new User(userId, userName, "ada@example.com");
+        Order order = new Order();
+        order.setOrderId(userId);
+        order.setOrderName(userName);
+        when(orderService.createOrder(userId, userName)).thenReturn(order);
 
-    User saved = userService.createUser(user);
+        User saved = userService.createUser(user);
 
-    assertThat(saved.getUserId()).isEqualTo(userId);
-    assertThat(saved.getOrder()).isSameAs(order);
-    verify(orderService).createOrder(userId, userName);
-    scenario.assertDb("users").where("user_id", userId).exists().has("status", "ACTIVE");
-  }
+        assertThat(saved.getUserId()).isEqualTo(userId);
+        assertThat(saved.getOrder()).isSameAs(order);
+        verify(orderService).createOrder(userId, userName);
+        scenario.assertDb("users").where("user_id", userId).exists().has("status", "ACTIVE");
+    }
 
-  @Test
-  void getUserById_shouldReturnUserInsertedByScenario() {
-    String userId = scenario.uuid();
-    scenario.insert(
-        "users",
-        Map.of(
-            "user_id", userId,
-            "user_name", "Grace",
-            "email", "grace@example.com",
-            "status", "ACTIVE",
-            "created_at", LocalDateTime.now()));
+    @Test
+    void getUserById_shouldReturnUserInsertedByScenario() {
+        String userId = scenario.uuid();
+        scenario.insert(
+                "users",
+                Map.of(
+                        "user_id", userId,
+                        "user_name", "Grace",
+                        "email", "grace@example.com",
+                        "status", "ACTIVE",
+                        "created_at", LocalDateTime.now()));
 
-    User found = userService.getUserById(userId);
+        User found = userService.getUserById(userId);
 
-    assertThat(found.getUserName()).isEqualTo("Grace");
-  }
+        assertThat(found.getUserName()).isEqualTo("Grace");
+    }
 }

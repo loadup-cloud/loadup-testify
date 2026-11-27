@@ -27,57 +27,60 @@ import java.util.Date;
 import java.util.Map;
 
 public class ApproxTimeMatcher implements OperatorMatcher {
-  private static final TimeParser TIME_PARSER = new TimeParser();
+    private static final TimeParser TIME_PARSER = new TimeParser();
 
-  @Override
-  public boolean support(String op) {
-    return "approx".equals(op);
-  }
-
-  @Override
-  public MatchResult match(Object actual, Object val, Map<String, Object> config) {
-
-    long threshold = Long.parseLong(String.valueOf(config.getOrDefault("threshold", 3000)));
-
-    try {
-      long actTime = toMillis(actual);
-      long expTime = toMillis(val);
-
-      long diff = Math.abs(actTime - expTime);
-      return diff <= threshold
-          ? MatchResult.pass()
-          : MatchResult.fail(
-              actual, val, String.format("Time diff %dms exceeds threshold %dms", diff, threshold));
-    } catch (Exception e) {
-      return MatchResult.fail(actual, val, "Time parsing failed: " + e.getMessage());
-    }
-  }
-
-  private long toMillis(Object value) {
-    if (value == null) {
-      throw new IllegalArgumentException("时间值不能为空");
+    @Override
+    public boolean support(String op) {
+        return "approx".equals(op);
     }
 
-    if (value instanceof Number n) {
-      return n.longValue();
+    @Override
+    public MatchResult match(Object actual, Object val, Map<String, Object> config) {
+
+        long threshold = Long.parseLong(String.valueOf(config.getOrDefault("threshold", 3000)));
+
+        try {
+            long actTime = toMillis(actual);
+            long expTime = toMillis(val);
+
+            long diff = Math.abs(actTime - expTime);
+            return diff <= threshold
+                    ? MatchResult.pass()
+                    : MatchResult.fail(
+                            actual, val, String.format("Time diff %dms exceeds threshold %dms", diff, threshold));
+        } catch (Exception e) {
+            return MatchResult.fail(actual, val, "Time parsing failed: " + e.getMessage());
+        }
     }
 
-    if (value instanceof TemporalAccessor ta) {
-      try {
-        return Instant.from(ta).toEpochMilli();
-      } catch (Exception e) {
-        return LocalDateTime.from(ta).atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
-      }
-    }
+    private long toMillis(Object value) {
+        if (value == null) {
+            throw new IllegalArgumentException("时间值不能为空");
+        }
 
-    if (value instanceof Date d) {
-      return d.getTime();
-    }
+        if (value instanceof Number n) {
+            return n.longValue();
+        }
 
-    if (value instanceof String str) {
-      return TIME_PARSER.toMillis(str);
-    }
+        if (value instanceof TemporalAccessor ta) {
+            try {
+                return Instant.from(ta).toEpochMilli();
+            } catch (Exception e) {
+                return LocalDateTime.from(ta)
+                        .atZone(ZoneId.systemDefault())
+                        .toInstant()
+                        .toEpochMilli();
+            }
+        }
 
-    throw new IllegalArgumentException("不支持的时间格式: " + value.getClass());
-  }
+        if (value instanceof Date d) {
+            return d.getTime();
+        }
+
+        if (value instanceof String str) {
+            return TIME_PARSER.toMillis(str);
+        }
+
+        throw new IllegalArgumentException("不支持的时间格式: " + value.getClass());
+    }
 }

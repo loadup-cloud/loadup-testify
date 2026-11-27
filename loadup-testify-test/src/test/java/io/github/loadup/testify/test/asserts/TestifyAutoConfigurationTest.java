@@ -36,47 +36,42 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 class TestifyAutoConfigurationTest {
 
-  private final ApplicationContextRunner contextRunner =
-      new ApplicationContextRunner()
-          .withConfiguration(AutoConfigurations.of(TestifyAutoConfiguration.class));
+    private final ApplicationContextRunner contextRunner =
+            new ApplicationContextRunner().withConfiguration(AutoConfigurations.of(TestifyAutoConfiguration.class));
 
-  @Test
-  void nonDatabaseAssertionsRemainAvailableWithoutJdbcTemplate() {
-    contextRunner.run(
-        context -> {
-          assertThat(context).hasNotFailed();
-          assertThat(context).hasSingleBean(VariableEngine.class);
-          assertThat(context).hasSingleBean(ResponseAssertEngine.class);
-          assertThat(context).hasSingleBean(ExceptionAssertEngine.class);
-          assertThat(context).hasSingleBean(ScenarioAssert.class);
-          assertThat(context).doesNotHaveBean(TestScenario.class);
-          assertThat(context).doesNotHaveBean(DbAssertEngine.class);
+    @Test
+    void nonDatabaseAssertionsRemainAvailableWithoutJdbcTemplate() {
+        contextRunner.run(context -> {
+            assertThat(context).hasNotFailed();
+            assertThat(context).hasSingleBean(VariableEngine.class);
+            assertThat(context).hasSingleBean(ResponseAssertEngine.class);
+            assertThat(context).hasSingleBean(ExceptionAssertEngine.class);
+            assertThat(context).hasSingleBean(ScenarioAssert.class);
+            assertThat(context).doesNotHaveBean(TestScenario.class);
+            assertThat(context).doesNotHaveBean(DbAssertEngine.class);
 
-          ScenarioAssert assertions = context.getBean(ScenarioAssert.class);
-          assertions.verify(Map.of("id", "u-1"), Map.of("id", "u-1"));
-          assertions.verifyException(
-              new IllegalArgumentException("invalid"),
-              Map.of("type", "IllegalArgumentException", "message", "invalid"));
-          assertThatThrownBy(() -> assertions.verifyDb(Map.of("table", "users")))
-              .isInstanceOf(AssertionError.class)
-              .hasMessageContaining("JdbcTemplate bean");
+            ScenarioAssert assertions = context.getBean(ScenarioAssert.class);
+            assertions.verify(Map.of("id", "u-1"), Map.of("id", "u-1"));
+            assertions.verifyException(
+                    new IllegalArgumentException("invalid"),
+                    Map.of("type", "IllegalArgumentException", "message", "invalid"));
+            assertThatThrownBy(() -> assertions.verifyDb(Map.of("table", "users")))
+                    .isInstanceOf(AssertionError.class)
+                    .hasMessageContaining("JdbcTemplate bean");
         });
-  }
+    }
 
-  @Test
-  void databaseCapabilitiesAreRegisteredWithJdbcTemplate() {
-    // This unit test checks bean wiring only; database execution belongs to container ITs.
-    contextRunner
-        .withBean(JdbcTemplate.class, () -> new JdbcTemplate(mock(DataSource.class)))
-        .run(
-            context -> {
-              assertThat(context).hasNotFailed();
-              assertThat(context).hasSingleBean(TestScenario.class);
-              assertThat(context).hasSingleBean(DbAssertEngine.class);
-              assertThat(context).hasSingleBean(ScenarioAssert.class);
-              context
-                  .getBean(ScenarioAssert.class)
-                  .verify(Map.of("id", "u-1"), Map.of("id", "u-1"));
-            });
-  }
+    @Test
+    void databaseCapabilitiesAreRegisteredWithJdbcTemplate() {
+        // This unit test checks bean wiring only; database execution belongs to container ITs.
+        contextRunner
+                .withBean(JdbcTemplate.class, () -> new JdbcTemplate(mock(DataSource.class)))
+                .run(context -> {
+                    assertThat(context).hasNotFailed();
+                    assertThat(context).hasSingleBean(TestScenario.class);
+                    assertThat(context).hasSingleBean(DbAssertEngine.class);
+                    assertThat(context).hasSingleBean(ScenarioAssert.class);
+                    context.getBean(ScenarioAssert.class).verify(Map.of("id", "u-1"), Map.of("id", "u-1"));
+                });
+    }
 }

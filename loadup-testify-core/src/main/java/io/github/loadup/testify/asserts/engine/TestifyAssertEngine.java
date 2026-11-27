@@ -20,5 +20,5 @@ import java.util.Map;
 import tools.jackson.databind.JsonNode;
 
 public interface TestifyAssertEngine {
-  void compare(JsonNode expectNode, Object actual, Map<String, Object> context);
+    void compare(JsonNode expectNode, Object actual, Map<String, Object> context);
 }

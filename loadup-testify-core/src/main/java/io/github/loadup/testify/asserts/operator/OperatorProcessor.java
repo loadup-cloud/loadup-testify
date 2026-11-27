@@ -29,30 +29,29 @@ import java.util.Map;
 
 public class OperatorProcessor {
 
-  private static final List<OperatorMatcher> MATCHERS =
-      List.of(
-          new NumberMatcher(),
-          new RegexMatcher(),
-          new ApproxTimeMatcher(),
-          new JsonMatcher(),
-          new StringMatcher(),
-          new ListMatcher());
+    private static final List<OperatorMatcher> MATCHERS = List.of(
+            new NumberMatcher(),
+            new RegexMatcher(),
+            new ApproxTimeMatcher(),
+            new JsonMatcher(),
+            new StringMatcher(),
+            new ListMatcher());
 
-  public static MatchResult process(Object actual, Object expected) {
+    public static MatchResult process(Object actual, Object expected) {
 
-    if (!(expected instanceof Map<?, ?> config)) {
-      return SimpleMatcher.eq(actual, expected);
+        if (!(expected instanceof Map<?, ?> config)) {
+            return SimpleMatcher.eq(actual, expected);
+        }
+
+        @SuppressWarnings("unchecked")
+        Map<String, Object> operatorConfig = (Map<String, Object>) config;
+        String op = String.valueOf(operatorConfig.getOrDefault("op", "eq"));
+        Object val = operatorConfig.get("val");
+
+        return MATCHERS.stream()
+                .filter(m -> m.support(op))
+                .findFirst()
+                .map(m -> m.match(actual, val, operatorConfig))
+                .orElseGet(() -> SimpleMatcher.eq(actual, val));
     }
-
-    @SuppressWarnings("unchecked")
-    Map<String, Object> operatorConfig = (Map<String, Object>) config;
-    String op = String.valueOf(operatorConfig.getOrDefault("op", "eq"));
-    Object val = operatorConfig.get("val");
-
-    return MATCHERS.stream()
-        .filter(m -> m.support(op))
-        .findFirst()
-        .map(m -> m.match(actual, val, operatorConfig))
-        .orElseGet(() -> SimpleMatcher.eq(actual, val));
-  }
 }
